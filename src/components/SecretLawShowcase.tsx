@@ -111,15 +111,15 @@ export default function SecretLawShowcase() {
                 </span>
               </div>
 
-              {/* Kristal Netliğinde Playfair Display Metin (Bıçak Gibi Keskin) */}
-              <blockquote className="font-playfair text-[17px] sm:text-[18px] lg:text-[19px] text-[#F3F1EC] leading-[1.85] sm:leading-[1.95] tracking-normal text-left">
-                <span className="font-playfair text-[#F3F1EC] font-normal mr-2">
-                  93<span className="text-[#D4AF37] ml-1 opacity-90">·</span>
+              {/* Kristal Netliğinde Playfair Display Metin (Geniş Satır Aralığı & Ferah Nefes) */}
+              <blockquote className="font-playfair text-[17px] sm:text-[18.5px] lg:text-[19.5px] text-[#F0F0F0] leading-[2.05] sm:leading-[2.2] tracking-[0.02em] text-left">
+                <span className="font-playfair text-[#F0F0F0] font-normal mr-2">
+                  93<span className="text-[#FACC15] ml-1 opacity-90 font-bold">·</span>
                 </span>
                 Bir kadınla tartışırken ona{" "}
                 {/* Sadece "Sen bilirsin" Sansürlü Siyah Redacted Bant */}
                 <span
-                  className="censor relative inline-flex items-center justify-center align-middle mx-1 px-3.5 py-0.5 bg-black border-y border-zinc-800 select-none cursor-not-allowed shadow-[0_1px_3px_rgba(0,0,0,1)]"
+                  className="censor relative inline-flex items-center justify-center align-middle mx-1.5 px-3.5 py-0.5 bg-black border-y border-zinc-800 select-none cursor-not-allowed shadow-[0_1px_3px_rgba(0,0,0,1)]"
                   title="Sansürlü İçerik"
                 >
                   <span className="opacity-0 text-black select-none pointer-events-none text-xs sm:text-sm">
@@ -127,14 +127,15 @@ export default function SecretLawShowcase() {
                   </span>
                   <span className="absolute inset-0 flex items-center justify-center bg-black">
                     <Lock
-                      className="w-3.5 h-3.5 text-[#D4AF37]"
+                      className="w-3.5 h-3.5 text-[#FACC15]"
                       strokeWidth={1.25}
                     />
                   </span>
                 </span>{" "}
                 deyip konuyu kapattığında, o oyunu sen kazanmış olursun. O iki kelime,
                 karşındakini kendi çaresizliğiyle baş başa bırakan{" "}
-                <strong className="font-playfair font-semibold text-[#D4AF37] tracking-normal">
+                {/* İlk Bakışta Kilitlenen Canlı ve Net Altın Vurgu */}
+                <strong className="font-playfair font-bold text-[#FACC15] tracking-normal [text-shadow:0_0_14px_rgba(250,204,21,0.22)]">
                   en ağır nükleer bombadır.
                 </strong>
               </blockquote>
