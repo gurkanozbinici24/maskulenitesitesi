@@ -23,6 +23,9 @@ export const metadata: Metadata = {
     'ilişki taktikleri'
   ],
   authors: [{ name: "Gürkan Özbinici" }],
+  verification: {
+    google: 'FT_hlSHvBdHwjwHh17ErA2kpRHd1ocBNIsuddA0iz9Q',
+  },
 };
 
 export default function RootLayout({
