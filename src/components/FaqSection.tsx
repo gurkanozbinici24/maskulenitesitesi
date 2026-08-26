@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { ChevronDown, HelpCircle, Sparkles, ShieldCheck } from "lucide-react";
+import { ChevronDown, HelpCircle, Sparkles, ShieldCheck, Mail } from "lucide-react";
 
 interface FaqItem {
   id: number;
@@ -125,10 +125,20 @@ export default function FaqSection() {
           })}
         </div>
 
-        {/* Alt Bilgi & Güvence */}
-        <div className="mt-12 p-4 rounded-2xl bg-matte-900/40 border border-zinc-800/60 flex items-center justify-center gap-3 text-xs sm:text-sm text-zinc-400">
-          <ShieldCheck className="w-4 h-4 text-gold-400 flex-shrink-0" />
-          <span>Başka bir sorunuz veya kriz durumunuz mu var? <a href="https://www.instagram.com/maskulenitesitesi" target="_blank" rel="noopener noreferrer" className="text-gold-400 underline hover:text-gold-300 font-semibold">Instagram üzerinden bize yazabilirsiniz.</a></span>
+        {/* Alt Bilgi & Doğrudan E-posta İletişim */}
+        <div className="mt-12 p-4 sm:p-5 rounded-2xl bg-matte-900/60 border border-zinc-800/80 hover:border-gold-500/30 transition-colors flex flex-col sm:flex-row items-center justify-center gap-2.5 sm:gap-3 text-xs sm:text-sm text-zinc-300 text-center shadow-sm">
+          <div className="w-8 h-8 rounded-lg bg-gold-500/10 border border-gold-500/30 flex items-center justify-center text-gold-400 flex-shrink-0">
+            <Mail className="w-4 h-4" />
+          </div>
+          <span>
+            Başka bir sorunuz veya kriz durumunuz mu var? Doğrudan e-posta yoluyla bize ulaşabilirsiniz:{" "}
+            <a
+              href="mailto:maskulenitesitesi@gmail.com"
+              className="text-gold-400 hover:text-gold-300 font-bold underline decoration-gold-500/50 underline-offset-4 transition-colors"
+            >
+              maskulenitesitesi@gmail.com
+            </a>
+          </span>
         </div>
 
       </div>
