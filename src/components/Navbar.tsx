@@ -70,12 +70,20 @@ export default function Navbar() {
           </nav>
 
           {/* CTA & Actions */}
-          <div className="hidden md:flex items-center gap-4">
+          <div className="hidden md:flex flex-col items-end justify-center">
+            <span
+              className="text-[10px] font-black tracking-wider text-[#FFD700] uppercase mb-1 select-none"
+              style={{
+                textShadow: "0 0 10px #FFD700, 0 0 22px #E5A93C",
+              }}
+            >
+              ⚡ Sınırlı Sayıda (Sadece 200 İmzalı Kopya)
+            </span>
             <a
               href="#fiyat-kartlari"
-              className="relative inline-flex items-center justify-center px-5 py-2.5 text-xs font-bold uppercase tracking-wider text-black bg-gradient-to-r from-gold-300 via-gold-400 to-gold-600 rounded-lg shadow-gold-glow hover:shadow-gold-glow-lg hover:brightness-110 active:scale-95 transition-all duration-200"
+              className="relative inline-flex items-center justify-center px-5 py-2.5 text-xs font-black uppercase tracking-wider text-black bg-gradient-to-r from-gold-300 via-gold-400 to-gold-600 rounded-lg shadow-gold-glow hover:shadow-gold-glow-lg hover:brightness-110 active:scale-95 transition-all duration-200"
             >
-              <span>Hemen Sipariş Ver</span>
+              <span>Kitabı Satın Al</span>
               <ArrowUpRight className="w-4 h-4 ml-1" />
             </a>
           </div>
@@ -125,13 +133,21 @@ export default function Navbar() {
           >
             Kitabı Satın Al
           </a>
-          <div className="pt-2">
+          <div className="pt-2 flex flex-col items-center">
+            <span
+              className="text-[11px] font-black tracking-wider text-[#FFD700] uppercase mb-1.5"
+              style={{
+                textShadow: "0 0 10px #FFD700, 0 0 20px #E5A93C",
+              }}
+            >
+              ⚡ Sınırlı Sayıda (Sadece 200 İmzalı Kopya)
+            </span>
             <a
               href="#fiyat-kartlari"
               onClick={() => setMobileMenuOpen(false)}
               className="w-full flex items-center justify-center px-4 py-3 text-sm font-bold uppercase tracking-wider text-black bg-gold-400 hover:bg-gold-300 rounded-lg shadow-gold-glow"
             >
-              Hemen Sipariş Ver
+              Kitabı Satın Al
               <ArrowUpRight className="w-4 h-4 ml-1.5" />
             </a>
           </div>

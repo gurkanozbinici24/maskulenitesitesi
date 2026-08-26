@@ -51,23 +51,36 @@ export default function HeroSection() {
               </p>
 
               {/* CTA Group */}
-              <div className="w-full sm:w-auto flex flex-col sm:flex-row items-stretch sm:items-center gap-4 mb-10">
-                <a
-                  href="#fiyat-kartlari"
-                  className="group relative inline-flex items-center justify-center px-8 py-4 text-sm sm:text-base font-extrabold uppercase tracking-wider text-black bg-gradient-to-r from-gold-300 via-gold-400 to-gold-600 rounded-xl shadow-gold-glow hover:shadow-gold-glow-lg hover:brightness-110 active:scale-[0.98] transition-all duration-300"
+              <div className="w-full sm:w-auto flex flex-col items-start gap-3 mb-10">
+                {/* Dikkat Çekici Altın Parlamalı Rozet / Yazı */}
+                <div
+                  className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-black tracking-wide text-[#FFD700] uppercase select-none"
+                  style={{
+                    textShadow: "0 0 12px #FFD700, 0 0 24px #E5A93C",
+                  }}
                 >
-                  <span>Hemen Sipariş Ver</span>
-                  <ArrowRight className="w-5 h-5 ml-2.5 group-hover:translate-x-1.5 transition-transform" />
-                </a>
+                  <Sparkles className="w-3.5 h-3.5 text-[#FFD700] animate-pulse" />
+                  <span>Sınırlı Sayıda (Sadece 200 İmzalı Kopya)</span>
+                </div>
 
-                <button
-                  type="button"
-                  onClick={() => setIsSampleModalOpen(true)}
-                  className="inline-flex items-center justify-center gap-2 px-6 py-4 text-sm sm:text-base font-semibold text-zinc-300 bg-matte-900 hover:bg-matte-800 border border-zinc-800 hover:border-gold-500/40 rounded-xl transition-all duration-200 cursor-pointer hover:text-gold-300 shadow-sm"
-                >
-                  <BookOpen className="w-4 h-4 text-gold-400" />
-                  <span>İçindekileri İncele</span>
-                </button>
+                <div className="w-full sm:w-auto flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
+                  <a
+                    href="#fiyat-kartlari"
+                    className="group relative inline-flex items-center justify-center px-8 py-4 text-sm sm:text-base font-extrabold uppercase tracking-wider text-black bg-gradient-to-r from-gold-300 via-gold-400 to-gold-600 rounded-xl shadow-gold-glow hover:shadow-gold-glow-lg hover:brightness-110 active:scale-[0.98] transition-all duration-300"
+                  >
+                    <span>Kitabı Satın Al</span>
+                    <ArrowRight className="w-5 h-5 ml-2.5 group-hover:translate-x-1.5 transition-transform" />
+                  </a>
+
+                  <button
+                    type="button"
+                    onClick={() => setIsSampleModalOpen(true)}
+                    className="inline-flex items-center justify-center gap-2 px-6 py-4 text-sm sm:text-base font-semibold text-zinc-300 bg-matte-900 hover:bg-matte-800 border border-zinc-800 hover:border-gold-500/40 rounded-xl transition-all duration-200 cursor-pointer hover:text-gold-300 shadow-sm"
+                  >
+                    <BookOpen className="w-4 h-4 text-gold-400" />
+                    <span>İçindekileri İncele</span>
+                  </button>
+                </div>
               </div>
 
               {/* Trust Metrics & Micro Proofs */}

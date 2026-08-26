@@ -113,12 +113,12 @@ export default function ConsultationSection() {
             <div className="w-full flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-2">
               {/* Ana Buton: Altın Sarısı, Vurucu */}
               <a
-                href="https://www.sopsy.com"
+                href="http://www.sopsy.com/d/F0AuRX"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group relative inline-flex items-center justify-center px-8 py-4 text-sm font-extrabold uppercase tracking-wider text-black bg-gradient-to-r from-gold-300 via-gold-400 to-gold-600 rounded-xl shadow-gold-glow hover:shadow-gold-glow-lg hover:brightness-110 active:scale-[0.98] transition-all duration-300"
+                className="group relative inline-flex items-center justify-center px-8 py-4 text-sm font-black uppercase tracking-wider text-black bg-gradient-to-r from-gold-300 via-gold-400 to-gold-600 rounded-xl shadow-gold-glow hover:shadow-gold-glow-lg hover:brightness-110 active:scale-[0.98] transition-all duration-300"
               >
-                <span>Hemen Seans Al</span>
+                <span>HEMEN SEANS AL</span>
                 <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
               </a>
 
