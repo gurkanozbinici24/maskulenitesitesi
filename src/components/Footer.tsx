@@ -161,15 +161,13 @@ export default function Footer() {
               </h4>
               <ul className="space-y-2 text-sm">
                 <li>
-                  <button
-                    onClick={() =>
-                      openModal("Müşteri Destek Kanalları", "iletisim")
-                    }
+                  <a
+                    href="mailto:maskulenitesitesi@gmail.com"
                     className="flex items-center gap-2 hover:text-gold-400 transition-colors"
                   >
                     <Mail className="w-4 h-4 text-gold-500" />
-                    <span>destek@vazgecilmezol.com</span>
-                  </button>
+                    <span>maskulenitesitesi@gmail.com</span>
+                  </a>
                 </li>
                 <li>
                   <button

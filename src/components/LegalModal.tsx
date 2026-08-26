@@ -100,8 +100,8 @@ export default function LegalModal({
                 Siparişleriniz, kargo takibi veya sorularınız için bizimle aşağıdaki kanallardan 7/24 iletişime geçebilirsiniz:
               </p>
               <div className="p-4 rounded-xl bg-matte-950 border border-zinc-800 space-y-2 font-mono text-xs">
-                <div><strong>E-Posta:</strong> destek@vazgecilmezol.com</div>
-                <div><strong>WhatsApp Destek:</strong> +90 (555) 000 00 00</div>
+                <div><strong>E-Posta:</strong> maskulenitesitesi@gmail.com</div>
+                <div><strong>Instagram:</strong> @maskulenitesitesi</div>
                 <div><strong>Çalışma Saatleri:</strong> Hafta içi 09:00 - 18:00</div>
               </div>
             </>
