@@ -9,8 +9,8 @@ export default function SecretLawShowcase() {
       className="py-18 sm:py-24 relative overflow-hidden w-full select-none"
       style={{ backgroundColor: "#000000" }}
     >
-      {/* Saf Siyah Zemin Işığı - Kesinlikle Lacivert/Mavi Ton Barındırmaz */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[750px] h-[350px] bg-[#D4AF37]/6 blur-[180px] pointer-events-none" />
+      {/* Saf Siyah Zemin Işığı - Asla Lacivert/Mavi Ton Barındırmaz */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[750px] h-[350px] bg-[#D4AF37]/5 blur-[180px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
         
@@ -25,15 +25,18 @@ export default function SecretLawShowcase() {
           GİZLİ ARŞİVDEN: 100 SARSILMAZ KANUNDAN 3 SEÇKİN ÖRNEK
         </h2>
 
-        {/* 3D Card Stack (Deste) Kapsayıcısı */}
-        <div className="relative flex flex-col md:flex-row items-center justify-center mb-16 [perspective:1200px] [transform-style:preserve-3d] gap-8 md:gap-0">
+        {/* Kart Dizilimi (Ortadaki Kart 100% Keskin 2D, Yan Kartlar Ayrı 3D Açıyla Katlanmış) */}
+        <div className="relative flex flex-col md:flex-row items-center justify-center mb-16 gap-8 md:gap-0">
           
           {/* ========================================================= */}
-          {/* 1. SOL KANAT KARTI: KANUN #41 (Sayfa 148 - 60° Açılı & Mühürlü) */}
+          {/* 1. SOL KANAT KARTI: KANUN #41 (Sayfa 148 - 3D Açılı & Buzlu) */}
           {/* ========================================================= */}
           <div
-            className="group relative flex flex-col justify-between w-full max-w-sm md:max-w-md lg:max-w-[400px] min-h-[380px] sm:min-h-[410px] rounded-2xl p-7 sm:p-8 border border-[#8B7355]/30 shadow-[0_20px_50px_rgba(0,0,0,1)] transition-all duration-500 overflow-hidden z-10 md:origin-right md:-mr-16 lg:-mr-20 md:[transform:rotateY(55deg)_translateZ(-40px)] hover:md:[transform:rotateY(42deg)_translateZ(-15px)] hover:z-20 opacity-75 hover:opacity-95"
-            style={{ backgroundColor: "#000000" }}
+            className="group relative flex flex-col justify-between w-full max-w-sm md:max-w-md lg:max-w-[400px] min-h-[380px] sm:min-h-[410px] rounded-2xl p-7 sm:p-8 border border-[#8B7355]/30 shadow-[0_20px_50px_rgba(0,0,0,1)] transition-all duration-500 overflow-hidden z-10 md:origin-right md:-mr-16 lg:-mr-20 opacity-75 hover:opacity-95"
+            style={{
+              backgroundColor: "#000000",
+              transform: "perspective(1000px) rotateY(48deg)",
+            }}
           >
             {/* Köşe Braketleri */}
             <div className="absolute top-3 left-3 w-3.5 h-3.5 border-t border-l border-[#C5A059]/40 pointer-events-none z-10" />
@@ -79,11 +82,17 @@ export default function SecretLawShowcase() {
 
 
           {/* ========================================================= */}
-          {/* 2. ORTA KART: KANUN #93 (Sayfa 221 - EN ÖNDE & TAM ODAK NOKTASI) */}
+          {/* 2. ORTA KART: KANUN #93 (Sayfa 221 - 100% NET, KESKİN & ODAK) */}
           {/* ========================================================= */}
           <div
-            className="group relative flex flex-col justify-between w-full max-w-lg md:max-w-xl lg:max-w-[490px] min-h-[410px] sm:min-h-[440px] rounded-2xl p-8 sm:p-9 lg:p-10 border-2 border-[#D4AF37]/70 shadow-[0_35px_90px_rgba(0,0,0,1),0_0_55px_rgba(212,175,55,0.15)] transition-all duration-300 z-30 md:[transform:translateZ(50px)]"
-            style={{ backgroundColor: "#000000" }}
+            className="relative flex flex-col justify-between w-full max-w-lg md:max-w-xl lg:max-w-[490px] min-h-[410px] sm:min-h-[440px] rounded-2xl p-8 sm:p-9 lg:p-10 border-2 border-[#D4AF37]/80 shadow-[0_35px_90px_rgba(0,0,0,1),0_0_60px_rgba(212,175,55,0.18)] z-30 select-text"
+            style={{
+              backgroundColor: "#000000",
+              WebkitFontSmoothing: "antialiased",
+              MozOsxFontSmoothing: "grayscale",
+              textRendering: "optimizeLegibility",
+              backfaceVisibility: "hidden",
+            }}
           >
             {/* Simetrik Lüks Altın Köşe Braketleri */}
             <div className="absolute top-3 left-3 w-4 h-4 border-t-2 border-l-2 border-[#C5A059] pointer-events-none" />
@@ -92,9 +101,9 @@ export default function SecretLawShowcase() {
             <div className="absolute bottom-3 right-3 w-4 h-4 border-b-2 border-r-2 border-[#C5A059] pointer-events-none" />
 
             <div>
-              {/* Sayfa Üst Bilgisi (Daktilo / Arşiv Stili) */}
-              <div className="flex items-center justify-between pb-3.5 mb-6 border-b border-zinc-900/90 text-[10px] sm:text-[11px] font-mono tracking-[0.22em] select-none">
-                <span className="text-[#C5A059] uppercase font-bold">
+              {/* Sayfa Üst Bilgisi (Daktilo / Arşiv Stili - Keskin Font) */}
+              <div className="flex items-center justify-between pb-3.5 mb-6 border-b border-zinc-900 text-[11px] font-mono tracking-[0.22em] select-none">
+                <span className="text-[#D4AF37] uppercase font-bold">
                   SAYFA 221 • KANUN #93
                 </span>
                 <span className="text-zinc-500 uppercase">
@@ -102,10 +111,10 @@ export default function SecretLawShowcase() {
                 </span>
               </div>
 
-              {/* Otoriter Playfair Display Metin (Net, Odak Noktası, Kırık Fildişi) */}
-              <blockquote className="font-playfair text-[17px] sm:text-[18px] lg:text-[19px] text-[#E2DFD8] leading-[1.85] sm:leading-[1.95] tracking-normal text-left select-none">
-                <span className="font-playfair text-[#E2DFD8] font-normal mr-2">
-                  93<span className="text-[#C5A059] ml-1 opacity-80">·</span>
+              {/* Kristal Netliğinde Playfair Display Metin (Bıçak Gibi Keskin) */}
+              <blockquote className="font-playfair text-[17px] sm:text-[18px] lg:text-[19px] text-[#F3F1EC] leading-[1.85] sm:leading-[1.95] tracking-normal text-left">
+                <span className="font-playfair text-[#F3F1EC] font-normal mr-2">
+                  93<span className="text-[#D4AF37] ml-1 opacity-90">·</span>
                 </span>
                 Bir kadınla tartışırken ona{" "}
                 {/* Sadece "Sen bilirsin" Sansürlü Siyah Redacted Bant */}
@@ -113,19 +122,19 @@ export default function SecretLawShowcase() {
                   className="censor relative inline-flex items-center justify-center align-middle mx-1 px-3.5 py-0.5 bg-black border-y border-zinc-800 select-none cursor-not-allowed shadow-[0_1px_3px_rgba(0,0,0,1)]"
                   title="Sansürlü İçerik"
                 >
-                  <span className="filter blur-[8px] opacity-0 text-black select-none pointer-events-none text-xs sm:text-sm">
+                  <span className="opacity-0 text-black select-none pointer-events-none text-xs sm:text-sm">
                     Sen bilirsin
                   </span>
                   <span className="absolute inset-0 flex items-center justify-center bg-black">
                     <Lock
-                      className="w-3.5 h-3.5 text-[#C5A059]/85 group-hover:text-[#D4AF37] transition-colors"
+                      className="w-3.5 h-3.5 text-[#D4AF37]"
                       strokeWidth={1.25}
                     />
                   </span>
                 </span>{" "}
                 deyip konuyu kapattığında, o oyunu sen kazanmış olursun. O iki kelime,
                 karşındakini kendi çaresizliğiyle baş başa bırakan{" "}
-                <strong className="font-playfair font-semibold text-[#C5A059] tracking-normal">
+                <strong className="font-playfair font-semibold text-[#D4AF37] tracking-normal">
                   en ağır nükleer bombadır.
                 </strong>
               </blockquote>
@@ -133,7 +142,7 @@ export default function SecretLawShowcase() {
 
             {/* Otoriter Mühür Alt Metni */}
             <div className="mt-8 pt-4 border-t border-zinc-950 flex items-center justify-center text-center">
-              <span className="text-[9px] sm:text-[10px] font-mono tracking-[0.22em] text-zinc-500/80 uppercase select-none">
+              <span className="text-[10px] font-mono tracking-[0.22em] text-zinc-500 uppercase select-none">
                 BU ARŞİV DIŞARI SIZDIRILMAZ. TAM METİN SADECE 200 KİŞİYE ÖZELDİR.
               </span>
             </div>
@@ -141,11 +150,14 @@ export default function SecretLawShowcase() {
 
 
           {/* ========================================================= */}
-          {/* 3. SAĞ KANAT KARTI: KANUN #62 (Sayfa 84 - -60° Açılı & Mühürlü) */}
+          {/* 3. SAĞ KANAT KARTI: KANUN #62 (Sayfa 84 - 3D Açılı & Buzlu) */}
           {/* ========================================================= */}
           <div
-            className="group relative flex flex-col justify-between w-full max-w-sm md:max-w-md lg:max-w-[400px] min-h-[380px] sm:min-h-[410px] rounded-2xl p-7 sm:p-8 border border-[#8B7355]/30 shadow-[0_20px_50px_rgba(0,0,0,1)] transition-all duration-500 overflow-hidden z-10 md:origin-left md:-ml-16 lg:-ml-20 md:[transform:rotateY(-55deg)_translateZ(-40px)] hover:md:[transform:rotateY(-42deg)_translateZ(-15px)] hover:z-20 opacity-75 hover:opacity-95"
-            style={{ backgroundColor: "#000000" }}
+            className="group relative flex flex-col justify-between w-full max-w-sm md:max-w-md lg:max-w-[400px] min-h-[380px] sm:min-h-[410px] rounded-2xl p-7 sm:p-8 border border-[#8B7355]/30 shadow-[0_20px_50px_rgba(0,0,0,1)] transition-all duration-500 overflow-hidden z-10 md:origin-left md:-ml-16 lg:-ml-20 opacity-75 hover:opacity-95"
+            style={{
+              backgroundColor: "#000000",
+              transform: "perspective(1000px) rotateY(-48deg)",
+            }}
           >
             {/* Köşe Braketleri */}
             <div className="absolute top-3 left-3 w-3.5 h-3.5 border-t border-l border-[#C5A059]/40 pointer-events-none z-10" />
