@@ -59,8 +59,8 @@ export default function HeroSection() {
                     textShadow: "0 0 12px #FFD700, 0 0 24px #E5A93C",
                   }}
                 >
-                  <Sparkles className="w-3.5 h-3.5 text-[#FFD700] animate-pulse" />
-                  <span>Sınırlı Sayıda (Sadece 200 İmzalı Kopya)</span>
+                  <Sparkles className="w-3.5 h-3.5 text-[#FFD700] animate-pulse flex-shrink-0" />
+                  <span>İLK VE TEK BASKI (BİR DAHA ASLA BASILMAYACAK - 200 ÖZEL KOPYA)</span>
                 </div>
 
                 <div className="w-full sm:w-auto flex flex-col sm:flex-row items-stretch sm:items-center gap-4">

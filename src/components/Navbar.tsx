@@ -73,7 +73,7 @@ export default function Navbar() {
                   textShadow: "0 0 10px #FFD700, 0 0 22px #E5A93C",
                 }}
               >
-                ⚡ SINIRLI SAYIDA (SADECE 200 İMZALI KOPYA)
+                İLK VE TEK BASKI (BİR DAHA ASLA BASILMAYACAK - 200 ÖZEL KOPYA)
               </span>
               <a
                 href="#fiyat-kartlari"
@@ -128,12 +128,12 @@ export default function Navbar() {
           {/* Mobilde Tek ve Dikkat Çekici Buton Bloğu */}
           <div className="pt-3 flex flex-col items-center">
             <span
-              className="text-[11px] font-black tracking-wider text-[#FFD700] uppercase mb-1.5 text-center"
+              className="text-[10px] font-black tracking-wider text-[#FFD700] uppercase mb-1.5 text-center leading-tight"
               style={{
                 textShadow: "0 0 10px #FFD700, 0 0 20px #E5A93C",
               }}
             >
-              ⚡ SINIRLI SAYIDA (SADECE 200 İMZALI KOPYA)
+              İLK VE TEK BASKI (BİR DAHA ASLA BASILMAYACAK - 200 ÖZEL KOPYA)
             </span>
             <a
               href="#fiyat-kartlari"
