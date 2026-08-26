@@ -1,6 +1,6 @@
 "use client";
 
-import { Lock, EyeOff, ArrowRight, BookOpen } from "lucide-react";
+import { Lock, EyeOff, ArrowRight } from "lucide-react";
 
 export default function SecretLawShowcase() {
   return (
@@ -9,8 +9,8 @@ export default function SecretLawShowcase() {
       className="py-18 sm:py-24 relative overflow-hidden w-full select-none"
       style={{ backgroundColor: "#000000" }}
     >
-      {/* Saf Siyah Zemin - Kesinlikle Lacivert/Mavi Ton Barındırmaz */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[350px] bg-[#D4AF37]/5 blur-[170px] pointer-events-none" />
+      {/* Saf Siyah Zemin Işığı - Kesinlikle Lacivert/Mavi Ton Barındırmaz */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[750px] h-[350px] bg-[#D4AF37]/6 blur-[180px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
         
@@ -25,37 +25,37 @@ export default function SecretLawShowcase() {
           GİZLİ ARŞİVDEN: 100 SARSILMAZ KANUNDAN 3 SEÇKİN ÖRNEK
         </h2>
 
-        {/* 3'lü Yatay Kart Düzeni (Orta Odak Noktası, Yanlar Kilitli & Derinlik Efekti) */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 items-center mb-16">
+        {/* 3D Card Stack (Deste) Kapsayıcısı */}
+        <div className="relative flex flex-col md:flex-row items-center justify-center mb-16 [perspective:1200px] [transform-style:preserve-3d] gap-8 md:gap-0">
           
           {/* ========================================================= */}
-          {/* 1. SOL KART: KANUN #41 (Sayfa 148 - Kilitli & Yoğun Buzlu Cam) */}
+          {/* 1. SOL KANAT KARTI: KANUN #41 (Sayfa 148 - 60° Açılı & Mühürlü) */}
           {/* ========================================================= */}
           <div
-            className="group relative flex flex-col justify-between min-h-[380px] sm:min-h-[410px] rounded-2xl p-7 sm:p-8 lg:p-9 border border-[#8B7355]/30 shadow-[0_20px_50px_rgba(0,0,0,1)] transition-all duration-300 md:scale-95 opacity-75 hover:opacity-90 overflow-hidden"
+            className="group relative flex flex-col justify-between w-full max-w-sm md:max-w-md lg:max-w-[400px] min-h-[380px] sm:min-h-[410px] rounded-2xl p-7 sm:p-8 border border-[#8B7355]/30 shadow-[0_20px_50px_rgba(0,0,0,1)] transition-all duration-500 overflow-hidden z-10 md:origin-right md:-mr-16 lg:-mr-20 md:[transform:rotateY(55deg)_translateZ(-40px)] hover:md:[transform:rotateY(42deg)_translateZ(-15px)] hover:z-20 opacity-75 hover:opacity-95"
             style={{ backgroundColor: "#000000" }}
           >
-            {/* Simetrik Köşe Braketleri */}
+            {/* Köşe Braketleri */}
             <div className="absolute top-3 left-3 w-3.5 h-3.5 border-t border-l border-[#C5A059]/40 pointer-events-none z-10" />
             <div className="absolute top-3 right-3 w-3.5 h-3.5 border-t border-r border-[#C5A059]/40 pointer-events-none z-10" />
             <div className="absolute bottom-3 left-3 w-3.5 h-3.5 border-b border-l border-[#C5A059]/40 pointer-events-none z-10" />
             <div className="absolute bottom-3 right-3 w-3.5 h-3.5 border-b border-r border-[#C5A059]/40 pointer-events-none z-10" />
 
-            {/* Arka Planda Bulanık Kalan Metin Gövdesi */}
-            <div className="filter blur-[8px] opacity-25 select-none pointer-events-none">
+            {/* Arka Planda Yoğun Bulanık Metin */}
+            <div className="filter blur-[9px] opacity-20 select-none pointer-events-none">
               <div className="flex items-center justify-between pb-3.5 mb-6 border-b border-zinc-900 text-[10px] sm:text-[11px] font-mono tracking-[0.22em]">
                 <span className="text-[#C5A059] uppercase font-bold">SAYFA 148</span>
                 <span className="text-zinc-500 uppercase">KORUMALI METİN</span>
               </div>
-              <blockquote className="font-playfair text-[17px] sm:text-[18px] lg:text-[19px] text-[#E2DFD8] leading-[1.85] text-left">
+              <blockquote className="font-playfair text-[17px] sm:text-[18px] text-[#E2DFD8] leading-[1.85] text-left">
                 <span className="font-normal mr-2">41 ·</span>
                 Bir kadını elinde tutmanın tek yolu, onu her an bırakıp gidebilecek o sarsılmaz güce sahip olmaktır. Çünkü zayıf bir adamın asla sahip olamayacağı o tek gerçek kozu elinde tutuyorsun.
               </blockquote>
             </div>
 
-            {/* ÖN KATMAN: Yoğun Karartma & Parlayan Büyük Kilit */}
-            <div className="absolute inset-0 bg-black/75 backdrop-blur-[6px] flex flex-col items-center justify-center p-6 select-none z-20 transition-all duration-300">
-              <div className="w-14 h-14 rounded-2xl bg-black/90 border border-[#D4AF37]/50 flex items-center justify-center text-[#D4AF37] shadow-[0_0_30px_rgba(212,175,55,0.25)] mb-3 group-hover:scale-110 group-hover:border-[#D4AF37] transition-all">
+            {/* ÖN KATMAN: Karartma & Parlayan Büyük Kilit */}
+            <div className="absolute inset-0 bg-black/80 backdrop-blur-[7px] flex flex-col items-center justify-center p-6 select-none z-20 transition-all duration-300">
+              <div className="w-14 h-14 rounded-2xl bg-black/90 border border-[#D4AF37]/50 flex items-center justify-center text-[#D4AF37] shadow-[0_0_30px_rgba(212,175,55,0.3)] mb-3 group-hover:scale-110 group-hover:border-[#D4AF37] transition-all">
                 <Lock className="w-6 h-6 text-[#D4AF37]" strokeWidth={1.5} />
               </div>
               <span className="text-xs font-mono tracking-[0.22em] text-[#D4AF37] uppercase font-bold text-center">
@@ -79,10 +79,10 @@ export default function SecretLawShowcase() {
 
 
           {/* ========================================================= */}
-          {/* 2. ORTA KART: KANUN #93 (Sayfa 221 - ANA ODAK NOKTASI & NET) */}
+          {/* 2. ORTA KART: KANUN #93 (Sayfa 221 - EN ÖNDE & TAM ODAK NOKTASI) */}
           {/* ========================================================= */}
           <div
-            className="group relative flex flex-col justify-between min-h-[400px] sm:min-h-[430px] rounded-2xl p-7 sm:p-9 lg:p-10 border-2 border-[#D4AF37]/60 shadow-[0_30px_90px_rgba(0,0,0,1),0_0_50px_rgba(212,175,55,0.12)] transition-all duration-300 md:scale-105 z-20"
+            className="group relative flex flex-col justify-between w-full max-w-lg md:max-w-xl lg:max-w-[490px] min-h-[410px] sm:min-h-[440px] rounded-2xl p-8 sm:p-9 lg:p-10 border-2 border-[#D4AF37]/70 shadow-[0_35px_90px_rgba(0,0,0,1),0_0_55px_rgba(212,175,55,0.15)] transition-all duration-300 z-30 md:[transform:translateZ(50px)]"
             style={{ backgroundColor: "#000000" }}
           >
             {/* Simetrik Lüks Altın Köşe Braketleri */}
@@ -141,33 +141,33 @@ export default function SecretLawShowcase() {
 
 
           {/* ========================================================= */}
-          {/* 3. SAĞ KART: KANUN #62 (Sayfa 84 - Kilitli & Yoğun Buzlu Cam) */}
+          {/* 3. SAĞ KANAT KARTI: KANUN #62 (Sayfa 84 - -60° Açılı & Mühürlü) */}
           {/* ========================================================= */}
           <div
-            className="group relative flex flex-col justify-between min-h-[380px] sm:min-h-[410px] rounded-2xl p-7 sm:p-8 lg:p-9 border border-[#8B7355]/30 shadow-[0_20px_50px_rgba(0,0,0,1)] transition-all duration-300 md:scale-95 opacity-75 hover:opacity-90 overflow-hidden"
+            className="group relative flex flex-col justify-between w-full max-w-sm md:max-w-md lg:max-w-[400px] min-h-[380px] sm:min-h-[410px] rounded-2xl p-7 sm:p-8 border border-[#8B7355]/30 shadow-[0_20px_50px_rgba(0,0,0,1)] transition-all duration-500 overflow-hidden z-10 md:origin-left md:-ml-16 lg:-ml-20 md:[transform:rotateY(-55deg)_translateZ(-40px)] hover:md:[transform:rotateY(-42deg)_translateZ(-15px)] hover:z-20 opacity-75 hover:opacity-95"
             style={{ backgroundColor: "#000000" }}
           >
-            {/* Simetrik Köşe Braketleri */}
+            {/* Köşe Braketleri */}
             <div className="absolute top-3 left-3 w-3.5 h-3.5 border-t border-l border-[#C5A059]/40 pointer-events-none z-10" />
             <div className="absolute top-3 right-3 w-3.5 h-3.5 border-t border-r border-[#C5A059]/40 pointer-events-none z-10" />
             <div className="absolute bottom-3 left-3 w-3.5 h-3.5 border-b border-l border-[#C5A059]/40 pointer-events-none z-10" />
             <div className="absolute bottom-3 right-3 w-3.5 h-3.5 border-b border-r border-[#C5A059]/40 pointer-events-none z-10" />
 
-            {/* Arka Planda Bulanık Kalan Metin Gövdesi */}
-            <div className="filter blur-[8px] opacity-25 select-none pointer-events-none">
+            {/* Arka Planda Yoğun Bulanık Metin */}
+            <div className="filter blur-[9px] opacity-20 select-none pointer-events-none">
               <div className="flex items-center justify-between pb-3.5 mb-6 border-b border-zinc-900 text-[10px] sm:text-[11px] font-mono tracking-[0.22em]">
                 <span className="text-[#C5A059] uppercase font-bold">SAYFA 84</span>
                 <span className="text-zinc-500 uppercase">KORUMALI METİN</span>
               </div>
-              <blockquote className="font-playfair text-[17px] sm:text-[18px] lg:text-[19px] text-[#E2DFD8] leading-[1.85] text-left">
+              <blockquote className="font-playfair text-[17px] sm:text-[18px] text-[#E2DFD8] leading-[1.85] text-left">
                 <span className="font-normal mr-2">62 ·</span>
                 Kriz anında sızlanma. Darbeyi al, o suyu yut ve onu yeni büyüme motoruna çevirerek Anti-Kırılgan ol.
               </blockquote>
             </div>
 
-            {/* ÖN KATMAN: Yoğun Karartma & Parlayan Büyük Kilit */}
-            <div className="absolute inset-0 bg-black/75 backdrop-blur-[6px] flex flex-col items-center justify-center p-6 select-none z-20 transition-all duration-300">
-              <div className="w-14 h-14 rounded-2xl bg-black/90 border border-[#D4AF37]/50 flex items-center justify-center text-[#D4AF37] shadow-[0_0_30px_rgba(212,175,55,0.25)] mb-3 group-hover:scale-110 group-hover:border-[#D4AF37] transition-all">
+            {/* ÖN KATMAN: Karartma & Parlayan Büyük Kilit */}
+            <div className="absolute inset-0 bg-black/80 backdrop-blur-[7px] flex flex-col items-center justify-center p-6 select-none z-20 transition-all duration-300">
+              <div className="w-14 h-14 rounded-2xl bg-black/90 border border-[#D4AF37]/50 flex items-center justify-center text-[#D4AF37] shadow-[0_0_30px_rgba(212,175,55,0.3)] mb-3 group-hover:scale-110 group-hover:border-[#D4AF37] transition-all">
                 <Lock className="w-6 h-6 text-[#D4AF37]" strokeWidth={1.5} />
               </div>
               <span className="text-xs font-mono tracking-[0.22em] text-[#D4AF37] uppercase font-bold text-center">
@@ -191,7 +191,7 @@ export default function SecretLawShowcase() {
 
         </div>
 
-        {/* 3 Kartın Altında Ortalanmış Tek ve Güçlü CTA Butonu */}
+        {/* Ortalanmış Tek ve Güçlü CTA Butonu */}
         <div className="flex flex-col items-center justify-center">
           <a
             href="#fiyat-kartlari"
