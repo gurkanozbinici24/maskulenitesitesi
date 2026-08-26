@@ -17,15 +17,18 @@ export default function Navbar() {
 
   return (
     <div className="fixed top-0 left-0 right-0 z-50">
-      {/* 1. Lüks VIP Duyuru Çubuğu (Simsiyah Zemin, İnce Altın Çizgi & Asil Altın Yazı) */}
-      <div className="w-full bg-[#000000] border-b border-[#E5A93C] py-2.5 px-3 sm:px-4 text-center select-none flex items-center justify-center gap-2 shadow-[0_4px_20px_rgba(0,0,0,0.8)]">
+      {/* 1. Lüks VIP Duyuru Çubuğu (Simsiyah Zemin, İnce Altın Çizgi, Beyaz & Asil Metalik Altın) */}
+      <div className="w-full bg-[#000000] border-b border-[#D4AF37]/50 py-2.5 px-3 sm:px-4 text-center select-none flex flex-wrap items-center justify-center gap-1 sm:gap-1.5 shadow-[0_4px_20px_rgba(0,0,0,0.8)]">
+        <span className="text-white font-bold text-[11px] sm:text-xs tracking-[0.08em] sm:tracking-[0.1em] uppercase">
+          İLK VE TEK BASKI - BİR DAHA ASLA BASILMAYACAK
+        </span>
         <span
-          className="text-[#E5A93C] font-bold text-[11px] sm:text-xs tracking-[0.12em] uppercase"
+          className="text-[#D4AF37] font-extrabold text-[11px] sm:text-xs tracking-[0.1em] uppercase"
           style={{
-            textShadow: "0 0 10px rgba(229, 169, 60, 0.45), 0 0 20px rgba(229, 169, 60, 0.2)",
+            textShadow: "0 0 10px rgba(212, 175, 55, 0.4)",
           }}
         >
-          İLK VE TEK BASKI - BİR DAHA ASLA BASILMAYACAK (SADECE 200 ÖZEL KOPYA)
+          (SADECE 200 ADET ÖZEL BASIM)
         </span>
       </div>
 
