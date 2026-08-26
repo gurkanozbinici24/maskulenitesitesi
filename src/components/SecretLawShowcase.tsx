@@ -60,22 +60,21 @@ export default function SecretLawShowcase() {
             <div className="absolute bottom-2.5 left-2.5 w-3 h-3 border-b border-l border-[#C5A059]/60 pointer-events-none" />
             <div className="absolute bottom-2.5 right-2.5 w-3 h-3 border-b border-r border-[#C5A059]/60 pointer-events-none" />
 
-            {/* Sayfa Üst Bilgisi */}
-            <div className="flex items-center justify-between pb-3.5 mb-5 border-b border-zinc-900 text-[10px] sm:text-[11px] font-mono tracking-wider">
-              <div className="flex items-center gap-2 text-[#C5A059] font-bold tracking-widest">
-                <BookOpen className="w-3.5 h-3.5 text-[#C5A059]" strokeWidth={1.5} />
-                <span>SAYFA 221 • KANUN #93</span>
-              </div>
-              <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded bg-black border border-zinc-800 text-zinc-400 font-mono text-[9px] sm:text-[10px] tracking-[0.14em] uppercase">
-                <span className="w-1.5 h-1.5 rounded-full bg-red-500/80 animate-pulse" />
-                <span>MÜHÜRLÜ METİN</span>
-              </div>
+            {/* Sayfa Üst Bilgisi (Minimal & Kibar Arşiv / Daktilo Stili) */}
+            <div className="flex items-center justify-between pb-3 mb-5 border-b border-zinc-900/80 text-[10px] sm:text-[11px] font-mono tracking-[0.22em] select-none">
+              <span className="text-[#C5A059]/85 uppercase">
+                SAYFA 221
+              </span>
+              <span className="text-zinc-500/80 uppercase">
+                KORUMALI METİN
+              </span>
             </div>
 
-            {/* Otoriter Playfair Display Metin (Ferah ve Kompakt Manifesto) */}
-            <blockquote className="font-playfair text-base sm:text-lg md:text-xl text-zinc-100 leading-[1.75] sm:leading-[1.9] tracking-normal text-left sm:text-center select-none">
-              <span className="text-[#C5A059] font-bold font-mono text-base sm:text-lg mr-1.5">
-                93.
+            {/* Otoriter Playfair Display Metin (Kırık Fildişi/Gümüş Ton & Mat Asil Altın) */}
+            <blockquote className="font-playfair text-base sm:text-lg md:text-xl text-[#E2DFD8] leading-[1.75] sm:leading-[1.9] tracking-normal text-left sm:text-center select-none">
+              {/* Kural Numarası: Metinle Aynı Serif Font ve Renkte, Yanında İnce Altın Ayıraç */}
+              <span className="font-playfair text-[#E2DFD8] font-normal mr-2">
+                93<span className="text-[#C5A059] ml-1 opacity-80">·</span>
               </span>
               Bir kadınla tartışırken ona{" "}
               {/* Gerçek Devlet Evrakı Redacted Bant (Siyah Sansür Şeridi) */}
@@ -97,7 +96,8 @@ export default function SecretLawShowcase() {
               </span>{" "}
               deyip konuyu kapattığında, o oyunu sen kazanmış olursun. O iki kelime,
               karşındakini kendi çaresizliğiyle baş başa bırakan{" "}
-              <strong className="font-playfair font-bold text-[#C5A059] [text-shadow:0_0_12px_rgba(197,160,89,0.25)]">
+              {/* Parlamasız, Asil ve Tok Mat Altın Vurgu */}
+              <strong className="font-playfair font-semibold text-[#C5A059] tracking-normal">
                 en ağır nükleer bombadır.
               </strong>
             </blockquote>
