@@ -98,6 +98,14 @@ export default function Footer() {
                     Satın Alma Seçenekleri
                   </a>
                 </li>
+                <li>
+                  <a
+                    href="#sss"
+                    className="hover:text-gold-400 transition-colors"
+                  >
+                    Sıkça Sorulan Sorular
+                  </a>
+                </li>
               </ul>
             </div>
 

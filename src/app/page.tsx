@@ -5,6 +5,7 @@ import SocialProofBanner from "@/components/SocialProofBanner";
 import ConsultationSection from "@/components/ConsultationSection";
 import TestimonialsSection from "@/components/TestimonialsSection";
 import PricingSection from "@/components/PricingSection";
+import FaqSection from "@/components/FaqSection";
 import Footer from "@/components/Footer";
 
 export default function Home() {
@@ -31,7 +32,10 @@ export default function Home() {
       {/* 6. Satın Alma & Fiyatlandırma Bölümü */}
       <PricingSection />
 
-      {/* 7. Footer */}
+      {/* 7. Sıkça Sorulan Sorular (SSS) Akordiyon Bölümü */}
+      <FaqSection />
+
+      {/* 8. Footer */}
       <Footer />
     </main>
   );
