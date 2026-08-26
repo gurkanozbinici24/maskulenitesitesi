@@ -2,6 +2,7 @@ import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
 import BenefitsSection from "@/components/BenefitsSection";
 import SocialProofBanner from "@/components/SocialProofBanner";
+import ConsultationSection from "@/components/ConsultationSection";
 import PricingSection from "@/components/PricingSection";
 import Footer from "@/components/Footer";
 
@@ -20,10 +21,13 @@ export default function Home() {
       {/* 3. Sosyal Kanıt Bannerı */}
       <SocialProofBanner />
 
-      {/* 4. Satın Alma & Fiyatlandırma Bölümü */}
+      {/* 4. Özel Danışmanlık & Koçluk Seansı Bölümü */}
+      <ConsultationSection />
+
+      {/* 5. Satın Alma & Fiyatlandırma Bölümü */}
       <PricingSection />
 
-      {/* 5. Footer */}
+      {/* 6. Footer */}
       <Footer />
     </main>
   );

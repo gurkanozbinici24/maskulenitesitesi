@@ -25,7 +25,7 @@ export default function Navbar() {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
-          {/* Logo - Sadece Kitabın Adı: Vazgeçilmez Ol */}
+          {/* Logo - Vazgeçilmez Olma Sanatı */}
           <a
             href="#"
             className="flex items-center gap-2.5 group focus:outline-none"
@@ -39,7 +39,7 @@ export default function Navbar() {
           </a>
 
           {/* Desktop Nav Items */}
-          <nav className="hidden md:flex items-center gap-8">
+          <nav className="hidden md:flex items-center gap-7">
             <a
               href="#kazanimlar"
               className="text-sm font-medium text-zinc-400 hover:text-gold-300 transition-colors"
@@ -53,17 +53,26 @@ export default function Navbar() {
               Topluluk & Güven
             </a>
             <a
-              href="#fiyatlandirma"
+              href="#danismanlik"
+              className="text-sm font-semibold text-gold-300 hover:text-gold-200 transition-colors flex items-center gap-1.5"
+            >
+              <span>Özel Danışmanlık</span>
+              <span className="px-1.5 py-0.5 text-[9px] font-black uppercase rounded bg-gold-500/20 text-gold-300 border border-gold-500/40 shadow-inner">
+                VIP
+              </span>
+            </a>
+            <a
+              href="#fiyat-kartlari"
               className="text-sm font-medium text-zinc-400 hover:text-gold-300 transition-colors"
             >
-              Satın Al
+              Kitabı Satın Al
             </a>
           </nav>
 
           {/* CTA & Actions */}
           <div className="hidden md:flex items-center gap-4">
             <a
-              href="#fiyatlandirma"
+              href="#fiyat-kartlari"
               className="relative inline-flex items-center justify-center px-5 py-2.5 text-xs font-bold uppercase tracking-wider text-black bg-gradient-to-r from-gold-300 via-gold-400 to-gold-600 rounded-lg shadow-gold-glow hover:shadow-gold-glow-lg hover:brightness-110 active:scale-95 transition-all duration-200"
             >
               <span>Hemen Sipariş Ver</span>
@@ -100,15 +109,25 @@ export default function Navbar() {
             Topluluk & Güven
           </a>
           <a
-            href="#fiyatlandirma"
+            href="#danismanlik"
+            onClick={() => setMobileMenuOpen(false)}
+            className="flex items-center justify-between px-3 py-2 text-base font-bold text-gold-300 hover:bg-zinc-800/40 rounded-md"
+          >
+            <span>Özel Danışmanlık</span>
+            <span className="px-2 py-0.5 text-[10px] font-black uppercase rounded bg-gold-500/20 text-gold-300 border border-gold-500/40">
+              VIP
+            </span>
+          </a>
+          <a
+            href="#fiyat-kartlari"
             onClick={() => setMobileMenuOpen(false)}
             className="block px-3 py-2 text-base font-semibold text-zinc-300 hover:text-gold-400 hover:bg-zinc-800/40 rounded-md"
           >
-            Satın Alma Seçenekleri
+            Kitabı Satın Al
           </a>
           <div className="pt-2">
             <a
-              href="#fiyatlandirma"
+              href="#fiyat-kartlari"
               onClick={() => setMobileMenuOpen(false)}
               className="w-full flex items-center justify-center px-4 py-3 text-sm font-bold uppercase tracking-wider text-black bg-gold-400 hover:bg-gold-300 rounded-lg shadow-gold-glow"
             >

@@ -84,7 +84,15 @@ export default function Footer() {
                 </li>
                 <li>
                   <a
-                    href="#fiyatlandirma"
+                    href="#danismanlik"
+                    className="text-gold-400 hover:text-gold-300 font-semibold transition-colors"
+                  >
+                    Özel Danışmanlık (VIP)
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#fiyat-kartlari"
                     className="hover:text-gold-400 transition-colors"
                   >
                     Satın Alma Seçenekleri
