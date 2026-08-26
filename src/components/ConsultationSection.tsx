@@ -59,11 +59,11 @@ export default function ConsultationSection() {
             </h3>
 
             <p className="text-sm sm:text-base text-zinc-300 leading-relaxed mb-8">
-              Bu sıradan bir dertleşme değil; kadının zihnini, sana oynanan manipülasyonları 
+              Bu sıradan bir dertleşme değil, kadının zihnini, sana oynanan manipülasyonları 
               ve ilişkideki güç dengelerini cerrahi bir hassasiyetle parçalarına ayırdığımız 
               <strong> stratejik bir operasyondur</strong>. Mevcut durumunu bizzat dinliyor, 
               yapılan ölümcül hataları deşifre ediyor ve masadan <strong>çerçevesi sarsılmaz bir erkek</strong> olarak 
-              kalkman için sana özel yol haritası çiziyoruz.
+              kalkman için sana özel bir yol haritası çiziyoruz.
             </p>
 
             {/* Özellik Listesi */}
