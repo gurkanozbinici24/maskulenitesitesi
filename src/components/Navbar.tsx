@@ -19,16 +19,17 @@ export default function Navbar() {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled
-          ? "bg-matte-950/90 backdrop-blur-md border-b border-zinc-800/80 shadow-2xl py-3.5"
+          ? "bg-matte-950/95 backdrop-blur-md border-b border-zinc-800/80 shadow-2xl py-3"
           : "bg-transparent py-5"
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
+          
           {/* Logo - Vazgeçilmez Olma Sanatı */}
           <a
             href="#"
-            className="flex items-center gap-2.5 group focus:outline-none"
+            className="flex items-center gap-2.5 group focus:outline-none flex-shrink-0"
           >
             <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-zinc-800 to-zinc-950 border border-gold-500/40 flex items-center justify-center shadow-gold-glow group-hover:border-gold-400 transition-colors">
               <BookOpen className="w-5 h-5 text-gold-400" />
@@ -38,55 +39,51 @@ export default function Navbar() {
             </span>
           </a>
 
-          {/* Desktop Nav Items */}
-          <nav className="hidden md:flex items-center gap-7">
+          {/* Desktop Nav Items & Tek Satın Alma Buton Bloğu */}
+          <nav className="hidden md:flex items-center gap-6 lg:gap-8">
             <a
               href="#kazanimlar"
-              className="text-sm font-medium text-zinc-400 hover:text-gold-300 transition-colors"
+              className="text-sm font-medium text-zinc-400 hover:text-gold-300 transition-colors whitespace-nowrap"
             >
               Neler Kazanacaksın?
             </a>
+            
             <a
               href="#sosyal-kanit"
-              className="text-sm font-medium text-zinc-400 hover:text-gold-300 transition-colors"
+              className="text-sm font-medium text-zinc-400 hover:text-gold-300 transition-colors whitespace-nowrap"
             >
               Topluluk & Güven
             </a>
+
             <a
               href="#danismanlik"
-              className="text-sm font-semibold text-gold-300 hover:text-gold-200 transition-colors flex items-center gap-1.5"
+              className="text-sm font-semibold text-gold-300 hover:text-gold-200 transition-colors flex items-center gap-1.5 whitespace-nowrap"
             >
               <span>Özel Danışmanlık</span>
               <span className="px-1.5 py-0.5 text-[9px] font-black uppercase rounded bg-gold-500/20 text-gold-300 border border-gold-500/40 shadow-inner">
                 VIP
               </span>
             </a>
-            <a
-              href="#fiyat-kartlari"
-              className="text-sm font-medium text-zinc-400 hover:text-gold-300 transition-colors"
-            >
-              Kitabı Satın Al
-            </a>
-          </nav>
 
-          {/* CTA & Actions */}
-          <div className="hidden md:flex flex-col items-end justify-center">
-            <span
-              className="text-[10px] font-black tracking-wider text-[#FFD700] uppercase mb-1 select-none"
-              style={{
-                textShadow: "0 0 10px #FFD700, 0 0 22px #E5A93C",
-              }}
-            >
-              ⚡ Sınırlı Sayıda (Sadece 200 İmzalı Kopya)
-            </span>
-            <a
-              href="#fiyat-kartlari"
-              className="relative inline-flex items-center justify-center px-5 py-2.5 text-xs font-black uppercase tracking-wider text-black bg-gradient-to-r from-gold-300 via-gold-400 to-gold-600 rounded-lg shadow-gold-glow hover:shadow-gold-glow-lg hover:brightness-110 active:scale-95 transition-all duration-200"
-            >
-              <span>Kitabı Satın Al</span>
-              <ArrowUpRight className="w-4 h-4 ml-1" />
-            </a>
-          </div>
+            {/* 'Özel Danışmanlık VIP' Linkinin Hemen Sağındaki Tek ve Vurucu Satın Alma Bloğu */}
+            <div className="flex flex-col items-center justify-center pl-2">
+              <span
+                className="text-[10px] font-black tracking-wider text-[#FFD700] uppercase mb-1 select-none whitespace-nowrap"
+                style={{
+                  textShadow: "0 0 10px #FFD700, 0 0 22px #E5A93C",
+                }}
+              >
+                ⚡ SINIRLI SAYIDA (SADECE 200 İMZALI KOPYA)
+              </span>
+              <a
+                href="#fiyat-kartlari"
+                className="relative inline-flex items-center justify-center px-5 py-2.5 text-xs font-black uppercase tracking-wider text-black bg-gradient-to-r from-gold-300 via-gold-400 to-gold-600 rounded-lg shadow-gold-glow hover:shadow-gold-glow-lg hover:brightness-110 active:scale-95 transition-all duration-200 whitespace-nowrap"
+              >
+                <span>KİTABI SATIN AL</span>
+                <ArrowUpRight className="w-4 h-4 ml-1" />
+              </a>
+            </div>
+          </nav>
 
           {/* Mobile Menu Button */}
           <button
@@ -96,6 +93,7 @@ export default function Navbar() {
           >
             {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
+
         </div>
       </div>
 
@@ -126,28 +124,23 @@ export default function Navbar() {
               VIP
             </span>
           </a>
-          <a
-            href="#fiyat-kartlari"
-            onClick={() => setMobileMenuOpen(false)}
-            className="block px-3 py-2 text-base font-semibold text-zinc-300 hover:text-gold-400 hover:bg-zinc-800/40 rounded-md"
-          >
-            Kitabı Satın Al
-          </a>
-          <div className="pt-2 flex flex-col items-center">
+
+          {/* Mobilde Tek ve Dikkat Çekici Buton Bloğu */}
+          <div className="pt-3 flex flex-col items-center">
             <span
-              className="text-[11px] font-black tracking-wider text-[#FFD700] uppercase mb-1.5"
+              className="text-[11px] font-black tracking-wider text-[#FFD700] uppercase mb-1.5 text-center"
               style={{
                 textShadow: "0 0 10px #FFD700, 0 0 20px #E5A93C",
               }}
             >
-              ⚡ Sınırlı Sayıda (Sadece 200 İmzalı Kopya)
+              ⚡ SINIRLI SAYIDA (SADECE 200 İMZALI KOPYA)
             </span>
             <a
               href="#fiyat-kartlari"
               onClick={() => setMobileMenuOpen(false)}
-              className="w-full flex items-center justify-center px-4 py-3 text-sm font-bold uppercase tracking-wider text-black bg-gold-400 hover:bg-gold-300 rounded-lg shadow-gold-glow"
+              className="w-full flex items-center justify-center px-4 py-3 text-sm font-black uppercase tracking-wider text-black bg-gradient-to-r from-gold-300 via-gold-400 to-gold-600 rounded-lg shadow-gold-glow"
             >
-              Kitabı Satın Al
+              KİTABI SATIN AL
               <ArrowUpRight className="w-4 h-4 ml-1.5" />
             </a>
           </div>
