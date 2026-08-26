@@ -1,0 +1,149 @@
+<svg width="480" height="70" viewBox="0 0 480 70" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Ağır Dövme Çelik / Krom Degrade (Yatay ve Dikey Halkalar için Çok Katmanlı Işık) -->
+    <linearGradient id="steelPrimary" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF" />
+      <stop offset="18%" stop-color="#CBD5E1" />
+      <stop offset="42%" stop-color="#64748B" />
+      <stop offset="70%" stop-color="#1E293B" />
+      <stop offset="90%" stop-color="#0F172A" />
+      <stop offset="100%" stop-color="#020617" />
+    </linearGradient>
+
+    <linearGradient id="steelSecondary" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#475569" />
+      <stop offset="30%" stop-color="#E2E8F0" />
+      <stop offset="55%" stop-color="#94A3B8" />
+      <stop offset="85%" stop-color="#1E293B" />
+      <stop offset="100%" stop-color="#0F172A" />
+    </linearGradient>
+
+    <linearGradient id="steelInnerHole" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#000000" />
+      <stop offset="100%" stop-color="#0F172A" />
+    </linearGradient>
+
+    <!-- Ağır Kasa Kilidi Gövdesi (Pirinç / Dövme Altın Çelik) -->
+    <linearGradient id="vaultLockBody" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFF0B3" />
+      <stop offset="25%" stop-color="#D4AF37" />
+      <stop offset="55%" stop-color="#8C6200" />
+      <stop offset="85%" stop-color="#4A3400" />
+      <stop offset="100%" stop-color="#1A1200" />
+    </linearGradient>
+
+    <linearGradient id="lockShackle" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#64748B" />
+      <stop offset="35%" stop-color="#F8FAFC" />
+      <stop offset="65%" stop-color="#94A3B8" />
+      <stop offset="100%" stop-color="#1E293B" />
+    </linearGradient>
+
+    <!-- Derin Fiziksel Gölge -->
+    <filter id="realisticDepth" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="6" stdDeviation="5" flood-color="#000000" flood-opacity="0.98" />
+    </filter>
+  </defs>
+
+  <g filter="url(#realisticDepth)">
+    
+    <!-- 1. SOL SARKAN UÇ HALKA (Aşağı sarkmış eğimli) -->
+    <g transform="translate(15, 38) rotate(22)">
+      <rect x="0" y="0" width="46" height="22" rx="11" fill="url(#steelInnerHole)" stroke="url(#steelPrimary)" stroke-width="6" />
+      <!-- Metal Işık Vurgusu -->
+      <path d="M 6 4 Q 23 2 40 4" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" opacity="0.85" />
+    </g>
+
+    <!-- 2. SOL ARA DİKEY BAĞLANTI HALKASI (İç içe geçen halka) -->
+    <g transform="translate(48, 26) rotate(10)">
+      <ellipse cx="14" cy="11" rx="12" ry="18" fill="url(#steelInnerHole)" stroke="url(#steelSecondary)" stroke-width="6.5" />
+      <path d="M 6 3 Q 14 0 22 3" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" opacity="0.85" />
+    </g>
+
+    <!-- 3. SOL BUTON SINIRINA ÇIKAN HALKA -->
+    <g transform="translate(74, 18) rotate(3)">
+      <rect x="0" y="0" width="50" height="22" rx="11" fill="url(#steelInnerHole)" stroke="url(#steelPrimary)" stroke-width="6.5" />
+      <path d="M 8 4 Q 25 2 42 4" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" opacity="0.9" />
+    </g>
+
+    <!-- 4. SOL MERKEZE BAĞLANAN DİKEY HALKA -->
+    <g transform="translate(118, 14)">
+      <ellipse cx="14" cy="13" rx="12" ry="19" fill="url(#steelInnerHole)" stroke="url(#steelSecondary)" stroke-width="6.5" />
+      <path d="M 6 4 Q 14 1 22 4" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" opacity="0.85" />
+    </g>
+
+    <!-- 5. SOL KİLİDE GİREN YATAY DÜZ HALKA -->
+    <g transform="translate(144, 14)">
+      <rect x="0" y="0" width="56" height="22" rx="11" fill="url(#steelInnerHole)" stroke="url(#steelPrimary)" stroke-width="6.5" />
+      <path d="M 8 4 Q 28 2 48 4" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" opacity="0.9" />
+    </g>
+
+    <!-- 6. SOL DİKEY HALKA (KİLİDİN HEMEN YANI) -->
+    <g transform="translate(192, 14)">
+      <ellipse cx="14" cy="13" rx="12" ry="19" fill="url(#steelInnerHole)" stroke="url(#steelSecondary)" stroke-width="6.5" />
+    </g>
+
+    <!-- ============================================== -->
+    <!-- MERKEZ: AĞIR KASA ASMA KİLİDİ (BUTON ÜST SINIRINA BİNEK) -->
+    <!-- ============================================== -->
+    <g transform="translate(216, 4)">
+      <!-- Sertleştirilmiş Çelik Kelepçe (Shackle) -->
+      <path d="M 12 18 V 8 C 12 2.5 17 -1 24 -1 C 31 -1 36 2.5 36 8 V 18" stroke="url(#lockShackle)" stroke-width="5" stroke-linecap="round" />
+      <path d="M 14 10 C 14 5 18 2 24 2 C 30 2 34 5 34 10" stroke="#FFFFFF" stroke-width="1.5" stroke-linecap="round" opacity="0.9" />
+
+      <!-- Ağır Dövme Altın/Çelik Kilit Gövdesi -->
+      <rect x="2" y="16" width="44" height="34" rx="7" fill="#0C0C0E" stroke="url(#vaultLockBody)" stroke-width="3" />
+      
+      <!-- Kilit Üst Köşe Perçinleri -->
+      <circle cx="8" cy="22" r="1.8" fill="#FFDF73" />
+      <circle cx="40" cy="22" r="1.8" fill="#FFDF73" />
+      <circle cx="8" cy="44" r="1.8" fill="#D4AF37" />
+      <circle cx="40" cy="44" r="1.8" fill="#D4AF37" />
+
+      <!-- Güvenlik Anahtar Yuvası -->
+      <circle cx="24" cy="30" r="3.5" fill="#D4AF37" />
+      <path d="M 24 32.5 V 38.5" stroke="#D4AF37" stroke-width="2.5" stroke-linecap="round" />
+      <circle cx="24" cy="30" r="1.5" fill="#000000" />
+    </g>
+
+    <!-- ============================================== -->
+    <!-- SAĞ KANAT ZİNCİR HALKALARI -->
+    <!-- ============================================== -->
+    
+    <!-- 7. SAĞ KİLİTTEN ÇIKAN DİKEY HALKA -->
+    <g transform="translate(262, 14)">
+      <ellipse cx="14" cy="13" rx="12" ry="19" fill="url(#steelInnerHole)" stroke="url(#steelSecondary)" stroke-width="6.5" />
+    </g>
+
+    <!-- 8. SAĞ KİLİDE GİREN YATAY DÜZ HALKA -->
+    <g transform="translate(280, 14)">
+      <rect x="0" y="0" width="56" height="22" rx="11" fill="url(#steelInnerHole)" stroke="url(#steelPrimary)" stroke-width="6.5" />
+      <path d="M 8 4 Q 28 2 48 4" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" opacity="0.9" />
+    </g>
+
+    <!-- 9. SAĞ ARA DİKEY HALKA -->
+    <g transform="translate(328, 14)">
+      <ellipse cx="14" cy="13" rx="12" ry="19" fill="url(#steelInnerHole)" stroke="url(#steelSecondary)" stroke-width="6.5" />
+      <path d="M 6 4 Q 14 1 22 4" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" opacity="0.85" />
+    </g>
+
+    <!-- 10. SAĞ BUTON SINIRINA OTURAN HALKA -->
+    <g transform="translate(350, 18) rotate(-3)">
+      <rect x="0" y="0" width="50" height="22" rx="11" fill="url(#steelInnerHole)" stroke="url(#steelPrimary)" stroke-width="6.5" />
+      <path d="M 8 4 Q 25 2 42 4" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" opacity="0.9" />
+    </g>
+
+    <!-- 11. SAĞ ARA DİKEY BAĞLANTI HALKASI (Aşağı yönlü eğim) -->
+    <g transform="translate(396, 26) rotate(-10)">
+      <ellipse cx="14" cy="11" rx="12" ry="18" fill="url(#steelInnerHole)" stroke="url(#steelSecondary)" stroke-width="6.5" />
+      <path d="M 6 3 Q 14 0 22 3" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" opacity="0.85" />
+    </g>
+
+    <!-- 12. SAĞ SARKAN UÇ HALKA (Kenardan aşağı sarkan) -->
+    <g transform="translate(416, 38) rotate(-22)">
+      <rect x="0" y="0" width="46" height="22" rx="11" fill="url(#steelInnerHole)" stroke="url(#steelPrimary)" stroke-width="6" />
+      <path d="M 6 4 Q 23 2 40 4" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" opacity="0.85" />
+    </g>
+
+  </g>
+</svg>
