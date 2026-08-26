@@ -80,16 +80,9 @@ export default function SecretLawShowcase() {
               </span>{" "}
               deyip konuyu kapattığında, o oyunu sen kazanmış olursun. O iki kelime,
               karşındakini kendi çaresizliğiyle baş başa bırakan{" "}
-              {/* Sansürlü 2. Kritik Bölüm: "en ağır nükleer bombadır" */}
-              <span className="censor relative inline-flex items-center justify-center align-middle mx-1 px-3 py-0.5 rounded bg-zinc-950/90 border border-gold-500/40 overflow-hidden cursor-not-allowed group/censor select-none">
-                <span className="filter blur-[6.5px] opacity-30 text-gold-300 font-sans text-base sm:text-xl select-none">
-                  en ağır nükleer bombadır
-                </span>
-                <span className="absolute inset-0 flex items-center justify-center bg-black/60 backdrop-blur-[1px] transition-all">
-                  <Lock className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-gold-400 opacity-75 group-hover/censor:opacity-100 transition-opacity" />
-                </span>
-              </span>
-              .
+              <strong className="text-white font-extrabold text-gold-200 [text-shadow:0_0_15px_rgba(212,175,55,0.4)]">
+                en ağır nükleer bombadır.
+              </strong>
             </blockquote>
 
             {/* Kart Altı Notu */}
