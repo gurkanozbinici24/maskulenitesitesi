@@ -39,7 +39,7 @@ export default function Navbar() {
             </span>
           </a>
 
-          {/* Desktop Nav Items & Tek Satın Alma Buton Bloğu (Ferah Hizalama) */}
+          {/* Desktop Nav Items & Kusursuz Dikey Hizalı Kompakt Satın Alma Butonu */}
           <nav className="hidden md:flex items-center gap-6 lg:gap-8 ml-auto flex-shrink-0">
             <a
               href="#kazanimlar"
@@ -65,24 +65,14 @@ export default function Navbar() {
               </span>
             </a>
 
-            {/* 'Özel Danışmanlık VIP' Linkinin Hemen Sağındaki Tek ve Vurucu Satın Alma Bloğu */}
-            <div className="flex flex-col items-center justify-center pl-2">
-              <span
-                className="text-[10px] font-black tracking-wider text-[#FFD700] uppercase mb-1 select-none whitespace-nowrap"
-                style={{
-                  textShadow: "0 0 10px #FFD700, 0 0 22px #E5A93C",
-                }}
-              >
-                İLK VE TEK BASKI (BİR DAHA ASLA BASILMAYACAK - 200 ÖZEL KOPYA)
-              </span>
-              <a
-                href="#fiyat-kartlari"
-                className="relative inline-flex items-center justify-center px-5 py-2.5 text-xs font-black uppercase tracking-wider text-black bg-gradient-to-r from-gold-300 via-gold-400 to-gold-600 rounded-lg shadow-gold-glow hover:shadow-gold-glow-lg hover:brightness-110 active:scale-95 transition-all duration-200 whitespace-nowrap"
-              >
-                <span>KİTABI SATIN AL</span>
-                <ArrowUpRight className="w-4 h-4 ml-1" />
-              </a>
-            </div>
+            {/* Dikeyde Kusursuz Ortalanmış, Kompakt ve Lüks Satın Alma Butonu */}
+            <a
+              href="#fiyat-kartlari"
+              className="relative inline-flex items-center justify-center gap-1.5 px-4 py-2 text-xs font-black uppercase tracking-wider text-black bg-gradient-to-r from-gold-300 via-gold-400 to-gold-600 rounded-lg shadow-gold-glow hover:shadow-gold-glow-lg hover:brightness-110 active:scale-95 transition-all duration-200 whitespace-nowrap"
+            >
+              <span>KİTABI SATIN AL</span>
+              <ArrowUpRight className="w-3.5 h-3.5" />
+            </a>
           </nav>
 
           {/* Mobile Menu Button */}
@@ -125,23 +115,15 @@ export default function Navbar() {
             </span>
           </a>
 
-          {/* Mobilde Tek ve Dikkat Çekici Buton Bloğu */}
-          <div className="pt-3 flex flex-col items-center">
-            <span
-              className="text-[10px] font-black tracking-wider text-[#FFD700] uppercase mb-1.5 text-center leading-tight"
-              style={{
-                textShadow: "0 0 10px #FFD700, 0 0 20px #E5A93C",
-              }}
-            >
-              İLK VE TEK BASKI (BİR DAHA ASLA BASILMAYACAK - 200 ÖZEL KOPYA)
-            </span>
+          {/* Mobilde Sade & Kompakt Buton */}
+          <div className="pt-2">
             <a
               href="#fiyat-kartlari"
               onClick={() => setMobileMenuOpen(false)}
-              className="w-full flex items-center justify-center px-4 py-3 text-sm font-black uppercase tracking-wider text-black bg-gradient-to-r from-gold-300 via-gold-400 to-gold-600 rounded-lg shadow-gold-glow"
+              className="w-full flex items-center justify-center gap-1.5 px-4 py-3 text-sm font-black uppercase tracking-wider text-black bg-gradient-to-r from-gold-300 via-gold-400 to-gold-600 rounded-lg shadow-gold-glow"
             >
-              KİTABI SATIN AL
-              <ArrowUpRight className="w-4 h-4 ml-1.5" />
+              <span>KİTABI SATIN AL</span>
+              <ArrowUpRight className="w-4 h-4" />
             </a>
           </div>
         </div>
