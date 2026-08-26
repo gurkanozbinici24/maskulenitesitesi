@@ -24,23 +24,23 @@ export default function Navbar() {
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between gap-8 lg:gap-12">
           
-          {/* Logo - Vazgeçilmez Olma Sanatı */}
+          {/* Logo - Vazgeçilmez Olma Sanatı (Sol Tarafta Belirgin & Ferah) */}
           <a
             href="#"
-            className="flex items-center gap-2.5 group focus:outline-none flex-shrink-0"
+            className="flex items-center gap-3 group focus:outline-none flex-shrink-0 mr-6 sm:mr-8 lg:mr-12"
           >
-            <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-zinc-800 to-zinc-950 border border-gold-500/40 flex items-center justify-center shadow-gold-glow group-hover:border-gold-400 transition-colors">
+            <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-zinc-800 to-zinc-950 border border-gold-500/40 flex items-center justify-center shadow-gold-glow group-hover:border-gold-400 transition-colors flex-shrink-0">
               <BookOpen className="w-5 h-5 text-gold-400" />
             </div>
-            <span className="font-extrabold tracking-wider text-base sm:text-lg text-zinc-100 uppercase group-hover:text-gold-300 transition-colors">
+            <span className="font-extrabold tracking-wider text-base sm:text-lg text-zinc-100 uppercase group-hover:text-gold-300 transition-colors whitespace-nowrap">
               Vazgeçilmez Olma Sanatı
             </span>
           </a>
 
-          {/* Desktop Nav Items & Tek Satın Alma Buton Bloğu */}
-          <nav className="hidden md:flex items-center gap-6 lg:gap-8">
+          {/* Desktop Nav Items & Tek Satın Alma Buton Bloğu (Ferah Hizalama) */}
+          <nav className="hidden md:flex items-center gap-6 lg:gap-8 ml-auto flex-shrink-0">
             <a
               href="#kazanimlar"
               className="text-sm font-medium text-zinc-400 hover:text-gold-300 transition-colors whitespace-nowrap"
