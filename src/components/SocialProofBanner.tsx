@@ -33,35 +33,35 @@ export default function SocialProofBanner() {
               </p>
             </div>
 
-            {/* Right Content: Stats Grid */}
+            {/* Right Content: Stats Grid with 3D Hover Effect */}
             <div className="w-full lg:w-auto grid grid-cols-2 sm:grid-cols-3 gap-4 sm:gap-6 flex-shrink-0">
               
               {/* Stat 1 */}
-              <div className="p-4 sm:p-5 rounded-2xl bg-matte-950/80 border border-zinc-800 text-center flex flex-col items-center justify-center shadow-inner">
-                <div className="text-2xl sm:text-3xl font-black text-gold-400 font-mono">
+              <div className="group/stat relative p-4 sm:p-5 rounded-2xl bg-matte-950/90 border border-zinc-800 text-center flex flex-col items-center justify-center shadow-inner cursor-default select-none transition-all duration-300 ease-[cubic-bezier(0.25,1,0.5,1)] hover:-translate-y-1.5 hover:scale-[1.03] hover:border-gold-500/50 hover:shadow-[0_15px_35px_rgba(0,0,0,0.85),0_0_25px_rgba(212,175,55,0.22)]">
+                <div className="text-2xl sm:text-3xl font-black text-gold-400 font-mono transition-colors duration-300 group-hover/stat:text-gold-300">
                   800K+
                 </div>
-                <div className="text-[11px] font-bold text-zinc-400 uppercase tracking-wider mt-1">
+                <div className="text-[11px] font-bold text-zinc-400 uppercase tracking-wider mt-1 transition-colors duration-300 group-hover/stat:text-zinc-300">
                   AKTİF TAKİPÇİ
                 </div>
               </div>
 
               {/* Stat 2 */}
-              <div className="p-4 sm:p-5 rounded-2xl bg-matte-950/80 border border-zinc-800 text-center flex flex-col items-center justify-center shadow-inner">
-                <div className="text-2xl sm:text-3xl font-black text-zinc-100 font-mono">
+              <div className="group/stat relative p-4 sm:p-5 rounded-2xl bg-matte-950/90 border border-zinc-800 text-center flex flex-col items-center justify-center shadow-inner cursor-default select-none transition-all duration-300 ease-[cubic-bezier(0.25,1,0.5,1)] hover:-translate-y-1.5 hover:scale-[1.03] hover:border-gold-500/50 hover:shadow-[0_15px_35px_rgba(0,0,0,0.85),0_0_25px_rgba(212,175,55,0.22)]">
+                <div className="text-2xl sm:text-3xl font-black text-zinc-100 font-mono transition-colors duration-300 group-hover/stat:text-white">
                   %99.4
                 </div>
-                <div className="text-[11px] font-bold text-zinc-400 uppercase tracking-wider mt-1">
+                <div className="text-[11px] font-bold text-zinc-400 uppercase tracking-wider mt-1 transition-colors duration-300 group-hover/stat:text-zinc-300">
                   MEMNUNİYET & SONUÇ
                 </div>
               </div>
 
               {/* Stat 3 */}
-              <div className="p-4 sm:p-5 rounded-2xl bg-matte-950/80 border border-gold-500/40 text-center flex flex-col items-center justify-center col-span-2 sm:col-span-1 shadow-gold-glow">
-                <div className="text-xl sm:text-2xl font-black text-gold-400 font-mono whitespace-nowrap">
+              <div className="group/stat relative p-4 sm:p-5 rounded-2xl bg-matte-950/90 border border-gold-500/40 text-center flex flex-col items-center justify-center col-span-2 sm:col-span-1 shadow-gold-glow cursor-default select-none transition-all duration-300 ease-[cubic-bezier(0.25,1,0.5,1)] hover:-translate-y-1.5 hover:scale-[1.03] hover:border-gold-400 hover:shadow-[0_18px_40px_rgba(0,0,0,0.9),0_0_35px_rgba(212,175,55,0.38)]">
+                <div className="text-xl sm:text-2xl font-black text-gold-400 font-mono whitespace-nowrap transition-colors duration-300 group-hover/stat:text-gold-300">
                   SADECE 200
                 </div>
-                <div className="text-[11px] font-bold text-gold-300 uppercase tracking-wider mt-1">
+                <div className="text-[11px] font-bold text-gold-300 uppercase tracking-wider mt-1 transition-colors duration-300 group-hover/stat:text-gold-200">
                   ÖZEL İMZALI KOPYA
                 </div>
               </div>
