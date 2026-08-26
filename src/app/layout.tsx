@@ -8,16 +8,19 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  title: "Vazgeçilmez Olma Sanatı | İlişki Psikolojisi",
-  description:
-    "İlişkilerde kazanma sanatı ve ilişki psikolojisi. Kendi değerinizi inşa edin ve vazgeçilmez olun.",
+  title: 'Vazgeçilmez Olma Sanatı | İlişki Psikolojisi ve Maskülenite',
+  description: 'Maskülenite, redpill, kırmızıhap felsefesi ve ilişki dinamikleri üzerine sarsılmaz kanunlar. Vazgeçilmez Olma Sanatı kitabının resmi ve tek basımı.',
   keywords: [
-    "vazgeçilmez olma sanatı",
-    "vazgeçilmez ol",
-    "ilişki psikolojisi",
-    "ilişkilerde kazanma sanatı",
-    "kitap",
-    "maskülenite",
+    'maskülenite',
+    'maskulenitesitesi',
+    'redpill',
+    'kırmızıhap',
+    'ilişki psikolojisi',
+    'vazgeçilmez olma sanatı',
+    'çekim dinamikleri',
+    'çerçeve yönetimi',
+    'erkek psikolojisi',
+    'ilişki taktikleri'
   ],
   authors: [{ name: "Gürkan Özbinici" }],
 };
