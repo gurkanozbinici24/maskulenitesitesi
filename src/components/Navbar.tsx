@@ -17,12 +17,14 @@ export default function Navbar() {
 
   return (
     <div className="fixed top-0 left-0 right-0 z-50">
-      {/* 1. Boydan Boya Uzanan Altın Sarısı Duyuru Çubuğu (Announcement Bar) */}
-      <div className="w-full bg-[#FFD700] text-black py-2 px-3 sm:px-4 text-center font-black text-[11px] sm:text-xs tracking-wider uppercase shadow-[0_2px_15px_rgba(255,215,0,0.3)] flex items-center justify-center gap-1.5 select-none border-b border-amber-500/40">
-        <span className="bg-black text-[#FFD700] px-1.5 py-0.5 rounded text-[10px] font-black mr-1 tracking-widest">
-          DİKKAT
-        </span>
-        <span className="font-extrabold">
+      {/* 1. Lüks VIP Duyuru Çubuğu (Simsiyah Zemin, İnce Altın Çizgi & Asil Altın Yazı) */}
+      <div className="w-full bg-[#000000] border-b border-[#E5A93C] py-2.5 px-3 sm:px-4 text-center select-none flex items-center justify-center gap-2 shadow-[0_4px_20px_rgba(0,0,0,0.8)]">
+        <span
+          className="text-[#E5A93C] font-bold text-[11px] sm:text-xs tracking-[0.12em] uppercase"
+          style={{
+            textShadow: "0 0 10px rgba(229, 169, 60, 0.45), 0 0 20px rgba(229, 169, 60, 0.2)",
+          }}
+        >
           İLK VE TEK BASKI - BİR DAHA ASLA BASILMAYACAK (SADECE 200 ÖZEL KOPYA)
         </span>
       </div>
