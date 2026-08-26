@@ -136,7 +136,7 @@ export default function PricingSection() {
             <div className="absolute -top-4 left-6 sm:left-10 z-20">
               <div className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-gradient-to-r from-crimson-600 via-crimson-500 to-crimson-700 text-white text-xs font-black uppercase tracking-wider shadow-crimson-glow border border-red-300/40 animate-bounce">
                 <ShieldAlert className="w-3.5 h-3.5" />
-                <span>Sadece 200 Adet Sınırlı Üretim</span>
+                <span>SADECE 200 ADET KOLEKSİYON EDİSYONU</span>
               </div>
             </div>
 
