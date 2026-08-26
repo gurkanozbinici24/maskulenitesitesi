@@ -1,6 +1,7 @@
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
 import BenefitsSection from "@/components/BenefitsSection";
+import SecretLawShowcase from "@/components/SecretLawShowcase";
 import SocialProofBanner from "@/components/SocialProofBanner";
 import ConsultationSection from "@/components/ConsultationSection";
 import TestimonialsSection from "@/components/TestimonialsSection";
@@ -20,22 +21,25 @@ export default function Home() {
       {/* 2. Neler Kazanacaksın Bölümü */}
       <BenefitsSection />
 
-      {/* 3. Sosyal Kanıt Bannerı */}
+      {/* 3. Gizli Arşiv Vitrini: 100 Sarsılmaz Kanundan Biri (3D Sansürlü Kart) */}
+      <SecretLawShowcase />
+
+      {/* 4. Sosyal Kanıt Bannerı */}
       <SocialProofBanner />
 
-      {/* 4. Özel Danışmanlık & Koçluk Seansı Bölümü */}
+      {/* 5. Özel Danışmanlık & Koçluk Seansı Bölümü */}
       <ConsultationSection />
 
-      {/* 5. Sarsılmaz Sonuçlar & Danışan Yorumları (m1-m8) */}
+      {/* 6. Sarsılmaz Sonuçlar & Danışan Yorumları (m1-m8) */}
       <TestimonialsSection />
 
-      {/* 6. Satın Alma & Fiyatlandırma Bölümü */}
+      {/* 7. Satın Alma & Fiyatlandırma Bölümü */}
       <PricingSection />
 
-      {/* 7. Sıkça Sorulan Sorular (SSS) Akordiyon Bölümü */}
+      {/* 8. Sıkça Sorulan Sorular (SSS) Akordiyon Bölümü */}
       <FaqSection />
 
-      {/* 8. Footer */}
+      {/* 9. Footer */}
       <Footer />
     </main>
   );
