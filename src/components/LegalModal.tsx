@@ -45,15 +45,11 @@ export default function LegalModal({
         <div className="space-y-4 text-xs sm:text-sm text-zinc-300 leading-relaxed font-normal">
           {type === "iade" && (
             <>
-              <h4 className="font-bold text-zinc-100 text-sm">1. İade ve İptal Şartları</h4>
-              <p>
-                6502 sayılı Tüketicinin Korunması Hakkında Kanun uyarınca; satın aldığınız <strong>fiziksel kitapları</strong>, ambalajı açılmamış, kullanılmamış ve hasar görmemiş olması kaydıyla teslimat tarihinden itibaren <strong>14 (on dört) gün</strong> içerisinde hiçbir gerekçe göstermeksizin iade edebilirsiniz.
-              </p>
-              <h4 className="font-bold text-zinc-100 text-sm">2. Dijital Ürünler (E-Kitap)</h4>
+              <h4 className="font-bold text-zinc-100 text-sm">1. Dijital Ürünler (E-Kitap)</h4>
               <p>
                 Mesafeli Sözleşmeler Yönetmeliği&apos;nin 15. maddesinin (ğ) bendi uyarınca; elektronik ortamda anında ifa edilen hizmetler ve tüketiciye anında teslim edilen gayrimaddi mallara (e-kitap, dijital dosya indirmeleri) ilişkin sözleşmelerde <strong>cayma hakkı kullanılamaz</strong>.
               </p>
-              <h4 className="font-bold text-zinc-100 text-sm">3. Hasarlı ve Hatalı Ürünler</h4>
+              <h4 className="font-bold text-zinc-100 text-sm">2. Hasarlı ve Hatalı Ürünler</h4>
               <p>
                 Kargo taşıması esnasında hasar gören fiziksel kitaplar için kargo görevlisine tutanak tutturulması gerekmektedir. Hatalı basım veya hasarlı ürünler koşulsuz ve ücretsiz olarak yenisiyle değiştirilir.
               </p>
