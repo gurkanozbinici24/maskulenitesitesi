@@ -203,18 +203,21 @@ export default function SecretLawShowcase() {
 
         </div>
 
-        {/* Ortalanmış Tek ve Güçlü CTA Butonu */}
+        {/* Ortalanmış Asil Kasa Anahtarı CTA Butonu */}
         <div className="flex flex-col items-center justify-center">
           <a
             href="#fiyat-kartlari"
-            className="group relative inline-flex items-center justify-center gap-3 px-10 sm:px-12 py-4 text-xs sm:text-sm font-extrabold uppercase tracking-widest text-black bg-gradient-to-r from-gold-300 via-gold-400 to-gold-600 rounded-xl shadow-[0_4px_25px_rgba(212,175,55,0.3)] hover:shadow-[0_6px_35px_rgba(212,175,55,0.5)] hover:brightness-110 active:scale-[0.98] transition-all duration-200 select-none"
+            className="group relative inline-flex items-center justify-center gap-3.5 px-9 sm:px-14 py-4 sm:py-4.5 font-cinzel text-xs sm:text-[13px] font-bold uppercase tracking-[0.18em] text-black bg-gradient-to-r from-[#FDE047] via-[#D4AF37] to-[#B8860B] rounded-xl border border-[#FFF0B3]/50 shadow-[0_6px_30px_rgba(212,175,55,0.35),0_0_20px_rgba(212,175,55,0.15)] hover:shadow-[0_8px_40px_rgba(212,175,55,0.55)] hover:brightness-105 active:scale-[0.98] transition-all duration-300 select-none"
           >
-            <span>TÜM KANUNLARI DEŞİFRE ET</span>
-            <ArrowRight className="w-4 h-4 text-black group-hover:translate-x-1.5 transition-transform" />
+            <span>100 KANUNUN TAM METNİNE ERİŞ</span>
+            <ArrowRight
+              className="w-3.5 h-3.5 text-black/85 group-hover:translate-x-1 transition-transform"
+              strokeWidth={1.5}
+            />
           </a>
 
-          <span className="text-[10px] font-mono text-zinc-500 uppercase tracking-wider mt-3">
-            Tıkla ve doğrudan satın alma paketlerine kaydır
+          <span className="text-[10px] font-mono text-zinc-500 uppercase tracking-[0.16em] mt-3 select-none">
+            Doğrudan Paket Seçeneklerine İlerle
           </span>
         </div>
 
