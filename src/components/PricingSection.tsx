@@ -54,8 +54,9 @@ export default function PricingSection() {
                 </div>
               </div>
 
-              <h3 className="text-2xl sm:text-3xl font-extrabold text-zinc-100 tracking-tight">
-                Vazgeçilmez Olma Sanatı E-Kitap Paketi
+              <h3 className="text-2xl sm:text-3xl font-extrabold text-zinc-100 tracking-tight leading-snug">
+                Vazgeçilmez Olma Sanatı <br />
+                <span className="inline-block whitespace-nowrap">E-Kitap Paketi</span>
               </h3>
               
               <p className="text-sm text-zinc-400 mt-2 mb-6">
@@ -152,8 +153,9 @@ export default function PricingSection() {
                 </div>
               </div>
 
-              <h3 className="text-2xl sm:text-3xl font-black text-white tracking-tight">
-                Vazgeçilmez Olma Sanatı Özel Üretim Sınırlı Sayıda İmzalı Fiziksel Kitap
+              <h3 className="text-2xl sm:text-3xl font-black text-white tracking-tight leading-snug">
+                Vazgeçilmez Olma Sanatı <br />
+                <span>Özel Üretim İmzalı Fiziksel Kitap</span>
               </h3>
               
               <p className="text-sm text-zinc-300 mt-2 mb-6">
