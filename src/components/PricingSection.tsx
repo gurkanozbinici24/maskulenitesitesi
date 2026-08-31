@@ -10,6 +10,7 @@ import {
   BookOpen,
   Lock,
   Clock,
+  MessageCircle,
 } from "lucide-react";
 
 export default function PricingSection() {
@@ -115,17 +116,18 @@ export default function PricingSection() {
             {/* Button */}
             <div className="pt-6 mt-4">
               <a
-                href="https://www.sopsy.com/d/Xnw9s1"
+                href="https://wa.me/905302667999?text=Merhaba,%20Vazgeçilmez%20Olma%20Sanatı%20e-kitap%20paketini%20satın%20almak%20istiyorum."
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-full py-4 px-6 rounded-xl bg-matte-800 hover:bg-zinc-800 border border-zinc-700 text-sm font-bold uppercase tracking-wider text-zinc-200 hover:text-white flex items-center justify-center gap-2 transition-all duration-200"
               >
-                <span>E-Kitabı Şimdi İndir</span>
+                <MessageCircle className="w-4 h-4 text-gold-400" />
+                <span>WhatsApp ile Sipariş Ver</span>
                 <ArrowRight className="w-4 h-4" />
               </a>
               <div className="flex items-center justify-center gap-2 mt-3 text-[11px] text-zinc-500 font-medium">
                 <Zap className="w-3.5 h-3.5 text-gold-400" />
-                <span>Ödeme sonrası anında indirme linki</span>
+                <span>WhatsApp üzerinden anında teslimat</span>
               </div>
             </div>
           </div>
@@ -214,12 +216,13 @@ export default function PricingSection() {
             {/* Button */}
             <div className="pt-6 mt-4">
               <a
-                href="https://www.sopsy.com/d/sj75mq"
+                href="https://wa.me/905302667999?text=Merhaba,%20Vazgeçilmez%20Olma%20Sanatı%20imzalı%20kitabını%20satın%20almak%20istiyorum."
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-full py-4 px-6 rounded-xl bg-gradient-to-r from-gold-300 via-gold-400 to-gold-600 text-black text-sm font-extrabold uppercase tracking-wider shadow-gold-glow hover:shadow-gold-glow-lg hover:brightness-110 active:scale-[0.98] flex items-center justify-center gap-2 transition-all duration-200"
               >
-                <span>İmzalı Kopyanı Ayırt</span>
+                <MessageCircle className="w-5 h-5 fill-black/15 text-black" />
+                <span>WhatsApp ile Sipariş Ver</span>
                 <ArrowRight className="w-4 h-4" />
               </a>
               <div className="flex items-center justify-center gap-2 mt-3 text-[11px] text-zinc-400 font-medium">

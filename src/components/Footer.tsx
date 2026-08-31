@@ -170,15 +170,15 @@ export default function Footer() {
                   </a>
                 </li>
                 <li>
-                  <button
-                    onClick={() =>
-                      openModal("WhatsApp Destek Hattı", "iletisim")
-                    }
+                  <a
+                    href="https://wa.me/905302667999?text=Merhaba,%20Vazgeçilmez%20Olma%20Sanatı%20kitabı%20hakkında%20bilgi%20almak%20istiyorum."
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="flex items-center gap-2 hover:text-gold-400 transition-colors"
                   >
                     <MessageSquare className="w-4 h-4 text-gold-500" />
                     <span>WhatsApp Canlı Destek</span>
-                  </button>
+                  </a>
                 </li>
                 <li className="text-xs text-zinc-500 pt-1">
                   7/24 Kesintisiz Sipariş ve E-posta Desteği
