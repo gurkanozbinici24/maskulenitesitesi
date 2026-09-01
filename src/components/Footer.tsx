@@ -171,7 +171,7 @@ export default function Footer() {
                 </li>
                 <li>
                   <a
-                    href="https://wa.me/905302667999?text=Merhaba,%20Vazgeçilmez%20Olma%20Sanatı%20kitabı%20hakkında%20bilgi%20almak%20istiyorum."
+                    href="https://wa.me/905455207999?text=Merhaba,%20Vazgeçilmez%20Olma%20Sanatı%20kitabı%20hakkında%20bilgi%20almak%20istiyorum."
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center gap-2 hover:text-gold-400 transition-colors"

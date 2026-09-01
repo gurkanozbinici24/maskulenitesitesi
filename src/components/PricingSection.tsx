@@ -116,7 +116,7 @@ export default function PricingSection() {
             {/* Button */}
             <div className="pt-6 mt-4">
               <a
-                href="https://wa.me/905302667999?text=Merhaba,%20Vazgeçilmez%20Olma%20Sanatı%20e-kitap%20paketini%20satın%20almak%20istiyorum."
+                href="https://wa.me/905455207999?text=Merhaba,%20Vazgeçilmez%20Olma%20Sanatı%20e-kitap%20paketini%20satın%20almak%20istiyorum."
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-full py-4 px-6 rounded-xl bg-matte-800 hover:bg-zinc-800 border border-zinc-700 text-sm font-bold uppercase tracking-wider text-zinc-200 hover:text-white flex items-center justify-center gap-2 transition-all duration-200"
@@ -216,7 +216,7 @@ export default function PricingSection() {
             {/* Button */}
             <div className="pt-6 mt-4">
               <a
-                href="https://wa.me/905302667999?text=Merhaba,%20Vazgeçilmez%20Olma%20Sanatı%20imzalı%20kitabını%20satın%20almak%20istiyorum."
+                href="https://wa.me/905455207999?text=Merhaba,%20Vazgeçilmez%20Olma%20Sanatı%20imzalı%20kitabını%20satın%20almak%20istiyorum."
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-full py-4 px-6 rounded-xl bg-gradient-to-r from-gold-300 via-gold-400 to-gold-600 text-black text-sm font-extrabold uppercase tracking-wider shadow-gold-glow hover:shadow-gold-glow-lg hover:brightness-110 active:scale-[0.98] flex items-center justify-center gap-2 transition-all duration-200"

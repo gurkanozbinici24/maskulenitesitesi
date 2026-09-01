@@ -96,7 +96,7 @@ export default function LegalModal({
                 Siparişleriniz, kargo takibi veya sorularınız için bizimle aşağıdaki kanallardan 7/24 iletişime geçebilirsiniz:
               </p>
               <div className="p-4 rounded-xl bg-matte-950 border border-zinc-800 space-y-2 font-mono text-xs">
-                <div><strong>WhatsApp Sipariş & Destek:</strong> +90 (530) 266 79 99</div>
+                <div><strong>WhatsApp Sipariş & Destek:</strong> +90 (545) 520 79 99</div>
                 <div><strong>E-Posta:</strong> maskulenitesitesi@gmail.com</div>
                 <div><strong>Instagram:</strong> @maskulenitesitesi</div>
                 <div><strong>Çalışma Saatleri:</strong> 7/24 Kesintisiz Destek</div>
