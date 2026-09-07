@@ -41,98 +41,7 @@ export default function PricingSection() {
           id="fiyat-kartlari"
           className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-5xl mx-auto items-stretch scroll-mt-24"
         >
-          
-          {/* Card 1: E-Kitap */}
-          <div className="relative flex flex-col justify-between p-8 sm:p-10 rounded-3xl bg-matte-900/90 border border-zinc-800 hover:border-zinc-700 shadow-xl transition-all duration-300">
-            <div>
-              {/* Header */}
-              <div className="flex items-center justify-between mb-4">
-                <span className="text-xs font-bold uppercase tracking-widest text-zinc-400 font-mono">
-                  DİJİTAL SÜRÜM
-                </span>
-                <div className="p-2 rounded-lg bg-zinc-800/80 text-zinc-300">
-                  <BookOpen className="w-5 h-5" />
-                </div>
-              </div>
-
-              <h3 className="text-2xl sm:text-3xl font-extrabold text-zinc-100 tracking-tight leading-snug">
-                Vazgeçilmez Olma Sanatı <br />
-                <span className="inline-block whitespace-nowrap">E-Kitap Paketi</span>
-              </h3>
-              
-              <p className="text-sm text-zinc-400 mt-2 mb-6">
-                Ödemenin ardından anında cihazınıza indirin. Telefon, tablet ve e-okuyucularda kesintisiz okuyun.
-              </p>
-
-              {/* Price Tag */}
-              <div className="py-5 my-4 border-y border-zinc-800/80 flex items-baseline gap-2">
-                <span className="text-4xl sm:text-5xl font-black text-white font-mono">
-                  600
-                </span>
-                <span className="text-xl font-bold text-gold-400 font-mono">TL</span>
-                <span className="text-xs text-zinc-500 font-medium ml-2">/ Tek Seferlik Ödeme</span>
-              </div>
-
-              {/* Feature List */}
-              <div className="space-y-3.5 my-6">
-                <div className="flex items-start gap-3">
-                  <div className="mt-0.5 w-4 h-4 rounded-full bg-zinc-800 flex items-center justify-center flex-shrink-0 text-zinc-300">
-                    <Check className="w-3 h-3" />
-                  </div>
-                  <span className="text-sm text-zinc-300">
-                    <strong>Tam Metin</strong> (Tüm bölümler ve ilişki psikolojisi protokolleri)
-                  </span>
-                </div>
-
-                <div className="flex items-start gap-3">
-                  <div className="mt-0.5 w-4 h-4 rounded-full bg-zinc-800 flex items-center justify-center flex-shrink-0 text-zinc-300">
-                    <Check className="w-3 h-3" />
-                  </div>
-                  <span className="text-sm text-zinc-300">
-                    <strong>PDF, EPUB ve Kindle (.mobi)</strong> formatlarında anında indirme
-                  </span>
-                </div>
-
-                <div className="flex items-start gap-3">
-                  <div className="mt-0.5 w-4 h-4 rounded-full bg-zinc-800 flex items-center justify-center flex-shrink-0 text-zinc-300">
-                    <Check className="w-3 h-3" />
-                  </div>
-                  <span className="text-sm text-zinc-300">
-                    Ömür boyu erişim ve dijital revizyon güncellemeleri
-                  </span>
-                </div>
-
-                <div className="flex items-start gap-3">
-                  <div className="mt-0.5 w-4 h-4 rounded-full bg-zinc-800 flex items-center justify-center flex-shrink-0 text-zinc-300">
-                    <Check className="w-3 h-3" />
-                  </div>
-                  <span className="text-sm text-zinc-300">
-                    Satın alma anında otomatik e-posta teslimatı
-                  </span>
-                </div>
-              </div>
-            </div>
-
-            {/* Button */}
-            <div className="pt-6 mt-4">
-              <a
-                href="https://wa.me/905455207999?text=Merhaba,%20Vazgeçilmez%20Olma%20Sanatı%20e-kitap%20paketini%20satın%20almak%20istiyorum."
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-full py-4 px-6 rounded-xl bg-matte-800 hover:bg-zinc-800 border border-zinc-700 text-sm font-bold uppercase tracking-wider text-zinc-200 hover:text-white flex items-center justify-center gap-2 transition-all duration-200"
-              >
-                <MessageCircle className="w-4 h-4 text-gold-400" />
-                <span>WhatsApp ile Sipariş Ver</span>
-                <ArrowRight className="w-4 h-4" />
-              </a>
-              <div className="flex items-center justify-center gap-2 mt-3 text-[11px] text-zinc-500 font-medium">
-                <Zap className="w-3.5 h-3.5 text-gold-400" />
-                <span>WhatsApp üzerinden anında teslimat</span>
-              </div>
-            </div>
-          </div>
-
-          {/* Card 2: Özel Üretim İmzalı Fiziksel Kitap (PREMIUM CARD) */}
+          {/* Card 1: Özel Üretim İmzalı Fiziksel Kitap (PREMIUM CARD) - 1. Sıra (Solda / Üstte) */}
           <div className="relative flex flex-col justify-between p-8 sm:p-10 rounded-3xl bg-gradient-to-b from-matte-850 via-matte-900 to-matte-950 border-2 border-gold-500 shadow-gold-glow hover:shadow-gold-glow-lg transition-all duration-300">
             
             {/* VIBRANT RED LIMITED BADGE */}
@@ -231,6 +140,96 @@ export default function PricingSection() {
               </div>
             </div>
 
+          </div>
+
+          {/* Card 2: E-Kitap Paketi - 2. Sıra (Sağda / Altta) */}
+          <div className="relative flex flex-col justify-between p-8 sm:p-10 rounded-3xl bg-matte-900/90 border border-zinc-800 hover:border-zinc-700 shadow-xl transition-all duration-300">
+            <div>
+              {/* Header */}
+              <div className="flex items-center justify-between mb-4">
+                <span className="text-xs font-bold uppercase tracking-widest text-zinc-400 font-mono">
+                  DİJİTAL SÜRÜM
+                </span>
+                <div className="p-2 rounded-lg bg-zinc-800/80 text-zinc-300">
+                  <BookOpen className="w-5 h-5" />
+                </div>
+              </div>
+
+              <h3 className="text-2xl sm:text-3xl font-extrabold text-zinc-100 tracking-tight leading-snug">
+                Vazgeçilmez Olma Sanatı <br />
+                <span className="inline-block whitespace-nowrap">E-Kitap Paketi</span>
+              </h3>
+              
+              <p className="text-sm text-zinc-400 mt-2 mb-6">
+                Ödemenin ardından anında cihazınıza indirin. Telefon, tablet ve e-okuyucularda kesintisiz okuyun.
+              </p>
+
+              {/* Price Tag */}
+              <div className="py-5 my-4 border-y border-zinc-800/80 flex items-baseline gap-2">
+                <span className="text-4xl sm:text-5xl font-black text-white font-mono">
+                  600
+                </span>
+                <span className="text-xl font-bold text-gold-400 font-mono">TL</span>
+                <span className="text-xs text-zinc-500 font-medium ml-2">/ Tek Seferlik Ödeme</span>
+              </div>
+
+              {/* Feature List */}
+              <div className="space-y-3.5 my-6">
+                <div className="flex items-start gap-3">
+                  <div className="mt-0.5 w-4 h-4 rounded-full bg-zinc-800 flex items-center justify-center flex-shrink-0 text-zinc-300">
+                    <Check className="w-3 h-3" />
+                  </div>
+                  <span className="text-sm text-zinc-300">
+                    <strong>Tam Metin</strong> (Tüm bölümler ve ilişki psikolojisi protokolleri)
+                  </span>
+                </div>
+
+                <div className="flex items-start gap-3">
+                  <div className="mt-0.5 w-4 h-4 rounded-full bg-zinc-800 flex items-center justify-center flex-shrink-0 text-zinc-300">
+                    <Check className="w-3 h-3" />
+                  </div>
+                  <span className="text-sm text-zinc-300">
+                    <strong>PDF, EPUB ve Kindle (.mobi)</strong> formatlarında anında indirme
+                  </span>
+                </div>
+
+                <div className="flex items-start gap-3">
+                  <div className="mt-0.5 w-4 h-4 rounded-full bg-zinc-800 flex items-center justify-center flex-shrink-0 text-zinc-300">
+                    <Check className="w-3 h-3" />
+                  </div>
+                  <span className="text-sm text-zinc-300">
+                    Ömür boyu erişim ve dijital revizyon güncellemeleri
+                  </span>
+                </div>
+
+                <div className="flex items-start gap-3">
+                  <div className="mt-0.5 w-4 h-4 rounded-full bg-zinc-800 flex items-center justify-center flex-shrink-0 text-zinc-300">
+                    <Check className="w-3 h-3" />
+                  </div>
+                  <span className="text-sm text-zinc-300">
+                    Satın alma anında otomatik e-posta teslimatı
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            {/* Button */}
+            <div className="pt-6 mt-4">
+              <a
+                href="https://wa.me/905455207999?text=Merhaba,%20Vazgeçilmez%20Olma%20Sanatı%20e-kitap%20paketini%20satın%20almak%20istiyorum."
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full py-4 px-6 rounded-xl bg-matte-800 hover:bg-zinc-800 border border-zinc-700 text-sm font-bold uppercase tracking-wider text-zinc-200 hover:text-white flex items-center justify-center gap-2 transition-all duration-200"
+              >
+                <MessageCircle className="w-4 h-4 text-gold-400" />
+                <span>WhatsApp ile Sipariş Ver</span>
+                <ArrowRight className="w-4 h-4" />
+              </a>
+              <div className="flex items-center justify-center gap-2 mt-3 text-[11px] text-zinc-500 font-medium">
+                <Zap className="w-3.5 h-3.5 text-gold-400" />
+                <span>WhatsApp üzerinden anında teslimat</span>
+              </div>
+            </div>
           </div>
 
         </div>
