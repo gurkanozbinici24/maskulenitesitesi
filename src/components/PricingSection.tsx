@@ -134,9 +134,13 @@ export default function PricingSection() {
                 <span>WhatsApp ile Sipariş Ver</span>
                 <ArrowRight className="w-4 h-4" />
               </a>
-              <div className="flex items-center justify-center gap-2 mt-3 text-[11px] text-zinc-400 font-medium">
-                <Clock className="w-3.5 h-3.5 text-crimson-400" />
-                <span>Kalan Stok: <strong className="text-crimson-400">Son 27 Adet</strong> (Tükenmek Üzere)</span>
+              
+              {/* BÜYÜK VE GÖZE ÇARPAN STOK UYARISI */}
+              <div className="mt-4 p-2.5 sm:p-3 rounded-xl bg-crimson-950/50 border border-crimson-500/50 shadow-[0_0_20px_rgba(220,38,38,0.25)] flex items-center justify-center gap-2 text-center animate-pulse">
+                <Clock className="w-4 h-4 sm:w-5 sm:h-5 text-crimson-400 flex-shrink-0" />
+                <span className="text-xs sm:text-sm font-black tracking-wide text-zinc-100 uppercase">
+                  KALAN STOK: <strong className="text-crimson-400 font-black text-sm sm:text-base ml-1">SON 18 ADET</strong> <span className="text-crimson-300 font-bold text-xs sm:text-sm ml-1">(TÜKENMEK ÜZERE)</span>
+                </span>
               </div>
             </div>
 
