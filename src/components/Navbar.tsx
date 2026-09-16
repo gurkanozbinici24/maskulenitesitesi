@@ -32,7 +32,7 @@ export default function Navbar() {
         <span
           className="text-crimson-400 font-black text-[12px] sm:text-[13px] tracking-[0.12em] uppercase px-2.5 py-0.5 rounded-md bg-crimson-950/80 border border-crimson-500/60 shadow-[0_0_12px_rgba(239,68,68,0.5)]"
         >
-          SON 18 ADET
+          SON 5 ADET
         </span>
         <span
           className="text-crimson-300 font-extrabold text-[11px] sm:text-xs tracking-[0.1em] uppercase animate-pulse"

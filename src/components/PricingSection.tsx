@@ -61,7 +61,7 @@ export default function PricingSection() {
                     <span>KOLEKSİYON BASKISI</span>
                   </div>
                   <span className="px-2 py-0.5 rounded-full bg-crimson-600/90 text-white text-[10px] sm:text-[11px] font-black uppercase tracking-wider border border-red-400/40 shadow-crimson-glow animate-pulse">
-                    🔥 SON 18 ADET
+                    🔥 SON 5 ADET
                   </span>
                 </div>
                 <div className="p-1.5 sm:p-2 rounded-lg bg-crimson-500/20 text-crimson-400 border border-crimson-500/40">
@@ -144,7 +144,7 @@ export default function PricingSection() {
               <div className="mt-3 p-2 sm:p-2.5 rounded-xl bg-crimson-950/60 border border-crimson-500/50 shadow-[0_0_15px_rgba(220,38,38,0.25)] flex items-center justify-center gap-1.5 text-center animate-pulse">
                 <Clock className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-crimson-400 flex-shrink-0" />
                 <span className="text-[11px] sm:text-xs font-black tracking-wide text-zinc-100 uppercase">
-                  KALAN STOK: <strong className="text-crimson-400 font-black text-xs sm:text-sm ml-0.5">SON 18 ADET</strong> <span className="text-crimson-300 font-bold ml-0.5">(TÜKENMEK ÜZERE)</span>
+                  KALAN STOK: <strong className="text-crimson-400 font-black text-xs sm:text-sm ml-0.5">SON 5 ADET</strong> <span className="text-crimson-300 font-bold ml-0.5">(TÜKENMEK ÜZERE)</span>
                 </span>
               </div>
             </div>
