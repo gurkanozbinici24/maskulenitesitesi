@@ -148,7 +148,7 @@ export default function PricingSection() {
 
 
           {/* ========================================================================= */}
-          {/* SAĞ KART (TÜKENMİŞ / PASİF ÜRÜN): İMZALI FİZİKSEL KİTAP (SOSYAL KANIT)    */}
+          {/* SAĞ KART (TÜKENMİŞ / PASİF ÜRÜN): FİZİKSEL KİTAP (TALEP TOPLAMA)         */}
           {/* ========================================================================= */}
           <div className="relative flex flex-col justify-between p-6 sm:p-8 lg:p-9 rounded-3xl bg-matte-900/50 border border-zinc-800 text-zinc-400 transition-all duration-300">
             
@@ -174,21 +174,21 @@ export default function PricingSection() {
 
               <h3 className="text-2xl sm:text-3xl font-black text-zinc-300 tracking-tight leading-snug">
                 Vazgeçilmez Olma Sanatı <br />
-                <span className="text-zinc-500">İmzalı Fiziksel Kitap</span>
+                <span className="text-zinc-500">Fiziksel Kitap</span>
               </h3>
               
-              <p className="text-sm text-zinc-400 mt-2 mb-6">
-                Yazardan isminize özel ıslak imzalı, numaralandırılmış sert kapaklı prestij koleksiyon versiyonu.
+              <p className="text-sm text-zinc-400 mt-2 mb-6 leading-relaxed">
+                Koleksiyon serisi tamamen tükenmiştir. Kitabın herkes için ulaşılabilir yeni bir versiyonunun basılmasını istiyorsan talebe katıl. Yeterli sayıya ulaşırsak matbaayı zorlayabilirim.
               </p>
 
               {/* Price Tag (Üstü Çizili) */}
               <div className="py-4 my-4 border-y border-zinc-800/80 flex items-baseline gap-2 bg-zinc-900/30 -mx-6 sm:-mx-8 lg:-mx-9 px-6 sm:px-8 lg:px-9">
-                <span className="text-4xl sm:text-5xl font-black text-zinc-400 line-through decoration-crimson-500 decoration-2 font-mono">
+                <span className="text-4xl sm:text-5xl font-black text-zinc-500 line-through decoration-crimson-500 decoration-2 font-mono">
                   1000
                 </span>
-                <span className="text-xl font-bold text-zinc-500 font-mono">TL</span>
+                <span className="text-xl font-bold text-zinc-600 font-mono">TL</span>
                 <span className="text-xs text-crimson-400 font-bold uppercase tracking-wider ml-2">
-                  (TÜM STOKLAR TÜKENDİ)
+                  (1. BASKI TÜKENDİ)
                 </span>
               </div>
 
@@ -232,21 +232,20 @@ export default function PricingSection() {
               </div>
             </div>
 
-            {/* Secondary CTA Button (Outline) */}
+            {/* Secondary CTA Button (Outline) & Talep Sayacı */}
             <div className="pt-6 mt-4">
               <a
-                href="https://wa.me/905455207999?text=Merhaba,%20Vazgeçilmez%20Olma%20Sanatı%20yeni%20fiziksel%20baskı%20için%20talep%20oluşturmak%20istiyorum."
+                href="https://wa.me/905455207999?text=Merhaba,%20Vazgeçilmez%20Olma%20Sanatı%20yeni%20baskı%20için%20talep%20oluşturmak%20istiyorum."
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full py-4 px-6 rounded-xl bg-transparent hover:bg-gold-500/5 border border-gold-500/40 hover:border-gold-400 text-gold-300 hover:text-gold-200 text-xs sm:text-sm font-bold uppercase tracking-wider flex items-center justify-center gap-2 transition-all duration-200"
+                className="w-full py-4 px-6 rounded-xl bg-transparent hover:bg-gold-500/5 border border-gold-500/50 hover:border-gold-400 text-gold-300 hover:text-gold-200 text-xs sm:text-sm font-black uppercase tracking-wider flex items-center justify-center gap-2 transition-all duration-200"
               >
                 <MessageCircle className="w-4 h-4 text-gold-400" />
-                <span>Fiziksel Baskı İçin Talep Oluştur</span>
+                <span>YENİ BASKI İÇİN TALEP OLUŞTUR</span>
                 <ArrowRight className="w-4 h-4 text-gold-400" />
               </a>
-              <div className="flex items-center justify-center gap-1.5 mt-3 text-xs text-zinc-400 font-medium">
-                <Clock className="w-3.5 h-3.5 text-zinc-500" />
-                <span>Gelecek yeni baskı duyurusundan ilk siz haberdar olun</span>
+              <div className="flex items-center justify-center gap-1.5 mt-3 text-xs sm:text-[13px] text-gold-400/90 font-medium text-center">
+                <span>🔥 Şu an <strong className="text-gold-300 font-bold">11 kişi</strong> yeni baskı talep ediyor.</span>
               </div>
             </div>
 
