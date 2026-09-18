@@ -74,7 +74,7 @@ export default function SocialProofBanner() {
           <div className="mt-8 pt-6 border-t border-zinc-800/80 flex flex-wrap items-center justify-center lg:justify-between gap-4 text-xs text-zinc-400 font-medium">
             <div className="flex items-center gap-2">
               <Flame className="w-4 h-4 text-gold-400" />
-              <span>237 Sayfa Tavizsiz İlişki Psikolojisi</span>
+              <span>227 Sayfa Tavizsiz İlişki Psikolojisi</span>
             </div>
             <div className="flex items-center gap-2">
               <ShieldCheck className="w-4 h-4 text-gold-400" />

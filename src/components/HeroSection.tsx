@@ -133,7 +133,7 @@ export default function HeroSection() {
                   className="mt-5 group/badge inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-matte-850/95 border border-gold-500/40 hover:border-gold-400 text-gold-300 hover:text-gold-200 text-xs sm:text-sm font-bold shadow-gold-glow hover:shadow-gold-glow-lg backdrop-blur-sm transition-all duration-300 hover:scale-105 active:scale-95 cursor-pointer"
                   title="Satın alma seçeneklerine git"
                 >
-                  <span>📖 237 Sayfa – Kuralları Sen Koy, İlişkiyi Sen Yönet</span>
+                  <span>📖 227 Sayfa – Kuralları Sen Koy, İlişkiyi Sen Yönet</span>
                   <ArrowRight className="w-3.5 h-3.5 text-gold-400 group-hover/badge:translate-x-1 transition-transform" />
                 </a>
               </div>
