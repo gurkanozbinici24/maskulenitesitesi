@@ -68,7 +68,7 @@ export default function Footer() {
               <ul className="space-y-2 text-sm">
                 <li>
                   <a
-                    href="#kazanimlar"
+                    href="/#kazanimlar"
                     className="hover:text-gold-400 transition-colors"
                   >
                     Neler Kazanacaksın?
@@ -76,7 +76,7 @@ export default function Footer() {
                 </li>
                 <li>
                   <a
-                    href="#sosyal-kanit"
+                    href="/#sosyal-kanit"
                     className="hover:text-gold-400 transition-colors"
                   >
                     Topluluk & Güven
@@ -84,7 +84,7 @@ export default function Footer() {
                 </li>
                 <li>
                   <a
-                    href="#danismanlik"
+                    href="/danismanlik"
                     className="text-gold-400 hover:text-gold-300 font-semibold transition-colors"
                   >
                     Özel Danışmanlık (VIP)
@@ -92,7 +92,7 @@ export default function Footer() {
                 </li>
                 <li>
                   <a
-                    href="#fiyat-kartlari"
+                    href="/#fiyat-kartlari"
                     className="hover:text-gold-400 transition-colors"
                   >
                     Satın Alma Seçenekleri
@@ -100,7 +100,7 @@ export default function Footer() {
                 </li>
                 <li>
                   <a
-                    href="#sss"
+                    href="/#sss"
                     className="hover:text-gold-400 transition-colors"
                   >
                     Sıkça Sorulan Sorular
