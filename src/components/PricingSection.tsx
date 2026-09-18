@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import {
   Check,
   Zap,
@@ -11,9 +12,36 @@ import {
   Lock,
   Clock,
   MessageCircle,
+  Flame,
 } from "lucide-react";
 
 export default function PricingSection() {
+  const [hasRequested, setHasRequested] = useState(false);
+  const [demandCount, setDemandCount] = useState(11);
+
+  useEffect(() => {
+    try {
+      const stored = localStorage.getItem("vazgecilmez_demand_requested");
+      if (stored === "true") {
+        setHasRequested(true);
+        setDemandCount(12);
+      }
+    } catch {
+      // Ignore storage errors
+    }
+  }, []);
+
+  const handleDemandClick = () => {
+    if (!hasRequested) {
+      setHasRequested(true);
+      setDemandCount((prev) => prev + 1);
+      try {
+        localStorage.setItem("vazgecilmez_demand_requested", "true");
+      } catch {
+        // Ignore storage errors
+      }
+    }
+  };
   return (
     <section id="fiyatlandirma" className="py-20 sm:py-24 relative overflow-hidden bg-matte-950">
       {/* Background Ambience */}
@@ -178,7 +206,7 @@ export default function PricingSection() {
               </h3>
               
               <p className="text-sm text-zinc-400 mt-2 mb-6 leading-relaxed">
-                Koleksiyon serisi tamamen tükenmiştir. Kitabın herkes için ulaşılabilir yeni bir versiyonunun basılmasını istiyorsan talebe katıl. Yeterli sayıya ulaşırsak matbaayı zorlayabilirim.
+                Koleksiyon serisi tamamen tükenmiştir ve bir daha basılmayacaktır. Yeni bir fiziksel versiyon üretmek gibi bir mecburiyetimiz yok. Ancak bu bilgilere ulaşmak isteyenlerin yoğun baskısı üzerine, standart bir edisyon değerlendirmeye alınabilir. Kararı, oluşturduğunuz talep belirleyecek.
               </p>
 
               {/* Price Tag (Üstü Çizili) */}
@@ -232,20 +260,32 @@ export default function PricingSection() {
               </div>
             </div>
 
-            {/* Secondary CTA Button (Outline) & Talep Sayacı */}
+            {/* Secondary CTA Button (Action Button) & Talep Sayacı */}
             <div className="pt-6 mt-4">
-              <a
-                href="https://wa.me/905455207999?text=Merhaba,%20Vazgeçilmez%20Olma%20Sanatı%20yeni%20baskı%20için%20talep%20oluşturmak%20istiyorum."
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-full py-4 px-6 rounded-xl bg-transparent hover:bg-gold-500/5 border border-gold-500/50 hover:border-gold-400 text-gold-300 hover:text-gold-200 text-xs sm:text-sm font-black uppercase tracking-wider flex items-center justify-center gap-2 transition-all duration-200"
+              <button
+                type="button"
+                onClick={handleDemandClick}
+                disabled={hasRequested}
+                className={`w-full py-4 px-6 rounded-xl text-xs sm:text-sm font-black uppercase tracking-wider flex items-center justify-center gap-2 transition-all duration-200 ${
+                  hasRequested
+                    ? "bg-zinc-850/80 border border-zinc-700 text-zinc-500 cursor-not-allowed"
+                    : "bg-transparent hover:bg-gold-500/10 border border-gold-500/50 hover:border-gold-400 text-gold-300 hover:text-gold-200 cursor-pointer active:scale-[0.98]"
+                }`}
               >
-                <MessageCircle className="w-4 h-4 text-gold-400" />
-                <span>YENİ BASKI İÇİN TALEP OLUŞTUR</span>
-                <ArrowRight className="w-4 h-4 text-gold-400" />
-              </a>
-              <div className="flex items-center justify-center gap-1.5 mt-3 text-xs sm:text-[13px] text-gold-400/90 font-medium text-center">
-                <span>🔥 Şu an <strong className="text-gold-300 font-bold">11 kişi</strong> yeni baskı talep ediyor.</span>
+                {hasRequested ? (
+                  <>
+                    <Check className="w-4 h-4 text-emerald-400" />
+                    <span>TALEBİNİZ ALINDI</span>
+                  </>
+                ) : (
+                  <>
+                    <Flame className="w-4 h-4 text-amber-400 fill-amber-400/20" />
+                    <span>YENİ BASKI İÇİN TALEP OLUŞTUR</span>
+                  </>
+                )}
+              </button>
+              <div className="flex items-center justify-center gap-1.5 mt-3 text-xs sm:text-[13px] text-zinc-400 font-medium text-center">
+                <span>🔥 Şu an <strong className="text-gold-300 font-bold">{demandCount} kişi</strong> yeni baskı talep ediyor.</span>
               </div>
             </div>
 
