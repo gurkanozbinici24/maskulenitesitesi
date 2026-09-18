@@ -17,7 +17,7 @@ export default function Navbar() {
 
   return (
     <div className="fixed top-0 left-0 right-0 z-50">
-      {/* 1. Lüks VIP Duyuru Çubuğu (Göz Alıcı Aciliyet & Kalan Stok Çubuğu) */}
+      {/* 1. Lüks VIP Duyuru Çubuğu (Tükendi Duyurusu) */}
       <a
         href="#fiyat-kartlari"
         className="w-full bg-[#000000] border-b border-crimson-600/70 py-2.5 px-3 sm:px-4 text-center select-none flex flex-wrap items-center justify-center gap-1.5 sm:gap-2 shadow-[0_4px_25px_rgba(220,38,38,0.35)] hover:bg-zinc-950 transition-colors cursor-pointer group"
@@ -26,18 +26,10 @@ export default function Navbar() {
           <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-crimson-400 opacity-75"></span>
           <span className="relative inline-flex rounded-full h-2 w-2 bg-crimson-500"></span>
         </span>
-        <span className="text-white font-black text-[11px] sm:text-xs tracking-[0.08em] sm:tracking-[0.12em] uppercase">
-          KOLEKSİYON SERİSİNDEN KALAN STOK:
-        </span>
         <span
-          className="text-crimson-400 font-black text-[12px] sm:text-[13px] tracking-[0.12em] uppercase px-2.5 py-0.5 rounded-md bg-crimson-950/80 border border-crimson-500/60 shadow-[0_0_12px_rgba(239,68,68,0.5)]"
+          className="text-crimson-400 font-black text-[11px] sm:text-[13px] tracking-[0.12em] uppercase px-3 py-0.5 rounded-md bg-crimson-950/80 border border-crimson-500/60 shadow-[0_0_12px_rgba(239,68,68,0.5)]"
         >
-          SON 5 ADET
-        </span>
-        <span
-          className="text-crimson-300 font-extrabold text-[11px] sm:text-xs tracking-[0.1em] uppercase animate-pulse"
-        >
-          (TÜKENMEK ÜZERE)
+          1. BASKI KOLEKSİYON SERİSİ TÜKENDİ
         </span>
       </a>
 
