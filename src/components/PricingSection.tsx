@@ -249,15 +249,6 @@ export default function PricingSection() {
                     1/200 Numaralandırılmış resmi koleksiyon damgası (200/200 Tükendi)
                   </span>
                 </div>
-
-                <div className="flex items-start gap-3">
-                  <div className="mt-0.5 w-4 h-4 rounded-full bg-zinc-800 flex items-center justify-center flex-shrink-0 text-zinc-500 border border-zinc-700">
-                    <Check className="w-3 h-3" />
-                  </div>
-                  <span className="text-sm text-zinc-400">
-                    Bonus: 600 TL Değerindeki E-Kitap Sürümü Hediye
-                  </span>
-                </div>
               </div>
             </div>
 
