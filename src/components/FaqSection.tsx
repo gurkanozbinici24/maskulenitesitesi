@@ -14,25 +14,19 @@ const faqs: FaqItem[] = [
     id: 1,
     question: "Özel Koleksiyon Edisyonu (Fiziksel Kitap) ileride tekrar basılacak mı?",
     answer:
-      "Hayır. Bu özel koleksiyon eseri sadece 200 adet basılmış olup yazar tarafından numaralandırılarak imzalanmaktadır. Stoklar tükendiğinde fiziksel kopya bir daha asla basılmayacak ve satışa açılmayacaktır.",
+      "Hayır. İlk 200 kişi için özel olarak numaralandırılmış koleksiyon serisi tamamen tükenmiştir ve bir daha asla basılmayacaktır. Ancak bilgiye muhtaç kitleden gelen yoğun baskı üzerine standart bir edisyon değerlendirmeye alınabilir. Kararı, oluşturduğunuz talebin büyüklüğü belirleyecek.",
   },
   {
     id: 2,
-    question: "Fiziksel kitabın kargosu ne zaman yola çıkar?",
+    question: "Fiziksel kitap için neden talep topluyorsunuz, direkt satmıyor musunuz?",
     answer:
-      "Siparişiniz sistemimize düştüğü andan itibaren maksimum 24 saat içerisinde özel paketlemesi yapılarak kargoya teslim edilir.",
+      "Bizim yeni bir fiziksel kitap basmak gibi bir mecburiyetimiz yok. İlk baskıyı alan 200 kişi fırsatı zamanında değerlendirdi. Ancak sürekli mesaj atan büyük bir kitle var. Eğer talep sayısı bizi ikna edecek seviyeye gelirse matbaaya standart baskı için talimat verebiliriz. Aksi takdirde sadece e-kitap ile yola devam edeceğiz.",
   },
   {
     id: 3,
     question: "Dijital E-Kitap paketini satın aldığımda nasıl okuyacağım?",
     answer:
-      "Ödemeniz tamamlandığı saniye indirme bağlantınız ekranda belirir ve kopyası e-posta adresinize otomatik olarak gönderilir. Beklemek yok, cihazınıza indirip anında okumaya başlayabilirsiniz.",
-  },
-  {
-    id: 4,
-    question: "Özel Danışmanlık seanslarında gizlilik sağlanıyor mu?",
-    answer:
-      "Kesinlikle. Birebir seanslarımız %100 gizlilik prensibiyle yürütülür. Paylaşılan tüm detaylar, durum analizleri ve kişisel krizler tamamen aramızda kalır.",
+      "Ödemenizi tamamladığınız an e-kitap (PDF formatında) otomatik olarak cihazınıza indirilebilir duruma gelir. Kargo bekleme veya gecikme yoktur. Saniyeler içinde okumaya başlayabilirsiniz.",
   },
 ];
 
@@ -66,7 +60,7 @@ export default function FaqSection() {
           </h2>
 
           <p className="mt-4 text-sm sm:text-base text-zinc-400 font-normal leading-relaxed">
-            Kitap basımları, teslimat süreci ve VIP danışmanlık hakkında en çok merak edilen detaylar.
+            E-Kitap erişimi, fiziksel baskı talepleri ve genel süreçler hakkında merak edilen detaylar.
           </p>
         </div>
 
