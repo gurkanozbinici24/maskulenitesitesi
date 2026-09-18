@@ -56,7 +56,7 @@ export default function HeroSection() {
                   href="#fiyat-kartlari"
                   className="group relative inline-flex items-center justify-center px-8 py-4 text-sm sm:text-base font-extrabold uppercase tracking-wider text-black bg-gradient-to-r from-gold-300 via-gold-400 to-gold-600 rounded-xl shadow-gold-glow hover:shadow-gold-glow-lg hover:brightness-110 active:scale-[0.98] transition-all duration-300"
                 >
-                  <span>Kitabı Satın Al</span>
+                  <span>E-KİTABI HEMEN OKU (600 TL)</span>
                   <ArrowRight className="w-5 h-5 ml-2.5 group-hover:translate-x-1.5 transition-transform" />
                 </a>
 

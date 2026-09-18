@@ -88,7 +88,7 @@ export default function Navbar() {
                 href="#fiyat-kartlari"
                 className="relative inline-flex items-center justify-center gap-1.5 px-4 py-2 text-xs font-black uppercase tracking-wider text-black bg-gradient-to-r from-gold-300 via-gold-400 to-gold-600 rounded-lg shadow-gold-glow hover:shadow-gold-glow-lg hover:brightness-110 active:scale-95 transition-all duration-200 whitespace-nowrap"
               >
-                <span>KİTABI SATIN AL</span>
+                <span>E-KİTABI HEMEN OKU (600 TL)</span>
                 <ArrowUpRight className="w-3.5 h-3.5" />
               </a>
             </nav>
@@ -140,7 +140,7 @@ export default function Navbar() {
                 onClick={() => setMobileMenuOpen(false)}
                 className="w-full flex items-center justify-center gap-1.5 px-4 py-3 text-sm font-black uppercase tracking-wider text-black bg-gradient-to-r from-gold-300 via-gold-400 to-gold-600 rounded-lg shadow-gold-glow"
               >
-                <span>KİTABI SATIN AL</span>
+                <span>E-KİTABI HEMEN OKU (600 TL)</span>
                 <ArrowUpRight className="w-4 h-4" />
               </a>
             </div>
