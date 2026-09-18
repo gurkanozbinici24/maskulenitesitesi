@@ -3,7 +3,6 @@ import HeroSection from "@/components/HeroSection";
 import BenefitsSection from "@/components/BenefitsSection";
 import SecretLawShowcase from "@/components/SecretLawShowcase";
 import SocialProofBanner from "@/components/SocialProofBanner";
-import TestimonialsSection from "@/components/TestimonialsSection";
 import PricingSection from "@/components/PricingSection";
 import FaqSection from "@/components/FaqSection";
 import Footer from "@/components/Footer";
@@ -26,16 +25,13 @@ export default function Home() {
       {/* 4. Sosyal Kanıt Bannerı */}
       <SocialProofBanner />
 
-      {/* 5. Sarsılmaz Sonuçlar & Danışan Yorumları (m1-m8) */}
-      <TestimonialsSection />
-
-      {/* 7. Satın Alma & Fiyatlandırma Bölümü */}
+      {/* 5. Satın Alma & Fiyatlandırma Bölümü */}
       <PricingSection />
 
-      {/* 8. Sıkça Sorulan Sorular (SSS) Akordiyon Bölümü */}
+      {/* 6. Sıkça Sorulan Sorular (SSS) Akordiyon Bölümü */}
       <FaqSection />
 
-      {/* 9. Footer */}
+      {/* 7. Footer */}
       <Footer />
     </main>
   );
