@@ -13,6 +13,7 @@ import {
   Clock,
   MessageCircle,
   Flame,
+  Mail,
 } from "lucide-react";
 
 export default function PricingSection() {
@@ -101,8 +102,8 @@ export default function PricingSection() {
                 <span className="gold-text-gradient">E-Kitap Paketi</span>
               </h3>
               
-              <p className="text-sm text-zinc-300 mt-2 mb-6">
-                Ödemenin ardından anında cihazınıza indirin. Telefon, tablet ve e-okuyucularda kesintisiz okuyun.
+              <p className="text-sm text-zinc-300 mt-2 mb-6 leading-relaxed">
+                Kargo bekleme veya adres girme süreçleriyle vakit kaybetmeyin. Ödemenizin ardından e-kitabınız (dijital formatta) doğrudan e-posta adresinize gönderilir. Telefon, tablet veya bilgisayarınızdan saniyeler içinde okumaya başlayın.
               </p>
 
               {/* Price Tag */}
@@ -148,7 +149,7 @@ export default function PricingSection() {
                     <Check className="w-3 h-3" />
                   </div>
                   <span className="text-sm text-zinc-200">
-                    <strong>Anında otomatik teslimat</strong> (Bekleme yok)
+                    Fiziksel kargo beklemeden, e-posta adresinize anında dijital teslimat.
                   </span>
                 </div>
               </div>
@@ -167,8 +168,8 @@ export default function PricingSection() {
                 <ArrowRight className="w-4 h-4" />
               </a>
               <div className="flex items-center justify-center gap-1.5 mt-3 text-xs text-zinc-400 font-medium">
-                <Zap className="w-3.5 h-3.5 text-gold-400" />
-                <span>WhatsApp üzerinden anında teslimat</span>
+                <Mail className="w-3.5 h-3.5 text-gold-400" />
+                <span>Otomatik sistem ile e-posta adresinize saniyeler içinde teslimat.</span>
               </div>
             </div>
 
