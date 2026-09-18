@@ -14,13 +14,13 @@ const faqs: FaqItem[] = [
     id: 1,
     question: "Özel Koleksiyon Edisyonu (Fiziksel Kitap) ileride tekrar basılacak mı?",
     answer:
-      "Hayır. İlk 200 kişi için özel olarak numaralandırılmış koleksiyon serisi tamamen tükenmiştir ve bir daha asla basılmayacaktır. Ancak bilgiye muhtaç kitleden gelen yoğun baskı üzerine standart bir edisyon değerlendirmeye alınabilir. Kararı, oluşturduğunuz talebin büyüklüğü belirleyecek.",
+      "Hayır. İlk 200 kişi için özel olarak numaralandırılmış koleksiyon serisi tamamen tükenmiştir ve o prestijli formatta bir daha asla basılmayacaktır. Ancak fiziksel kopyaya ulaşamayan okurlardan gelen yoğun talep üzerine, standart bir edisyon değerlendirmeye alınabilir. Kararı, oluşturduğunuz talebin büyüklüğü belirleyecek.",
   },
   {
     id: 2,
     question: "Fiziksel kitap için neden talep topluyorsunuz, direkt satmıyor musunuz?",
     answer:
-      "Bizim yeni bir fiziksel kitap basmak gibi bir mecburiyetimiz yok. İlk baskıyı alan 200 kişi fırsatı zamanında değerlendirdi. Ancak sürekli mesaj atan büyük bir kitle var. Eğer talep sayısı bizi ikna edecek seviyeye gelirse matbaaya standart baskı için talimat verebiliriz. Aksi takdirde sadece e-kitap ile yola devam edeceğiz.",
+      "İlk baskıyı alan 200 kişi fırsatı zamanında değerlendirdi. Yeni bir fiziksel baskı yapmak başlangıç planlarımızda yoktu. Ancak e-kitap yerine fiziksel kopya bekleyen okurlarımızın yoğun isteğini göz ardı etmiyoruz. Eğer sitedeki talep sayısı yeterli seviyeye ulaşırsa, standart baskı için matbaa sürecini başlatabiliriz. Aksi takdirde sadece e-kitap ile yola devam edeceğiz.",
   },
   {
     id: 3,
