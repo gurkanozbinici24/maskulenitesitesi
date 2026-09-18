@@ -21,15 +21,23 @@ export default function PricingSection() {
   const [demandCount, setDemandCount] = useState(11);
 
   useEffect(() => {
+    let requested = false;
     try {
-      const stored = localStorage.getItem("vazgecilmez_demand_requested");
-      if (stored === "true") {
-        setHasRequested(true);
-        setDemandCount(12);
-      }
+      requested = localStorage.getItem("vazgecilmez_demand_requested") === "true";
     } catch {
       // Ignore storage errors
     }
+    setHasRequested(requested);
+
+    // 18 Eylül 2026 başlangıç referans noktası
+    const BASE_COUNT = 11;
+    const START_TIMESTAMP = new Date("2026-09-18T00:00:00Z").getTime();
+    const now = Date.now();
+    const elapsedMs = Math.max(0, now - START_TIMESTAMP);
+    const elapsedHours = elapsedMs / (1000 * 60 * 60);
+    const timeIncrement = Math.floor(elapsedHours / 8); // Her 8 saatte +1 artış
+
+    setDemandCount(BASE_COUNT + timeIncrement + (requested ? 1 : 0));
   }, []);
 
   const handleDemandClick = () => {
