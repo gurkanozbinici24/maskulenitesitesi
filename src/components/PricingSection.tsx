@@ -18,7 +18,7 @@ import {
 
 export default function PricingSection() {
   const [hasRequested, setHasRequested] = useState(false);
-  const [demandCount, setDemandCount] = useState(95);
+  const [demandCount, setDemandCount] = useState(682);
 
   useEffect(() => {
     let requested = false;
@@ -29,9 +29,9 @@ export default function PricingSection() {
     }
     setHasRequested(requested);
 
-    // 5 Ekim 2026 başlangıç referans noktası
-    const BASE_COUNT = 95;
-    const START_TIMESTAMP = new Date("2026-10-05T15:00:00Z").getTime();
+    // 18 Ekim 2026 başlangıç referans noktası
+    const BASE_COUNT = 682;
+    const START_TIMESTAMP = new Date("2026-10-17T21:30:00Z").getTime();
     const now = Date.now();
     const elapsedMs = Math.max(0, now - START_TIMESTAMP);
     const elapsedHours = elapsedMs / (1000 * 60 * 60);
