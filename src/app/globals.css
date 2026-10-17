@@ -112,4 +112,246 @@ body {
   will-change: transform, opacity;
 }
 
+/* ============================================================================
+   HERO 3D SAHNE & KİTAP OBJESİ STİLLERİ ("İki Kitap, Tek Sahne")
+   ============================================================================ */
+
+.hero-perspective-stage {
+  perspective: 1500px;
+  transform-style: preserve-3d;
+}
+
+.book-3d-scene {
+  perspective: 1300px;
+  transform-style: preserve-3d;
+}
+
+.book-3d-object {
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 650ms cubic-bezier(0.22, 1, 0.36, 1),
+    filter 650ms cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 650ms cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
+}
+
+.book-3d-object-left {
+  transform: rotateY(16deg) rotateX(3deg) rotateZ(-1deg);
+  animation: bookFloatLeft 7s ease-in-out infinite;
+}
+
+.book-3d-object-right {
+  transform: rotateY(-16deg) rotateX(3deg) rotateZ(1deg);
+  animation: bookFloatRight 7.5s ease-in-out infinite;
+}
+
+/* Kitabın üzerine gelindiğinde öne çıkıp yüzünü kullanıcıya döner */
+.book-3d-object-focused {
+  animation-play-state: paused !important;
+  transform: translateZ(46px) rotateY(0deg) rotateX(0deg) rotateZ(0deg) scale(1.06) !important;
+}
+
+/* Diğer kitabın üzerine gelindiğinde geri çekilip sönükleşir */
+.book-3d-object-dimmed-left {
+  animation-play-state: paused !important;
+  transform: translateZ(-36px) rotateY(22deg) rotateX(4deg) scale(0.93) !important;
+  opacity: 0.45;
+  filter: brightness(0.62) saturate(0.65);
+}
+
+.book-3d-object-dimmed-right {
+  animation-play-state: paused !important;
+  transform: translateZ(-36px) rotateY(-22deg) rotateX(4deg) scale(0.93) !important;
+  opacity: 0.45;
+  filter: brightness(0.62) saturate(0.65);
+}
+
+/* Ön Kapak */
+.book-3d-front {
+  position: relative;
+  transform: translateZ(18px);
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+}
+
+/* Arka Kapak */
+.book-3d-back {
+  position: absolute;
+  inset: 0;
+  transform: rotateY(180deg) translateZ(18px);
+  border-radius: 0.5rem;
+  background: linear-gradient(145deg, #121218 0%, #07070a 100%);
+  box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.9);
+}
+
+/* Kitap Sırtı (Sol Yan) */
+.book-3d-spine {
+  position: absolute;
+  top: 1px;
+  bottom: 1px;
+  left: -18px;
+  width: 36px;
+  transform: rotateY(-90deg);
+  transform-origin: center;
+  backface-visibility: hidden;
+}
+
+/* Beyazımsı Gerçekçi Sayfa Kalınlığı (Sağ Yan) */
+.book-3d-pages {
+  position: absolute;
+  top: 3px;
+  bottom: 3px;
+  right: -17px;
+  width: 34px;
+  transform: rotateY(90deg);
+  transform-origin: center;
+  background: repeating-linear-gradient(
+    90deg,
+    #f5f2eb 0px,
+    #dfd8c8 1.5px,
+    #faf8f4 3px,
+    #d6cebe 4.5px
+  );
+  box-shadow: inset 4px 0 10px rgba(0, 0, 0, 0.28),
+    inset -2px 0 6px rgba(0, 0, 0, 0.2);
+  border-radius: 1px;
+}
+
+/* Üst Sayfa Kalınlığı */
+.book-3d-top {
+  position: absolute;
+  top: -17px;
+  left: 2px;
+  right: 3px;
+  height: 34px;
+  transform: rotateX(90deg);
+  transform-origin: center;
+  background: repeating-linear-gradient(
+    0deg,
+    #f2efe6 0px,
+    #ddd5c5 1.5px,
+    #f9f6f0 3px
+  );
+  box-shadow: inset 0 3px 8px rgba(0, 0, 0, 0.25);
+}
+
+/* Alt Sayfa Kalınlığı */
+.book-3d-bottom {
+  position: absolute;
+  bottom: -17px;
+  left: 2px;
+  right: 3px;
+  height: 34px;
+  transform: rotateX(-90deg);
+  transform-origin: center;
+  background: repeating-linear-gradient(
+    0deg,
+    #e6e0d2 0px,
+    #cfc6b4 1.5px,
+    #f0ece2 3px
+  );
+  box-shadow: inset 0 -3px 10px rgba(0, 0, 0, 0.35);
+}
+
+@keyframes bookFloatLeft {
+  0%, 100% {
+    transform: translateY(0px) rotateY(15deg) rotateX(3deg) rotateZ(-1deg);
+  }
+  50% {
+    transform: translateY(-10px) rotateY(19deg) rotateX(1deg) rotateZ(-0.3deg);
+  }
+}
+
+@keyframes bookFloatRight {
+  0%, 100% {
+    transform: translateY(0px) rotateY(-15deg) rotateX(3deg) rotateZ(1deg);
+  }
+  50% {
+    transform: translateY(-10px) rotateY(-19deg) rotateX(1deg) rotateZ(0.3deg);
+  }
+}
+
+/* Açılış Giriş Animasyonları (Toplam <= 2 saniye) */
+@keyframes heroLightRise {
+  0% {
+    opacity: 0;
+    transform: translateY(28px) scale(0.85);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes heroTitleReveal {
+  0% {
+    opacity: 0;
+    transform: translateY(18px);
+    filter: blur(4px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+@keyframes heroBookRise {
+  0% {
+    opacity: 0;
+    transform: translateY(42px) scale(0.94);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.animate-hero-light {
+  animation: heroLightRise 1.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-hero-title {
+  opacity: 0;
+  animation: heroTitleReveal 1.15s cubic-bezier(0.16, 1, 0.3, 1) 0.1s forwards;
+}
+
+.animate-hero-book-left {
+  opacity: 0;
+  animation: heroBookRise 1.35s cubic-bezier(0.16, 1, 0.3, 1) 0.22s forwards;
+}
+
+.animate-hero-book-right {
+  opacity: 0;
+  animation: heroBookRise 1.35s cubic-bezier(0.16, 1, 0.3, 1) 0.38s forwards;
+}
+
+/* prefers-reduced-motion açıksa tüm hareketli animasyonları kapat */
+@media (prefers-reduced-motion: reduce) {
+  .book-3d-object-left,
+  .book-3d-object-right,
+  .animate-hero-light,
+  .animate-hero-title,
+  .animate-hero-book-left,
+  .animate-hero-book-right,
+  .animate-countdown-digit {
+    animation: none !important;
+    opacity: 1 !important;
+    filter: none !important;
+  }
+
+  .book-3d-object-left {
+    transform: rotateY(12deg) rotateX(2deg) !important;
+  }
+
+  .book-3d-object-right {
+    transform: rotateY(-12deg) rotateX(2deg) !important;
+  }
+
+  .book-3d-object-focused {
+    transform: rotateY(0deg) rotateX(0deg) scale(1.03) !important;
+  }
+}
+
+
 
