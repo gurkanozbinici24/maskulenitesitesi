@@ -1,4 +1,5 @@
-import { Flame, Shield, Compass, Check, ArrowRight } from "lucide-react";
+import { Flame, Shield, Compass, Check } from "lucide-react";
+import { ThemeButton, ThemeCard, ThemeSectionHeader } from "./ui/ThemeSystem";
 
 interface BenefitCardProps {
   number: string;
@@ -59,26 +60,25 @@ export default function BenefitsSection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16 sm:mb-20">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-zinc-900 border border-zinc-800 text-gold-400 text-xs font-bold uppercase tracking-widest mb-4">
-            <span>DÖNÜŞÜM REHBERİ</span>
-          </div>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight uppercase">
-            Neler <span className="gold-text-gradient">Kazanacaksın?</span>
-          </h2>
-          <p className="mt-4 text-base sm:text-lg text-zinc-400 font-normal leading-relaxed">
-            Bu bir tavsiye kitabı değil, bir güç manifestosudur. İlişkilerde kontrolü eline almak, kadın doğasını şifrelerine kadar çözmek ve vazgeçilmez bir otorite olmak isteyenler için yazıldı.
-          </p>
-        </div>
+        <ThemeSectionHeader
+          theme="kitap1"
+          badgeText="DÖNÜŞÜM REHBERİ"
+          title="Neler"
+          highlightText="Kazanacaksın?"
+          subtitle="Bu bir tavsiye kitabı değil, bir güç manifestosudur. İlişkilerde kontrolü eline almak, kadın doğasını şifrelerine kadar çözmek ve vazgeçilmez bir otorite olmak isteyenler için yazıldı."
+          className="mb-16 sm:mb-20"
+        />
 
         {/* 3-Column Authority Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {benefits.map((benefit, index) => {
             const Icon = benefit.icon;
             return (
-              <div
+              <ThemeCard
                 key={index}
-                className="group relative flex flex-col justify-between p-8 rounded-2xl bg-gradient-to-b from-matte-800 to-matte-900/90 border border-zinc-800/80 hover:border-gold-500/50 shadow-card-elevated hover:shadow-gold-glow transition-all duration-300"
+                theme="kitap1"
+                variant="elevated"
+                className="group flex flex-col justify-between p-8"
               >
                 {/* Top Subtle Number & Icon */}
                 <div>
@@ -92,7 +92,7 @@ export default function BenefitsSection() {
                   </div>
 
                   {/* Title & Subtitle */}
-                  <h3 className="text-2xl font-bold text-zinc-100 group-hover:text-gold-300 transition-colors mb-2 tracking-tight">
+                  <h3 className="text-fluid-xl font-bold text-zinc-100 group-hover:text-gold-300 transition-colors mb-2 tracking-tight">
                     {benefit.title}
                   </h3>
                   <div className="text-xs font-bold text-gold-500 uppercase tracking-wider mb-4">
@@ -100,7 +100,7 @@ export default function BenefitsSection() {
                   </div>
 
                   {/* Description */}
-                  <p className="text-sm text-zinc-400 leading-relaxed mb-6">
+                  <p className="text-fluid-sm text-zinc-400 leading-relaxed mb-6">
                     {benefit.description}
                   </p>
                 </div>
@@ -121,7 +121,7 @@ export default function BenefitsSection() {
                 <div className="absolute top-0 right-0 w-16 h-16 overflow-hidden rounded-tr-2xl pointer-events-none">
                   <div className="absolute transform rotate-45 bg-gold-500/10 -top-8 -right-8 w-16 h-16 group-hover:bg-gold-500/20 transition-colors" />
                 </div>
-              </div>
+              </ThemeCard>
             );
           })}
         </div>
@@ -131,7 +131,7 @@ export default function BenefitsSection() {
           <div className="flex items-center gap-4">
             <div className="w-1.5 h-12 bg-gradient-to-b from-gold-400 to-amber-600 rounded-full hidden sm:block flex-shrink-0" />
             <div>
-              <blockquote className="text-sm sm:text-base font-semibold text-zinc-200 italic leading-relaxed">
+              <blockquote className="text-fluid-base font-semibold text-zinc-200 italic leading-relaxed">
                 &ldquo;Saygı dilenerek kazanılmaz, tavizsiz bir çerçeveyle inşa edilir. Ya kendi hayatının kurallarını koyup vazgeçilmez olursun, ya da başkalarının oyununda manipüle edilen bir soytarı olarak kalırsın. Seçim senin.&rdquo;
               </blockquote>
               <div className="text-xs text-gold-500/90 mt-2 uppercase tracking-widest font-mono font-bold">
@@ -139,15 +139,19 @@ export default function BenefitsSection() {
               </div>
             </div>
           </div>
-          <a
+          <ThemeButton
+            theme="kitap1"
+            variant="primary"
+            size="md"
             href="#fiyat-kartlari"
-            className="flex-shrink-0 inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-gold-400 to-gold-600 hover:from-gold-300 hover:to-gold-500 text-black text-xs font-black uppercase tracking-wider shadow-gold-glow hover:shadow-gold-glow-lg transition-all duration-200"
+            className="flex-shrink-0 w-full sm:w-auto font-black"
           >
             <span>GÜCÜ ELİNE AL ➔</span>
-          </a>
+          </ThemeButton>
         </div>
 
       </div>
     </section>
   );
 }
+

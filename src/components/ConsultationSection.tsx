@@ -15,6 +15,7 @@ import {
   PhoneCall,
   MessageCircle,
 } from "lucide-react";
+import { ThemeButton, ThemeSectionHeader } from "./ui/ThemeSystem";
 
 export default function ConsultationSection() {
   return (
@@ -29,20 +30,15 @@ export default function ConsultationSection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Üst Başlık ve Tanıtım */}
-        <div className="text-center max-w-3xl mx-auto mb-16 sm:mb-20">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-matte-850 border border-gold-500/40 text-gold-300 text-xs font-bold uppercase tracking-widest mb-4 shadow-gold-glow">
-            <Crown className="w-3.5 h-3.5 text-gold-400" />
-            <span>VIP BİREBİR STRATEJİ & MENTÖRLÜK</span>
-          </div>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight uppercase leading-tight">
-            Özel Danışmanlık & <span className="gold-text-gradient">Koçluk Seansı</span>
-          </h2>
-          <p className="mt-4 text-base sm:text-lg text-zinc-300 font-normal leading-relaxed">
-            İlişkilerinde kontrolü kaybettiğin kritik bir krizde misin? 
-            Kendi kurallarını koyup karşındakinin sana gönüllü saygı duymasını sağlayacak 
-            tavizsiz stratejileri doğrudan 1-e-1 masaya yatırıyoruz.
-          </p>
-        </div>
+        <ThemeSectionHeader
+          theme="kitap1"
+          badgeIcon={<Crown className="w-3.5 h-3.5 text-gold-400" />}
+          badgeText="VIP BİREBİR STRATEJİ & MENTÖRLÜK"
+          title="Özel Danışmanlık &"
+          highlightText="Koçluk Seansı"
+          subtitle="İlişkilerinde kontrolü kaybettiğin kritik bir krizde misin? Kendi kurallarını koyup karşındakinin sana gönüllü saygı duymasını sağlayacak tavizsiz stratejileri doğrudan 1-e-1 masaya yatırıyoruz."
+          className="mb-16 sm:mb-20"
+        />
 
         {/* Ana İçerik Izgarası: Sol İçerik & Sağ Görsel */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-10 items-center">
@@ -55,11 +51,11 @@ export default function ConsultationSection() {
               <span>1 Saatlik Canlı Sesli / Görüntülü Seans</span>
             </div>
 
-            <h3 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight mb-5">
+            <h3 className="text-fluid-2xl font-extrabold text-white tracking-tight mb-5">
               Acımasız Gerçeklerle Yüzleş, Durumu Kökünden Değiştir.
             </h3>
 
-            <p className="text-sm sm:text-base text-zinc-300 leading-relaxed mb-8">
+            <p className="text-fluid-base text-zinc-300 leading-relaxed mb-8">
               Bu sıradan bir dertleşme değil, kadının zihnini, sana oynanan manipülasyonları 
               ve ilişkideki güç dengelerini cerrahi bir hassasiyetle parçalarına ayırdığımız 
               <strong> stratejik bir operasyondur</strong>. Mevcut durumunu bizzat dinliyor, 
@@ -113,29 +109,35 @@ export default function ConsultationSection() {
             {/* İki Adet Buton */}
             <div className="w-full flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-2">
               {/* Ana Buton: Altın Sarısı, Vurucu */}
-              <a
+              <ThemeButton
+                theme="kitap1"
+                variant="primary"
+                size="lg"
                 href="https://wa.me/905455207999?text=Merhaba,%20Özel%20Danışmanlık%20ve%20Koçluk%20Seansı%20almak%20istiyorum."
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group relative inline-flex items-center justify-center gap-2 px-8 py-4 text-sm font-black uppercase tracking-wider text-black bg-gradient-to-r from-gold-300 via-gold-400 to-gold-600 rounded-xl shadow-gold-glow hover:shadow-gold-glow-lg hover:brightness-110 active:scale-[0.98] transition-all duration-300"
+                className="font-black"
               >
                 <MessageCircle className="w-5 h-5 fill-black/15 text-black" />
                 <span>HEMEN SEANS AL</span>
                 <ArrowRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
-              </a>
+              </ThemeButton>
 
               {/* İkincil Buton: Instagram İletişim / Sade & Şık */}
-              <a
+              <ThemeButton
+                theme="kitap1"
+                variant="secondary"
+                size="lg"
                 href="https://www.instagram.com/maskulenitesitesi"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2.5 px-6 py-4 text-sm font-semibold text-zinc-200 hover:text-white bg-matte-850 hover:bg-zinc-800/90 border border-zinc-700 hover:border-pink-500/40 rounded-xl transition-all duration-200 group"
+                className="normal-case tracking-normal gap-2.5"
               >
                 <div className="w-5 h-5 rounded-md bg-gradient-to-tr from-amber-500 via-rose-500 to-purple-600 flex items-center justify-center text-white flex-shrink-0">
                   <Instagram className="w-3.5 h-3.5" />
                 </div>
                 <span>Instagram ile İletişim / Sorunuz mu var?</span>
-              </a>
+              </ThemeButton>
             </div>
 
             {/* Mikro Güven İpuçları */}

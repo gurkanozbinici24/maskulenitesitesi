@@ -10,11 +10,16 @@ import {
   Package,
   BookOpen,
   Lock,
-  Clock,
   MessageCircle,
   Flame,
   Mail,
 } from "lucide-react";
+import {
+  ThemeButton,
+  ThemeBadge,
+  ThemeCard,
+  ThemeSectionHeader,
+} from "./ui/ThemeSystem";
 
 export default function PricingSection() {
   const [hasRequested, setHasRequested] = useState(false);
@@ -59,20 +64,15 @@ export default function PricingSection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-14 sm:mb-16">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-zinc-900 border border-zinc-800 text-gold-400 text-xs font-bold uppercase tracking-widest mb-4">
-            <Package className="w-3.5 h-3.5 text-gold-400" />
-            <span>KÜTÜPHANENİ DONAT</span>
-          </div>
-          
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight uppercase">
-            VAZGEÇİLMEZ OLMAYA <span className="gold-text-gradient">İLK ADIMI AT</span>
-          </h2>
-          
-          <p className="mt-4 text-sm sm:text-base text-zinc-400 font-normal leading-relaxed max-w-2xl mx-auto">
-            1. Baskı Özel Koleksiyon Serimiz tamamen tükenmiştir. Gösterdiğiniz yoğun ilgiye teşekkür ederiz. Kuralları koyan taraf olmak ve taktikleri hemen uygulamaya başlamak için e-kitap sürümüne anında erişebilirsiniz.
-          </p>
-        </div>
+        <ThemeSectionHeader
+          theme="kitap1"
+          badgeIcon={<Package className="w-3.5 h-3.5 text-gold-400" />}
+          badgeText="KÜTÜPHANENİ DONAT"
+          title="VAZGEÇİLMEZ OLMAYA"
+          highlightText="İLK ADIMI AT"
+          subtitle="1. Baskı Özel Koleksiyon Serimiz tamamen tükenmiştir. Gösterdiğiniz yoğun ilgiye teşekkür ederiz. Kuralları koyan taraf olmak ve taktikleri hemen uygulamaya başlamak için e-kitap sürümüne anında erişebilirsiniz."
+          className="mb-14 sm:mb-16"
+        />
 
         {/* 2-Card Side-by-Side Pricing Grid */}
         <div
@@ -83,14 +83,18 @@ export default function PricingSection() {
           {/* ========================================================================= */}
           {/* SOL KART (AKTİF / YILDIZ ÜRÜN): E-KİTAP PAKETİ (GOLD GLOW ÖNE ÇIKAN KART) */}
           {/* ========================================================================= */}
-          <div className="relative flex flex-col justify-between p-6 sm:p-8 lg:p-9 rounded-3xl bg-gradient-to-b from-matte-850 via-matte-900 to-matte-950 border-2 border-gold-500 shadow-gold-glow hover:shadow-gold-glow-lg transition-all duration-300">
+          <ThemeCard
+            theme="kitap1"
+            variant="glow"
+            className="flex flex-col justify-between p-6 sm:p-8 lg:p-9"
+          >
             
             {/* ANINDA TESLİMAT BADGE */}
             <div className="absolute -top-3.5 left-6 sm:left-8 z-20">
-              <div className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-gradient-to-r from-gold-300 via-gold-400 to-gold-600 text-black text-xs font-black uppercase tracking-wider shadow-gold-glow border border-yellow-200/50">
+              <ThemeBadge theme="kitap1" status="satista" className="px-4 py-1.5 tracking-wider">
                 <Zap className="w-3.5 h-3.5 fill-black text-black" />
                 <span>ANINDA TESLİMAT</span>
-              </div>
+              </ThemeBadge>
             </div>
 
             <div>
@@ -105,12 +109,12 @@ export default function PricingSection() {
                 </div>
               </div>
 
-              <h3 className="text-2xl sm:text-3xl font-black text-white tracking-tight leading-snug">
+              <h3 className="text-fluid-2xl font-black text-white tracking-tight leading-snug">
                 Vazgeçilmez Olma Sanatı <br />
                 <span className="gold-text-gradient">E-Kitap Paketi</span>
               </h3>
               
-              <p className="text-sm text-zinc-300 mt-2 mb-6 leading-relaxed">
+              <p className="text-fluid-sm text-zinc-300 mt-2 mb-6 leading-relaxed">
                 Kargo bekleme veya adres girme süreçleriyle vakit kaybetmeyin. Ödemenizin ardından e-kitabınız (dijital formatta) doğrudan e-posta adresinize gönderilir. Telefon, tablet veya bilgisayarınızdan saniyeler içinde okumaya başlayın.
               </p>
 
@@ -165,36 +169,43 @@ export default function PricingSection() {
 
             {/* Primary CTA Button */}
             <div className="pt-6 mt-4">
-              <a
+              <ThemeButton
+                theme="kitap1"
+                variant="primary"
+                size="lg"
+                fullWidth
                 href="https://wa.me/905455207999?text=Merhaba,%20Vazgeçilmez%20Olma%20Sanatı%20e-kitap%20paketini%20satın%20almak%20istiyorum."
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full py-4 px-6 rounded-xl bg-gradient-to-r from-gold-300 via-gold-400 to-gold-600 text-black text-sm font-extrabold uppercase tracking-wider shadow-gold-glow hover:shadow-gold-glow-lg hover:brightness-110 active:scale-[0.98] flex items-center justify-center gap-2 transition-all duration-200"
               >
                 <MessageCircle className="w-5 h-5 fill-black/15 text-black" />
                 <span>E-KİTABI HEMEN OKU (600 TL)</span>
                 <ArrowRight className="w-4 h-4" />
-              </a>
+              </ThemeButton>
               <div className="flex items-center justify-center gap-1.5 mt-3 text-xs text-zinc-400 font-medium">
                 <Mail className="w-3.5 h-3.5 text-gold-400" />
                 <span>Otomatik sistem ile e-posta adresinize saniyeler içinde teslimat.</span>
               </div>
             </div>
 
-          </div>
+          </ThemeCard>
 
 
           {/* ========================================================================= */}
           {/* SAĞ KART (TÜKENMİŞ / PASİF ÜRÜN): FİZİKSEL KİTAP (TALEP TOPLAMA)         */}
           {/* ========================================================================= */}
-          <div className="relative flex flex-col justify-between p-6 sm:p-8 lg:p-9 rounded-3xl bg-matte-900/50 border border-zinc-800 text-zinc-400 transition-all duration-300">
+          <ThemeCard
+            theme="kitap1"
+            variant="muted"
+            className="flex flex-col justify-between p-6 sm:p-8 lg:p-9"
+          >
             
             {/* TÜKENDİ ŞERİT / ROZETİ */}
             <div className="absolute -top-3.5 right-6 sm:right-8 z-20">
-              <div className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-crimson-600 text-white text-xs font-black uppercase tracking-widest shadow-md border border-red-400/40">
+              <ThemeBadge theme="kitap1" status="tukendi" className="px-4 py-1.5">
                 <ShieldAlert className="w-3.5 h-3.5" />
                 <span>TÜKENDİ</span>
-              </div>
+              </ThemeBadge>
             </div>
 
             <div>
@@ -209,12 +220,12 @@ export default function PricingSection() {
                 </div>
               </div>
 
-              <h3 className="text-2xl sm:text-3xl font-black text-zinc-300 tracking-tight leading-snug">
+              <h3 className="text-fluid-2xl font-black text-zinc-300 tracking-tight leading-snug">
                 Vazgeçilmez Olma Sanatı <br />
                 <span className="text-zinc-500">Fiziksel Kitap</span>
               </h3>
               
-              <p className="text-sm text-zinc-400 mt-2 mb-6 leading-relaxed">
+              <p className="text-fluid-sm text-zinc-400 mt-2 mb-6 leading-relaxed">
                 Koleksiyon serisi tamamen tükenmiştir ve bir daha basılmayacaktır. Yeni bir fiziksel versiyon üretmek gibi bir mecburiyetimiz yok. Ancak bu bilgilere ulaşmak isteyenlerin yoğun baskısı üzerine, standart bir edisyon değerlendirmeye alınabilir. Kararı, oluşturduğunuz talep belirleyecek.
               </p>
 
@@ -262,15 +273,13 @@ export default function PricingSection() {
 
             {/* Secondary CTA Button (Action Button) & Talep Sayacı */}
             <div className="pt-6 mt-4">
-              <button
-                type="button"
+              <ThemeButton
+                theme="kitap1"
+                variant={hasRequested ? "disabled" : "outline"}
+                size="lg"
+                fullWidth
                 onClick={handleDemandClick}
                 disabled={hasRequested}
-                className={`w-full py-4 px-6 rounded-xl text-xs sm:text-sm font-black uppercase tracking-wider flex items-center justify-center gap-2 transition-all duration-200 ${
-                  hasRequested
-                    ? "bg-zinc-850/80 border border-zinc-700 text-zinc-500 cursor-not-allowed"
-                    : "bg-transparent hover:bg-gold-500/10 border border-gold-500/50 hover:border-gold-400 text-gold-300 hover:text-gold-200 cursor-pointer active:scale-[0.98]"
-                }`}
               >
                 {hasRequested ? (
                   <>
@@ -283,13 +292,13 @@ export default function PricingSection() {
                     <span>YENİ BASKI İÇİN TALEP OLUŞTUR</span>
                   </>
                 )}
-              </button>
+              </ThemeButton>
               <div className="flex items-center justify-center gap-1.5 mt-3 text-xs sm:text-[13px] text-zinc-400 font-medium text-center">
                 <span>🔥 Şu an <strong className="text-gold-300 font-bold">{demandCount} kişi</strong> yeni baskı talep ediyor.</span>
               </div>
             </div>
 
-          </div>
+          </ThemeCard>
 
         </div>
 
@@ -313,3 +322,4 @@ export default function PricingSection() {
     </section>
   );
 }
+

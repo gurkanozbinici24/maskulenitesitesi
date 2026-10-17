@@ -1,7 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { ChevronDown, HelpCircle, Sparkles, ShieldCheck, Mail } from "lucide-react";
+import { ChevronDown, Sparkles, Mail } from "lucide-react";
+import { ThemeSectionHeader } from "./ui/ThemeSystem";
 
 interface FaqItem {
   id: number;
@@ -49,20 +50,15 @@ export default function FaqSection() {
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Üst Başlık & Rozet */}
-        <div className="text-center max-w-2xl mx-auto mb-16">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-matte-850 border border-gold-500/30 text-gold-300 text-xs font-bold uppercase tracking-widest mb-4 shadow-inner">
-            <Sparkles className="w-3.5 h-3.5 text-gold-400" />
-            <span>AKLINDAKİ TÜM SORULAR & CEVAPLAR</span>
-          </div>
-
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight uppercase leading-tight">
-            Sıkça Sorulan <span className="gold-text-gradient">Sorular</span>
-          </h2>
-
-          <p className="mt-4 text-sm sm:text-base text-zinc-400 font-normal leading-relaxed">
-            E-Kitap erişimi, fiziksel baskı talepleri ve genel süreçler hakkında merak edilen detaylar.
-          </p>
-        </div>
+        <ThemeSectionHeader
+          theme="kitap1"
+          badgeIcon={<Sparkles className="w-3.5 h-3.5 text-gold-400" />}
+          badgeText="AKLINDAKİ TÜM SORULAR & CEVAPLAR"
+          title="Sıkça Sorulan"
+          highlightText="Sorular"
+          subtitle="E-Kitap erişimi, fiziksel baskı talepleri ve genel süreçler hakkında merak edilen detaylar."
+          className="mb-16"
+        />
 
         {/* Akordiyon Listesi */}
         <div className="space-y-4">
@@ -73,7 +69,7 @@ export default function FaqSection() {
                 key={faq.id}
                 className={`rounded-2xl transition-all duration-300 border ${
                   isOpen
-                    ? "bg-matte-900/90 border-[#D4AF37]/60 shadow-[0_4px_30px_rgba(212,175,55,0.08)]"
+                    ? "bg-matte-900/90 border-gold-500/60 shadow-[0_4px_30px_rgba(212,175,55,0.08)]"
                     : "bg-matte-900/50 border-zinc-800 hover:border-zinc-700"
                 }`}
               >
@@ -81,12 +77,12 @@ export default function FaqSection() {
                 <button
                   type="button"
                   onClick={() => toggleFaq(faq.id)}
-                  className="w-full py-5 px-6 sm:px-8 flex items-center justify-between text-left gap-4 focus:outline-none select-none cursor-pointer"
+                  className="w-full min-h-[56px] py-5 px-6 sm:px-8 flex items-center justify-between text-left gap-4 focus:outline-none select-none cursor-pointer active:bg-white/[0.02] transition-colors"
                   aria-expanded={isOpen}
                 >
                   <span
-                    className={`text-base sm:text-lg font-bold tracking-tight transition-colors duration-200 ${
-                      isOpen ? "text-[#D4AF37]" : "text-zinc-100 hover:text-gold-300"
+                    className={`text-fluid-base sm:text-fluid-lg font-bold tracking-tight transition-colors duration-200 ${
+                      isOpen ? "text-gold-500" : "text-zinc-100 hover:text-gold-300"
                     }`}
                   >
                     {faq.question}
@@ -94,7 +90,7 @@ export default function FaqSection() {
                   <div
                     className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 transition-transform duration-300 border ${
                       isOpen
-                        ? "rotate-180 bg-[#D4AF37]/15 border-[#D4AF37]/40 text-[#D4AF37]"
+                        ? "rotate-180 bg-gold-500/15 border-gold-500/40 text-gold-500"
                         : "bg-zinc-800/80 border-zinc-700/80 text-zinc-400"
                     }`}
                   >
@@ -109,7 +105,7 @@ export default function FaqSection() {
                   }`}
                 >
                   <div className="overflow-hidden">
-                    <div className="px-6 pb-6 sm:px-8 sm:pb-7 text-sm sm:text-base text-zinc-300 leading-relaxed border-t border-zinc-800/60 pt-4">
+                    <div className="px-6 pb-6 sm:px-8 sm:pb-7 text-fluid-sm sm:text-fluid-base text-zinc-300 leading-relaxed border-t border-zinc-800/60 pt-4">
                       {faq.answer}
                     </div>
                   </div>
@@ -139,3 +135,4 @@ export default function FaqSection() {
     </section>
   );
 }
+

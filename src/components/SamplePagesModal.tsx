@@ -13,6 +13,7 @@ import {
   FileText,
   Lock,
 } from "lucide-react";
+import { ThemeButton } from "./ui/ThemeSystem";
 
 interface SamplePagesModalProps {
   isOpen: boolean;
@@ -118,7 +119,7 @@ export default function SamplePagesModal({
             {/* Kapat Butonu */}
             <button
               onClick={onClose}
-              className="p-2 rounded-xl bg-matte-850 hover:bg-zinc-800 border border-zinc-700 text-zinc-400 hover:text-white transition-colors"
+              className="min-h-[48px] min-w-[48px] flex items-center justify-center p-2 rounded-xl bg-matte-850 hover:bg-zinc-800 border border-zinc-700 text-zinc-400 hover:text-white active:scale-95 transition-all"
               aria-label="Kapat"
             >
               <X className="w-5 h-5" />
@@ -136,7 +137,7 @@ export default function SamplePagesModal({
                     setActiveIndex(index);
                     setViewMode("single");
                   }}
-                  className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all duration-200 flex items-center gap-1.5 ${
+                  className={`min-h-[44px] px-3 py-1.5 rounded-lg text-xs font-bold transition-all duration-200 flex items-center gap-1.5 ${
                     viewMode === "single" && activeIndex === index
                       ? "bg-gradient-to-r from-gold-400 to-gold-600 text-black shadow-gold-glow"
                       : "text-zinc-400 hover:text-zinc-200 hover:bg-zinc-800/60"
@@ -163,7 +164,7 @@ export default function SamplePagesModal({
             <div className="flex items-center gap-1 p-1 rounded-xl bg-matte-950 border border-zinc-800">
               <button
                 onClick={() => setViewMode("single")}
-                className={`p-1.5 rounded-lg text-xs font-semibold flex items-center gap-1 ${
+                className={`min-h-[44px] px-2.5 py-1.5 rounded-lg text-xs font-semibold flex items-center gap-1 ${
                   viewMode === "single"
                     ? "bg-zinc-800 text-gold-400"
                     : "text-zinc-400 hover:text-white"
@@ -175,7 +176,7 @@ export default function SamplePagesModal({
               </button>
               <button
                 onClick={() => setViewMode("all")}
-                className={`p-1.5 rounded-lg text-xs font-semibold flex items-center gap-1 ${
+                className={`min-h-[44px] px-2.5 py-1.5 rounded-lg text-xs font-semibold flex items-center gap-1 ${
                   viewMode === "all"
                     ? "bg-zinc-800 text-gold-400"
                     : "text-zinc-400 hover:text-white"
@@ -228,13 +229,16 @@ export default function SamplePagesModal({
                       </p>
 
                       {/* VURUCU CTA BUTONU */}
-                      <a
+                      <ThemeButton
+                        theme="kitap1"
+                        variant="primary"
+                        size="md"
                         href="#fiyat-kartlari"
                         onClick={onClose}
-                        className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 sm:px-9 py-3.5 text-xs sm:text-sm font-black uppercase tracking-wider text-black bg-gradient-to-r from-gold-300 via-gold-400 to-gold-600 rounded-xl shadow-gold-glow hover:shadow-gold-glow-lg hover:brightness-110 active:scale-[0.98] transition-all duration-200"
+                        className="w-full sm:w-auto px-7 sm:px-9 font-black"
                       >
                         <span>KONTROLÜ ELE AL – KİTABI İNDİR ➔</span>
-                      </a>
+                      </ThemeButton>
                     </div>
 
                     <div className="text-[10px] text-zinc-500 font-mono">
@@ -250,7 +254,7 @@ export default function SamplePagesModal({
                       prev > 0 ? prev - 1 : samplePages.length - 1
                     )
                   }
-                  className="absolute left-2 top-1/2 -translate-y-1/2 p-2.5 rounded-full bg-black/70 hover:bg-gold-500 hover:text-black border border-gold-500/40 text-gold-400 transition-all shadow-lg backdrop-blur-sm z-30"
+                  className="absolute left-2 top-1/2 -translate-y-1/2 min-h-[48px] min-w-[48px] flex items-center justify-center p-2.5 rounded-full bg-black/70 hover:bg-gold-500 hover:text-black active:scale-95 border border-gold-500/40 text-gold-400 transition-all shadow-lg backdrop-blur-sm z-30"
                   aria-label="Önceki Sayfa"
                 >
                   <ChevronLeft className="w-5 h-5" />
@@ -263,7 +267,7 @@ export default function SamplePagesModal({
                       prev < samplePages.length - 1 ? prev + 1 : 0
                     )
                   }
-                  className="absolute right-2 top-1/2 -translate-y-1/2 p-2.5 rounded-full bg-black/70 hover:bg-gold-500 hover:text-black border border-gold-500/40 text-gold-400 transition-all shadow-lg backdrop-blur-sm z-30"
+                  className="absolute right-2 top-1/2 -translate-y-1/2 min-h-[48px] min-w-[48px] flex items-center justify-center p-2.5 rounded-full bg-black/70 hover:bg-gold-500 hover:text-black active:scale-95 border border-gold-500/40 text-gold-400 transition-all shadow-lg backdrop-blur-sm z-30"
                   aria-label="Sonraki Sayfa"
                 >
                   <ChevronRight className="w-5 h-5" />
@@ -336,20 +340,26 @@ export default function SamplePagesModal({
             Kitabın tamamına erişmek ve tüm bölümleri okumak için hemen sipariş verin.
           </div>
           <div className="flex items-center gap-3 w-full sm:w-auto">
-            <button
+            <ThemeButton
+              theme="kitap1"
+              variant="secondary"
+              size="sm"
               onClick={onClose}
-              className="w-1/2 sm:w-auto px-5 py-2.5 rounded-xl bg-matte-850 hover:bg-zinc-800 border border-zinc-700 text-xs font-bold text-zinc-300 hover:text-white uppercase tracking-wider transition-colors"
+              className="w-1/2 sm:w-auto"
             >
-              Kapat
-            </button>
-            <a
+              <span>Kapat</span>
+            </ThemeButton>
+            <ThemeButton
+              theme="kitap1"
+              variant="primary"
+              size="sm"
               href="#fiyat-kartlari"
               onClick={onClose}
-              className="w-1/2 sm:w-auto inline-flex items-center justify-center gap-1.5 px-6 py-2.5 rounded-xl bg-gradient-to-r from-gold-400 to-gold-600 hover:from-gold-300 hover:to-gold-500 text-black text-xs font-black uppercase tracking-wider shadow-gold-glow hover:shadow-gold-glow-lg transition-all duration-200"
+              className="w-1/2 sm:w-auto font-black"
             >
               <span>Satın Al</span>
               <ArrowRight className="w-3.5 h-3.5" />
-            </a>
+            </ThemeButton>
           </div>
         </div>
 
@@ -357,3 +367,4 @@ export default function SamplePagesModal({
     </div>
   );
 }
+

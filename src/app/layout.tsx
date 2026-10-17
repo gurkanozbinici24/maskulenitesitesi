@@ -1,5 +1,27 @@
 import type { Metadata, Viewport } from "next";
+import { Inter, Cinzel, Playfair_Display } from "next/font/google";
 import "./globals.css";
+
+const inter = Inter({
+  subsets: ["latin", "latin-ext"],
+  variable: "--font-inter",
+  display: "swap",
+});
+
+const cinzel = Cinzel({
+  subsets: ["latin", "latin-ext"],
+  weight: ["600", "700", "800", "900"],
+  variable: "--font-cinzel",
+  display: "swap",
+});
+
+const playfair = Playfair_Display({
+  subsets: ["latin", "latin-ext"],
+  weight: ["600", "700", "800"],
+  style: ["normal", "italic"],
+  variable: "--font-playfair",
+  display: "swap",
+});
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -36,11 +58,11 @@ export default function RootLayout({
   return (
     <html
       lang="tr"
-      className="dark scroll-smooth"
+      className={`dark scroll-smooth ${inter.variable} ${cinzel.variable} ${playfair.variable}`}
       style={{ backgroundColor: "#050507", color: "#f4f4f5", colorScheme: "dark" }}
     >
       <body
-        className="bg-matte-950 text-zinc-200 antialiased selection:bg-gold-500 selection:text-black min-h-screen flex flex-col"
+        className={`${inter.className} font-sans bg-matte-950 text-zinc-200 antialiased selection:bg-gold-500 selection:text-black min-h-screen flex flex-col`}
         style={{ backgroundColor: "#050507", color: "#f4f4f5" }}
       >
         {children}
@@ -48,3 +70,4 @@ export default function RootLayout({
     </html>
   );
 }
+

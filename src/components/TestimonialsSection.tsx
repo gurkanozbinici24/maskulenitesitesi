@@ -5,8 +5,6 @@ import Image from "next/image";
 import {
   ChevronLeft,
   ChevronRight,
-  Sparkles,
-  MessageSquare,
   ShieldCheck,
   CheckCircle2,
   Maximize2,
@@ -14,6 +12,7 @@ import {
   ArrowRight,
   Flame,
 } from "lucide-react";
+import { ThemeButton, ThemeSectionHeader } from "./ui/ThemeSystem";
 
 const testimonials = [
   { id: 2, src: "/m2.jpg", title: "Danışan Dönüşümü #1", tag: "Çerçeve Kontrolü" },
@@ -88,28 +87,23 @@ export default function TestimonialsSection() {
         
         {/* Üst Başlık Grubu */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 sm:mb-16">
-          <div className="max-w-2xl text-left">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-matte-850 border border-gold-500/30 text-gold-300 text-xs font-bold uppercase tracking-widest mb-4 shadow-inner">
-              <Flame className="w-3.5 h-3.5 text-gold-400" />
-              <span>KANITLANMIŞ ETKİ & GERÇEK DÖNÜŞÜMLER</span>
-            </div>
-            
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight uppercase leading-tight">
-              Sarsılmaz Sonuçlar & <span className="gold-text-gradient">Danışan Yorumları</span>
-            </h2>
-            
-            <p className="mt-4 text-sm sm:text-base text-zinc-400 font-normal leading-relaxed">
-              Birebir strateji seanslarımızda durumunu baştan inşa eden, karşı tarafın ucuz manipülasyonlarını 
-              çöpe atıp saygıyı ve kontrolü geri kazanan erkeklerin gerçek mesajları.
-            </p>
-          </div>
+          <ThemeSectionHeader
+            theme="kitap1"
+            align="left"
+            badgeIcon={<Flame className="w-3.5 h-3.5 text-gold-400" />}
+            badgeText="KANITLANMIŞ ETKİ & GERÇEK DÖNÜŞÜMLER"
+            title="Sarsılmaz Sonuçlar &"
+            highlightText="Danışan Yorumları"
+            subtitle="Birebir strateji seanslarımızda durumunu baştan inşa eden, karşı tarafın ucuz manipülasyonlarını çöpe atıp saygıyı ve kontrolü geri kazanan erkeklerin gerçek mesajları."
+            className="mb-0"
+          />
 
           {/* Slider Gezinme Okları */}
           <div className="flex items-center gap-3 self-start md:self-end">
             <button
               onClick={() => scroll("left")}
               disabled={!canScrollLeft}
-              className={`p-3 rounded-xl border transition-all duration-200 ${
+              className={`min-h-[48px] min-w-[48px] flex items-center justify-center p-3 rounded-xl border transition-all duration-200 ${
                 canScrollLeft
                   ? "bg-matte-850 hover:bg-zinc-800 border-gold-500/40 text-gold-300 hover:text-white shadow-md active:scale-95"
                   : "bg-matte-900/60 border-zinc-800 text-zinc-600 cursor-not-allowed opacity-50"
@@ -121,7 +115,7 @@ export default function TestimonialsSection() {
             <button
               onClick={() => scroll("right")}
               disabled={!canScrollRight}
-              className={`p-3 rounded-xl border transition-all duration-200 ${
+              className={`min-h-[48px] min-w-[48px] flex items-center justify-center p-3 rounded-xl border transition-all duration-200 ${
                 canScrollRight
                   ? "bg-matte-850 hover:bg-zinc-800 border-gold-500/40 text-gold-300 hover:text-white shadow-md active:scale-95"
                   : "bg-matte-900/60 border-zinc-800 text-zinc-600 cursor-not-allowed opacity-50"
@@ -143,7 +137,7 @@ export default function TestimonialsSection() {
             <div
               key={item.id}
               onClick={() => setSelectedImage(item.src)}
-              className="group relative flex-shrink-0 w-[270px] sm:w-[310px] md:w-[330px] rounded-2xl sm:rounded-3xl bg-matte-900/90 border border-gold-500/30 hover:border-gold-400 p-3 sm:p-4 shadow-[0_15px_35px_rgba(0,0,0,0.85),0_0_20px_rgba(212,175,55,0.12)] hover:shadow-gold-glow transition-all duration-300 flex flex-col justify-between cursor-pointer"
+              className="group relative flex-shrink-0 w-[270px] sm:w-[310px] md:w-[330px] rounded-2xl sm:rounded-3xl bg-matte-900/90 border border-gold-500/30 hover:border-gold-400 active:border-gold-400 p-3 sm:p-4 shadow-[0_15px_35px_rgba(0,0,0,0.85),0_0_20px_rgba(212,175,55,0.12)] hover:shadow-gold-glow transition-all duration-300 flex flex-col justify-between cursor-pointer"
             >
               {/* Kart Başlığı & Rozeti */}
               <div className="flex items-center justify-between mb-3 px-1">
@@ -198,7 +192,7 @@ export default function TestimonialsSection() {
               <ShieldCheck className="w-6 h-6" />
             </div>
             <div>
-              <h3 className="text-lg sm:text-xl font-bold text-white tracking-tight">
+              <h3 className="text-fluid-xl font-bold text-white tracking-tight">
                 Kendi Hikayeni Yeniden Yazmaya Hazır mısın?
               </h3>
               <p className="text-xs sm:text-sm text-zinc-400 mt-1">
@@ -207,15 +201,18 @@ export default function TestimonialsSection() {
             </div>
           </div>
 
-          <a
+          <ThemeButton
+            theme="kitap1"
+            variant="primary"
+            size="md"
             href="https://wa.me/905455207999?text=Merhaba,%20Özel%20Danışmanlık%20ve%20Koçluk%20Seansı%20almak%20istiyorum."
             target="_blank"
             rel="noopener noreferrer"
-            className="flex-shrink-0 inline-flex items-center justify-center gap-2 px-7 py-3.5 text-xs sm:text-sm font-extrabold uppercase tracking-wider text-black bg-gradient-to-r from-gold-300 via-gold-400 to-gold-600 rounded-xl shadow-gold-glow hover:shadow-gold-glow-lg hover:brightness-110 active:scale-[0.98] transition-all duration-200 whitespace-nowrap"
+            className="flex-shrink-0 w-full sm:w-auto whitespace-nowrap"
           >
             <span>Hemen Seans Al</span>
             <ArrowRight className="w-4 h-4" />
-          </a>
+          </ThemeButton>
         </div>
 
       </div>

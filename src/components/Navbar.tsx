@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { Menu, X, ArrowUpRight, BookOpen } from "lucide-react";
+import { ThemeButton } from "./ui/ThemeSystem";
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -20,7 +21,7 @@ export default function Navbar() {
       {/* 1. Lüks VIP Duyuru Çubuğu (Tükendi Duyurusu) */}
       <a
         href="#fiyat-kartlari"
-        className="w-full bg-[#000000] border-b border-crimson-600/70 py-2.5 px-3 sm:px-4 text-center select-none flex flex-wrap items-center justify-center gap-1.5 sm:gap-2 shadow-[0_4px_25px_rgba(220,38,38,0.35)] hover:bg-zinc-950 transition-colors cursor-pointer group"
+        className="w-full bg-black border-b border-crimson-600/70 py-2.5 px-3 sm:px-4 text-center select-none flex flex-wrap items-center justify-center gap-1.5 sm:gap-2 shadow-[0_4px_25px_rgba(220,38,38,0.35)] hover:bg-zinc-950 active:bg-zinc-900 transition-colors cursor-pointer group"
       >
         <span className="relative flex h-2 w-2 mr-1">
           <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-crimson-400 opacity-75"></span>
@@ -61,21 +62,21 @@ export default function Navbar() {
             <nav className="hidden md:flex items-center gap-6 lg:gap-8 ml-auto flex-shrink-0">
               <a
                 href="/#kazanimlar"
-                className="text-sm font-medium text-zinc-400 hover:text-gold-300 transition-colors whitespace-nowrap"
+                className="text-sm font-medium text-zinc-400 hover:text-gold-300 active:text-gold-200 transition-colors whitespace-nowrap"
               >
                 Neler Kazanacaksın?
               </a>
               
               <a
                 href="/#sosyal-kanit"
-                className="text-sm font-medium text-zinc-400 hover:text-gold-300 transition-colors whitespace-nowrap"
+                className="text-sm font-medium text-zinc-400 hover:text-gold-300 active:text-gold-200 transition-colors whitespace-nowrap"
               >
                 Topluluk & Güven
               </a>
 
               <a
                 href="/danismanlik"
-                className="text-sm font-semibold text-gold-300 hover:text-gold-200 transition-colors flex items-center gap-1.5 whitespace-nowrap"
+                className="text-sm font-semibold text-gold-300 hover:text-gold-200 active:text-gold-100 transition-colors flex items-center gap-1.5 whitespace-nowrap"
               >
                 <span>Özel Danışmanlık</span>
                 <span className="px-1.5 py-0.5 text-[9px] font-black uppercase rounded bg-gold-500/20 text-gold-300 border border-gold-500/40 shadow-inner">
@@ -84,19 +85,22 @@ export default function Navbar() {
               </a>
 
               {/* Dikeyde Kusursuz Ortalanmış Kompakt Satın Alma Butonu */}
-              <a
+              <ThemeButton
+                theme="kitap1"
+                variant="primary"
+                size="sm"
                 href="/#fiyat-kartlari"
-                className="relative inline-flex items-center justify-center gap-1.5 px-4 py-2 text-xs font-black uppercase tracking-wider text-black bg-gradient-to-r from-gold-300 via-gold-400 to-gold-600 rounded-lg shadow-gold-glow hover:shadow-gold-glow-lg hover:brightness-110 active:scale-95 transition-all duration-200 whitespace-nowrap"
+                className="rounded-lg whitespace-nowrap font-black"
               >
                 <span>E-KİTABI HEMEN OKU (600 TL)</span>
                 <ArrowUpRight className="w-3.5 h-3.5" />
-              </a>
+              </ThemeButton>
             </nav>
 
             {/* Mobile Menu Button */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="md:hidden p-2 rounded-lg bg-matte-850 border border-zinc-800 text-zinc-400 hover:text-white"
+              className="md:hidden min-h-[48px] min-w-[48px] flex items-center justify-center p-2 rounded-lg bg-matte-850 border border-zinc-800 text-zinc-400 hover:text-white active:scale-95 transition-all"
               aria-label="Menüyü Aç/Kapat"
             >
               {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -107,25 +111,25 @@ export default function Navbar() {
 
         {/* Mobile Drawer */}
         {mobileMenuOpen && (
-          <div className="md:hidden bg-matte-900/95 border-b border-zinc-800 backdrop-blur-xl px-4 pt-4 pb-6 space-y-4">
+          <div className="md:hidden bg-matte-900/95 border-b border-zinc-800 backdrop-blur-xl px-4 pt-4 pb-6 space-y-2">
             <a
               href="/#kazanimlar"
               onClick={() => setMobileMenuOpen(false)}
-              className="block px-3 py-2 text-base font-semibold text-zinc-300 hover:text-gold-400 hover:bg-zinc-800/40 rounded-md"
+              className="min-h-[48px] flex items-center px-3 py-2 text-base font-semibold text-zinc-300 hover:text-gold-400 active:text-gold-300 hover:bg-zinc-800/40 active:bg-zinc-800/60 rounded-md"
             >
               Neler Kazanacaksın?
             </a>
             <a
               href="/#sosyal-kanit"
               onClick={() => setMobileMenuOpen(false)}
-              className="block px-3 py-2 text-base font-semibold text-zinc-300 hover:text-gold-400 hover:bg-zinc-800/40 rounded-md"
+              className="min-h-[48px] flex items-center px-3 py-2 text-base font-semibold text-zinc-300 hover:text-gold-400 active:text-gold-300 hover:bg-zinc-800/40 active:bg-zinc-800/60 rounded-md"
             >
               Topluluk & Güven
             </a>
             <a
               href="/danismanlik"
               onClick={() => setMobileMenuOpen(false)}
-              className="flex items-center justify-between px-3 py-2 text-base font-bold text-gold-300 hover:bg-zinc-800/40 rounded-md"
+              className="min-h-[48px] flex items-center justify-between px-3 py-2 text-base font-bold text-gold-300 hover:bg-zinc-800/40 active:bg-zinc-800/60 rounded-md"
             >
               <span>Özel Danışmanlık</span>
               <span className="px-2 py-0.5 text-[10px] font-black uppercase rounded bg-gold-500/20 text-gold-300 border border-gold-500/40">
@@ -135,14 +139,18 @@ export default function Navbar() {
 
             {/* Mobilde Sade & Kompakt Buton */}
             <div className="pt-2">
-              <a
+              <ThemeButton
+                theme="kitap1"
+                variant="primary"
+                size="md"
+                fullWidth
                 href="/#fiyat-kartlari"
                 onClick={() => setMobileMenuOpen(false)}
-                className="w-full flex items-center justify-center gap-1.5 px-4 py-3 text-sm font-black uppercase tracking-wider text-black bg-gradient-to-r from-gold-300 via-gold-400 to-gold-600 rounded-lg shadow-gold-glow"
+                className="rounded-lg font-black"
               >
                 <span>E-KİTABI HEMEN OKU (600 TL)</span>
                 <ArrowUpRight className="w-4 h-4" />
-              </a>
+              </ThemeButton>
             </div>
           </div>
         )}
@@ -150,3 +158,4 @@ export default function Navbar() {
     </div>
   );
 }
+

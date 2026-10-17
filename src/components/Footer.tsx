@@ -197,7 +197,7 @@ export default function Footer() {
 
               <button
                 onClick={scrollToTop}
-                className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 text-zinc-300 hover:text-gold-400 transition-colors"
+                className="min-h-[48px] md:min-h-[38px] flex items-center gap-2 px-4 py-2 rounded-lg bg-zinc-900 hover:bg-zinc-800 active:bg-zinc-800 border border-zinc-800 text-zinc-300 hover:text-gold-400 active:scale-95 transition-all"
               >
                 <span>Yukarı Çık</span>
                 <ArrowUp className="w-3.5 h-3.5" />

@@ -1,6 +1,7 @@
 "use client";
 
 import { X, ShieldCheck } from "lucide-react";
+import { ThemeButton } from "./ui/ThemeSystem";
 
 interface LegalModalProps {
   isOpen: boolean;
@@ -35,7 +36,8 @@ export default function LegalModal({
           </div>
           <button
             onClick={onClose}
-            className="p-1.5 rounded-lg text-zinc-400 hover:text-white hover:bg-zinc-800 transition-colors"
+            className="min-h-[48px] min-w-[48px] flex items-center justify-center p-1.5 rounded-lg text-zinc-400 hover:text-white hover:bg-zinc-800 active:scale-95 transition-all"
+            aria-label="Kapat"
           >
             <X className="w-5 h-5" />
           </button>
@@ -107,14 +109,18 @@ export default function LegalModal({
 
         {/* Footer Action */}
         <div className="mt-6 pt-4 border-t border-zinc-800 flex justify-end">
-          <button
+          <ThemeButton
+            theme="kitap1"
+            variant="secondary"
+            size="sm"
             onClick={onClose}
-            className="px-5 py-2 rounded-lg bg-zinc-800 hover:bg-zinc-700 text-xs font-bold text-white uppercase tracking-wider transition-colors"
+            className="font-bold"
           >
-            Kapat
-          </button>
+            <span>Kapat</span>
+          </ThemeButton>
         </div>
       </div>
     </div>
   );
 }
+
