@@ -34,8 +34,8 @@ export default function PricingSection() {
     const START_TIMESTAMP = new Date("2026-10-05T15:00:00Z").getTime();
     const now = Date.now();
     const elapsedMs = Math.max(0, now - START_TIMESTAMP);
-    const elapsedMinutes = elapsedMs / (1000 * 60);
-    const timeIncrement = Math.floor(elapsedMinutes / 30); // Her 30 dakikada bir +1 artış
+    const elapsedHours = elapsedMs / (1000 * 60 * 60);
+    const timeIncrement = Math.floor(elapsedHours / 2); // Her 2 saatte bir +1 artış
 
     setDemandCount(BASE_COUNT + timeIncrement + (requested ? 1 : 0));
   }, []);
