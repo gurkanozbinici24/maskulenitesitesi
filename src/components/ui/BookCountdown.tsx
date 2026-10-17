@@ -2,11 +2,11 @@
 
 import React, { useEffect, useState } from "react";
 import {
-  Bell,
   BookOpen,
   Check,
   Clock,
   Flame,
+  Instagram,
   Mail,
   MessageCircle,
   Package,
@@ -775,11 +775,13 @@ export function BookCountdown({
         ))}
       </div>
 
-      {/* Aksiyon Alanı: Haber Al Butonu + (Varsa) Tanıtım Filmini İzle */}
+      {/* Aksiyon Alanı: WhatsApp'tan Haber Al + Instagram'da Takip Et + (Varsa) Tanıtım Filmini İzle */}
       {showActionArea && (
         <div
-          className={`flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 ${
-            isCompact ? "mt-3" : "justify-center mt-5"
+          className={`flex flex-col ${
+            isCompact
+              ? "gap-2.5 mt-3"
+              : "sm:flex-row items-stretch sm:items-center justify-center gap-3 mt-5"
           }`}
         >
           <ThemeButton
@@ -792,8 +794,22 @@ export function BookCountdown({
             rel="noopener noreferrer"
             className="min-h-[48px]"
           >
-            <Bell className="w-4 h-4 text-gold-300 flex-shrink-0" />
-            <span>Haber Al</span>
+            <MessageCircle className="w-4 h-4 text-emerald-300 flex-shrink-0" />
+            <span>WhatsApp&apos;tan Haber Al</span>
+          </ThemeButton>
+
+          <ThemeButton
+            theme="kitap2"
+            variant="secondary"
+            size={isCompact ? "sm" : "md"}
+            fullWidth={isCompact}
+            href={CEKICILIK_SANATI_CONFIG.instagramUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="min-h-[48px] border-emerald-500/35 hover:border-emerald-400/60"
+          >
+            <Instagram className="w-4 h-4 text-emerald-400 flex-shrink-0" />
+            <span>Instagram&apos;da Takip Et</span>
           </ThemeButton>
 
           <TrailerModalButton

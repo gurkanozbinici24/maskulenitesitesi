@@ -43,7 +43,7 @@ const PHYSICAL_WHATSAPP_MESSAGE =
   "Merhaba, Çekicilik Sanatı Fiziksel Kitap'ı satın almak istiyorum.";
 
 const NOTIFY_WHATSAPP_MESSAGE =
-  "Merhaba, Çekicilik Sanatı kitabı satışa çıktığında haberdar olmak istiyorum.";
+  "Çekicilik Sanatı çıktığında haber almak istiyorum.";
 
 export function buildWhatsAppUrl(message: string, phone = WHATSAPP_PHONE): string {
   return `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
