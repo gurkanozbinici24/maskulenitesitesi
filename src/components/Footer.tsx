@@ -188,19 +188,30 @@ export default function Footer() {
 
           </div>
 
-          {/* Bottom Bar: Copyright & Scroll Top */}
-          <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-zinc-500">
-            <div>
-              © {new Date().getFullYear()} <strong>Vazgeçilmez Olma Sanatı</strong>. Tüm Hakları Saklıdır. İzinsiz kopyalanamaz veya çoğaltılamaz.
+          {/* Bottom Bar: Copyright, Payment Logos & Scroll Top */}
+          <div className="pt-8 flex flex-col items-center gap-6">
+            <div className="w-full flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-zinc-500">
+              <div className="text-center sm:text-left">
+                © {new Date().getFullYear()} <strong>Vazgeçilmez Olma Sanatı</strong>. Tüm Hakları Saklıdır. İzinsiz kopyalanamaz veya çoğaltılamaz.
+              </div>
+
+              <button
+                onClick={scrollToTop}
+                className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 text-zinc-300 hover:text-gold-400 transition-colors"
+              >
+                <span>Yukarı Çık</span>
+                <ArrowUp className="w-3.5 h-3.5" />
+              </button>
             </div>
 
-            <button
-              onClick={scrollToTop}
-              className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 text-zinc-300 hover:text-gold-400 transition-colors"
-            >
-              <span>Yukarı Çık</span>
-              <ArrowUp className="w-3.5 h-3.5" />
-            </button>
+            {/* Güvenli Ödeme ve Kurum Logoları */}
+            <div className="w-full pt-4 border-t border-zinc-900/80 flex justify-center">
+              <img
+                src="/payment-logos.png"
+                alt="Güvenli Ödeme ve Kurum Logoları"
+                className="h-7 sm:h-9 w-auto max-w-full object-contain opacity-80 hover:opacity-100 transition-opacity"
+              />
+            </div>
           </div>
 
         </div>
