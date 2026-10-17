@@ -45,6 +45,26 @@ export const metadata: Metadata = {
     'ilişki taktikleri'
   ],
   authors: [{ name: "Gürkan Özbinici" }],
+  openGraph: {
+    title: "Vazgeçilmez Olma Sanatı & Çekicilik Sanatı | Gürkan Özbinici",
+    description:
+      "Biri erkek için, biri kadın için. Aynı oyunun iki tarafı. 800.000+ kişinin takip ettiği vizyon.",
+    images: [
+      {
+        url: "/vazgecilmez-yeni-kapak.jpg",
+        width: 800,
+        height: 1200,
+        alt: "Vazgeçilmez Olma Sanatı - Gürkan Özbinici",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Vazgeçilmez Olma Sanatı & Çekicilik Sanatı | Gürkan Özbinici",
+    description:
+      "Biri erkek için, biri kadın için. Aynı oyunun iki tarafı. 800.000+ kişinin takip ettiği vizyon.",
+    images: ["/vazgecilmez-yeni-kapak.jpg"],
+  },
   verification: {
     google: 'FT_hlSHvBdHwjwHh17ErA2kpRHd1ocBNIsuddA0iz9Q',
   },

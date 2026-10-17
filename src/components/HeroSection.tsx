@@ -108,25 +108,25 @@ export default function HeroSection() {
 
       {/* Karanlıktan yükselen sahne ışığı + seçili kitaba göre renk değişimi */}
       <div className="pointer-events-none absolute inset-0 animate-hero-light">
-        {/* Sol Kitap (Kitap 1 — Altın / Çelik) Atmosfer Işığı */}
+        {/* Sol Kitap (Kitap 1 — Altın / Maun-Konyak Kahvesi Kütüphane Atmosferi) */}
         <div
           className={`absolute top-1/3 left-1/4 -translate-x-1/2 -translate-y-1/2 w-[340px] sm:w-[520px] h-[340px] sm:h-[520px] rounded-full blur-[130px] transition-all duration-700 ${
             activeBook === "kitap1"
-              ? "bg-gold-500/25 scale-115 opacity-100"
+              ? "bg-gold-500/28 scale-115 opacity-100"
               : activeBook === "kitap2"
-              ? "bg-steel-700/5 scale-90 opacity-25"
-              : "bg-gold-500/12 opacity-80"
+              ? "bg-mahogany-800/10 scale-90 opacity-25"
+              : "bg-gold-500/14 opacity-85"
           }`}
         />
         <div
-          className={`absolute bottom-1/4 left-1/3 -translate-x-1/2 w-[280px] sm:w-[420px] h-[280px] sm:h-[420px] rounded-full blur-[140px] transition-all duration-700 ${
+          className={`absolute bottom-1/4 left-1/3 -translate-x-1/2 w-[280px] sm:w-[440px] h-[280px] sm:h-[440px] rounded-full blur-[140px] transition-all duration-700 ${
             activeBook === "kitap1"
-              ? "bg-steel-400/20 opacity-95"
-              : "bg-steel-600/10 opacity-45"
+              ? "bg-mahogany-600/35 opacity-100"
+              : "bg-mahogany-800/20 opacity-55"
           }`}
         />
 
-        {/* Sağ Kitap (Kitap 2 — Koyu Bordo / Zümrüt) Atmosfer Işığı */}
+        {/* Sağ Kitap (Kitap 2 — Koyu Bordo / Siyah / Zümrüt Atmosferi) */}
         <div
           className={`absolute top-1/3 right-1/4 translate-x-1/2 -translate-y-1/2 w-[340px] sm:w-[540px] h-[340px] sm:h-[540px] rounded-full blur-[135px] transition-all duration-700 ${
             activeBook === "kitap2"
@@ -156,7 +156,7 @@ export default function HeroSection() {
         {/* ÜST MERKEZ BAŞLIK ALANI                                             */}
         {/* ------------------------------------------------------------------- */}
         <div className="animate-hero-title text-center max-w-3xl mx-auto mb-10 sm:mb-14 lg:mb-16">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-matte-900/90 border border-gold-500/30 shadow-gold-glow mb-4">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-mahogany-900/80 border border-gold-500/35 shadow-gold-glow mb-4">
             <Sparkles className="w-3.5 h-3.5 text-gold-400" />
             <span className="font-cinzel text-xs sm:text-sm font-bold tracking-[0.28em] uppercase text-gold-300">
               GÜRKAN ÖZBİNİCİ
@@ -191,7 +191,7 @@ export default function HeroSection() {
         >
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-10 xl:gap-14 items-start justify-items-center max-w-6xl mx-auto">
             {/* =============================================================== */}
-            {/* SOL KİTAP: VAZGEÇİLMEZ OLMA SANATI (KİTAP 1 TEMASI)             */}
+            {/* SOL KİTAP: VAZGEÇİLMEZ OLMA SANATI (KİTAP 1 — ALTIN & MAUN)      */}
             {/* =============================================================== */}
             <div
               onMouseEnter={() => setActiveBook("kitap1")}
@@ -202,21 +202,21 @@ export default function HeroSection() {
               <div className="flex flex-col items-center gap-2 mb-5">
                 <ThemeBadge theme="kitap1" status="satista" className="px-4 py-1.5">
                   <Zap className="w-3.5 h-3.5 fill-black text-black" />
-                  <span>SATIŞTA</span>
+                  <span>E-KİTAP SATIŞTA</span>
                 </ThemeBadge>
-                <span className="text-xs font-semibold uppercase tracking-[0.16em] text-steel-300">
+                <span className="text-xs font-semibold uppercase tracking-[0.16em] text-mahogany-200">
                   Erkekler için ilişki psikolojisi
                 </span>
               </div>
 
               {/* 3D Kitap Sahnesi */}
               <div className="book-3d-scene relative flex flex-col items-center py-2">
-                {/* Kitap Arkası Lokal Işık Halesi */}
+                {/* Kitap Arkası Lokal Işık Halesi (Sıcak Altın + Maun) */}
                 <div
                   className={`pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 sm:w-72 h-80 sm:h-96 rounded-full blur-3xl transition-all duration-500 ${
                     activeBook === "kitap1"
                       ? "bg-gold-500/35 scale-110"
-                      : "bg-gold-500/15"
+                      : "bg-mahogany-600/25"
                   }`}
                 />
 
@@ -230,16 +230,16 @@ export default function HeroSection() {
                       : ""
                   }`}
                 >
-                  {/* Sol Kitap Sırtı (Spine) */}
-                  <div className="book-3d-spine bg-gradient-to-b from-steel-900 via-matte-950 to-steel-950 border-y border-l border-gold-500/40 flex flex-col items-center justify-between py-4 shadow-inner">
-                    <span className="w-1.5 h-1.5 rounded-full bg-gold-400/70" />
+                  {/* Sol Kitap Sırtı (Spine — Sıcak Maun Deri & Altın) */}
+                  <div className="book-3d-spine bg-gradient-to-b from-mahogany-800 via-mahogany-900 to-mahogany-950 border-y border-l border-gold-500/45 flex flex-col items-center justify-between py-4 shadow-inner">
+                    <span className="w-1.5 h-1.5 rounded-full bg-gold-400/75" />
                     <span
-                      className="font-cinzel text-[9px] font-bold tracking-[0.22em] text-gold-400/90 uppercase whitespace-nowrap"
+                      className="font-cinzel text-[9px] font-bold tracking-[0.22em] text-gold-300/95 uppercase whitespace-nowrap"
                       style={{ writingMode: "vertical-rl" }}
                     >
                       VAZGEÇİLMEZ OLMA SANATI
                     </span>
-                    <span className="w-1.5 h-1.5 rounded-full bg-gold-400/70" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-gold-400/75" />
                   </div>
 
                   {/* Sağ Beyazımsı Sayfa Kalınlığı */}
@@ -248,14 +248,14 @@ export default function HeroSection() {
                   <div className="book-3d-top" />
                   <div className="book-3d-bottom" />
                   {/* Arka Kapak */}
-                  <div className="book-3d-back border border-gold-500/20" />
+                  <div className="book-3d-back border border-gold-500/25" />
 
                   {/* Ön Kapak */}
-                  <div className="book-3d-front rounded-r-xl rounded-l-[3px] overflow-hidden border border-gold-500/45 shadow-[0_25px_55px_-12px_rgba(0,0,0,0.95),0_0_30px_rgba(212,175,55,0.22)] bg-matte-900">
+                  <div className="book-3d-front rounded-r-xl rounded-l-[3px] overflow-hidden border border-gold-500/50 shadow-[0_25px_55px_-12px_rgba(0,0,0,0.95),0_0_32px_rgba(212,175,55,0.25)] bg-mahogany-950">
                     {/* Cilt oluğu izi (Sol kenar gerçekçi kapak kıvrımı) */}
                     <div className="pointer-events-none absolute inset-y-0 left-0 w-3 bg-gradient-to-r from-black/65 via-white/10 to-transparent z-10" />
                     <Image
-                      src="/kapak.jpg"
+                      src="/vazgecilmez-yeni-kapak.jpg"
                       alt="Vazgeçilmez Olma Sanatı - Gürkan Özbinici"
                       width={400}
                       height={600}
@@ -273,18 +273,18 @@ export default function HeroSection() {
                   className={`pointer-events-none mt-6 h-5 w-48 sm:w-56 rounded-full blur-xl transition-all duration-500 ${
                     activeBook === "kitap1"
                       ? "bg-gold-500/45 scale-110"
-                      : "bg-gold-500/25"
+                      : "bg-mahogany-500/30"
                   }`}
                 />
                 <div className="pointer-events-none -mt-3 h-3 w-40 sm:w-48 rounded-full bg-black/90 blur-md" />
               </div>
 
               {/* Kitap Başlığı ve Satın Alma Aksiyonu */}
-              <div className="w-full mt-5 pt-4 border-t border-steel-800/80 flex flex-col items-center">
+              <div className="w-full mt-5 pt-4 border-t border-mahogany-800/80 flex flex-col items-center">
                 <h2 className="font-cinzel text-fluid-xl font-bold text-white tracking-wide mb-1">
                   Vazgeçilmez Olma Sanatı
                 </h2>
-                <p className="text-xs text-zinc-400 mb-4">
+                <p className="text-xs text-mahogany-200/85 mb-4">
                   227 Sayfa • Kuralları Sen Koy, İlişkiyi Sen Yönet
                 </p>
 
@@ -302,6 +302,12 @@ export default function HeroSection() {
                   <span>E-Kitabı Hemen Al – 600 TL</span>
                   <ArrowRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
                 </ThemeButton>
+
+                <span className="mt-2.5 text-xs font-medium text-gold-300/90">
+                  {isOnSale
+                    ? "Fiziksel Yenilenmiş Edisyon Şimdi Satışta"
+                    : "Fiziksel Yenilenmiş Edisyon 5 Kasım'da"}
+                </span>
               </div>
             </div>
 

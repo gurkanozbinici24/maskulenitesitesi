@@ -13,21 +13,21 @@ interface FaqItem {
 const faqs: FaqItem[] = [
   {
     id: 1,
-    question: "Özel Koleksiyon Edisyonu (Fiziksel Kitap) ileride tekrar basılacak mı?",
+    question: "Fiziksel kitap tekrar basıldı mı? Yenilenmiş Edisyon nedir?",
     answer:
-      "Hayır. İlk 200 kişi için özel olarak numaralandırılmış koleksiyon serisi tamamen tükenmiştir ve o prestijli formatta bir daha asla basılmayacaktır. Ancak fiziksel kopyaya ulaşamayan okurlardan gelen yoğun talep üzerine, standart bir edisyon değerlendirmeye alınabilir. Kararı, oluşturduğunuz talebin büyüklüğü belirleyecek.",
+      "İlk 200 kişi için numaralandırılmış 1. Baskı Koleksiyon Serisi tamamen tükenmiştir. Okurlarımızdan gelen yoğun ilgi üzerine fiziksel kitabımız 'Yenilenmiş Edisyon' olarak yeniden basılmıştır. İçerik birebir aynıdır; yeni kapak tasarımı ve daha büyük, okunaklı yazı boyutu (büyük punto) ile kapıya kadar ücretsiz kargo ayrıcalığıyla sunulmaktadır.",
   },
   {
     id: 2,
-    question: "Fiziksel kitap için neden talep topluyorsunuz, direkt satmıyor musunuz?",
+    question: "Yenilenmiş Edisyon fiziksel kitabın içerik olarak E-Kitap veya 1. Baskı'dan farkı var mı?",
     answer:
-      "İlk baskıyı alan 200 kişi fırsatı zamanında değerlendirdi. Yeni bir fiziksel baskı yapmak başlangıç planlarımızda yoktu. Ancak e-kitap yerine fiziksel kopya bekleyen okurlarımızın yoğun isteğini göz ardı etmiyoruz. Eğer sitedeki talep sayısı yeterli seviyeye ulaşırsa, standart baskı için matbaa sürecini başlatabiliriz. Aksi takdirde sadece e-kitap ile yola devam edeceğiz.",
+      "Hayır, içerik birebir aynıdır. 227 sayfalık tüm bölümler ve ilişki psikolojisi kanunları eksiksiz olarak yer alır. Yenilenmiş Edisyon; yeni kapağı ve okuma konforunu artıran daha büyük, okunaklı puntosuyla fiziksel kitap tutkunları için hazırlandı. Kargo beklemek istemeyen okurlarımız ise E-Kitap sürümünü hemen satın alarak saniyeler içinde okumaya başlayabilir.",
   },
   {
     id: 3,
     question: "Dijital E-Kitap paketini satın aldığımda nasıl okuyacağım?",
     answer:
-      "Ödemenizi tamamladığınız an e-kitap (PDF formatında) otomatik olarak cihazınıza indirilebilir duruma gelir. Kargo bekleme veya gecikme yoktur. Saniyeler içinde okumaya başlayabilirsiniz.",
+      "Ödemenizi tamamladığınız an e-kitap (PDF, EPUB ve Kindle formatlarında) doğrudan e-posta adresinize gönderilir ve cihazınıza indirilebilir duruma gelir. Kargo bekleme veya gecikme yoktur; telefon, tablet veya bilgisayarınızdan saniyeler içinde okumaya başlayabilirsiniz.",
   },
 ];
 
@@ -45,7 +45,7 @@ export default function FaqSection() {
     >
       {/* Arka Plan Atmosfer Işıkları */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-gold-500/5 blur-[150px] pointer-events-none" />
-      <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-amber-500/5 blur-[120px] pointer-events-none" />
+      <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-mahogany-600/10 blur-[120px] pointer-events-none" />
 
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
@@ -56,7 +56,7 @@ export default function FaqSection() {
           badgeText="AKLINDAKİ TÜM SORULAR & CEVAPLAR"
           title="Sıkça Sorulan"
           highlightText="Sorular"
-          subtitle="E-Kitap erişimi, fiziksel baskı talepleri ve genel süreçler hakkında merak edilen detaylar."
+          subtitle="E-Kitap anında erişimi, Fiziksel Yenilenmiş Edisyon ve sipariş süreçleri hakkında merak edilen detaylar."
           className="mb-16"
         />
 

@@ -1,18 +1,19 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import React from "react";
 import {
   Check,
   Zap,
   Sparkles,
-  ShieldAlert,
   ArrowRight,
   Package,
   BookOpen,
-  Lock,
   MessageCircle,
-  Flame,
   Mail,
+  Clock,
+  Truck,
+  ShoppingBag,
+  Info,
 } from "lucide-react";
 import {
   ThemeButton,
@@ -20,49 +21,28 @@ import {
   ThemeCard,
   ThemeSectionHeader,
 } from "./ui/ThemeSystem";
+import {
+  BookCountdown,
+  useCekicilikLaunchStatus,
+} from "./ui/BookCountdown";
+import {
+  KART_ODEME_AKTIF,
+  VAZGECILMEZ_CONFIG,
+} from "@/config/cekicilikConfig";
 
 export default function PricingSection() {
-  const [hasRequested, setHasRequested] = useState(false);
-  const [demandCount, setDemandCount] = useState(682);
+  const { isOnSale } = useCekicilikLaunchStatus(VAZGECILMEZ_CONFIG.releaseDate);
+  const { physicalRenovated } = VAZGECILMEZ_CONFIG;
 
-  useEffect(() => {
-    let requested = false;
-    try {
-      requested = localStorage.getItem("vazgecilmez_demand_requested") === "true";
-    } catch {
-      // Ignore storage errors
-    }
-    setHasRequested(requested);
-
-    // 18 Ekim 2026 başlangıç referans noktası
-    const BASE_COUNT = 682;
-    const START_TIMESTAMP = new Date("2026-10-17T21:30:00Z").getTime();
-    const now = Date.now();
-    const elapsedMs = Math.max(0, now - START_TIMESTAMP);
-    const elapsedHours = elapsedMs / (1000 * 60 * 60);
-    const timeIncrement = Math.floor(elapsedHours / 2); // Her 2 saatte bir +1 artış
-
-    setDemandCount(BASE_COUNT + timeIncrement + (requested ? 1 : 0));
-  }, []);
-
-  const handleDemandClick = () => {
-    if (!hasRequested) {
-      setHasRequested(true);
-      setDemandCount((prev) => prev + 1);
-      try {
-        localStorage.setItem("vazgecilmez_demand_requested", "true");
-      } catch {
-        // Ignore storage errors
-      }
-    }
-  };
   return (
-    <section id="fiyatlandirma" className="py-20 sm:py-24 relative overflow-hidden bg-matte-950">
-      {/* Background Ambience */}
-      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-full max-w-7xl h-96 bg-gold-500/5 blur-[120px] pointer-events-none" />
+    <section
+      id="fiyatlandirma"
+      className="py-20 sm:py-24 relative overflow-hidden bg-matte-950"
+    >
+      {/* Background Ambience (Sıcak Altın & Maun Kütüphane Işığı) */}
+      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-full max-w-7xl h-96 bg-mahogany-600/10 blur-[130px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        
         {/* Section Header */}
         <ThemeSectionHeader
           theme="kitap1"
@@ -70,7 +50,7 @@ export default function PricingSection() {
           badgeText="KÜTÜPHANENİ DONAT"
           title="VAZGEÇİLMEZ OLMAYA"
           highlightText="İLK ADIMI AT"
-          subtitle="1. Baskı Özel Koleksiyon Serimiz tamamen tükenmiştir. Gösterdiğiniz yoğun ilgiye teşekkür ederiz. Kuralları koyan taraf olmak ve taktikleri hemen uygulamaya başlamak için e-kitap sürümüne anında erişebilirsiniz."
+          subtitle="Kuralları koyan taraf olmak ve taktikleri hemen uygulamaya başlamak için E-Kitap sürümüne saniyeler içinde erişebilir veya yeni kapağı ve okunaklı büyük puntosuyla hazırlanan Fiziksel Yenilenmiş Edisyon'u tercih edebilirsiniz."
           className="mb-14 sm:mb-16"
         />
 
@@ -79,19 +59,21 @@ export default function PricingSection() {
           id="fiyat-kartlari"
           className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-5xl mx-auto items-stretch scroll-mt-24"
         >
-          
           {/* ========================================================================= */}
-          {/* SOL KART (AKTİF / YILDIZ ÜRÜN): E-KİTAP PAKETİ (GOLD GLOW ÖNE ÇIKAN KART) */}
+          {/* SOL KART (AKTİF / YILDIZ ÜRÜN): E-KİTAP PAKETİ (HEMEN ALINABİLİR)         */}
           {/* ========================================================================= */}
           <ThemeCard
             theme="kitap1"
             variant="glow"
             className="flex flex-col justify-between p-6 sm:p-8 lg:p-9"
           >
-            
             {/* ANINDA TESLİMAT BADGE */}
             <div className="absolute -top-3.5 left-6 sm:left-8 z-20">
-              <ThemeBadge theme="kitap1" status="satista" className="px-4 py-1.5 tracking-wider">
+              <ThemeBadge
+                theme="kitap1"
+                status="satista"
+                className="px-4 py-1.5 tracking-wider"
+              >
                 <Zap className="w-3.5 h-3.5 fill-black text-black" />
                 <span>ANINDA TESLİMAT</span>
               </ThemeBadge>
@@ -113,9 +95,12 @@ export default function PricingSection() {
                 Vazgeçilmez Olma Sanatı <br />
                 <span className="gold-text-gradient">E-Kitap Paketi</span>
               </h3>
-              
+
               <p className="text-fluid-sm text-zinc-300 mt-2 mb-6 leading-relaxed">
-                Kargo bekleme veya adres girme süreçleriyle vakit kaybetmeyin. Ödemenizin ardından e-kitabınız (dijital formatta) doğrudan e-posta adresinize gönderilir. Telefon, tablet veya bilgisayarınızdan saniyeler içinde okumaya başlayın.
+                Kargo bekleme veya adres girme süreçleriyle vakit kaybetmeyin.
+                Ödemenizin ardından e-kitabınız (dijital formatta) doğrudan
+                e-posta adresinize gönderilir. Telefon, tablet veya
+                bilgisayarınızdan saniyeler içinde okumaya başlayın.
               </p>
 
               {/* Price Tag */}
@@ -123,8 +108,12 @@ export default function PricingSection() {
                 <span className="text-4xl sm:text-5xl font-black text-white font-mono">
                   600
                 </span>
-                <span className="text-xl font-bold text-gold-400 font-mono">TL</span>
-                <span className="text-xs text-zinc-400 font-medium ml-2">/ Tek Seferlik Ödeme</span>
+                <span className="text-xl font-bold text-gold-400 font-mono">
+                  TL
+                </span>
+                <span className="text-xs text-zinc-400 font-medium ml-2">
+                  / Tek Seferlik Ödeme
+                </span>
               </div>
 
               {/* Feature List */}
@@ -134,7 +123,8 @@ export default function PricingSection() {
                     <Check className="w-3 h-3" />
                   </div>
                   <span className="text-sm text-zinc-200">
-                    <strong>Tam Metin</strong> (Tüm bölümler ve ilişki psikolojisi protokolleri)
+                    <strong>Tam Metin</strong> (Tüm bölümler ve ilişki
+                    psikolojisi protokolleri)
                   </span>
                 </div>
 
@@ -143,7 +133,8 @@ export default function PricingSection() {
                     <Check className="w-3 h-3" />
                   </div>
                   <span className="text-sm text-zinc-200">
-                    <strong>PDF, EPUB ve Kindle (.mobi)</strong> formatlarında anında indirme
+                    <strong>PDF, EPUB ve Kindle (.mobi)</strong> formatlarında
+                    anında indirme
                   </span>
                 </div>
 
@@ -152,7 +143,8 @@ export default function PricingSection() {
                     <Check className="w-3 h-3" />
                   </div>
                   <span className="text-sm text-zinc-200">
-                    <strong>Ömür boyu erişim</strong> ve dijital revizyon güncellemeleri
+                    <strong>Ömür boyu erişim</strong> ve dijital revizyon
+                    güncellemeleri
                   </span>
                 </div>
 
@@ -161,7 +153,8 @@ export default function PricingSection() {
                     <Check className="w-3 h-3" />
                   </div>
                   <span className="text-sm text-zinc-200">
-                    Fiziksel kargo beklemeden, e-posta adresinize anında dijital teslimat.
+                    Fiziksel kargo beklemeden, e-posta adresinize anında dijital
+                    teslimat.
                   </span>
                 </div>
               </div>
@@ -184,142 +177,192 @@ export default function PricingSection() {
               </ThemeButton>
               <div className="flex items-center justify-center gap-1.5 mt-3 text-xs text-zinc-400 font-medium">
                 <Mail className="w-3.5 h-3.5 text-gold-400" />
-                <span>Otomatik sistem ile e-posta adresinize saniyeler içinde teslimat.</span>
+                <span>
+                  Otomatik sistem ile e-posta adresinize saniyeler içinde
+                  teslimat.
+                </span>
               </div>
             </div>
-
           </ThemeCard>
 
-
           {/* ========================================================================= */}
-          {/* SAĞ KART (TÜKENMİŞ / PASİF ÜRÜN): FİZİKSEL KİTAP (TALEP TOPLAMA)         */}
+          {/* SAĞ KART: FİZİKSEL KİTAP — YENİLENMİŞ EDİSYON (5 KASIM LANSMAN / SATIŞ)   */}
           {/* ========================================================================= */}
           <ThemeCard
             theme="kitap1"
-            variant="muted"
-            className="flex flex-col justify-between p-6 sm:p-8 lg:p-9"
+            variant="elevated"
+            className="flex flex-col justify-between p-6 sm:p-8 lg:p-9 border-mahogany-600/70"
           >
-            
-            {/* TÜKENDİ ŞERİT / ROZETİ */}
-            <div className="absolute -top-3.5 right-6 sm:right-8 z-20">
-              <ThemeBadge theme="kitap1" status="tukendi" className="px-4 py-1.5">
-                <ShieldAlert className="w-3.5 h-3.5" />
-                <span>TÜKENDİ</span>
-              </ThemeBadge>
+            {/* ÜST ROZET: Satış Öncesi "Yenilenmiş Edisyon – 5 Kasım'da Satışta", Satışta "SATIŞTA" */}
+            <div className="absolute -top-3.5 left-6 sm:left-8 z-20">
+              {isOnSale ? (
+                <ThemeBadge
+                  theme="kitap1"
+                  status="satista"
+                  className="px-4 py-1.5 tracking-wider"
+                >
+                  <Truck className="w-3.5 h-3.5 text-black" />
+                  <span>SATIŞTA • ÜCRETSİZ KARGO</span>
+                </ThemeBadge>
+              ) : (
+                <ThemeBadge
+                  theme="kitap1"
+                  status="yakinda"
+                  className="px-4 py-1.5 tracking-wider"
+                >
+                  <Clock className="w-3.5 h-3.5 text-gold-300" />
+                  <span>{physicalRenovated.preLaunchBadgeText}</span>
+                </ThemeBadge>
+              )}
             </div>
 
             <div>
               {/* Header */}
               <div className="flex items-center justify-between mb-4 pt-2">
-                <div className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-widest text-zinc-500 font-mono">
-                  <Package className="w-4 h-4 text-zinc-500" />
-                  <span>1. BASKI KOLEKSİYON SERİSİ</span>
+                <div className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-widest text-mahogany-200 font-mono">
+                  <Package className="w-4 h-4 text-gold-400" />
+                  <span>YENİLENMİŞ EDİSYON FİZİKSEL BASKI</span>
                 </div>
-                <div className="p-2 rounded-lg bg-zinc-800/60 text-zinc-500 border border-zinc-700/50">
-                  <Lock className="w-4 h-4" />
+                <div className="p-2 rounded-lg bg-mahogany-800/80 text-gold-400 border border-mahogany-600/60">
+                  <Package className="w-5 h-5" />
                 </div>
               </div>
 
-              <h3 className="text-fluid-2xl font-black text-zinc-300 tracking-tight leading-snug">
+              <h3 className="text-fluid-2xl font-black text-white tracking-tight leading-snug">
                 Vazgeçilmez Olma Sanatı <br />
-                <span className="text-zinc-500">Fiziksel Kitap</span>
+                <span className="gold-text-gradient">
+                  Fiziksel Kitap (Yenilenmiş Edisyon)
+                </span>
               </h3>
-              
-              <p className="text-fluid-sm text-zinc-400 mt-2 mb-6 leading-relaxed">
-                Koleksiyon serisi tamamen tükenmiştir ve bir daha basılmayacaktır. Yeni bir fiziksel versiyon üretmek gibi bir mecburiyetimiz yok. Ancak bu bilgilere ulaşmak isteyenlerin yoğun baskısı üzerine, standart bir edisyon değerlendirmeye alınabilir. Kararı, oluşturduğunuz talep belirleyecek.
-              </p>
 
-              {/* Price Tag (Üstü Çizili) */}
-              <div className="py-4 my-4 border-y border-zinc-800/80 flex items-baseline gap-2 bg-zinc-900/30 -mx-6 sm:-mx-8 lg:-mx-9 px-6 sm:px-8 lg:px-9">
-                <span className="text-4xl sm:text-5xl font-black text-zinc-500 line-through decoration-crimson-500 decoration-2 font-mono">
-                  1000
-                </span>
-                <span className="text-xl font-bold text-zinc-600 font-mono">TL</span>
-                <span className="text-xs text-crimson-400 font-bold uppercase tracking-wider ml-2">
-                  (1. BASKI TÜKENDİ)
+              {/* Kısa Bilgilendirme Notu */}
+              <div className="mt-3 mb-5 p-3.5 rounded-xl bg-mahogany-900/70 border border-mahogany-700/70 flex items-start gap-2.5 text-left">
+                <Info className="w-4 h-4 text-gold-400 flex-shrink-0 mt-0.5" />
+                <p className="text-xs sm:text-sm text-mahogany-200 leading-relaxed">
+                  {VAZGECILMEZ_CONFIG.editionNote}
+                </p>
+              </div>
+
+              {/* Fiyat ve Ücretsiz Kargo Bandı */}
+              <div className="py-4 my-4 border-y border-mahogany-700/70 flex flex-wrap items-baseline justify-between gap-2 bg-mahogany-900/40 -mx-6 sm:-mx-8 lg:-mx-9 px-6 sm:px-8 lg:px-9">
+                <div className="flex items-baseline gap-2">
+                  <span className="text-4xl sm:text-5xl font-black text-white font-mono">
+                    {physicalRenovated.price}
+                  </span>
+                  <span className="text-xl font-bold text-gold-400 font-mono">
+                    {physicalRenovated.currency}
+                  </span>
+                </div>
+                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-gold-500/15 border border-gold-500/40 text-xs font-bold text-gold-300 uppercase tracking-wider">
+                  <Truck className="w-3.5 h-3.5 text-gold-400" />
+                  <span>{physicalRenovated.shippingNote}</span>
                 </span>
               </div>
 
-              {/* Feature List (Soluk Gri Liste) */}
-              <div className="space-y-3.5 my-6 text-zinc-400">
+              {/* Özellik Listesi */}
+              <div className="space-y-3 my-5">
                 <div className="flex items-start gap-3">
-                  <div className="mt-0.5 w-4 h-4 rounded-full bg-zinc-800 flex items-center justify-center flex-shrink-0 text-zinc-500 border border-zinc-700">
+                  <div className="mt-0.5 w-4 h-4 rounded-full bg-gold-500/20 flex items-center justify-center flex-shrink-0 text-gold-400 border border-gold-500/40">
                     <Check className="w-3 h-3" />
                   </div>
-                  <span className="text-sm text-zinc-400">
-                    Yazardan İsme Özel Islak İmza ve kişisel not
+                  <span className="text-sm text-zinc-200">
+                    <strong>Birebir aynı tavizsiz içerik</strong> (227 sayfa tam
+                    metin)
                   </span>
                 </div>
 
                 <div className="flex items-start gap-3">
-                  <div className="mt-0.5 w-4 h-4 rounded-full bg-zinc-800 flex items-center justify-center flex-shrink-0 text-zinc-500 border border-zinc-700">
+                  <div className="mt-0.5 w-4 h-4 rounded-full bg-gold-500/20 flex items-center justify-center flex-shrink-0 text-gold-400 border border-gold-500/40">
                     <Check className="w-3 h-3" />
                   </div>
-                  <span className="text-sm text-zinc-400">
-                    Sert Ciltli (Hardcover) & Altın Varak kabartmalı lüks kapak
+                  <span className="text-sm text-zinc-200">
+                    <strong>Yeni kapak tasarımı</strong> ve göz yormayan{" "}
+                    <strong>daha okunaklı büyük punto</strong>
                   </span>
                 </div>
 
                 <div className="flex items-start gap-3">
-                  <div className="mt-0.5 w-4 h-4 rounded-full bg-zinc-800 flex items-center justify-center flex-shrink-0 text-zinc-500 border border-zinc-700">
+                  <div className="mt-0.5 w-4 h-4 rounded-full bg-gold-500/20 flex items-center justify-center flex-shrink-0 text-gold-400 border border-gold-500/40">
                     <Check className="w-3 h-3" />
                   </div>
-                  <span className="text-sm text-zinc-400">
-                    1/200 Numaralandırılmış resmi koleksiyon damgası (200/200 Tükendi)
+                  <span className="text-sm text-zinc-200">
+                    <strong>Kapıya kadar ücretsiz kargo</strong> ve gizli/korumalı
+                    özel paketleme
                   </span>
                 </div>
               </div>
             </div>
 
-            {/* Secondary CTA Button (Action Button) & Talep Sayacı */}
-            <div className="pt-6 mt-4">
-              <ThemeButton
-                theme="kitap1"
-                variant={hasRequested ? "disabled" : "outline"}
-                size="lg"
-                fullWidth
-                onClick={handleDemandClick}
-                disabled={hasRequested}
-              >
-                {hasRequested ? (
-                  <>
-                    <Check className="w-4 h-4 text-emerald-400" />
-                    <span>TALEBİNİZ ALINDI</span>
-                  </>
-                ) : (
-                  <>
-                    <Flame className="w-4 h-4 text-amber-400 fill-amber-400/20" />
-                    <span>YENİ BASKI İÇİN TALEP OLUŞTUR</span>
-                  </>
-                )}
-              </ThemeButton>
-              <div className="flex items-center justify-center gap-1.5 mt-3 text-xs sm:text-[13px] text-zinc-400 font-medium text-center">
-                <span>🔥 Şu an <strong className="text-gold-300 font-bold">{demandCount} kişi</strong> yeni baskı talep ediyor.</span>
-              </div>
-            </div>
+            {/* Alt Aksiyon Alanı: Satış Öncesi Geri Sayım + Haber Al / Satışta Sipariş Ver */}
+            <div className="pt-4 mt-2">
+              {!isOnSale ? (
+                <div className="space-y-4">
+                  <div>
+                    <div className="text-[11px] font-bold uppercase tracking-widest text-gold-300/90 mb-2 text-center">
+                      5 Kasım 20:00 Satış Başlangıcına Kalan Süre
+                    </div>
+                    <BookCountdown
+                      theme="kitap1"
+                      size="sm"
+                      releaseDate={VAZGECILMEZ_CONFIG.releaseDate}
+                      showStatusBadge={false}
+                      showActionArea={false}
+                      className="mx-auto"
+                    />
+                  </div>
 
+                  <ThemeButton
+                    theme="kitap1"
+                    variant="secondary"
+                    size="lg"
+                    fullWidth
+                    href={physicalRenovated.notifyWhatsappUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <MessageCircle className="w-5 h-5 text-gold-400 flex-shrink-0" />
+                    <span>WhatsApp&apos;tan Haber Al</span>
+                    <ArrowRight className="w-4 h-4" />
+                  </ThemeButton>
+                </div>
+              ) : (
+                <div className="space-y-3">
+                  <ThemeButton
+                    theme="kitap1"
+                    variant="primary"
+                    size="lg"
+                    fullWidth
+                    href={physicalRenovated.orderWhatsappUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <MessageCircle className="w-5 h-5 fill-black/15 text-black flex-shrink-0" />
+                    <span>WhatsApp ile Sipariş Ver (1000 TL)</span>
+                    <ArrowRight className="w-4 h-4" />
+                  </ThemeButton>
+
+                  {KART_ODEME_AKTIF && (
+                    <ThemeButton
+                      theme="kitap1"
+                      variant="secondary"
+                      size="lg"
+                      fullWidth
+                    >
+                      <ShoppingBag className="w-5 h-5 text-gold-400 flex-shrink-0" />
+                      <span>Sepete Ekle (1000 TL)</span>
+                    </ThemeButton>
+                  )}
+
+                  <div className="flex items-center justify-center gap-1.5 pt-1 text-xs text-gold-300 font-medium">
+                    <Truck className="w-3.5 h-3.5 text-gold-400" />
+                    <span>Kapıya kadar ücretsiz kargo ile gönderim.</span>
+                  </div>
+                </div>
+              )}
+            </div>
           </ThemeCard>
-
         </div>
-
-        {/* Security & Guarantee Strip */}
-        <div className="mt-14 max-w-4xl mx-auto flex flex-wrap items-center justify-center gap-6 sm:gap-10 text-xs text-zinc-400">
-          <div className="flex items-center gap-2">
-            <Lock className="w-4 h-4 text-gold-400" />
-            <span>256-Bit SSL Uçtan Uca Şifreli Güvenlik</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <Package className="w-4 h-4 text-gold-400" />
-            <span>Doğrudan Yazar Onaylı Orijinal Eser</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <Zap className="w-4 h-4 text-gold-400" />
-            <span>Satın Alma Sonrası Anında Erişim</span>
-          </div>
-        </div>
-
       </div>
     </section>
   );
 }
-

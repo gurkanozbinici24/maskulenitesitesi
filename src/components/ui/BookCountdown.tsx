@@ -618,6 +618,8 @@ export function CekicilikSalesOptions({
 }
 
 export interface BookCountdownProps {
+  /** Tema: "kitap1" (Maun/Altın) veya "kitap2" (Koyu Bordo/Zümrüt - varsayılan) */
+  theme?: "kitap1" | "kitap2";
   /** Boyut: "sm" / "kucuk" (kitap kartının altı için) veya "lg" / "buyuk" (bölüm için) */
   size?: CountdownSize;
   /** İsteğe bağlı özel çıkış tarihi (varsayılan: config içindeki RELEASE_DATE) */
@@ -637,6 +639,7 @@ export interface BookCountdownProps {
 }
 
 export function BookCountdown({
+  theme = "kitap2",
   size = "lg",
   releaseDate = RELEASE_DATE,
   trailerUrl = TRAILER_URL,
@@ -647,6 +650,7 @@ export function BookCountdown({
   className = "",
 }: BookCountdownProps) {
   const isCompact = size === "sm" || size === "kucuk";
+  const isKitap1 = theme === "kitap1";
   const { mounted, isOnSale, timeLeft } = useCekicilikLaunchStatus(releaseDate);
 
   // SÜRE DOLDUĞUNDA: Sayaç kaybolur, rozet "SATIŞTA" olur ve iki satın alma seçeneği çıkar
@@ -702,6 +706,14 @@ export function BookCountdown({
     },
   ];
 
+  const boxThemeClasses = isKitap1
+    ? "border-mahogany-700/80 bg-gradient-to-b from-mahogany-800/80 via-matte-900/95 to-matte-950 shadow-[inset_0_1px_0_rgba(212,175,55,0.22),0_8px_20px_rgba(59,35,20,0.4)] hover:border-gold-500/60"
+    : "border-crimson-950 bg-gradient-to-b from-crimson-950/75 via-matte-900/95 to-matte-950 shadow-[inset_0_1px_0_rgba(220,38,38,0.22),0_8px_20px_rgba(92,0,0,0.35)] hover:border-crimson-700/70";
+
+  const topLineThemeClasses = isKitap1
+    ? "via-gold-500/45"
+    : "via-crimson-500/45";
+
   return (
     <div
       className={`w-full select-none ${
@@ -709,7 +721,7 @@ export function BookCountdown({
       } ${className}`}
       role="timer"
       aria-live="polite"
-      aria-label="Çekicilik Sanatı çıkış geri sayımı"
+      aria-label="Çıkış geri sayımı"
     >
       {/* Üst Rozet: Yakında */}
       {showStatusBadge && (
@@ -731,14 +743,16 @@ export function BookCountdown({
         {units.map((unit) => (
           <div
             key={unit.key}
-            className={`relative flex flex-col items-center justify-center overflow-hidden border border-crimson-950 bg-gradient-to-b from-crimson-950/75 via-matte-900/95 to-matte-950 shadow-[inset_0_1px_0_rgba(220,38,38,0.22),0_8px_20px_rgba(92,0,0,0.35)] transition-colors duration-300 hover:border-crimson-700/70 ${
+            className={`relative flex flex-col items-center justify-center overflow-hidden border transition-colors duration-300 ${boxThemeClasses} ${
               isCompact
                 ? "rounded-xl py-2 px-1 sm:py-2.5 sm:px-2.5"
                 : "rounded-xl sm:rounded-2xl py-3 px-1.5 sm:py-5 sm:px-4"
             }`}
           >
-            {/* Üst koyu bordo/altın ince yansıma çizgisi */}
-            <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-crimson-500/45 to-transparent" />
+            {/* Üst ince yansıma çizgisi */}
+            <div
+              className={`pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent ${topLineThemeClasses} to-transparent`}
+            />
 
             {/* Rakam Alanı (Yumuşak geçiş animasyonlu altın rakamlar) */}
             <div

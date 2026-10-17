@@ -68,6 +68,18 @@ const config: Config = {
           900: "#0c111a",
           950: "#070a10",
         },
+        mahogany: {
+          200: "#e6ccb2",
+          300: "#d4a373",
+          400: "#b07d4f",
+          500: "#8c5834",
+          600: "#6b3e26",
+          700: "#522f1c",
+          800: "#3b2314",
+          850: "#2b190e",
+          900: "#1f120a",
+          950: "#120a05",
+        },
         emerald: {
           200: "#a7f3d0",
           300: "#6ee7b7",
@@ -83,9 +95,11 @@ const config: Config = {
       backgroundImage: {
         "gold-gradient": "linear-gradient(135deg, #FFF0B3 0%, #D4AF37 50%, #8C6200 100%)",
         "gold-metallic": "linear-gradient(90deg, #BF953F, #FCF6BA, #B38728, #FBF5B7, #AA771C)",
+        "mahogany-gradient": "linear-gradient(135deg, #6b3e26 0%, #3b2314 55%, #1f120a 100%)",
         "crimson-gradient": "linear-gradient(135deg, #ef4444 0%, #b91c1c 55%, #5c0000 100%)",
         "emerald-gradient": "linear-gradient(135deg, #34d399 0%, #1FA35A 55%, #0f5c31 100%)",
         "dark-radial": "radial-gradient(ellipse at top, #1a1a24 0%, #050507 70%)",
+        "mahogany-radial": "radial-gradient(ellipse at top, #3b2314 0%, #050507 72%)",
         "steel-radial": "radial-gradient(ellipse at top, #151d2a 0%, #050507 70%)",
         "crimson-radial": "radial-gradient(ellipse at top, #5c0000 0%, #050507 75%)",
         "card-gradient": "linear-gradient(180deg, rgba(26,26,36,0.6) 0%, rgba(15,15,20,0.8) 100%)",
@@ -93,6 +107,7 @@ const config: Config = {
       boxShadow: {
         "gold-glow": "0 0 25px -5px rgba(212, 175, 55, 0.35)",
         "gold-glow-lg": "0 0 45px -5px rgba(212, 175, 55, 0.5)",
+        "mahogany-glow": "0 0 28px -5px rgba(107, 62, 38, 0.45)",
         "crimson-glow": "0 0 25px -4px rgba(220, 38, 38, 0.45)",
         "crimson-glow-lg": "0 0 45px -5px rgba(220, 38, 38, 0.65)",
         "emerald-glow": "0 0 25px -5px rgba(31, 163, 90, 0.4)",

@@ -170,11 +170,11 @@ function SubtleSmokePlumes({
 
       const mat = mesh.material as THREE.MeshBasicMaterial;
       if (activeBook === "kitap2") {
-        tintColor.set("#7f1d1d");
+        tintColor.set("#5c0000");
       } else if (activeBook === "kitap1") {
-        tintColor.set("#b8860b");
+        tintColor.set("#6b3e26");
       } else {
-        tintColor.set("#524124");
+        tintColor.set("#4a3219");
       }
       mat.color.lerp(tintColor, delta * 2);
     });

@@ -3,10 +3,12 @@
 import { useState, useEffect } from "react";
 import { Menu, X, ArrowUpRight, BookOpen } from "lucide-react";
 import { ThemeButton } from "./ui/ThemeSystem";
+import { useCekicilikLaunchStatus } from "./ui/BookCountdown";
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { isOnSale } = useCekicilikLaunchStatus();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -18,19 +20,19 @@ export default function Navbar() {
 
   return (
     <div className="fixed top-0 left-0 right-0 z-50">
-      {/* 1. Lüks VIP Duyuru Çubuğu (Tükendi Duyurusu) */}
+      {/* 1. Lüks VIP Duyuru Çubuğu (Yenilenmiş Edisyon ve Yeni Kitap Duyurusu) */}
       <a
         href="#fiyat-kartlari"
-        className="w-full bg-black border-b border-crimson-600/70 py-2.5 px-3 sm:px-4 text-center select-none flex flex-wrap items-center justify-center gap-1.5 sm:gap-2 shadow-[0_4px_25px_rgba(220,38,38,0.35)] hover:bg-zinc-950 active:bg-zinc-900 transition-colors cursor-pointer group"
+        className="w-full bg-matte-950 border-b border-gold-500/45 py-2.5 px-3 sm:px-4 text-center select-none flex flex-wrap items-center justify-center gap-1.5 sm:gap-2 shadow-[0_4px_25px_rgba(212,175,55,0.2)] hover:bg-mahogany-950 active:bg-mahogany-900 transition-colors cursor-pointer group"
       >
         <span className="relative flex h-2 w-2 mr-1">
-          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-crimson-400 opacity-75"></span>
-          <span className="relative inline-flex rounded-full h-2 w-2 bg-crimson-500"></span>
+          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-gold-400 opacity-75"></span>
+          <span className="relative inline-flex rounded-full h-2 w-2 bg-gold-500"></span>
         </span>
-        <span
-          className="text-crimson-400 font-black text-[11px] sm:text-[13px] tracking-[0.12em] uppercase px-3 py-0.5 rounded-md bg-crimson-950/80 border border-crimson-500/60 shadow-[0_0_12px_rgba(239,68,68,0.5)]"
-        >
-          1. BASKI KOLEKSİYON SERİSİ TÜKENDİ
+        <span className="text-gold-300 font-black text-[11px] sm:text-[13px] tracking-[0.12em] uppercase px-3 py-0.5 rounded-md bg-mahogany-900/90 border border-gold-500/50 shadow-gold-glow">
+          {isOnSale
+            ? "YENİLENMİŞ EDİSYON VE YENİ KİTAP: ŞİMDİ SATIŞTA"
+            : "YENİLENMİŞ EDİSYON VE YENİ KİTAP: 5 KASIM'DA"}
         </span>
       </a>
 

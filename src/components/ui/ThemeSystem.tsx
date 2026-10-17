@@ -56,7 +56,7 @@ export function ThemeButton({
       primary:
         "text-black bg-gradient-to-r from-gold-300 via-gold-400 to-gold-600 shadow-gold-glow hover:shadow-gold-glow-lg active:shadow-gold-glow hover:brightness-110 active:brightness-95 active:scale-[0.98] font-extrabold",
       secondary:
-        "text-zinc-200 hover:text-gold-300 active:text-gold-200 bg-matte-900 hover:bg-matte-800 active:bg-matte-850 border border-zinc-800 hover:border-gold-500/40 active:border-gold-400/60 active:scale-[0.98] font-semibold shadow-sm",
+        "text-mahogany-200 hover:text-gold-300 active:text-gold-200 bg-mahogany-900/85 hover:bg-mahogany-800/90 active:bg-mahogany-850 border border-mahogany-700/70 hover:border-gold-500/45 active:border-gold-400/60 active:scale-[0.98] font-semibold shadow-sm",
       outline:
         "bg-transparent hover:bg-gold-500/10 active:bg-gold-500/15 border border-gold-500/50 hover:border-gold-400 active:border-gold-300 text-gold-300 hover:text-gold-200 active:scale-[0.98] font-black",
       disabled:
@@ -111,7 +111,7 @@ export function ThemeButton({
 /* ============================================================================
  * 2. ORTAK ROZET BİLEŞENİ (ThemeBadge)
  * - Durumlar: "satista" (Satışta / Anında Teslimat), "yakinda" (Yakında), "tukendi" (Tükendi), "etiket" (Bölüm üst rozeti)
- * - Temalar: "kitap1" (Altın/Çelik) & "kitap2" (Kırmızı/Zümrüt)
+ * - Temalar: "kitap1" (Altın / Maun-Konyak Kahvesi) & "kitap2" (Kırmızı / Zümrüt)
  * ========================================================================== */
 
 export interface ThemeBadgeProps {
@@ -132,11 +132,11 @@ export function ThemeBadge({
       satista:
         "bg-gradient-to-r from-gold-300 via-gold-400 to-gold-600 text-black font-black shadow-gold-glow border border-gold-200/50",
       yakinda:
-        "bg-steel-900/90 text-steel-200 font-bold border border-steel-600/60 shadow-steel-glow",
+        "bg-mahogany-800/95 text-gold-200 font-bold border border-mahogany-500/70 shadow-mahogany-glow",
       tukendi:
-        "bg-crimson-600 text-white font-black shadow-md border border-crimson-400/40",
+        "bg-mahogany-900 text-mahogany-300 font-black shadow-md border border-mahogany-600/50",
       etiket:
-        "bg-matte-850 border border-gold-500/30 text-gold-300 font-bold shadow-inner",
+        "bg-mahogany-900/90 border border-gold-500/35 text-gold-300 font-bold shadow-inner",
     },
     kitap2: {
       satista:
@@ -161,7 +161,7 @@ export function ThemeBadge({
 
 /* ============================================================================
  * 3. ORTAK KART BİLEŞENİ (ThemeCard)
- * - Temalar: "kitap1" (Altın/Çelik) & "kitap2" (Kırmızı/Zümrüt)
+ * - Temalar: "kitap1" (Altın / Maun-Konyak Kahvesi) & "kitap2" (Kırmızı / Zümrüt)
  * ========================================================================== */
 
 export interface ThemeCardProps {
@@ -182,11 +182,11 @@ export function ThemeCard({
   const cardStyles: Record<BookTheme, Record<string, string>> = {
     kitap1: {
       elevated:
-        "bg-gradient-to-b from-matte-800 to-matte-900/90 border border-zinc-800/80 hover:border-gold-500/50 active:border-gold-500/60 shadow-card-elevated hover:shadow-gold-glow",
+        "bg-gradient-to-b from-mahogany-900/75 via-matte-900/95 to-matte-950 border border-mahogany-700/60 hover:border-gold-500/50 active:border-gold-500/60 shadow-card-elevated hover:shadow-gold-glow",
       glow:
-        "bg-gradient-to-b from-matte-850 via-matte-900 to-matte-950 border-2 border-gold-500 shadow-gold-glow hover:shadow-gold-glow-lg",
+        "bg-gradient-to-b from-mahogany-800/55 via-matte-900 to-matte-950 border-2 border-gold-500 shadow-gold-glow hover:shadow-gold-glow-lg",
       muted:
-        "bg-matte-900/50 border border-zinc-800 text-zinc-400",
+        "bg-mahogany-950/60 border border-mahogany-800/70 text-zinc-300",
     },
     kitap2: {
       elevated:

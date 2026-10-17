@@ -1,8 +1,9 @@
 /**
- * Çekicilik Sanatı — Merkezi Lansman, Geri Sayım ve Satış Yapılandırması
+ * Merkezi Lansman, Geri Sayım ve Satış Yapılandırması (İki Kitap Ortak Config)
  *
- * Sitedeki tüm bileşenler (ana sayfa, kitap kartları, alt bar, tanıtım sayfası)
- * durumunu, fiyatlarını ve butonlarını tek bir merkezden (bu dosyadan) alır.
+ * Hem "Çekicilik Sanatı" hem de "Vazgeçilmez Olma Sanatı — Yenilenmiş Edisyon"
+ * aynı çıkış tarihini (5 Kasım 2026 20:00 TSİ), aynı geri sayımı ve aynı
+ * ödeme bayrağını (KART_ODEME_AKTIF) kullanır.
  */
 
 /** Satış başlangıç ve geri sayım hedef tarihi (Türkiye saati, UTC+3) */
@@ -21,7 +22,11 @@ export const WHATSAPP_PHONE = "905455207999";
 export const INSTAGRAM_URL = "https://www.instagram.com/maskulenitesitesi";
 
 export interface CekicilikProductOption {
-  id: "cekicilik-ekitap" | "cekicilik-fiziksel";
+  id:
+    | "cekicilik-ekitap"
+    | "cekicilik-fiziksel"
+    | "vazgecilmez-ekitap"
+    | "vazgecilmez-fiziksel-yenilenmis";
   type: "ebook" | "physical";
   title: string;
   shortTitle: string;
@@ -36,6 +41,64 @@ export interface CekicilikProductOption {
   whatsappUrl: string;
 }
 
+export function buildWhatsAppUrl(message: string, phone = WHATSAPP_PHONE): string {
+  return `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+}
+
+/* ============================================================================
+ * 1. KİTAP: VAZGEÇİLMEZ OLMA SANATI (E-Kitap + Yenilenmiş Edisyon Fiziksel)
+ * ========================================================================== */
+
+const VAZGECILMEZ_EBOOK_WHATSAPP_MESSAGE =
+  "Merhaba, Vazgeçilmez Olma Sanatı e-kitap paketini satın almak istiyorum.";
+
+const VAZGECILMEZ_PHYSICAL_NOTIFY_MESSAGE =
+  "Merhaba, Vazgeçilmez Olma Sanatı Yenilenmiş Edisyon fiziksel kitabı çıktığında haber almak istiyorum.";
+
+const VAZGECILMEZ_PHYSICAL_ORDER_MESSAGE =
+  "Merhaba, Vazgeçilmez Olma Sanatı Yenilenmiş Edisyon fiziksel kitabını satın almak istiyorum.";
+
+export const VAZGECILMEZ_CONFIG = {
+  bookTitle: "Vazgeçilmez Olma Sanatı",
+  coverImage: "/vazgecilmez-yeni-kapak.jpg",
+  releaseDate: RELEASE_DATE,
+  kartOdemeAktif: KART_ODEME_AKTIF,
+  editionNote:
+    "1. Baskı Koleksiyon Serisi (200 adet) tükendi. Yenilenmiş Edisyon: aynı içerik, yeni kapak, daha okunaklı büyük punto.",
+  ebook: {
+    id: "vazgecilmez-ekitap" as const,
+    type: "ebook" as const,
+    title: "Vazgeçilmez Olma Sanatı",
+    shortTitle: "E-Kitap",
+    subtitle: "E-Kitap Paketi",
+    badgeText: "ANINDA TESLİMAT",
+    price: 600,
+    currency: "TL",
+    whatsappMessage: VAZGECILMEZ_EBOOK_WHATSAPP_MESSAGE,
+    whatsappUrl: buildWhatsAppUrl(VAZGECILMEZ_EBOOK_WHATSAPP_MESSAGE),
+  },
+  physicalRenovated: {
+    id: "vazgecilmez-fiziksel-yenilenmis" as const,
+    type: "physical" as const,
+    title: "Vazgeçilmez Olma Sanatı",
+    shortTitle: "Fiziksel Kitap (Yenilenmiş Edisyon)",
+    subtitle: "Yenilenmiş Edisyon — Fiziksel Kitap",
+    preLaunchBadgeText: "Yenilenmiş Edisyon – 5 Kasım'da Satışta",
+    saleBadgeText: "SATIŞTA • ÜCRETSİZ KARGO",
+    price: 1000,
+    currency: "TL",
+    shippingNote: "Kapıya kadar ücretsiz kargo",
+    notifyWhatsappMessage: VAZGECILMEZ_PHYSICAL_NOTIFY_MESSAGE,
+    notifyWhatsappUrl: buildWhatsAppUrl(VAZGECILMEZ_PHYSICAL_NOTIFY_MESSAGE),
+    orderWhatsappMessage: VAZGECILMEZ_PHYSICAL_ORDER_MESSAGE,
+    orderWhatsappUrl: buildWhatsAppUrl(VAZGECILMEZ_PHYSICAL_ORDER_MESSAGE),
+  },
+} as const;
+
+/* ============================================================================
+ * 2. KİTAP: ÇEKİCİLİK SANATI (E-Kitap + Fiziksel Kitap)
+ * ========================================================================== */
+
 const EBOOK_WHATSAPP_MESSAGE =
   "Merhaba, Çekicilik Sanatı E-Kitap paketini satın almak istiyorum.";
 
@@ -44,10 +107,6 @@ const PHYSICAL_WHATSAPP_MESSAGE =
 
 const NOTIFY_WHATSAPP_MESSAGE =
   "Çekicilik Sanatı çıktığında haber almak istiyorum.";
-
-export function buildWhatsAppUrl(message: string, phone = WHATSAPP_PHONE): string {
-  return `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
-}
 
 export const CEKICILIK_PRODUCTS: {
   ebook: CekicilikProductOption;
@@ -98,6 +157,7 @@ export const CEKICILIK_PRODUCTS: {
 
 export const CEKICILIK_SANATI_CONFIG = {
   bookTitle: "Çekicilik Sanatı",
+  coverImage: "/cekicilik-sanati-kapak.jpg",
   releaseDate: RELEASE_DATE,
   trailerUrl: TRAILER_URL,
   kartOdemeAktif: KART_ODEME_AKTIF,
