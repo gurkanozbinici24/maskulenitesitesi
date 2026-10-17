@@ -19,17 +19,17 @@ export default function Navbar() {
   }, []);
 
   return (
-    <div className="fixed top-0 left-0 right-0 z-50">
-      {/* 1. Lüks VIP Duyuru Çubuğu (Yenilenmiş Edisyon ve Yeni Kitap Duyurusu) */}
+    <div className="fixed top-0 left-0 right-0 z-50 w-full max-w-full overflow-x-clip">
+      {/* 1. Lüks VIP Duyuru Çubuğu (Tek satıra sığan kompakt şerit) */}
       <a
         href="#fiyat-kartlari"
-        className="w-full bg-matte-950 border-b border-gold-500/45 py-2.5 px-3 sm:px-4 text-center select-none flex flex-wrap items-center justify-center gap-1.5 sm:gap-2 shadow-[0_4px_25px_rgba(212,175,55,0.2)] hover:bg-mahogany-950 active:bg-mahogany-900 transition-colors cursor-pointer group"
+        className="w-full h-7 sm:h-8 bg-matte-950 border-b border-gold-500/40 px-2.5 sm:px-4 text-center select-none flex items-center justify-center gap-1.5 overflow-hidden shadow-[0_2px_18px_rgba(212,175,55,0.18)] hover:bg-mahogany-950 active:bg-mahogany-900 transition-colors cursor-pointer"
       >
-        <span className="relative flex h-2 w-2 mr-1">
+        <span className="relative flex h-1.5 w-1.5 sm:h-2 sm:w-2 flex-shrink-0">
           <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-gold-400 opacity-75"></span>
-          <span className="relative inline-flex rounded-full h-2 w-2 bg-gold-500"></span>
+          <span className="relative inline-flex rounded-full h-1.5 w-1.5 sm:h-2 sm:w-2 bg-gold-500"></span>
         </span>
-        <span className="text-gold-300 font-black text-[11px] sm:text-[13px] tracking-[0.12em] uppercase px-3 py-0.5 rounded-md bg-mahogany-900/90 border border-gold-500/50 shadow-gold-glow">
+        <span className="text-gold-300 font-extrabold text-[10px] sm:text-xs tracking-[0.08em] sm:tracking-[0.14em] uppercase whitespace-nowrap truncate">
           {isOnSale
             ? "YENİLENMİŞ EDİSYON VE YENİ KİTAP: ŞİMDİ SATIŞTA"
             : "YENİLENMİŞ EDİSYON VE YENİ KİTAP: 5 KASIM'DA"}
@@ -40,45 +40,44 @@ export default function Navbar() {
       <header
         className={`w-full transition-all duration-300 ${
           isScrolled
-            ? "bg-matte-950/95 backdrop-blur-md border-b border-zinc-800/80 shadow-2xl py-3"
-            : "bg-matte-950/80 backdrop-blur-sm py-4 border-b border-white/5"
+            ? "bg-matte-950/95 backdrop-blur-md border-b border-zinc-800/80 shadow-2xl py-2"
+            : "bg-matte-950/85 backdrop-blur-sm py-2.5 border-b border-white/5"
         }`}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between gap-8 lg:gap-12">
-            
-            {/* Logo - Vazgeçilmez Olma Sanatı */}
+        <div className="max-w-7xl mx-auto px-3.5 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between gap-2 sm:gap-4">
+            {/* Sol: Küçük Logo ve GÜRKAN ÖZBİNİCİ */}
             <a
               href="/"
-              className="flex items-center gap-3 group focus:outline-none flex-shrink-0 mr-6 sm:mr-8 lg:mr-12"
+              className="flex items-center gap-2.5 group focus:outline-none min-w-0"
             >
-              <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-zinc-800 to-zinc-950 border border-gold-500/40 flex items-center justify-center shadow-gold-glow group-hover:border-gold-400 transition-colors flex-shrink-0">
-                <BookOpen className="w-5 h-5 text-gold-400" />
+              <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-lg bg-gradient-to-br from-mahogany-800 to-matte-950 border border-gold-500/45 flex items-center justify-center shadow-gold-glow group-hover:border-gold-400 transition-colors flex-shrink-0">
+                <BookOpen className="w-4 h-4 sm:w-4.5 sm:h-4.5 text-gold-400" />
               </div>
-              <span className="font-extrabold tracking-wider text-base sm:text-lg text-zinc-100 uppercase group-hover:text-gold-300 transition-colors whitespace-nowrap">
-                Vazgeçilmez Olma Sanatı
+              <span className="font-cinzel font-bold tracking-[0.14em] sm:tracking-[0.18em] text-xs sm:text-sm md:text-base text-zinc-100 uppercase group-hover:text-gold-300 transition-colors truncate">
+                GÜRKAN ÖZBİNİCİ
               </span>
             </a>
 
             {/* Desktop Nav Items & Kompakt Satın Alma Butonu */}
-            <nav className="hidden md:flex items-center gap-6 lg:gap-8 ml-auto flex-shrink-0">
+            <nav className="hidden md:flex items-center gap-5 lg:gap-7 ml-auto flex-shrink-0">
               <a
                 href="/#kazanimlar"
-                className="text-sm font-medium text-zinc-400 hover:text-gold-300 active:text-gold-200 transition-colors whitespace-nowrap"
+                className="text-xs lg:text-sm font-medium text-zinc-300 hover:text-gold-300 active:text-gold-200 transition-colors whitespace-nowrap"
               >
                 Neler Kazanacaksın?
               </a>
-              
+
               <a
                 href="/#sosyal-kanit"
-                className="text-sm font-medium text-zinc-400 hover:text-gold-300 active:text-gold-200 transition-colors whitespace-nowrap"
+                className="text-xs lg:text-sm font-medium text-zinc-300 hover:text-gold-300 active:text-gold-200 transition-colors whitespace-nowrap"
               >
                 Topluluk & Güven
               </a>
 
               <a
                 href="/danismanlik"
-                className="text-sm font-semibold text-gold-300 hover:text-gold-200 active:text-gold-100 transition-colors flex items-center gap-1.5 whitespace-nowrap"
+                className="text-xs lg:text-sm font-semibold text-gold-300 hover:text-gold-200 active:text-gold-100 transition-colors flex items-center gap-1.5 whitespace-nowrap"
               >
                 <span>Özel Danışmanlık</span>
                 <span className="px-1.5 py-0.5 text-[9px] font-black uppercase rounded bg-gold-500/20 text-gold-300 border border-gold-500/40 shadow-inner">
@@ -86,7 +85,6 @@ export default function Navbar() {
                 </span>
               </a>
 
-              {/* Dikeyde Kusursuz Ortalanmış Kompakt Satın Alma Butonu */}
               <ThemeButton
                 theme="kitap1"
                 variant="primary"
@@ -99,39 +97,42 @@ export default function Navbar() {
               </ThemeButton>
             </nav>
 
-            {/* Mobile Menu Button */}
+            {/* Sağ: Mobile Menu Button (Asla ekrandan taşmaz) */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="md:hidden min-h-[48px] min-w-[48px] flex items-center justify-center p-2 rounded-lg bg-matte-850 border border-zinc-800 text-zinc-400 hover:text-white active:scale-95 transition-all"
+              className="md:hidden h-10 w-10 flex-shrink-0 flex items-center justify-center rounded-lg bg-matte-850 border border-zinc-800 text-zinc-300 hover:text-white active:scale-95 transition-all"
               aria-label="Menüyü Aç/Kapat"
             >
-              {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              {mobileMenuOpen ? (
+                <X className="w-5 h-5" />
+              ) : (
+                <Menu className="w-5 h-5" />
+              )}
             </button>
-
           </div>
         </div>
 
         {/* Mobile Drawer */}
         {mobileMenuOpen && (
-          <div className="md:hidden bg-matte-900/95 border-b border-zinc-800 backdrop-blur-xl px-4 pt-4 pb-6 space-y-2">
+          <div className="md:hidden bg-matte-900/95 border-b border-zinc-800 backdrop-blur-xl px-4 pt-3 pb-5 space-y-1.5">
             <a
               href="/#kazanimlar"
               onClick={() => setMobileMenuOpen(false)}
-              className="min-h-[48px] flex items-center px-3 py-2 text-base font-semibold text-zinc-300 hover:text-gold-400 active:text-gold-300 hover:bg-zinc-800/40 active:bg-zinc-800/60 rounded-md"
+              className="min-h-[44px] flex items-center px-3 py-2 text-sm font-semibold text-zinc-200 hover:text-gold-400 active:text-gold-300 hover:bg-zinc-800/40 rounded-md"
             >
               Neler Kazanacaksın?
             </a>
             <a
               href="/#sosyal-kanit"
               onClick={() => setMobileMenuOpen(false)}
-              className="min-h-[48px] flex items-center px-3 py-2 text-base font-semibold text-zinc-300 hover:text-gold-400 active:text-gold-300 hover:bg-zinc-800/40 active:bg-zinc-800/60 rounded-md"
+              className="min-h-[44px] flex items-center px-3 py-2 text-sm font-semibold text-zinc-200 hover:text-gold-400 active:text-gold-300 hover:bg-zinc-800/40 rounded-md"
             >
               Topluluk & Güven
             </a>
             <a
               href="/danismanlik"
               onClick={() => setMobileMenuOpen(false)}
-              className="min-h-[48px] flex items-center justify-between px-3 py-2 text-base font-bold text-gold-300 hover:bg-zinc-800/40 active:bg-zinc-800/60 rounded-md"
+              className="min-h-[44px] flex items-center justify-between px-3 py-2 text-sm font-bold text-gold-300 hover:bg-zinc-800/40 rounded-md"
             >
               <span>Özel Danışmanlık</span>
               <span className="px-2 py-0.5 text-[10px] font-black uppercase rounded bg-gold-500/20 text-gold-300 border border-gold-500/40">
@@ -139,7 +140,6 @@ export default function Navbar() {
               </span>
             </a>
 
-            {/* Mobilde Sade & Kompakt Buton */}
             <div className="pt-2">
               <ThemeButton
                 theme="kitap1"
@@ -160,4 +160,3 @@ export default function Navbar() {
     </div>
   );
 }
-

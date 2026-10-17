@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useMemo, useRef } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 
@@ -9,17 +9,17 @@ interface HeroParticlesCanvasProps {
 }
 
 /**
- * Yavaş hareket eden altın/kor toz parçacıkları
+ * Yavaş hareket eden altın/kor toz parçacıkları (Mobilde azaltılmış yoğunluk)
  */
 function GoldenDustParticles({
   activeBook,
+  count,
 }: {
   activeBook: "kitap1" | "kitap2" | null;
+  count: number;
 }) {
   const pointsRef = useRef<THREE.Points>(null);
   const materialRef = useRef<THREE.PointsMaterial>(null);
-
-  const count = 110;
 
   const { positions, speeds, phases } = useMemo(() => {
     const pos = new Float32Array(count * 3);
@@ -37,7 +37,6 @@ function GoldenDustParticles({
     return { positions: pos, speeds: spd, phases: phs };
   }, [count]);
 
-  // Yumuşak dairesel parçacık dokusu oluştur
   const particleTexture = useMemo(() => {
     if (typeof document === "undefined") return null;
     const canvas = document.createElement("canvas");
@@ -95,7 +94,7 @@ function GoldenDustParticles({
   });
 
   return (
-    <points ref={pointsRef}>
+    <points ref={pointsRef} key={count}>
       <bufferGeometry>
         <bufferAttribute
           attach="attributes-position"
@@ -109,7 +108,7 @@ function GoldenDustParticles({
         map={particleTexture ?? undefined}
         size={0.14}
         transparent
-        opacity={0.58}
+        opacity={0.55}
         depthWrite={false}
         blending={THREE.AdditiveBlending}
         color="#d4af37"
@@ -123,8 +122,10 @@ function GoldenDustParticles({
  */
 function SubtleSmokePlumes({
   activeBook,
+  isMobile,
 }: {
   activeBook: "kitap1" | "kitap2" | null;
+  isMobile: boolean;
 }) {
   const groupRef = useRef<THREE.Group>(null);
 
@@ -148,12 +149,15 @@ function SubtleSmokePlumes({
   }, []);
 
   const clouds = useMemo(
-    () => [
-      { pos: [-3.5, -1.8, -3.2] as [number, number, number], scale: 6.5, speed: 0.06 },
-      { pos: [3.5, -1.6, -3.5] as [number, number, number], scale: 6.8, speed: -0.05 },
-      { pos: [0, -2.4, -2.8] as [number, number, number], scale: 7.5, speed: 0.04 },
-    ],
-    []
+    () =>
+      isMobile
+        ? [{ pos: [0, -1.8, -3.0] as [number, number, number], scale: 6.0, speed: 0.04 }]
+        : [
+            { pos: [-3.5, -1.8, -3.2] as [number, number, number], scale: 6.5, speed: 0.06 },
+            { pos: [3.5, -1.6, -3.5] as [number, number, number], scale: 6.8, speed: -0.05 },
+            { pos: [0, -2.4, -2.8] as [number, number, number], scale: 7.5, speed: 0.04 },
+          ],
+    [isMobile]
   );
 
   const tintColor = useMemo(() => new THREE.Color(), []);
@@ -165,6 +169,7 @@ function SubtleSmokePlumes({
     groupRef.current.children.forEach((child, idx) => {
       const mesh = child as THREE.Mesh;
       const cfg = clouds[idx];
+      if (!cfg) return;
       mesh.rotation.z = elapsed * cfg.speed;
       mesh.position.x = cfg.pos[0] + Math.sin(elapsed * 0.25 + idx) * 0.45;
 
@@ -190,10 +195,10 @@ function SubtleSmokePlumes({
           <meshBasicMaterial
             map={smokeTexture}
             transparent
-            opacity={0.28}
+            opacity={0.26}
             depthWrite={false}
             blending={THREE.AdditiveBlending}
-            color="#524124"
+            color="#4a3219"
           />
         </mesh>
       ))}
@@ -204,18 +209,31 @@ function SubtleSmokePlumes({
 export default function HeroParticlesCanvas({
   activeBook,
 }: HeroParticlesCanvasProps) {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
   return (
     <div
-      className="pointer-events-none absolute inset-0 z-[1] overflow-hidden opacity-90"
+      className="pointer-events-none absolute inset-0 z-[1] overflow-hidden opacity-85"
       aria-hidden="true"
     >
       <Canvas
         camera={{ position: [0, 0, 6.5], fov: 50 }}
-        dpr={[1, 1.5]}
+        dpr={isMobile ? [1, 1] : [1, 1.5]}
         gl={{ alpha: true, antialias: false, powerPreference: "low-power" }}
       >
-        <SubtleSmokePlumes activeBook={activeBook} />
-        <GoldenDustParticles activeBook={activeBook} />
+        <SubtleSmokePlumes activeBook={activeBook} isMobile={isMobile} />
+        <GoldenDustParticles
+          activeBook={activeBook}
+          count={isMobile ? 28 : 95}
+        />
       </Canvas>
     </div>
   );

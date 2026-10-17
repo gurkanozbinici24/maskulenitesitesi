@@ -5,10 +5,7 @@ import Image from "next/image";
 import dynamic from "next/dynamic";
 import { ArrowRight, Bell, Clock, Flame, Sparkles, Zap } from "lucide-react";
 import { ThemeBadge, ThemeButton } from "./ui/ThemeSystem";
-import {
-  BookCountdown,
-  useCekicilikLaunchStatus,
-} from "./ui/BookCountdown";
+import { useCekicilikLaunchStatus } from "./ui/BookCountdown";
 
 // Lazy-load react-three-fiber sahnesi (SSR kapalı, açılış hızını etkilemez)
 const HeroParticlesCanvas = dynamic(() => import("./HeroParticlesCanvas"), {
@@ -16,14 +13,131 @@ const HeroParticlesCanvas = dynamic(() => import("./HeroParticlesCanvas"), {
 });
 
 type BookFocus = "kitap1" | "kitap2" | null;
+type MobileBookSelection = "kitap1" | "kitap2";
+
+function formatTwoDigits(val: number): string {
+  return String(val).padStart(2, "0");
+}
+
+/**
+ * Her iki kitap için birebir aynı boyutta ve 2:3 klasik kitap oranında 3D Kitap Objesi
+ */
+function Book3DModel({
+  book,
+  isFocused,
+  isDimmed,
+  sizeClassName,
+}: {
+  book: "kitap1" | "kitap2";
+  isFocused: boolean;
+  isDimmed: boolean;
+  sizeClassName: string;
+}) {
+  const isKitap1 = book === "kitap1";
+
+  const baseClass = isKitap1
+    ? "book-3d-object-left"
+    : "book-3d-object-right";
+
+  const stateClass = isFocused
+    ? "book-3d-object-focused"
+    : isDimmed
+    ? isKitap1
+      ? "book-3d-object-dimmed-left"
+      : "book-3d-object-dimmed-right"
+    : "";
+
+  return (
+    <div
+      className={`book-3d-object ${baseClass} ${stateClass} ${sizeClassName} aspect-[2/3] cursor-pointer flex-shrink-0`}
+    >
+      {/* Sol Kitap Sırtı (Spine) */}
+      <div
+        className={`book-3d-spine flex flex-col items-center justify-between py-3 shadow-inner border-y border-l ${
+          isKitap1
+            ? "bg-gradient-to-b from-mahogany-800 via-mahogany-900 to-mahogany-950 border-gold-500/45"
+            : "bg-gradient-to-b from-crimson-950 via-matte-950 to-crimson-950 border-crimson-600/45"
+        }`}
+      >
+        <span
+          className={`w-1.5 h-1.5 rounded-full ${
+            isKitap1 ? "bg-gold-400/75" : "bg-emerald-400/75"
+          }`}
+        />
+        <span
+          className="font-cinzel text-[8px] font-bold tracking-[0.2em] text-gold-300/95 uppercase whitespace-nowrap"
+          style={{ writingMode: "vertical-rl" }}
+        >
+          {isKitap1 ? "VAZGEÇİLMEZ OLMA SANATI" : "ÇEKİCİLİK SANATI"}
+        </span>
+        <span
+          className={`w-1.5 h-1.5 rounded-full ${
+            isKitap1 ? "bg-gold-400/75" : "bg-emerald-400/75"
+          }`}
+        />
+      </div>
+
+      {/* Sağ Beyazımsı Sayfa Kalınlığı */}
+      <div className="book-3d-pages" />
+      {/* Üst ve Alt Sayfa Kenarları */}
+      <div className="book-3d-top" />
+      <div className="book-3d-bottom" />
+      {/* Arka Kapak */}
+      <div
+        className={`book-3d-back border ${
+          isKitap1 ? "border-gold-500/25" : "border-crimson-800/30"
+        }`}
+      />
+
+      {/* Ön Kapak (Birebir 2:3 oran, object-fit: cover) */}
+      <div
+        className={`book-3d-front w-full h-full rounded-r-xl rounded-l-[3px] overflow-hidden border ${
+          isKitap1
+            ? "border-gold-500/55 shadow-[0_22px_50px_-12px_rgba(0,0,0,0.95),0_0_28px_rgba(212,175,55,0.25)] bg-mahogany-950"
+            : "border-crimson-600/55 shadow-[0_22px_50px_-12px_rgba(0,0,0,0.95),0_0_28px_rgba(185,28,28,0.28)] bg-matte-900"
+        }`}
+      >
+        {/* Sol kenar gerçekçi cilt oluğu izi */}
+        <div className="pointer-events-none absolute inset-y-0 left-0 w-2.5 bg-gradient-to-r from-black/65 via-white/10 to-transparent z-10" />
+        <Image
+          src={
+            isKitap1
+              ? "/vazgecilmez-yeni-kapak.jpg"
+              : "/cekicilik-sanati-kapak.jpg"
+          }
+          alt={
+            isKitap1
+              ? "Vazgeçilmez Olma Sanatı - Gürkan Özbinici"
+              : "Çekicilik Sanatı - Gürkan Özbinici"
+          }
+          fill
+          priority
+          sizes="(max-width: 640px) 150px, (max-width: 1024px) 180px, 220px"
+          className={`object-cover ${
+            isKitap1 ? "object-center" : "object-[50%_68%]"
+          }`}
+        />
+        {/* Lüks Parlama Katmanı */}
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-tr from-black/20 via-transparent to-white/15" />
+      </div>
+    </div>
+  );
+}
 
 export default function HeroSection() {
-  const [activeBook, setActiveBook] = useState<BookFocus>(null);
+  // Masaüstü hover odağı
+  const [desktopHoverBook, setDesktopHoverBook] = useState<BookFocus>(null);
+  // Mobil seçili kitap (varsayılan: kitap1, 4 saniyede bir otomatik geçiş)
+  const [mobileSelectedBook, setMobileSelectedBook] =
+    useState<MobileBookSelection>("kitap1");
+  const [userInteractedMobile, setUserInteractedMobile] = useState(false);
+
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
   const [stageTilt, setStageTilt] = useState({ x: 0, y: 0 });
   const stageRef = useRef<HTMLElement>(null);
+  const touchStartXRef = useRef<number | null>(null);
 
-  const { isOnSale } = useCekicilikLaunchStatus();
+  const { mounted, isOnSale, timeLeft } = useCekicilikLaunchStatus();
 
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -41,6 +155,40 @@ export default function HeroSection() {
     return () => mediaQuery.removeEventListener("change", handleChange);
   }, []);
 
+  // Mobilde kullanıcı dokunmadığı sürece 4 saniyede bir otomatik kitap geçişi
+  useEffect(() => {
+    if (prefersReducedMotion || userInteractedMobile) return;
+    const timer = window.setInterval(() => {
+      setMobileSelectedBook((prev) => (prev === "kitap1" ? "kitap2" : "kitap1"));
+    }, 4000);
+    return () => window.clearInterval(timer);
+  }, [prefersReducedMotion, userInteractedMobile]);
+
+  const handleSelectMobileBook = useCallback((book: MobileBookSelection) => {
+    setUserInteractedMobile(true);
+    setMobileSelectedBook(book);
+  }, []);
+
+  const handleTouchStart = useCallback((e: React.TouchEvent) => {
+    touchStartXRef.current = e.touches[0]?.clientX ?? null;
+  }, []);
+
+  const handleTouchEnd = useCallback((e: React.TouchEvent) => {
+    if (touchStartXRef.current === null) return;
+    const endX = e.changedTouches[0]?.clientX ?? touchStartXRef.current;
+    const deltaX = endX - touchStartXRef.current;
+    touchStartXRef.current = null;
+
+    if (Math.abs(deltaX) > 32) {
+      setUserInteractedMobile(true);
+      if (deltaX < 0) {
+        setMobileSelectedBook("kitap2");
+      } else {
+        setMobileSelectedBook("kitap1");
+      }
+    }
+  }, []);
+
   const handleMouseMove = useCallback(
     (event: React.MouseEvent<HTMLElement>) => {
       if (prefersReducedMotion) return;
@@ -50,12 +198,12 @@ export default function HeroSection() {
       if (!el) return;
 
       const rect = el.getBoundingClientRect();
-      const normX = (event.clientX - rect.left) / rect.width - 0.5; // -0.5 .. 0.5
-      const normY = (event.clientY - rect.top) / rect.height - 0.5; // -0.5 .. 0.5
+      const normX = (event.clientX - rect.left) / rect.width - 0.5;
+      const normY = (event.clientY - rect.top) / rect.height - 0.5;
 
       setStageTilt({
-        x: Number((-normY * 4.5).toFixed(2)),
-        y: Number((normX * 6.5).toFixed(2)),
+        x: Number((-normY * 4).toFixed(2)),
+        y: Number((normX * 5.5).toFixed(2)),
       });
     },
     [prefersReducedMotion]
@@ -63,11 +211,15 @@ export default function HeroSection() {
 
   const handleMouseLeave = useCallback(() => {
     setStageTilt({ x: 0, y: 0 });
-    setActiveBook(null);
+    setDesktopHoverBook(null);
   }, []);
 
   const scrollToTarget = useCallback(
-    (e: React.MouseEvent<HTMLElement>, primaryId: string, fallbackId?: string) => {
+    (
+      e: React.MouseEvent<HTMLElement>,
+      primaryId: string,
+      fallbackId?: string
+    ) => {
       if (typeof document === "undefined") return;
       const target =
         document.getElementById(primaryId) ||
@@ -84,391 +236,576 @@ export default function HeroSection() {
     [prefersReducedMotion]
   );
 
+  // Aktif atmosfer rengi (Masaüstünde hover, mobilde seçili kitap)
+  const effectiveAtmosphere: BookFocus = desktopHoverBook ?? mobileSelectedBook;
+
   return (
-    <section
-      ref={stageRef}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-      className="relative min-h-screen flex flex-col items-center justify-center pt-28 pb-16 sm:pt-32 sm:pb-20 lg:pt-36 lg:pb-24 overflow-hidden bg-matte-950 select-none"
-    >
-      {/* ===================================================================== */}
-      {/* 1. ARKA PLAN ATMOSFERİ, IŞIK SAHNESİ VE PARTİKÜLLER                   */}
-      {/* ===================================================================== */}
-      <div className="pointer-events-none absolute inset-0 bg-dark-radial" />
+    <>
+      <section
+        ref={stageRef}
+        onMouseMove={handleMouseMove}
+        onMouseLeave={handleMouseLeave}
+        className="relative min-h-[100svh] lg:h-[100svh] w-full max-w-full flex flex-col justify-between pt-[84px] pb-[76px] lg:pt-[92px] lg:pb-6 overflow-hidden bg-matte-950 select-none"
+      >
+        {/* =================================================================== */}
+        {/* 1. ARKA PLAN ATMOSFERİ, IŞIK SAHNESİ VE PARTİKÜLLER                 */}
+        {/* =================================================================== */}
+        <div className="pointer-events-none absolute inset-0 bg-dark-radial" />
 
-      {/* İnce lüks mimari ızgara dokusu */}
-      <div
-        className="pointer-events-none absolute inset-0 opacity-[0.025]"
-        style={{
-          backgroundImage:
-            "linear-gradient(to right, rgba(212,175,55,0.4) 1px, transparent 1px), linear-gradient(to bottom, rgba(212,175,55,0.4) 1px, transparent 1px)",
-          backgroundSize: "56px 56px",
-        }}
-      />
-
-      {/* Karanlıktan yükselen sahne ışığı + seçili kitaba göre renk değişimi */}
-      <div className="pointer-events-none absolute inset-0 animate-hero-light">
-        {/* Sol Kitap (Kitap 1 — Altın / Maun-Konyak Kahvesi Kütüphane Atmosferi) */}
+        {/* İnce lüks mimari ızgara dokusu */}
         <div
-          className={`absolute top-1/3 left-1/4 -translate-x-1/2 -translate-y-1/2 w-[340px] sm:w-[520px] h-[340px] sm:h-[520px] rounded-full blur-[130px] transition-all duration-700 ${
-            activeBook === "kitap1"
-              ? "bg-gold-500/28 scale-115 opacity-100"
-              : activeBook === "kitap2"
-              ? "bg-mahogany-800/10 scale-90 opacity-25"
-              : "bg-gold-500/14 opacity-85"
-          }`}
-        />
-        <div
-          className={`absolute bottom-1/4 left-1/3 -translate-x-1/2 w-[280px] sm:w-[440px] h-[280px] sm:h-[440px] rounded-full blur-[140px] transition-all duration-700 ${
-            activeBook === "kitap1"
-              ? "bg-mahogany-600/35 opacity-100"
-              : "bg-mahogany-800/20 opacity-55"
-          }`}
+          className="pointer-events-none absolute inset-0 opacity-[0.025]"
+          style={{
+            backgroundImage:
+              "linear-gradient(to right, rgba(212,175,55,0.4) 1px, transparent 1px), linear-gradient(to bottom, rgba(212,175,55,0.4) 1px, transparent 1px)",
+            backgroundSize: "56px 56px",
+          }}
         />
 
-        {/* Sağ Kitap (Kitap 2 — Koyu Bordo / Siyah / Zümrüt Atmosferi) */}
-        <div
-          className={`absolute top-1/3 right-1/4 translate-x-1/2 -translate-y-1/2 w-[340px] sm:w-[540px] h-[340px] sm:h-[540px] rounded-full blur-[135px] transition-all duration-700 ${
-            activeBook === "kitap2"
-              ? "bg-crimson-600/30 scale-115 opacity-100"
-              : activeBook === "kitap1"
-              ? "bg-crimson-950/10 scale-90 opacity-25"
-              : "bg-crimson-800/18 opacity-85"
-          }`}
-        />
-        <div
-          className={`absolute bottom-1/4 right-1/3 translate-x-1/2 w-[260px] sm:w-[380px] h-[260px] sm:h-[380px] rounded-full blur-[140px] transition-all duration-700 ${
-            activeBook === "kitap2"
-              ? "bg-emerald-500/18 opacity-95"
-              : "bg-emerald-700/8 opacity-40"
-          }`}
-        />
-      </div>
-
-      {/* Lazy-Loaded react-three-fiber Altın Toz Parçacıkları & Hafif Duman */}
-      {!prefersReducedMotion && <HeroParticlesCanvas activeBook={activeBook} />}
-
-      {/* ===================================================================== */}
-      {/* 2. ANA İÇERİK KAPSAYICISI                                             */}
-      {/* ===================================================================== */}
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* ------------------------------------------------------------------- */}
-        {/* ÜST MERKEZ BAŞLIK ALANI                                             */}
-        {/* ------------------------------------------------------------------- */}
-        <div className="animate-hero-title text-center max-w-3xl mx-auto mb-10 sm:mb-14 lg:mb-16">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-mahogany-900/80 border border-gold-500/35 shadow-gold-glow mb-4">
-            <Sparkles className="w-3.5 h-3.5 text-gold-400" />
-            <span className="font-cinzel text-xs sm:text-sm font-bold tracking-[0.28em] uppercase text-gold-300">
-              GÜRKAN ÖZBİNİCİ
-            </span>
-          </div>
-
-          <h1 className="font-cinzel text-fluid-hero font-black tracking-tight text-white leading-[1.08] mb-4 sm:mb-5">
-            <span className="gold-text-gradient">
-              İlişkilerin Gizli Kanunları
-            </span>
-          </h1>
-
-          <p className="font-sans text-fluid-base sm:text-fluid-lg text-zinc-300 leading-relaxed max-w-2xl mx-auto">
-            Biri erkek için, biri kadın için. Aynı oyunun iki tarafı.{" "}
-            <strong className="text-white font-semibold">
-              800.000+ kişinin
-            </strong>{" "}
-            takip ettiği vizyon, şimdi iki kitapta.
-          </p>
+        {/* Sahne Işıkları (Her iki kitabın kendi renginde kalıcı hâle + seçimde güçlenme) */}
+        <div className="pointer-events-none absolute inset-0 animate-hero-light">
+          {/* Sol Kitap (Kitap 1 — Sıcak Altın / Maun-Konyak) */}
+          <div
+            className={`absolute top-1/3 left-1/4 -translate-x-1/2 -translate-y-1/2 w-[280px] sm:w-[460px] h-[280px] sm:h-[460px] rounded-full blur-[120px] transition-all duration-700 ${
+              effectiveAtmosphere === "kitap1"
+                ? "bg-gold-500/28 scale-110 opacity-100"
+                : "bg-mahogany-600/20 scale-95 opacity-60"
+            }`}
+          />
+          {/* Sağ Kitap (Kitap 2 — Kırmızı / Zümrüt) */}
+          <div
+            className={`absolute top-1/3 right-1/4 translate-x-1/2 -translate-y-1/2 w-[280px] sm:w-[460px] h-[280px] sm:h-[460px] rounded-full blur-[120px] transition-all duration-700 ${
+              effectiveAtmosphere === "kitap2"
+                ? "bg-crimson-600/32 scale-110 opacity-100"
+                : "bg-crimson-800/20 scale-95 opacity-60"
+            }`}
+          />
         </div>
 
-        {/* ------------------------------------------------------------------- */}
-        {/* 3D İKİ KİTAP SAHNESİ (Masaüstünde Fare Eğimine Duyarlı)             */}
-        {/* ------------------------------------------------------------------- */}
-        <div
-          className="hero-perspective-stage w-full transition-transform duration-300 ease-out"
-          style={{
-            transform: prefersReducedMotion
-              ? undefined
-              : `rotateX(${stageTilt.x}deg) rotateY(${stageTilt.y}deg)`,
-          }}
-        >
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-10 xl:gap-14 items-start justify-items-center max-w-6xl mx-auto">
-            {/* =============================================================== */}
-            {/* SOL KİTAP: VAZGEÇİLMEZ OLMA SANATI (KİTAP 1 — ALTIN & MAUN)      */}
-            {/* =============================================================== */}
-            <div
-              onMouseEnter={() => setActiveBook("kitap1")}
-              onFocus={() => setActiveBook("kitap1")}
-              className="animate-hero-book-left w-full max-w-md flex flex-col items-center text-center group"
-            >
-              {/* Üst Rozet ve Not */}
-              <div className="flex flex-col items-center gap-2 mb-5">
-                <ThemeBadge theme="kitap1" status="satista" className="px-4 py-1.5">
-                  <Zap className="w-3.5 h-3.5 fill-black text-black" />
-                  <span>E-KİTAP SATIŞTA</span>
-                </ThemeBadge>
-                <span className="text-xs font-semibold uppercase tracking-[0.16em] text-mahogany-200">
-                  Erkekler için ilişki psikolojisi
-                </span>
-              </div>
+        {/* Lazy-Loaded react-three-fiber Altın Toz Parçacıkları & Hafif Duman */}
+        {!prefersReducedMotion && (
+          <HeroParticlesCanvas activeBook={effectiveAtmosphere} />
+        )}
 
-              {/* 3D Kitap Sahnesi */}
-              <div className="book-3d-scene relative flex flex-col items-center py-2">
-                {/* Kitap Arkası Lokal Işık Halesi (Sıcak Altın + Maun) */}
-                <div
-                  className={`pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 sm:w-72 h-80 sm:h-96 rounded-full blur-3xl transition-all duration-500 ${
-                    activeBook === "kitap1"
-                      ? "bg-gold-500/35 scale-110"
-                      : "bg-mahogany-600/25"
-                  }`}
-                />
-
-                {/* CSS 3D Kitap Objesi (Ön Kapak + Sırt + Sayfa Kalınlığı + Arka Kapak) */}
-                <div
-                  className={`book-3d-object book-3d-object-left w-[220px] sm:w-[255px] md:w-[275px] cursor-pointer ${
-                    activeBook === "kitap1"
-                      ? "book-3d-object-focused"
-                      : activeBook === "kitap2"
-                      ? "book-3d-object-dimmed-left"
-                      : ""
-                  }`}
-                >
-                  {/* Sol Kitap Sırtı (Spine — Sıcak Maun Deri & Altın) */}
-                  <div className="book-3d-spine bg-gradient-to-b from-mahogany-800 via-mahogany-900 to-mahogany-950 border-y border-l border-gold-500/45 flex flex-col items-center justify-between py-4 shadow-inner">
-                    <span className="w-1.5 h-1.5 rounded-full bg-gold-400/75" />
-                    <span
-                      className="font-cinzel text-[9px] font-bold tracking-[0.22em] text-gold-300/95 uppercase whitespace-nowrap"
-                      style={{ writingMode: "vertical-rl" }}
-                    >
-                      VAZGEÇİLMEZ OLMA SANATI
-                    </span>
-                    <span className="w-1.5 h-1.5 rounded-full bg-gold-400/75" />
-                  </div>
-
-                  {/* Sağ Beyazımsı Sayfa Kalınlığı */}
-                  <div className="book-3d-pages" />
-                  {/* Üst ve Alt Sayfa Kenarları */}
-                  <div className="book-3d-top" />
-                  <div className="book-3d-bottom" />
-                  {/* Arka Kapak */}
-                  <div className="book-3d-back border border-gold-500/25" />
-
-                  {/* Ön Kapak */}
-                  <div className="book-3d-front rounded-r-xl rounded-l-[3px] overflow-hidden border border-gold-500/50 shadow-[0_25px_55px_-12px_rgba(0,0,0,0.95),0_0_32px_rgba(212,175,55,0.25)] bg-mahogany-950">
-                    {/* Cilt oluğu izi (Sol kenar gerçekçi kapak kıvrımı) */}
-                    <div className="pointer-events-none absolute inset-y-0 left-0 w-3 bg-gradient-to-r from-black/65 via-white/10 to-transparent z-10" />
-                    <Image
-                      src="/vazgecilmez-yeni-kapak.jpg"
-                      alt="Vazgeçilmez Olma Sanatı - Gürkan Özbinici"
-                      width={400}
-                      height={600}
-                      priority
-                      sizes="(max-width: 640px) 220px, (max-width: 768px) 255px, 275px"
-                      className="w-full h-auto object-cover block"
-                    />
-                    {/* Lüks Işık Yansıması */}
-                    <div className="pointer-events-none absolute inset-0 bg-gradient-to-tr from-black/25 via-transparent to-white/15" />
-                  </div>
-                </div>
-
-                {/* Zemine Yansıyan Yumuşak Işık ve Gölge */}
-                <div
-                  className={`pointer-events-none mt-6 h-5 w-48 sm:w-56 rounded-full blur-xl transition-all duration-500 ${
-                    activeBook === "kitap1"
-                      ? "bg-gold-500/45 scale-110"
-                      : "bg-mahogany-500/30"
-                  }`}
-                />
-                <div className="pointer-events-none -mt-3 h-3 w-40 sm:w-48 rounded-full bg-black/90 blur-md" />
-              </div>
-
-              {/* Kitap Başlığı ve Satın Alma Aksiyonu */}
-              <div className="w-full mt-5 pt-4 border-t border-mahogany-800/80 flex flex-col items-center">
-                <h2 className="font-cinzel text-fluid-xl font-bold text-white tracking-wide mb-1">
-                  Vazgeçilmez Olma Sanatı
-                </h2>
-                <p className="text-xs text-mahogany-200/85 mb-4">
-                  227 Sayfa • Kuralları Sen Koy, İlişkiyi Sen Yönet
-                </p>
-
-                <ThemeButton
-                  theme="kitap1"
-                  variant="primary"
-                  size="lg"
-                  fullWidth
-                  href="#fiyat-kartlari"
-                  onClick={(e) =>
-                    scrollToTarget(e, "fiyat-kartlari", "fiyatlandirma")
-                  }
-                  className="max-w-sm"
-                >
-                  <span>E-Kitabı Hemen Al – 600 TL</span>
-                  <ArrowRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
-                </ThemeButton>
-
-                <span className="mt-2.5 text-xs font-medium text-gold-300/90">
-                  {isOnSale
-                    ? "Fiziksel Yenilenmiş Edisyon Şimdi Satışta"
-                    : "Fiziksel Yenilenmiş Edisyon 5 Kasım'da"}
-                </span>
-              </div>
+        {/* =================================================================== */}
+        {/* 2. ANA İÇERİK KAPSAYICISI (100svh İlk Ekrana Tam Sığan Yapı)         */}
+        {/* =================================================================== */}
+        <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex-1 flex flex-col justify-between">
+          {/* ----------------------------------------------------------------- */}
+          {/* ÜST MERKEZ BAŞLIK ALANI (Kompakt, Maks 2 Satır Başlık)            */}
+          {/* ----------------------------------------------------------------- */}
+          <div className="animate-hero-title text-center max-w-4xl mx-auto pt-1 sm:pt-2">
+            <div className="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-mahogany-900/85 border border-gold-500/35 shadow-gold-glow mb-1.5">
+              <Sparkles className="w-3 h-3 text-gold-400" />
+              <span className="font-cinzel text-[10px] sm:text-xs font-bold tracking-[0.24em] uppercase text-gold-300">
+                GÜRKAN ÖZBİNİCİ
+              </span>
             </div>
 
-            {/* =============================================================== */}
-            {/* SAĞ KİTAP: ÇEKİCİLİK SANATI (KİTAP 2 TEMASI)                    */}
-            {/* =============================================================== */}
-            <div
-              onMouseEnter={() => setActiveBook("kitap2")}
-              onFocus={() => setActiveBook("kitap2")}
-              className="animate-hero-book-right w-full max-w-md flex flex-col items-center text-center group"
-            >
-              {/* Üst Rozet (useCekicilikLaunchStatus'a göre otomatik değişir) ve Not */}
-              <div className="flex flex-col items-center gap-2 mb-5">
-                {isOnSale ? (
-                  <ThemeBadge theme="kitap2" status="satista" className="px-4 py-1.5">
-                    <span className="w-2 h-2 rounded-full bg-emerald-300 animate-pulse" />
-                    <span>SATIŞTA</span>
-                  </ThemeBadge>
-                ) : (
-                  <ThemeBadge theme="kitap2" status="yakinda" className="px-4 py-1.5">
-                    <Clock className="w-3.5 h-3.5 text-crimson-300" />
-                    <span>5 KASIM&apos;DA GELİYOR</span>
-                  </ThemeBadge>
-                )}
-                <span className="text-xs font-semibold uppercase tracking-[0.16em] text-crimson-300">
-                  Kadınlar için ilişki psikolojisi
-                </span>
+            <h1 className="font-cinzel text-[clamp(1.45rem,4.6vw,2.45rem)] font-black tracking-tight text-white leading-[1.1] mb-1.5">
+              <span className="gold-text-gradient">
+                İlişkilerin Gizli Kanunları
+              </span>
+            </h1>
+
+            <p className="font-sans text-xs sm:text-sm text-zinc-300 leading-snug max-w-xl lg:max-w-none mx-auto lg:whitespace-nowrap">
+              Biri erkek için, biri kadın için. Aynı oyunun iki tarafı.{" "}
+              <strong className="text-white font-semibold">
+                800.000+ kişinin
+              </strong>{" "}
+              takip ettiği vizyon, şimdi iki kitapta.
+            </p>
+          </div>
+
+          {/* ================================================================= */}
+          {/* A) MASAÜSTÜ DÜZENİ (lg:grid — İki Kitap Yan Yana, Aynı Hizada)    */}
+          {/* ================================================================= */}
+          <div
+            className="hidden lg:block hero-perspective-stage w-full my-auto transition-transform duration-300 ease-out"
+            style={{
+              transform: prefersReducedMotion
+                ? undefined
+                : `rotateX(${stageTilt.x}deg) rotateY(${stageTilt.y}deg)`,
+            }}
+          >
+            <div className="relative grid grid-cols-2 gap-10 xl:gap-16 items-stretch max-w-5xl mx-auto">
+              {/* Ortada İnce Dikey Altın Ayırıcı Çizgi ve Parıltı */}
+              <div
+                className="pointer-events-none absolute left-1/2 top-6 bottom-6 -translate-x-1/2 flex flex-col items-center justify-center"
+                aria-hidden="true"
+              >
+                <div className="w-px h-full bg-gradient-to-b from-transparent via-gold-500/35 to-transparent" />
+                <div className="absolute w-2 h-2 rotate-45 bg-gold-400/80 shadow-[0_0_12px_rgba(212,175,55,0.9)]" />
               </div>
 
-              {/* 3D Kitap Sahnesi */}
-              <div className="book-3d-scene relative flex flex-col items-center py-2">
-                {/* Kitap Arkası Lokal Işık Halesi */}
-                <div
-                  className={`pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 sm:w-72 h-80 sm:h-96 rounded-full blur-3xl transition-all duration-500 ${
-                    activeBook === "kitap2"
-                      ? "bg-crimson-600/40 scale-110"
-                      : "bg-crimson-800/20"
-                  }`}
-                />
+              {/* ------------------------------------------------------------- */}
+              {/* SOL KİTAP: VAZGEÇİLMEZ OLMA SANATI (KİTAP 1 — ALTIN & MAUN)    */}
+              {/* ------------------------------------------------------------- */}
+              <div
+                onMouseEnter={() => setDesktopHoverBook("kitap1")}
+                onFocus={() => setDesktopHoverBook("kitap1")}
+                className="animate-hero-book-left flex flex-col items-center justify-between text-center group"
+              >
+                {/* 3D Kitap + Kalıcı Sıcak Altın/Konyak Işık Hâlesi */}
+                <div className="book-3d-scene relative flex flex-col items-center justify-center py-1">
+                  <div
+                    className={`pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-56 h-72 rounded-full blur-3xl transition-all duration-500 ${
+                      desktopHoverBook === "kitap1"
+                        ? "bg-gradient-to-tr from-gold-500/50 via-mahogany-500/45 to-amber-400/35 scale-125 opacity-100"
+                        : "bg-gradient-to-tr from-mahogany-600/45 via-gold-500/28 to-amber-500/20 opacity-90"
+                    }`}
+                  />
 
-                {/* CSS 3D Kitap Objesi (Ön Kapak + Sırt + Sayfa Kalınlığı + Arka Kapak) */}
-                <div
-                  className={`book-3d-object book-3d-object-right w-[220px] sm:w-[255px] md:w-[275px] cursor-pointer ${
-                    activeBook === "kitap2"
-                      ? "book-3d-object-focused"
-                      : activeBook === "kitap1"
-                      ? "book-3d-object-dimmed-right"
-                      : ""
-                  }`}
-                >
-                  {/* Sol Kitap Sırtı (Spine) */}
-                  <div className="book-3d-spine bg-gradient-to-b from-crimson-950 via-matte-950 to-crimson-950 border-y border-l border-crimson-600/45 flex flex-col items-center justify-between py-4 shadow-inner">
-                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400/70" />
-                    <span
-                      className="font-cinzel text-[9px] font-bold tracking-[0.22em] text-gold-300/90 uppercase whitespace-nowrap"
-                      style={{ writingMode: "vertical-rl" }}
-                    >
-                      ÇEKİCİLİK SANATI
-                    </span>
-                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400/70" />
-                  </div>
+                  <Book3DModel
+                    book="kitap1"
+                    isFocused={desktopHoverBook === "kitap1"}
+                    isDimmed={desktopHoverBook === "kitap2"}
+                    sizeClassName="h-[min(35svh,270px)] w-[calc(min(35svh,270px)*0.6667)]"
+                  />
 
-                  {/* Sağ Beyazımsı Sayfa Kalınlığı */}
-                  <div className="book-3d-pages" />
-                  {/* Üst ve Alt Sayfa Kenarları */}
-                  <div className="book-3d-top" />
-                  <div className="book-3d-bottom" />
-                  {/* Arka Kapak */}
-                  <div className="book-3d-back border border-crimson-800/30" />
-
-                  {/* Ön Kapak */}
-                  <div className="book-3d-front rounded-r-xl rounded-l-[3px] overflow-hidden border border-crimson-700/55 shadow-[0_25px_55px_-12px_rgba(0,0,0,0.95),0_0_32px_rgba(185,28,28,0.28)] bg-matte-900">
-                    {/* Cilt oluğu izi (Sol kenar gerçekçi kapak kıvrımı) */}
-                    <div className="pointer-events-none absolute inset-y-0 left-0 w-3 bg-gradient-to-r from-black/65 via-white/10 to-transparent z-10" />
-                    <Image
-                      src="/cekicilik-sanati-kapak.jpg"
-                      alt="Çekicilik Sanatı - Gürkan Özbinici"
-                      width={400}
-                      height={600}
-                      priority
-                      sizes="(max-width: 640px) 220px, (max-width: 768px) 255px, 275px"
-                      className="w-full h-auto object-cover block"
-                    />
-                    {/* Lüks Işık Yansıması */}
-                    <div className="pointer-events-none absolute inset-0 bg-gradient-to-tr from-black/25 via-transparent to-white/15" />
-                  </div>
+                  {/* Zemin Yansıması & Gölge */}
+                  <div
+                    className={`pointer-events-none mt-4 h-3.5 w-44 rounded-full blur-lg transition-all duration-500 ${
+                      desktopHoverBook === "kitap1"
+                        ? "bg-gold-500/50 scale-110"
+                        : "bg-gold-500/28"
+                    }`}
+                  />
+                  <div className="pointer-events-none -mt-2.5 h-2.5 w-36 rounded-full bg-black/90 blur-md" />
                 </div>
 
-                {/* Zemine Yansıyan Yumuşak Işık ve Gölge */}
-                <div
-                  className={`pointer-events-none mt-6 h-5 w-48 sm:w-56 rounded-full blur-xl transition-all duration-500 ${
-                    activeBook === "kitap2"
-                      ? "bg-crimson-600/50 scale-110"
-                      : "bg-crimson-700/25"
-                  }`}
-                />
-                <div className="pointer-events-none -mt-3 h-3 w-40 sm:w-48 rounded-full bg-black/90 blur-md" />
+                {/* Kitabın Hemen Altı: Rozet, Kitap Adı, Kısa Not ve Buton (Birebir Aynı Hizada) */}
+                <div className="w-full max-w-sm mt-2 flex flex-col items-center">
+                  {/* 1. Rozet Satırı (Sabit Yükseklik) */}
+                  <div className="h-7 flex items-center justify-center">
+                    <ThemeBadge
+                      theme="kitap1"
+                      status="satista"
+                      className="px-3.5 py-1 text-[11px]"
+                    >
+                      <Zap className="w-3 h-3 fill-black text-black" />
+                      <span>E-KİTAP SATIŞTA</span>
+                    </ThemeBadge>
+                  </div>
+
+                  {/* 2. Kitap Adı */}
+                  <h2 className="font-cinzel text-lg xl:text-xl font-bold text-white tracking-wide mt-1.5">
+                    Vazgeçilmez Olma Sanatı
+                  </h2>
+
+                  {/* 3. Kısa Not Alanı (Sabit Yükseklik - İki Kitapta Eşit) */}
+                  <div className="h-11 flex flex-col items-center justify-center mt-0.5 mb-2.5">
+                    <span className="text-xs font-semibold text-mahogany-200">
+                      Erkekler için ilişki psikolojisi
+                    </span>
+                    <span className="text-[11px] font-medium text-gold-300/90 mt-0.5">
+                      {isOnSale
+                        ? "Fiziksel Yenilenmiş Edisyon Şimdi Satışta"
+                        : "Fiziksel Yenilenmiş Edisyon 5 Kasım'da"}
+                    </span>
+                  </div>
+
+                  {/* 4. Satın Alma Butonu (İki Kitapta Aynı Boyut ve Hiza) */}
+                  <ThemeButton
+                    theme="kitap1"
+                    variant="primary"
+                    size="md"
+                    fullWidth
+                    href="#fiyat-kartlari"
+                    onClick={(e) =>
+                      scrollToTarget(e, "fiyat-kartlari", "fiyatlandirma")
+                    }
+                    className="w-full max-w-[320px] min-h-[48px] h-[48px]"
+                  >
+                    <span>E-Kitabı Hemen Al – 600 TL</span>
+                    <ArrowRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
+                  </ThemeButton>
+                </div>
               </div>
 
-              {/* Kitap Başlığı, Küçük Geri Sayım ve Aksiyon Butonu */}
-              <div className="w-full mt-5 pt-4 border-t border-crimson-950/90 flex flex-col items-center">
-                <h2 className="font-cinzel text-fluid-xl font-bold text-white tracking-wide mb-2">
-                  Çekicilik Sanatı
-                </h2>
+              {/* ------------------------------------------------------------- */}
+              {/* SAĞ KİTAP: ÇEKİCİLİK SANATI (KİTAP 2 — KIRMIZI & ZÜMRÜT)       */}
+              {/* ------------------------------------------------------------- */}
+              <div
+                onMouseEnter={() => setDesktopHoverBook("kitap2")}
+                onFocus={() => setDesktopHoverBook("kitap2")}
+                className="animate-hero-book-right flex flex-col items-center justify-between text-center group"
+              >
+                {/* 3D Kitap + Kalıcı Kırmızı ve Hafif Zümrüt Işık Hâlesi */}
+                <div className="book-3d-scene relative flex flex-col items-center justify-center py-1">
+                  <div
+                    className={`pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-56 h-72 rounded-full blur-3xl transition-all duration-500 ${
+                      desktopHoverBook === "kitap2"
+                        ? "bg-gradient-to-tl from-crimson-500/55 via-crimson-800/45 to-emerald-500/35 scale-125 opacity-100"
+                        : "bg-gradient-to-tl from-crimson-600/45 via-crimson-900/35 to-emerald-500/20 opacity-90"
+                    }`}
+                  />
 
-                {!isOnSale ? (
-                  <>
-                    {/* Satış Öncesi: Küçük Geri Sayım + Haber Al Butonu */}
-                    <div className="w-full max-w-sm mb-3.5">
-                      <BookCountdown
-                        size="sm"
-                        showStatusBadge={false}
-                        showActionArea={false}
-                      />
-                    </div>
+                  <Book3DModel
+                    book="kitap2"
+                    isFocused={desktopHoverBook === "kitap2"}
+                    isDimmed={desktopHoverBook === "kitap1"}
+                    sizeClassName="h-[min(35svh,270px)] w-[calc(min(35svh,270px)*0.6667)]"
+                  />
 
+                  {/* Zemin Yansıması & Gölge */}
+                  <div
+                    className={`pointer-events-none mt-4 h-3.5 w-44 rounded-full blur-lg transition-all duration-500 ${
+                      desktopHoverBook === "kitap2"
+                        ? "bg-crimson-500/50 scale-110"
+                        : "bg-crimson-600/30"
+                    }`}
+                  />
+                  <div className="pointer-events-none -mt-2.5 h-2.5 w-36 rounded-full bg-black/90 blur-md" />
+                </div>
+
+                {/* Kitabın Hemen Altı: Rozet, Kitap Adı, Kısa Not + Sayaç ve Buton */}
+                <div className="w-full max-w-sm mt-2 flex flex-col items-center">
+                  {/* 1. Rozet Satırı (Sabit Yükseklik) */}
+                  <div className="h-7 flex items-center justify-center">
+                    {isOnSale ? (
+                      <ThemeBadge
+                        theme="kitap2"
+                        status="satista"
+                        className="px-3.5 py-1 text-[11px]"
+                      >
+                        <span className="w-2 h-2 rounded-full bg-emerald-300 animate-pulse" />
+                        <span>SATIŞTA</span>
+                      </ThemeBadge>
+                    ) : (
+                      <ThemeBadge
+                        theme="kitap2"
+                        status="yakinda"
+                        className="px-3.5 py-1 text-[11px]"
+                      >
+                        <Clock className="w-3 h-3 text-crimson-300" />
+                        <span>5 KASIM&apos;DA GELİYOR</span>
+                      </ThemeBadge>
+                    )}
+                  </div>
+
+                  {/* 2. Kitap Adı */}
+                  <h2 className="font-cinzel text-lg xl:text-xl font-bold text-white tracking-wide mt-1.5">
+                    Çekicilik Sanatı
+                  </h2>
+
+                  {/* 3. Kısa Not + Kompakt Tek Satır Geri Sayım (Sabit Yükseklik) */}
+                  <div className="h-11 flex flex-col items-center justify-center mt-0.5 mb-2.5">
+                    <span className="text-xs font-semibold text-crimson-300">
+                      Kadınlar için ilişki psikolojisi
+                    </span>
+                    {!isOnSale ? (
+                      <div className="inline-flex items-center gap-1.5 mt-0.5 px-2.5 py-0.5 rounded-md bg-crimson-950/80 border border-crimson-800/70 text-[11px] font-mono font-bold text-gold-300">
+                        <span>
+                          {mounted ? formatTwoDigits(timeLeft.days) : "--"}G
+                        </span>
+                        <span className="text-crimson-400">:</span>
+                        <span>
+                          {mounted ? formatTwoDigits(timeLeft.hours) : "--"}S
+                        </span>
+                        <span className="text-crimson-400">:</span>
+                        <span>
+                          {mounted ? formatTwoDigits(timeLeft.minutes) : "--"}D
+                        </span>
+                        <span className="text-crimson-400">:</span>
+                        <span>
+                          {mounted ? formatTwoDigits(timeLeft.seconds) : "--"}Sn
+                        </span>
+                      </div>
+                    ) : (
+                      <span className="text-[11px] font-medium text-emerald-400 mt-0.5">
+                        E-Kitap ve Fiziksel Kitap Şimdi Satışta
+                      </span>
+                    )}
+                  </div>
+
+                  {/* 4. Satın Alma / Haber Al Butonu (Sol Kitapla Birebir Aynı Boyut ve Hizada) */}
+                  {!isOnSale ? (
                     <ThemeButton
                       theme="kitap2"
                       variant="primary"
-                      size="lg"
+                      size="md"
                       fullWidth
                       href="#cekicilik-sanati"
                       onClick={(e) =>
                         scrollToTarget(e, "cekicilik-sanati", "fiyat-kartlari")
                       }
-                      className="max-w-sm"
+                      className="w-full max-w-[320px] min-h-[48px] h-[48px]"
                     >
                       <Bell className="w-4 h-4 text-gold-300 flex-shrink-0" />
                       <span>Haber Al</span>
                       <ArrowRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
                     </ThemeButton>
-                  </>
-                ) : (
-                  <>
-                    {/* Satış Başlayınca: Hemen Satın Al Butonu */}
-                    <p className="text-xs text-emerald-400 font-semibold mb-4">
-                      E-Kitap ve Fiziksel Kitap Seçenekleriyle Şimdi Satışta
-                    </p>
-
+                  ) : (
                     <ThemeButton
                       theme="kitap2"
                       variant="primary"
-                      size="lg"
+                      size="md"
                       fullWidth
                       href="#cekicilik-sanati"
                       onClick={(e) =>
                         scrollToTarget(e, "cekicilik-sanati", "fiyat-kartlari")
                       }
-                      className="max-w-sm"
+                      className="w-full max-w-[320px] min-h-[48px] h-[48px]"
                     >
                       <Flame className="w-4 h-4 text-emerald-300 flex-shrink-0" />
                       <span>Hemen Satın Al – 600 TL&apos;den başlayan</span>
                       <ArrowRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
                     </ThemeButton>
-                  </>
-                )}
+                  )}
+                </div>
               </div>
             </div>
           </div>
+
+          {/* ================================================================= */}
+          {/* B) TELEFON & TABLET DÜZENİ (lg:hidden — Yelpaze 2 Kitap + Seçim)   */}
+          {/* ================================================================= */}
+          <div
+            className="lg:hidden flex-1 flex flex-col items-center justify-between py-1"
+            onTouchStart={handleTouchStart}
+            onTouchEnd={handleTouchEnd}
+          >
+            {/* 1. Yelpaze (Fan) Düzeninde Yan Yana İki 3D Kitap */}
+            <div className="relative w-full max-w-[360px] h-[255px] sm:h-[280px] flex items-center justify-center my-auto">
+              {/* Sol Kitap Arkası Kalıcı Sıcak Altın/Konyak Hâle */}
+              <div
+                className={`pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 w-40 h-56 rounded-full blur-2xl transition-all duration-500 ${
+                  mobileSelectedBook === "kitap1"
+                    ? "bg-gradient-to-tr from-gold-500/55 via-mahogany-500/45 to-amber-400/35 scale-115 opacity-100"
+                    : "bg-mahogany-600/35 opacity-65"
+                }`}
+              />
+
+              {/* Sağ Kitap Arkası Kalıcı Kırmızı/Zümrüt Hâle */}
+              <div
+                className={`pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 w-40 h-56 rounded-full blur-2xl transition-all duration-500 ${
+                  mobileSelectedBook === "kitap2"
+                    ? "bg-gradient-to-tl from-crimson-500/60 via-crimson-800/45 to-emerald-500/30 scale-115 opacity-100"
+                    : "bg-crimson-700/35 opacity-65"
+                }`}
+              />
+
+              {/* SOL KİTAP (Vazgeçilmez Olma Sanatı — Hafif Sola Yatık, Seçilince Öne Gelir) */}
+              <div
+                onClick={() => handleSelectMobileBook("kitap1")}
+                role="button"
+                tabIndex={0}
+                aria-label="Vazgeçilmez Olma Sanatı kitabını seç"
+                className={`relative transition-all duration-500 ease-out cursor-pointer -mr-3.5 ${
+                  mobileSelectedBook === "kitap1"
+                    ? "z-20 scale-105 -rotate-1 translate-y-0"
+                    : "z-10 scale-[0.88] -rotate-6 translate-y-2.5 opacity-80"
+                }`}
+              >
+                <Book3DModel
+                  book="kitap1"
+                  isFocused={mobileSelectedBook === "kitap1"}
+                  isDimmed={false}
+                  sizeClassName="w-[144px] h-[216px] sm:w-[162px] sm:h-[243px]"
+                />
+              </div>
+
+              {/* SAĞ KİTAP (Çekicilik Sanatı — Hafif Sağa Yatık, Seçilince Öne Gelir) */}
+              <div
+                onClick={() => handleSelectMobileBook("kitap2")}
+                role="button"
+                tabIndex={0}
+                aria-label="Çekicilik Sanatı kitabını seç"
+                className={`relative transition-all duration-500 ease-out cursor-pointer -ml-3.5 ${
+                  mobileSelectedBook === "kitap2"
+                    ? "z-20 scale-105 rotate-1 translate-y-0"
+                    : "z-10 scale-[0.88] rotate-6 translate-y-2.5 opacity-80"
+                }`}
+              >
+                <Book3DModel
+                  book="kitap2"
+                  isFocused={mobileSelectedBook === "kitap2"}
+                  isDimmed={false}
+                  sizeClassName="w-[144px] h-[216px] sm:w-[162px] sm:h-[243px]"
+                />
+              </div>
+            </div>
+
+            {/* 2. Seçili Kitabın Rozeti, Adı ve Kısa Bilgisi (Yumuşak Geçişli) */}
+            <div className="w-full max-w-sm flex flex-col items-center text-center pb-1">
+              {/* Kitap Seçim Sekmeleri */}
+              <div className="inline-flex items-center gap-1.5 p-1 rounded-full bg-matte-900/90 border border-zinc-800/90 mb-3">
+                <button
+                  type="button"
+                  onClick={() => handleSelectMobileBook("kitap1")}
+                  className={`px-3 py-1 rounded-full text-[11px] font-bold transition-all ${
+                    mobileSelectedBook === "kitap1"
+                      ? "bg-gradient-to-r from-gold-300 to-gold-500 text-black shadow-sm"
+                      : "text-zinc-400 hover:text-zinc-200"
+                  }`}
+                >
+                  1. Vazgeçilmez Olma
+                </button>
+                <button
+                  type="button"
+                  onClick={() => handleSelectMobileBook("kitap2")}
+                  className={`px-3 py-1 rounded-full text-[11px] font-bold transition-all ${
+                    mobileSelectedBook === "kitap2"
+                      ? "bg-gradient-to-r from-crimson-600 to-crimson-800 text-white shadow-sm"
+                      : "text-zinc-400 hover:text-zinc-200"
+                  }`}
+                >
+                  2. Çekicilik Sanatı
+                </button>
+              </div>
+
+              {mobileSelectedBook === "kitap1" ? (
+                <div
+                  key="mobile-kitap1"
+                  className="animate-countdown-digit flex flex-col items-center"
+                >
+                  <div className="flex items-center justify-center gap-2 mb-1.5">
+                    <ThemeBadge
+                      theme="kitap1"
+                      status="satista"
+                      className="px-3 py-0.5 text-[10px]"
+                    >
+                      <Zap className="w-3 h-3 fill-black text-black" />
+                      <span>E-KİTAP SATIŞTA</span>
+                    </ThemeBadge>
+                    <span className="text-xs font-semibold text-mahogany-200">
+                      Erkekler için ilişki psikolojisi
+                    </span>
+                  </div>
+
+                  <h2 className="font-cinzel text-lg sm:text-xl font-bold text-white leading-tight">
+                    Vazgeçilmez Olma Sanatı
+                  </h2>
+                  <p className="text-xs text-gold-300/90 mt-1">
+                    {isOnSale
+                      ? "Fiziksel Yenilenmiş Edisyon Şimdi Satışta"
+                      : "Fiziksel Yenilenmiş Edisyon 5 Kasım'da"}
+                  </p>
+                </div>
+              ) : (
+                <div
+                  key="mobile-kitap2"
+                  className="animate-countdown-digit flex flex-col items-center"
+                >
+                  <div className="flex items-center justify-center gap-2 mb-1.5">
+                    {isOnSale ? (
+                      <ThemeBadge
+                        theme="kitap2"
+                        status="satista"
+                        className="px-3 py-0.5 text-[10px]"
+                      >
+                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-300 animate-pulse" />
+                        <span>SATIŞTA</span>
+                      </ThemeBadge>
+                    ) : (
+                      <ThemeBadge
+                        theme="kitap2"
+                        status="yakinda"
+                        className="px-3 py-0.5 text-[10px]"
+                      >
+                        <Clock className="w-3 h-3 text-crimson-300" />
+                        <span>5 KASIM&apos;DA GELİYOR</span>
+                      </ThemeBadge>
+                    )}
+                    <span className="text-xs font-semibold text-crimson-300">
+                      Kadınlar için ilişki psikolojisi
+                    </span>
+                  </div>
+
+                  <h2 className="font-cinzel text-lg sm:text-xl font-bold text-white leading-tight">
+                    Çekicilik Sanatı
+                  </h2>
+
+                  {!isOnSale ? (
+                    <div className="inline-flex items-center gap-1.5 mt-1 px-3 py-0.5 rounded-md bg-crimson-950/90 border border-crimson-800/70 text-xs font-mono font-bold text-gold-300">
+                      <span>
+                        {mounted ? formatTwoDigits(timeLeft.days) : "--"}G
+                      </span>
+                      <span className="text-crimson-400">:</span>
+                      <span>
+                        {mounted ? formatTwoDigits(timeLeft.hours) : "--"}S
+                      </span>
+                      <span className="text-crimson-400">:</span>
+                      <span>
+                        {mounted ? formatTwoDigits(timeLeft.minutes) : "--"}D
+                      </span>
+                      <span className="text-crimson-400">:</span>
+                      <span>
+                        {mounted ? formatTwoDigits(timeLeft.seconds) : "--"}Sn
+                      </span>
+                    </div>
+                  ) : (
+                    <p className="text-xs text-emerald-400 font-medium mt-1">
+                      E-Kitap ve Fiziksel Kitap Şimdi Satışta
+                    </p>
+                  )}
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ===================================================================== */}
+      {/* MOBİL SABİT ALT BAR (Yarı saydam bulanık, seçili kitaba göre tek büyük buton) */}
+      {/* ===================================================================== */}
+      <div
+        className="fixed bottom-0 inset-x-0 z-40 lg:hidden bg-matte-950/80 backdrop-blur-xl border-t border-white/10 px-4 pt-2.5 pb-[max(0.6rem,env(safe-area-inset-bottom))] shadow-[0_-8px_30px_rgba(0,0,0,0.85)]"
+        role="region"
+        aria-label="Hızlı satın alma çubuğu"
+      >
+        <div className="max-w-md mx-auto">
+          {mobileSelectedBook === "kitap1" ? (
+            <ThemeButton
+              theme="kitap1"
+              variant="primary"
+              size="lg"
+              fullWidth
+              href="#fiyat-kartlari"
+              onClick={(e) =>
+                scrollToTarget(e, "fiyat-kartlari", "fiyatlandirma")
+              }
+              className="min-h-[50px] py-3 text-sm font-black"
+            >
+              <span>E-Kitabı Hemen Al – 600 TL</span>
+              <ArrowRight className="w-4 h-4 ml-1" />
+            </ThemeButton>
+          ) : !isOnSale ? (
+            <ThemeButton
+              theme="kitap2"
+              variant="primary"
+              size="lg"
+              fullWidth
+              href="#cekicilik-sanati"
+              onClick={(e) =>
+                scrollToTarget(e, "cekicilik-sanati", "fiyat-kartlari")
+              }
+              className="min-h-[50px] py-3 text-sm font-black"
+            >
+              <Bell className="w-4 h-4 text-gold-300 flex-shrink-0" />
+              <span>Haber Al — Çekicilik Sanatı</span>
+              <ArrowRight className="w-4 h-4 ml-1" />
+            </ThemeButton>
+          ) : (
+            <ThemeButton
+              theme="kitap2"
+              variant="primary"
+              size="lg"
+              fullWidth
+              href="#cekicilik-sanati"
+              onClick={(e) =>
+                scrollToTarget(e, "cekicilik-sanati", "fiyat-kartlari")
+              }
+              className="min-h-[50px] py-3 text-sm font-black"
+            >
+              <Flame className="w-4 h-4 text-emerald-300 flex-shrink-0" />
+              <span>Hemen Satın Al – 600 TL&apos;den başlayan</span>
+              <ArrowRight className="w-4 h-4 ml-1" />
+            </ThemeButton>
+          )}
         </div>
       </div>
-    </section>
+    </>
   );
 }
