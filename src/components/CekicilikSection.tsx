@@ -73,6 +73,12 @@ export default function CekicilikSection() {
             />
             <div className="pointer-events-none mt-8 h-4 w-[70%] max-w-[260px] rounded-full bg-crimson-600/40 blur-lg" />
             <div className="pointer-events-none -mt-3 h-3 w-[55%] max-w-[200px] rounded-full bg-black/90 blur-md" />
+            <div
+              aria-label="175 sayfa"
+              className="pointer-events-none relative mt-5 select-none rounded-full border border-crimson-400/60 bg-gradient-to-b from-crimson-600 via-crimson-800 to-crimson-950 px-7 py-2.5 font-cinzel text-sm font-bold uppercase tracking-[0.3em] text-white shadow-[0_0_24px_rgba(220,38,38,0.45),inset_0_1px_0_rgba(255,255,255,0.35),inset_0_-2px_4px_rgba(0,0,0,0.5)]"
+            >
+              175 Sayfa
+            </div>
           </div>
 
           {/* Tanıtım + geri sayım / satış */}

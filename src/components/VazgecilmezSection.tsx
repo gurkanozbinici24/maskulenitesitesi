@@ -96,6 +96,12 @@ export default function VazgecilmezSection() {
             />
             <div className="pointer-events-none mt-8 h-4 w-[70%] max-w-[260px] rounded-full bg-gold-500/40 blur-lg" />
             <div className="pointer-events-none -mt-3 h-3 w-[55%] max-w-[200px] rounded-full bg-black/90 blur-md" />
+            <div
+              aria-label="240 sayfa"
+              className="pointer-events-none relative mt-5 select-none rounded-full border border-gold-200/70 bg-[linear-gradient(180deg,#fff3c4_0%,#e6c46f_35%,#c9a55c_55%,#8a6420_100%)] px-7 py-2.5 font-cinzel text-sm font-black uppercase tracking-[0.3em] text-[#2a1a08] shadow-[0_0_28px_rgba(250,204,21,0.55),inset_0_1px_0_rgba(255,255,255,0.8),inset_0_-2px_4px_rgba(90,60,10,0.6)]"
+            >
+              240 Sayfa
+            </div>
           </div>
           </div>
 
