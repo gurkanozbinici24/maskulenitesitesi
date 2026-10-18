@@ -224,6 +224,7 @@ export interface ThemeSectionHeaderProps {
   className?: string;
   /** Başlık yazı boyutunu değiştirmek için (varsayılan: text-fluid-3xl) */
   titleClassName?: string;
+  subtitleClassName?: string;
 }
 
 export function ThemeSectionHeader({
@@ -236,6 +237,7 @@ export function ThemeSectionHeader({
   align = "center",
   className = "",
   titleClassName = "text-fluid-3xl",
+  subtitleClassName = "",
 }: ThemeSectionHeaderProps) {
   const gradientClass =
     theme === "kitap1" ? "gold-text-gradient" : "crimson-text-gradient";
@@ -266,7 +268,7 @@ export function ThemeSectionHeader({
         <p
           className={`mt-4 text-fluid-base text-zinc-400 font-normal leading-relaxed ${
             align === "center" ? "max-w-2xl mx-auto" : ""
-          }`}
+          } ${subtitleClassName}`}
         >
           {subtitle}
         </p>

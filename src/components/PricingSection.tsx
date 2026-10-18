@@ -49,9 +49,11 @@ export default function PricingSection() {
           badgeIcon={<Package className="w-3.5 h-3.5 text-gold-400" />}
           badgeText="KÜTÜPHANENİ DONAT"
           title="VAZGEÇİLMEZ OLMAYA"
-          highlightText="İLK ADIMI AT"
-          subtitle="Kuralları koyan taraf olmak ve taktikleri hemen uygulamaya başlamak için E-Kitap sürümünü hemen sipariş edebilir veya yeni kapağı ve okunaklı büyük puntosuyla hazırlanan Fiziksel Yenilenmiş Edisyon'u tercih edebilirsiniz."
-          className="mb-14 sm:mb-16"
+          highlightText={"İLK\u00a0ADIMI\u00a0AT"}
+          subtitle={"Kuralları koyan taraf olmak için E\u2011Kitap sürümünü hemen sipariş edebilir ya da yeni kapaklı, büyük puntolu Fiziksel Yenilenmiş Edisyon'u tercih edebilirsin."}
+          className="mb-14 sm:mb-16 lg:mb-10 lg:max-w-5xl"
+          titleClassName="text-fluid-3xl lg:whitespace-nowrap"
+          subtitleClassName="lg:max-w-4xl lg:text-base"
         />
 
         {/* 2-Card Side-by-Side Pricing Grid */}
@@ -66,7 +68,7 @@ export default function PricingSection() {
           <ThemeCard
             theme="kitap1"
             variant="glow"
-            className="flex flex-col justify-between p-5 sm:p-8 lg:p-9"
+            className="flex flex-col justify-between p-5 sm:p-8 lg:px-8 lg:py-7"
           >
             {/* ANINDA TESLİMAT BADGE */}
             <div className="absolute -top-3.5 left-6 sm:left-8 z-20">
@@ -82,7 +84,7 @@ export default function PricingSection() {
 
             <div>
               {/* Header */}
-              <div className="hidden sm:flex items-center justify-between mb-4 pt-2">
+              <div className="hidden sm:flex lg:hidden items-center justify-between mb-4 pt-2">
                 <div className="inline-flex items-center gap-1.5 text-xs font-black uppercase tracking-widest text-gold-400 font-mono">
                   <Sparkles className="w-4 h-4 text-gold-400" />
                   <span>DİJİTAL SÜRÜM</span>
@@ -92,12 +94,12 @@ export default function PricingSection() {
                 </div>
               </div>
 
-              <h3 className="pt-3 sm:pt-0 text-xl sm:text-fluid-2xl font-black text-white tracking-tight leading-snug">
+              <h3 className="pt-3 sm:pt-0 lg:pt-3 text-xl sm:text-fluid-2xl lg:text-[1.65rem] font-black text-white tracking-tight leading-snug">
                 Vazgeçilmez Olma Sanatı <br />
                 <span className="gold-text-gradient">E-Kitap Paketi</span>
               </h3>
 
-              <p className="hidden sm:block text-fluid-sm text-zinc-300 mt-2 mb-6 leading-relaxed">
+              <p className="hidden sm:block text-fluid-sm text-zinc-300 mt-2 mb-6 lg:mb-3 lg:text-sm leading-relaxed">
                 Kargo bekleme veya adres girme süreçleriyle vakit kaybetmeyin.
                 Ödemenizin ardından e-kitabınız (dijital formatta) doğrudan
                 e-posta adresinize gönderilir. Telefon, tablet veya
@@ -105,7 +107,7 @@ export default function PricingSection() {
               </p>
 
               {/* Price Tag */}
-              <div className="py-3 sm:py-4 my-3 sm:my-4 border-y border-gold-500/30 flex items-baseline gap-2 bg-gold-500/5 -mx-5 sm:-mx-8 lg:-mx-9 px-5 sm:px-8 lg:px-9">
+              <div className="py-3 sm:py-4 lg:py-3 my-3 sm:my-4 lg:my-3 border-y border-gold-500/30 flex items-baseline gap-2 bg-gold-500/5 -mx-5 sm:-mx-8 px-5 sm:px-8">
                 <span className="text-4xl sm:text-5xl font-black text-white font-mono">
                   600
                 </span>
@@ -118,7 +120,7 @@ export default function PricingSection() {
               </div>
 
               {/* Feature List */}
-              <div className="space-y-2.5 sm:space-y-3.5 my-4 sm:my-6">
+              <div className="space-y-2.5 sm:space-y-3.5 lg:space-y-2.5 my-4 sm:my-6 lg:my-4">
                 <div className="flex items-start gap-3">
                   <div className="mt-0.5 w-4 h-4 rounded-full bg-gold-500/20 flex items-center justify-center flex-shrink-0 text-gold-400 border border-gold-500/40">
                     <Check className="w-3 h-3" />
@@ -161,7 +163,7 @@ export default function PricingSection() {
             </div>
 
             {/* Primary CTA Button */}
-            <div className="pt-2 sm:pt-6 mt-2 sm:mt-4">
+            <div className="pt-2 sm:pt-6 lg:pt-2 mt-2 sm:mt-4 lg:mt-2">
               <ThemeButton
                 theme="kitap1"
                 variant="primary"
@@ -192,7 +194,7 @@ export default function PricingSection() {
           <ThemeCard
             theme="kitap1"
             variant="elevated"
-            className="flex flex-col justify-between p-5 sm:p-8 lg:p-9 border-mahogany-600/70"
+            className="flex flex-col justify-between p-5 sm:p-8 lg:px-8 lg:py-7 border-mahogany-600/70"
           >
             {/* ÜST ROZET: Satış Öncesi "Yenilenmiş Edisyon – 5 Kasım'da Satışta", Satışta "SATIŞTA" */}
             <div className="absolute -top-3.5 left-6 sm:left-8 z-20">
@@ -220,7 +222,7 @@ export default function PricingSection() {
 
             <div>
               {/* Header */}
-              <div className="hidden sm:flex items-center justify-between mb-4 pt-2">
+              <div className="hidden sm:flex lg:hidden items-center justify-between mb-4 pt-2">
                 <div className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-widest text-mahogany-200 font-mono">
                   <Package className="w-4 h-4 text-gold-400" />
                   <span>YENİLENMİŞ EDİSYON FİZİKSEL BASKI</span>
@@ -230,16 +232,16 @@ export default function PricingSection() {
                 </div>
               </div>
 
-              <h3 className="pt-3 sm:pt-0 text-xl sm:text-fluid-2xl font-black text-white tracking-tight leading-snug">
+              <h3 className="pt-3 sm:pt-0 lg:pt-3 text-xl sm:text-fluid-2xl lg:text-[1.65rem] font-black text-white tracking-tight leading-snug">
                 Vazgeçilmez Olma Sanatı <br />
                 <span className="gold-text-gradient">
                   Fiziksel Kitap
-                  <span className="hidden sm:inline"> (Yenilenmiş Edisyon)</span>
+                  <span className="hidden sm:inline lg:hidden"> (Yenilenmiş Edisyon)</span>
                 </span>
               </h3>
 
               {/* Kısa Bilgilendirme Notu */}
-              <div className="hidden sm:flex mt-3 mb-5 p-3.5 rounded-xl bg-mahogany-900/70 border border-mahogany-700/70 items-start gap-2.5 text-left">
+              <div className="hidden sm:flex mt-3 mb-5 lg:mb-2 p-3.5 lg:p-0 lg:mt-2 rounded-xl lg:rounded-none bg-mahogany-900/70 lg:bg-transparent border border-mahogany-700/70 lg:border-0 items-start gap-2.5 text-left">
                 <Info className="w-4 h-4 text-gold-400 flex-shrink-0 mt-0.5" />
                 <p className="text-xs sm:text-sm text-mahogany-200 leading-relaxed">
                   {VAZGECILMEZ_CONFIG.editionNote}
@@ -247,7 +249,7 @@ export default function PricingSection() {
               </div>
 
               {/* Fiyat ve Ücretsiz Kargo Bandı */}
-              <div className="py-3 sm:py-4 my-3 sm:my-4 border-y border-mahogany-700/70 flex flex-wrap items-center justify-between gap-2 bg-mahogany-900/40 -mx-5 sm:-mx-8 lg:-mx-9 px-5 sm:px-8 lg:px-9">
+              <div className="py-3 sm:py-4 lg:py-3 my-3 sm:my-4 lg:my-3 border-y border-mahogany-700/70 flex flex-wrap items-center justify-between gap-2 bg-mahogany-900/40 -mx-5 sm:-mx-8 px-5 sm:px-8">
                 <div className="flex items-baseline gap-2">
                   <span className="text-4xl sm:text-5xl font-black text-white font-mono">
                     {physicalRenovated.price}
@@ -263,7 +265,7 @@ export default function PricingSection() {
               </div>
 
               {/* Özellik Listesi */}
-              <div className="space-y-2.5 sm:space-y-3 my-4 sm:my-5">
+              <div className="space-y-2.5 sm:space-y-3 lg:space-y-2.5 my-4 sm:my-5 lg:my-4">
                 <div className="flex items-start gap-3">
                   <div className="mt-0.5 w-4 h-4 rounded-full bg-gold-500/20 flex items-center justify-center flex-shrink-0 text-gold-400 border border-gold-500/40">
                     <Check className="w-3 h-3" />
@@ -297,7 +299,7 @@ export default function PricingSection() {
             </div>
 
             {/* Alt Aksiyon Alanı: Satış Öncesi Geri Sayım + Haber Al / Satışta Sipariş Ver */}
-            <div className="pt-1 sm:pt-4 mt-1 sm:mt-2">
+            <div className="pt-1 sm:pt-4 lg:pt-1 mt-1 sm:mt-2 lg:mt-1">
               {!isOnSale ? (
                 <div className="space-y-3 sm:space-y-4">
                   <div>
