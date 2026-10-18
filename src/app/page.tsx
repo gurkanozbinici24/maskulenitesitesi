@@ -30,12 +30,12 @@ export default function Home() {
       <VazgecilmezSection />
 
       {/* 2b. Çekicilik Sanatı tanıtım (iki kitap tanıtımı art arda) */}
-      <SectionDivider variant="split" />
+      <SectionDivider variant="red" />
       <CekicilikSection />
 
       {/* 2. Neler Kazanacaksın Bölümü */}
       {/* Vazgeçilmez detaylarına geçiş ayracı */}
-      <SectionDivider variant="split" />
+      <SectionDivider variant="red" />
       <BookDivider />
 
       <BenefitsSection />
