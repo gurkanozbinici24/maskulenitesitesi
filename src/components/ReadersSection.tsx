@@ -24,6 +24,8 @@ const PHOTOS = PHOTO_HEIGHTS.map((h, i) => ({
 type Cat = "kargo" | "imza" | "yorum";
 const MESSAGES: { id: string; w: number; h: number; cat: Cat; date: string; text: string }[] = [
   { id: "m08", w: 532, h: 456, cat: "yorum", date: "16 Eylül", text: "Kitap pazartesi günü elime ulaştı. Açıkçası beklediğimden çok daha iyi çıktı. ‘Vazgeçilmez Olma Sanatı’ gerçekten isminin hakkını veren bir çalışma olmuş." },
+  { id: "m21", w: 672, h: 525, cat: "yorum", date: "26 Eylül", text: "Kitabınızı bitirdim. Benim gerçekten çok beğendiğim ve çokça istifade ettiğim bir kitap olmuş. Bir kadın olarak annemden aldığım birçok nasihati satır aralarında bulduğumu itiraf etmeliyim." },
+  { id: "m16", w: 631, h: 160, cat: "kargo", date: "18 Eylül", text: "Ben de beklemezdim bu kadar hızlı gelebileceğini." },
   { id: "m01", w: 397, h: 190, cat: "kargo", date: "16 Eylül", text: "Kitabım elime ulaştı, bu kadar hızlı gelmesini beklemiyordum, notunuz için de çok teşekkür ederim." },
   { id: "m04", w: 397, h: 150, cat: "imza", date: "9 Eylül", text: "Kitabım elime ulaştı. İsme özel not çok şık olmuş. Çok teşekkür ederim." },
   { id: "m07", w: 671, h: 301, cat: "yorum", date: "22 Eylül", text: "Bu, bir kere okunacak bir kitap değil. Baş ucu kitabı olması gereken bir kitap." },
@@ -37,6 +39,15 @@ const MESSAGES: { id: string; w: number; h: number; cat: Cat; date: string; text
   { id: "m11", w: 671, h: 121, cat: "yorum", date: "11 Eylül", text: "Emeğine sağlık, çok güzel bir kitap olmuş. Daha önce kendime hiç saygım yokmuş, bunu anladım." },
   { id: "m14", w: 671, h: 181, cat: "yorum", date: "14 Eylül", text: "Kitap çok güzel, keşke daha önce alsaydım." },
   { id: "m13", w: 671, h: 146, cat: "yorum", date: "30 Eylül", text: "Kitap güzel, anlatımı açık ve anlaşılır. Şu an 70. sayfadayım." },
+  { id: "m22", w: 397, h: 417, cat: "yorum", date: "13 Eylül", text: "Büyük bir farkındalıkla okuyorum. Gayet başarılı ve özenle düşünülüp emek verilerek yazılmış bir eser." },
+  { id: "m17", w: 397, h: 100, cat: "kargo", date: "19 Eylül", text: "Elime şimdi ulaştı, çok teşekkür ederim." },
+  { id: "m26", w: 456, h: 76, cat: "imza", date: "12 Eylül", text: "Not için de ayrıca teşekkür ederim." },
+  { id: "m20", w: 672, h: 106, cat: "kargo", date: "18 Eylül", text: "Kargo geldi, gayet iyi. Elinize emeğinize sağlık." },
+  { id: "m23", w: 672, h: 135, cat: "yorum", date: "9 Eylül", text: "Vakit buldukça kitabı okuyorum, en son ilişkimde yaptığım hatalar önüme geliyor, kitap çok iyi." },
+  { id: "m19", w: 397, h: 129, cat: "kargo", date: "10 Eylül", text: "Kitabım elime ulaştı, emeğine sağlık, en kısa zamanda başlayacağım." },
+  { id: "m24", w: 672, h: 136, cat: "yorum", date: "7 Eylül", text: "E-kitap PDF olarak gelmiş. Çok teşekkürler, şimdiden eline emeğine yüreğine sağlık." },
+  { id: "m18", w: 561, h: 76, cat: "kargo", date: "10 Eylül", text: "Kargo elime geldi, ellerine sağlık emeğine sağlık." },
+  { id: "m25", w: 672, h: 106, cat: "yorum", date: "13 Eylül", text: "1 saattir okuyorum, 20 sayfa okudum, dediğin gibi kafama soka soka okuyorum." },
   { id: "m15", w: 644, h: 84, cat: "yorum", date: "5 Ekim", text: "İlk 12 sayfayı okudum, gerçekten şahane, kalemine sağlık." },
 ];
 
