@@ -384,3 +384,10 @@ body {
 @media (prefers-reduced-motion: reduce) {
   .law-fade { animation: none; }
 }
+
+/* Okuma modu kitap fontu (yerel) */
+@font-face { font-family: "LoraBook"; font-weight: 500; font-display: swap; src: url("/fonts/lora-latin-ext-500-normal.woff2") format("woff2"); unicode-range: U+0100-024F, U+1E00-1EFF; }
+@font-face { font-family: "LoraBook"; font-weight: 500; font-display: swap; src: url("/fonts/lora-latin-500-normal.woff2") format("woff2"); }
+@font-face { font-family: "LoraBook"; font-weight: 600; font-style: italic; font-display: swap; src: url("/fonts/lora-latin-ext-600-italic.woff2") format("woff2"); unicode-range: U+0100-024F, U+1E00-1EFF; }
+@font-face { font-family: "LoraBook"; font-weight: 600; font-style: italic; font-display: swap; src: url("/fonts/lora-latin-600-italic.woff2") format("woff2"); }
+.font-book { font-family: "LoraBook", Georgia, serif; }

@@ -1,3 +1,5 @@
+import { CEKICILIK_PREVIEW_TEXT } from "./cekicilikPreviewText";
+
 /**
  * Merkezi Lansman, Geri Sayım ve Satış Yapılandırması (İki Kitap Ortak Config)
  *
@@ -70,12 +72,20 @@ export const VAZGECILMEZ_PREVIEW_PAGES = [
 ];
 
 /** Çekicilik Sanatı önizleme sayfaları (sıra: Kadın, İstediğinde, Her Kapının, Anahtarıdır). */
-export const CEKICILIK_PREVIEW_PAGES: { src: string; title: string; clearUntil: number }[] = [
-  { src: "/cekicilik-sayfa1.jpg", title: "Kadın", clearUntil: 100 },
-  { src: "/cekicilik-sayfa2.jpg", title: "İstediğinde", clearUntil: 100 },
-  { src: "/cekicilik-sayfa3.jpg", title: "Her Kapının", clearUntil: 100 },
+export const CEKICILIK_PREVIEW_PAGES: {
+  src: string;
+  title: string;
+  clearUntil: number;
+  /** Telefondaki okuma modu için sayfa metni */
+  text?: string[];
+  /** Kilitli sayfada okuma modunda gösterilecek paragraf sayısı */
+  visibleParas?: number;
+}[] = [
+  { src: "/cekicilik-sayfa1.jpg", title: "Kadın", clearUntil: 100, text: CEKICILIK_PREVIEW_TEXT[0] },
+  { src: "/cekicilik-sayfa2.jpg", title: "İstediğinde", clearUntil: 100, text: CEKICILIK_PREVIEW_TEXT[1] },
+  { src: "/cekicilik-sayfa3.jpg", title: "Her Kapının", clearUntil: 100, text: CEKICILIK_PREVIEW_TEXT[2] },
   // Son sayfa "bu sayfada bitiyor" vurgusundan hemen sonra kilitlenir
-  { src: "/cekicilik-sayfa4.jpg", title: "Anahtarıdır", clearUntil: 75 },
+  { src: "/cekicilik-sayfa4.jpg", title: "Anahtarıdır", clearUntil: 75, text: CEKICILIK_PREVIEW_TEXT[3], visibleParas: 4 },
 ];
 
 export const VAZGECILMEZ_CONFIG = {

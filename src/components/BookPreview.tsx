@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useState } from "react";
 import Image from "next/image";
-import { ChevronLeft, ChevronRight, Eye, Lock, X, ZoomIn, ZoomOut } from "lucide-react";
+import { ChevronLeft, ChevronRight, Crown, Eye, Lock, X, ZoomIn, ZoomOut } from "lucide-react";
 import { ThemeButton, type BookTheme } from "./ui/ThemeSystem";
 
 export interface PreviewPage {
@@ -10,6 +10,23 @@ export interface PreviewPage {
   title: string;
   /** Sayfanın yüzde kaçı net görünsün (geri kalanı bulanık) */
   clearUntil: number;
+  /** Telefonda "Büyüt" ile açılan okuma modu için sayfa metni (yoksa görsel büyütülür) */
+  text?: string[];
+  /** Kilitli sayfada okuma modunda gösterilecek paragraf sayısı */
+  visibleParas?: number;
+}
+
+/** "**metin**" bölümlerini altın vurguya çevirir */
+function renderRich(t: string) {
+  return t.split(/(\*\*[^*]+\*\*)/g).map((part, i) =>
+    part.startsWith("**") && part.endsWith("**") ? (
+      <em key={i} className="font-semibold italic text-[#f0d27e]">
+        {part.slice(2, -2)}
+      </em>
+    ) : (
+      <span key={i}>{part}</span>
+    )
+  );
 }
 
 export interface PreviewCta {
@@ -39,6 +56,18 @@ export default function BookPreview({
 }) {
   const [open, setOpen] = useState<number | null>(null);
   const [zoom, setZoom] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+  // Sayfa değişince veya büyütünce okuma penceresini en üste al
+  useEffect(() => {
+    document.getElementById("book-reader")?.scrollTo({ top: 0 });
+  }, [open, zoom]);
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 639px)");
+    const update = () => setIsMobile(mq.matches);
+    update();
+    mq.addEventListener("change", update);
+    return () => mq.removeEventListener("change", update);
+  }, []);
   const isGold = theme === "kitap1";
 
   const close = useCallback(() => {
@@ -122,6 +151,98 @@ export default function BookPreview({
   const cardBorder = isGold
     ? "border-gold-500/40 bg-gradient-to-br from-mahogany-950/70 via-matte-950 to-matte-950 hover:border-gold-400/70"
     : "border-crimson-700/50 bg-gradient-to-br from-crimson-950/60 via-matte-950 to-matte-950 hover:border-crimson-500/70";
+
+  const ReadingView = ({ page }: { page: PreviewPage }) => {
+    const paras = page.text ?? [];
+    const locked = page.clearUntil < 100;
+    const shown = locked ? paras.slice(0, page.visibleParas ?? Math.ceil(paras.length / 2)) : paras;
+    const teaser = locked ? paras[shown.length] : undefined;
+    return (
+      <article
+        className={`font-book relative overflow-hidden rounded-xl border px-5 py-7 ${
+          isGold
+            ? "border-gold-500/40 bg-gradient-to-b from-[#1c1208] via-[#0d0905] to-black"
+            : "border-crimson-700/50 bg-gradient-to-b from-[#2a0609] via-[#120305] to-black"
+        }`}
+      >
+        <div className="text-center">
+          <Crown className="mx-auto h-6 w-6 text-gold-400" strokeWidth={1.5} />
+          <h4 className="mt-2 font-cinzel text-2xl font-bold tracking-[0.12em] gold-text-gradient uppercase">
+            {page.title}
+          </h4>
+          <div className="mx-auto mt-3 mb-6 flex w-40 items-center gap-2">
+            <span className="h-px flex-1 bg-gold-500/50" />
+            <span className={`h-2 w-2 rotate-45 ${isGold ? "bg-gold-400" : "bg-crimson-600"}`} />
+            <span className="h-px flex-1 bg-gold-500/50" />
+          </div>
+        </div>
+
+        <div className="space-y-4 text-[17px] leading-[1.75] text-[#f4ece2]">
+          {shown.map((p, i) =>
+            p.startsWith(">") ? (
+              <p
+                key={i}
+                className={`border-y border-gold-500/40 py-3 text-center text-[18px] font-semibold italic ${
+                  isGold ? "text-gold-300" : "text-[#ff9b9b]"
+                }`}
+              >
+                {renderRich(p.slice(1))}
+              </p>
+            ) : (
+              <p
+                key={i}
+                className={
+                  i === 0
+                    ? `first-letter:float-left first-letter:mr-2 first-letter:font-cinzel first-letter:text-[3.2em] first-letter:font-bold first-letter:leading-[0.85] ${
+                        isGold ? "first-letter:text-gold-400" : "first-letter:text-crimson-500"
+                      }`
+                    : ""
+                }
+              >
+                {renderRich(p)}
+              </p>
+            )
+          )}
+        </div>
+
+        {locked && (
+          <div className="relative mt-4">
+            {teaser && (
+              <p className="select-none text-[17px] leading-[1.75] text-[#f4ece2] blur-[5px]" aria-hidden="true">
+                {teaser.replace(/\*\*/g, "")}
+              </p>
+            )}
+            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/60 to-black" />
+            <div className="relative -mt-16 flex flex-col items-center pt-2 text-center">
+              <div
+                className={`mb-2 flex h-11 w-11 items-center justify-center rounded-full border bg-black/80 ${
+                  isGold ? "border-gold-500/60 text-gold-300" : "border-crimson-500/60 text-crimson-300"
+                }`}
+              >
+                <Lock className="h-5 w-5" />
+              </div>
+              <p className="font-cinzel text-lg font-bold tracking-wider text-white">Devamı kitapta</p>
+              <p className="mt-1 mb-4 font-sans text-sm text-zinc-400">
+                Bu sayfanın ve tüm bölümlerin tamamını okumak için kitaba eriş.
+              </p>
+              <ThemeButton
+                theme={theme}
+                variant="primary"
+                size="md"
+                href={cta.href}
+                target={cta.external ? "_blank" : undefined}
+                rel={cta.external ? "noopener noreferrer" : undefined}
+                onClick={cta.onClick}
+                className="w-full font-sans"
+              >
+                <span>{cta.label}</span>
+              </ThemeButton>
+            </div>
+          </div>
+        )}
+      </article>
+    );
+  };
 
   const body =
     variant === "card" ? (
@@ -237,8 +358,9 @@ export default function BookPreview({
           onClick={close}
           role="dialog"
           aria-modal="true"
+          id="book-reader"
         >
-          <div className={`relative w-full transition-[max-width] duration-300 ${zoom ? "max-w-[min(1000px,100%)]" : "max-w-[560px]"}`} onClick={(e) => e.stopPropagation()}>
+          <div className={`relative w-full transition-[max-width] duration-300 ${zoom ? "max-w-[min(760px,100%)]" : "max-w-[560px]"}`} onClick={(e) => e.stopPropagation()}>
             <div className="mb-3 flex items-center justify-between gap-3">
               <span className={`font-cinzel text-sm font-bold tracking-wider ${accent}`}>
                 {open + 1} / {pages.length} · {pages[open].title}
@@ -264,6 +386,9 @@ export default function BookPreview({
               </div>
             </div>
 
+            {zoom && isMobile && pages[open].text ? (
+              <ReadingView page={pages[open]} />
+            ) : (
             <div className={zoom ? "-mx-3 overflow-x-auto px-3 sm:mx-0 sm:overflow-visible sm:px-0" : ""}>
             <div
               onDoubleClick={() => setZoom((z) => !z)}
@@ -273,13 +398,14 @@ export default function BookPreview({
                 src={pages[open].src}
                 alt={pages[open].title}
                 fill
-                sizes={zoom ? "(max-width: 640px) 160vw, 1000px" : "560px"}
+                sizes={zoom ? "(max-width: 640px) 160vw, 760px" : "560px"}
                 quality={95}
                 className="object-contain object-top"
               />
               {pages[open].clearUntil < 100 && <LockedOverlay page={pages[open]} big />}
             </div>
             </div>
+            )}
 
             {pages[open].clearUntil >= 100 && (
               <div className="mt-3 flex flex-col sm:flex-row items-center justify-center gap-2">
