@@ -141,7 +141,7 @@ export default function ReadersSection() {
           ))}
         </div>
 
-        <div className="columns-1 gap-4 sm:columns-2 lg:columns-3 [&>*]:mb-4">
+        <div className="mx-auto max-w-4xl columns-1 gap-4 md:columns-2 [&>*]:mb-4">
           {visible.map((m) => (
             <figure
               key={m.id}
@@ -169,7 +169,7 @@ export default function ReadersSection() {
                 alt={m.text}
                 width={m.w}
                 height={m.h}
-                sizes="(max-width: 640px) 92vw, (max-width: 1024px) 46vw, 360px"
+                sizes="(max-width: 640px) 92vw, 440px"
                 className="h-auto w-full"
               />
               <figcaption className="sr-only">{m.text}</figcaption>
