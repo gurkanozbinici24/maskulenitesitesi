@@ -3,6 +3,7 @@ import HeroSection from "@/components/HeroSection";
 import BookChooserSection from "@/components/BookChooserSection";
 import VazgecilmezSection from "@/components/VazgecilmezSection";
 import BundleSection from "@/components/BundleSection";
+import ReadersSection from "@/components/ReadersSection";
 import BookDivider from "@/components/BookDivider";
 import BenefitsSection from "@/components/BenefitsSection";
 import LawArchive from "@/components/LawArchive";
@@ -37,6 +38,10 @@ export default function Home() {
       {/* 2c. Koleksiyon Seti (iki fiziksel kitap birlikte) */}
       <SectionDivider variant="split" />
       <BundleSection />
+
+      {/* 2d. Gerçek okur fotoğrafları ve WhatsApp mesajları */}
+      <SectionDivider variant="gold" />
+      <ReadersSection />
 
       {/* 2. Neler Kazanacaksın Bölümü */}
       {/* Vazgeçilmez detaylarına geçiş ayracı */}
