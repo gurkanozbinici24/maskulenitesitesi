@@ -3,7 +3,6 @@
 import { useState } from "react";
 import { BookOpen, Mail, MessageSquare, ArrowUp } from "lucide-react";
 import LegalModal from "./LegalModal";
-import { KART_ODEME_AKTIF } from "@/config/cekicilikConfig";
 
 export default function Footer() {
   const [modalState, setModalState] = useState<{
@@ -205,8 +204,7 @@ export default function Footer() {
               </button>
             </div>
 
-            {/* Güvenli Ödeme ve Kurum Logoları (iyzico onayı gelince KART_ODEME_AKTIF=true ile görünür) */}
-            {KART_ODEME_AKTIF && (
+            {/* Güvenli Ödeme ve Kurum Logoları */}
             <div className="w-full pt-4 border-t border-zinc-900/80 flex justify-center">
               <img
                 src="/payment-logos.png"
@@ -214,7 +212,6 @@ export default function Footer() {
                 className="h-7 sm:h-9 w-auto max-w-full object-contain opacity-80 hover:opacity-100 transition-opacity"
               />
             </div>
-            )}
           </div>
 
         </div>
