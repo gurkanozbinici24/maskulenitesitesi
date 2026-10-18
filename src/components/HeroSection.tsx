@@ -23,27 +23,33 @@ function formatTwoDigits(val: number): string {
 /**
  * Her iki kitap için birebir aynı boyutta ve 2:3 klasik kitap oranında 3D Kitap Objesi
  */
-function Book3DModel({
+export function Book3DModel({
   book,
   isFocused,
   isDimmed,
   sizeClassName,
+  orientation,
+  imageSizes = "(max-width: 1024px) 45vw, 420px",
 }: {
   book: "kitap1" | "kitap2";
   isFocused: boolean;
   isDimmed: boolean;
   sizeClassName: string;
+  /** Kitabın hangi yöne dönük duracağı (varsayılan: kitap1 sol, kitap2 sağ) */
+  orientation?: "left" | "right";
+  imageSizes?: string;
 }) {
   const isKitap1 = book === "kitap1";
+  const facesLeft = orientation ? orientation === "left" : isKitap1;
 
-  const baseClass = isKitap1
+  const baseClass = facesLeft
     ? "book-3d-object-left"
     : "book-3d-object-right";
 
   const stateClass = isFocused
     ? "book-3d-object-focused"
     : isDimmed
-    ? isKitap1
+    ? facesLeft
       ? "book-3d-object-dimmed-left"
       : "book-3d-object-dimmed-right"
     : "";
@@ -113,7 +119,7 @@ function Book3DModel({
           }
           fill
           priority
-          sizes="(max-width: 1024px) 45vw, 420px"
+          sizes={imageSizes}
           quality={90}
           className={`object-cover ${
             isKitap1 ? "object-center" : "object-[50%_68%]"

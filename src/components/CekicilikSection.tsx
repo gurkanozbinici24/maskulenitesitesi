@@ -1,6 +1,7 @@
 "use client";
 
-import Image from "next/image";
+import { useState } from "react";
+import { Book3DModel } from "./HeroSection";
 import { Crown, Gem, HeartHandshake } from "lucide-react";
 import { BookCountdown } from "./ui/BookCountdown";
 import { ThemeSectionHeader } from "./ui/ThemeSystem";
@@ -31,6 +32,7 @@ const HIGHLIGHTS = [
 ];
 
 export default function CekicilikSection() {
+  const [focused, setFocused] = useState(false);
   return (
     <section
       id="cekicilik-sanati"
@@ -50,22 +52,24 @@ export default function CekicilikSection() {
         />
 
         <div className="grid lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] gap-10 lg:gap-16 items-center">
-          {/* Kapak */}
-          <div className="flex justify-center">
-            <div className="relative w-[230px] sm:w-[280px] lg:w-[340px] aspect-[2/3]">
-              <div className="pointer-events-none absolute -inset-8 rounded-full bg-gradient-to-tr from-crimson-600/40 via-crimson-900/30 to-emerald-500/20 blur-3xl" />
-              <div className="relative h-full w-full rounded-r-xl rounded-l-[4px] overflow-hidden border border-crimson-600/50 shadow-[0_30px_70px_-15px_rgba(0,0,0,0.95),0_0_40px_rgba(185,28,28,0.3)]">
-                <Image
-                  src={CEKICILIK_SANATI_CONFIG.coverImage}
-                  alt="Çekicilik Sanatı - Gürkan Özbinici"
-                  fill
-                  quality={90}
-                  sizes="(max-width: 1024px) 70vw, 340px"
-                  className="object-cover object-[50%_68%]"
-                />
-                <div className="pointer-events-none absolute inset-y-0 left-0 w-3 bg-gradient-to-r from-black/60 via-white/10 to-transparent" />
-              </div>
-            </div>
+          {/* 3D Kapak */}
+          <div
+            className="book-3d-scene relative flex flex-col items-center justify-center py-6"
+            onMouseEnter={() => setFocused(true)}
+            onMouseLeave={() => setFocused(false)}
+            onClick={() => setFocused((f) => !f)}
+          >
+            <div className={`pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[80%] rounded-full bg-gradient-to-tr from-crimson-600/40 via-crimson-900/30 to-emerald-500/20 blur-3xl transition-transform duration-500 ${focused ? "scale-125" : ""}`} />
+            <Book3DModel
+              book="kitap2"
+              orientation="left"
+              isFocused={focused}
+              isDimmed={false}
+              sizeClassName="w-[210px] h-[315px] sm:w-[250px] sm:h-[375px] lg:w-[300px] lg:h-[450px]"
+              imageSizes="(max-width: 1024px) 60vw, 300px"
+            />
+            <div className="pointer-events-none mt-8 h-4 w-[70%] max-w-[260px] rounded-full bg-crimson-600/40 blur-lg" />
+            <div className="pointer-events-none -mt-3 h-3 w-[55%] max-w-[200px] rounded-full bg-black/90 blur-md" />
           </div>
 
           {/* Tanıtım + geri sayım / satış */}
