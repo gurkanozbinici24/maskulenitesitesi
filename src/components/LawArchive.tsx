@@ -32,8 +32,17 @@ const OPEN_LAWS: OpenLaw[] = [
     page: 84,
     content: (
       <>
-        Kriz anında sızlanma. Darbeyi al, o suyu yut ve onu yeni büyüme motoruna çevirerek{" "}
-        <strong className="gold-text-gradient font-bold">Anti-Kırılgan ol.</strong>
+        Uzun bir sitem mesajına uzun bir savunmayla cevap verme. Sakin tek bir kelime, sayfalarca
+        açıklamadan ağır basar:{" "}
+        <span
+          className="relative mx-1 inline-flex items-center justify-center rounded-sm border-y border-zinc-800 bg-black px-3 align-middle"
+          title="Sansürlü"
+        >
+          <span className="invisible text-sm">Anladım.</span>
+          <Lock className="absolute h-3.5 w-3.5 text-gold-400" strokeWidth={1.5} />
+        </span>{" "}
+        Gerisini{" "}
+        <strong className="gold-text-gradient font-bold">onun kendi düşüncelerine bırakırsın.</strong>
       </>
     ),
   },
