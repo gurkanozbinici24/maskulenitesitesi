@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Check, MessageCircle, Package, Truck } from "lucide-react";
+import { Check, Heart, MessageCircle, Package, Truck } from "lucide-react";
 import { Book3DModel } from "./HeroSection";
 import { useCekicilikLaunchStatus } from "./ui/BookCountdown";
 import { ThemeButton } from "./ui/ThemeSystem";
@@ -71,16 +71,23 @@ export default function BundleSection() {
 
         {/* Teklif */}
         <div className="text-center lg:text-left">
-          <div className="inline-flex items-center gap-2 rounded-full border border-gold-500/40 bg-black/50 px-4 py-1.5 text-[11px] font-bold uppercase tracking-[0.2em] text-gold-300">
-            <Package className="h-3.5 w-3.5" />
-            {SET.name} · 2 Fiziksel Kitap
+          <div className="flex flex-wrap items-center justify-center gap-2 lg:justify-start">
+            <div className="inline-flex items-center gap-2 rounded-full border border-gold-500/40 bg-black/50 px-4 py-1.5 text-[11px] font-bold uppercase tracking-[0.2em] text-gold-300">
+              <Package className="h-3.5 w-3.5" />
+              {SET.name} · 2 Fiziksel Kitap
+            </div>
+            <div className="inline-flex items-center gap-2 rounded-full border border-crimson-500/50 bg-gradient-to-r from-crimson-900/70 to-crimson-700/50 px-4 py-1.5 text-[11px] font-bold uppercase tracking-[0.2em] text-crimson-100">
+              <Heart className="h-3.5 w-3.5 fill-crimson-400 text-crimson-400" />
+              Sevgilinle Birlikte Oku
+            </div>
           </div>
           <h2 className="mt-4 font-cinzel text-[clamp(1.8rem,4.5vw,2.9rem)] font-bold leading-tight text-white">
             Aynı Oyunun <span className="gold-text-gradient">İki</span>{" "}
             <span className="bg-gradient-to-r from-crimson-400 to-crimson-600 bg-clip-text text-transparent">Tarafı</span>
           </h2>
           <p className="mt-3 text-sm text-zinc-400 sm:text-base">
-            Vazgeçilmez Olma Sanatı ve Çekicilik Sanatı, iki fiziksel kitap birlikte.
+            O kendi kitabında güçlenecek, sen kendininkinde.{" "}
+            <span className="text-zinc-200">Aynı masada, iki güçlü taraf.</span>
           </p>
 
           {/* Fiyat */}
@@ -99,7 +106,6 @@ export default function BundleSection() {
             {[
               "Vazgeçilmez Olma Sanatı (Yenilenmiş Edisyon) + Çekicilik Sanatı",
               "Kapıya kadar ücretsiz kargo",
-              "İlişkinin iki tarafını okumak isteyenler, çiftler ve hediye için ideal",
             ].map((t) => (
               <li key={t} className="flex items-start gap-3">
                 <span className="mt-0.5 flex h-4 w-4 flex-shrink-0 items-center justify-center rounded-full border border-gold-500/50 bg-gold-500/15 text-gold-400">
