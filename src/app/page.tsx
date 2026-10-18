@@ -1,6 +1,7 @@
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
 import BookChooserSection from "@/components/BookChooserSection";
+import VazgecilmezSection from "@/components/VazgecilmezSection";
 import BenefitsSection from "@/components/BenefitsSection";
 import SecretLawShowcase from "@/components/SecretLawShowcase";
 import SocialProofBanner from "@/components/SocialProofBanner";
@@ -20,6 +21,9 @@ export default function Home() {
 
       {/* 1b. Hangi kitap senin için? */}
       <BookChooserSection />
+
+      {/* 2a. Vazgeçilmez Olma Sanatı tanıtım */}
+      <VazgecilmezSection />
 
       {/* 2. Neler Kazanacaksın Bölümü */}
       <BenefitsSection />

@@ -62,7 +62,7 @@ export default function Navbar() {
             {/* Desktop Nav Items & Kompakt Satın Alma Butonu */}
             <nav className="hidden md:flex items-center gap-5 lg:gap-7 ml-auto flex-shrink-0">
               <a
-                href="/#kazanimlar"
+                href="/#vazgecilmez"
                 className="text-xs lg:text-sm font-medium text-zinc-300 hover:text-gold-300 active:text-gold-200 transition-colors whitespace-nowrap"
               >
                 Vazgeçilmez Olma Sanatı
@@ -124,7 +124,7 @@ export default function Navbar() {
         {mobileMenuOpen && (
           <div className="md:hidden bg-matte-900/95 border-b border-zinc-800 backdrop-blur-xl px-4 pt-3 pb-5 space-y-1.5">
             <a
-              href="/#kazanimlar"
+              href="/#vazgecilmez"
               onClick={() => setMobileMenuOpen(false)}
               className="min-h-[44px] flex items-center px-3 py-2 text-sm font-semibold text-zinc-200 hover:text-gold-400 active:text-gold-300 hover:bg-zinc-800/40 rounded-md"
             >

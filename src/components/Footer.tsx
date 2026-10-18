@@ -69,7 +69,7 @@ export default function Footer() {
               <ul className="space-y-2 text-sm">
                 <li>
                   <a
-                    href="/#kazanimlar"
+                    href="/#vazgecilmez"
                     className="hover:text-gold-400 transition-colors"
                   >
                     Neler Kazanacaksın?

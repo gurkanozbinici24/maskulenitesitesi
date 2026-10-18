@@ -12,7 +12,7 @@ import { VAZGECILMEZ_CONFIG, CEKICILIK_SANATI_CONFIG } from "@/config/cekicilikC
 const BOOKS = [
   {
     theme: "kitap1" as const,
-    target: "kazanimlar",
+    target: "vazgecilmez",
     label: "ERKEKLER İÇİN",
     title: "Vazgeçilmez Olma Sanatı",
     tagline: "İlişkide kuralları koyan taraf ol.",

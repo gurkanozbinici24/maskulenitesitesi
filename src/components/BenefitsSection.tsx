@@ -62,7 +62,7 @@ export default function BenefitsSection() {
         {/* Section Header */}
         <ThemeSectionHeader
           theme="kitap1"
-          badgeText="1. KİTAP • ERKEKLER İÇİN"
+          badgeText="DÖNÜŞÜM REHBERİ"
           title="Vazgeçilmez Olma Sanatı ile"
           highlightText="Neler Kazanacaksın?"
           subtitle="Bu bir tavsiye kitabı değil, bir güç manifestosudur. İlişkilerde kontrolü eline almak, kadın doğasını şifrelerine kadar çözmek ve vazgeçilmez bir otorite olmak isteyenler için yazıldı."
