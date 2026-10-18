@@ -41,6 +41,12 @@ const faqs: FaqItem[] = [
     answer:
       "Vazgeçilmez Olma Sanatı erkekler için, Çekicilik Sanatı kadınlar için yazıldı. İkisi aynı ilişki dinamiklerini iki farklı taraftan anlatır; ilişkinin iki tarafını da anlamak isteyenler ikisini birlikte okuyabilir.",
   },
+  {
+    id: 6,
+    question: "Fiziksel kitap ne zaman elimde olur? İmzalı mı geliyor?",
+    answer:
+      "Her fiziksel kitap isminize özel imzalanarak gönderilir; imza için ismi sipariş mesajınıza yazmanız yeterli. Hediye alıyorsanız, hediye edeceğiniz kişinin ismini yazabilirsiniz. Saat 14:00'e kadar verilen siparişler aynı gün Yurtiçi Kargo'ya teslim edilir ve 2 gün içinde kapınızda olur.",
+  },
 ];
 
 export default function FaqSection() {

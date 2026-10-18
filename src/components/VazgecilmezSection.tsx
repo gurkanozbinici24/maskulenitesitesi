@@ -7,6 +7,7 @@ import { useCekicilikLaunchStatus } from "./ui/BookCountdown";
 import { ThemeBadge, ThemeButton, ThemeSectionHeader } from "./ui/ThemeSystem";
 import { VAZGECILMEZ_CONFIG, VAZGECILMEZ_PREVIEW_PAGES } from "@/config/cekicilikConfig";
 import BookPreview from "./BookPreview";
+import PhysicalPerks from "./ui/PhysicalPerks";
 
 /**
  * Vazgeçilmez Olma Sanatı tanıtım bölümü (id="vazgecilmez").
@@ -170,6 +171,7 @@ export default function VazgecilmezSection() {
                 <p className="mt-1 mb-4 text-xs text-zinc-400">
                   Yeni kapak, büyük punto. Kapıya kadar ücretsiz kargo.
                 </p>
+                <PhysicalPerks theme="kitap1" size="sm" className="mb-4" />
 
                 {isOnSale ? (
                   <ThemeButton

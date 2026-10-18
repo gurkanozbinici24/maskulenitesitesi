@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, Cinzel, Playfair_Display } from "next/font/google";
+import { Inter, Cinzel, Playfair_Display, Great_Vibes } from "next/font/google";
 import "./globals.css";
 
 const inter = Inter({
@@ -20,6 +20,13 @@ const playfair = Playfair_Display({
   weight: ["600", "700", "800"],
   style: ["normal", "italic"],
   variable: "--font-playfair",
+  display: "swap",
+});
+
+const signature = Great_Vibes({
+  subsets: ["latin", "latin-ext"],
+  weight: "400",
+  variable: "--font-signature",
   display: "swap",
 });
 
@@ -78,7 +85,7 @@ export default function RootLayout({
   return (
     <html
       lang="tr"
-      className={`dark scroll-smooth ${inter.variable} ${cinzel.variable} ${playfair.variable}`}
+      className={`dark scroll-smooth ${inter.variable} ${cinzel.variable} ${playfair.variable} ${signature.variable}`}
       style={{ backgroundColor: "#050507", color: "#f4f4f5", colorScheme: "dark" }}
     >
       <body

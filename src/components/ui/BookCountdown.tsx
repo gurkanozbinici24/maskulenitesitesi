@@ -1,5 +1,6 @@
 "use client";
 
+import PhysicalPerks from "./PhysicalPerks";
 import React, { useEffect, useState } from "react";
 import {
   BookOpen,
@@ -382,6 +383,8 @@ export function CekicilikSalesOptions({
                 </div>
               </div>
 
+              {isPhysical && <PhysicalPerks theme="kitap2" size="sm" className="mt-2.5" />}
+
               <div className="flex flex-col gap-2 mt-2.5">
                 <ThemeButton
                   theme="kitap2"
@@ -566,6 +569,8 @@ export function CekicilikSalesOptions({
             </span>
           </div>
 
+          <PhysicalPerks theme="kitap2" className="my-5" />
+
           {/* Feature List */}
           <div className="space-y-3.5 my-6">
             {physical.features.map((feature, idx) => (
@@ -609,7 +614,7 @@ export function CekicilikSalesOptions({
 
           <div className="flex items-center justify-center gap-1.5 pt-1 text-xs text-emerald-400 font-semibold">
             <Truck className="w-3.5 h-3.5" />
-            <span>Kapıya kadar ücretsiz ve gizli paketleme ile kargo.</span>
+            <span>Kapıya kadar ücretsiz, gizli paketleme ile Yurtiçi Kargo.</span>
           </div>
         </div>
       </ThemeCard>

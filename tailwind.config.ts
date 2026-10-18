@@ -12,6 +12,7 @@ const config: Config = {
         sans: ["var(--font-inter)", "ui-sans-serif", "system-ui", "sans-serif"],
         cinzel: ["var(--font-cinzel)", "Cinzel", "serif"],
         playfair: ["var(--font-playfair)", "Playfair Display", "serif"],
+        signature: ["var(--font-signature)", "cursive"],
       },
       fontSize: {
         "fluid-xs": ["clamp(0.72rem, 0.68rem + 0.2vw, 0.8rem)", { lineHeight: "1.4" }],

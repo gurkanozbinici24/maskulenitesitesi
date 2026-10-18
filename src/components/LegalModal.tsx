@@ -70,7 +70,7 @@ export default function LegalModal({
               </p>
               <h4 className="font-bold text-zinc-100 text-sm">3. Teslimat Koşulları</h4>
               <p>
-                E-Kitap siparişleri ödeme onayını müteakip anında alıcının e-posta adresine ve indirme paneline iletilir. Fiziksel kitaplar, sipariş tarihinden itibaren 1-3 iş günü içerisinde anlaşmalı kargo firmasına teslim edilir.
+                E-Kitap siparişleri ödeme onayını müteakip anında alıcının e-posta adresine ve indirme paneline iletilir. Fiziksel kitaplar isme özel imzalanarak hazırlanır; saat 14:00'e kadar onaylanan siparişler aynı iş günü, sonrasında verilen siparişler ertesi iş günü Yurtiçi Kargo'ya teslim edilir.
               </p>
               <h4 className="font-bold text-zinc-100 text-sm">4. Telif ve Fikri Mülkiyet</h4>
               <p>

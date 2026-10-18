@@ -24,6 +24,22 @@ export const WHATSAPP_PHONE = "905455207999";
 /** Resmi Instagram adresi */
 export const INSTAGRAM_URL = "https://www.instagram.com/maskulenitesitesi";
 
+/* ============================================================================
+ * FİZİKSEL KİTAP AYRICALIKLARI: Flash Hızda Kargo + İsme Özel İmza
+ * Tüm fiziksel kitap kartları ve Koleksiyon Seti bu metinleri kullanır.
+ * ========================================================================== */
+export const PHYSICAL_PERKS = {
+  cargoTitle: "Flash Hızda Kargo",
+  cargoDetail: "14:00'e kadar verilen siparişler aynı gün Yurtiçi Kargo'da",
+  cargoDelivery: "2 günde elinde",
+  signatureTitle: "İsme Özel İmzalı",
+  signatureMessage: "Senin adını yazarak, sana özel imzalayıp gönderiyorum.",
+  signatureAuthor: "Gürkan Özbinici",
+} as const;
+
+/** Fiziksel sipariş mesajlarına eklenen satır: imza için isim sipariş anında alınır */
+const IMZA_SATIRI = "\n\nİmza için isim: ";
+
 export interface CekicilikProductOption {
   id:
     | "cekicilik-ekitap"
@@ -59,7 +75,7 @@ const VAZGECILMEZ_PHYSICAL_NOTIFY_MESSAGE =
   "Merhaba, Vazgeçilmez Olma Sanatı Yenilenmiş Edisyon fiziksel kitabı çıktığında haber almak istiyorum.";
 
 const VAZGECILMEZ_PHYSICAL_ORDER_MESSAGE =
-  "Merhaba, Vazgeçilmez Olma Sanatı Yenilenmiş Edisyon fiziksel kitabını satın almak istiyorum.";
+  "Merhaba, Vazgeçilmez Olma Sanatı Yenilenmiş Edisyon fiziksel kitabını satın almak istiyorum." + IMZA_SATIRI;
 
 /**
  * Kitaptan önizleme sayfaları. clearUntil: sayfanın yüzde kaçı net görünür (gerisi bulanık).
@@ -141,7 +157,7 @@ const EBOOK_WHATSAPP_MESSAGE =
   "Merhaba, Çekicilik Sanatı E-Kitap paketini satın almak istiyorum.";
 
 const PHYSICAL_WHATSAPP_MESSAGE =
-  "Merhaba, Çekicilik Sanatı Fiziksel Kitap'ı satın almak istiyorum.";
+  "Merhaba, Çekicilik Sanatı Fiziksel Kitap'ı satın almak istiyorum." + IMZA_SATIRI;
 
 const NOTIFY_WHATSAPP_MESSAGE =
   "Çekicilik Sanatı çıktığında haber almak istiyorum.";
@@ -186,6 +202,7 @@ export const CEKICILIK_PRODUCTS: {
       "Kapıya kadar ücretsiz kargo (Tüm Türkiye'ye ek ücreti olmadan)",
       "1. Sınıf özel dokulu mat kapak ve yüksek kalite baskı",
       "Özel korumalı, dışarıdan içeriği görünmeyen gizli paketleme",
+      "Yazarın kendi elinden, isminize özel imzalı gönderim",
       "Kargo takip numarası ile adım adım teslimat bilgilendirmesi",
     ],
     whatsappMessage: PHYSICAL_WHATSAPP_MESSAGE,
@@ -213,7 +230,8 @@ export const CEKICILIK_SANATI_CONFIG = {
 const SET_NOTIFY_MESSAGE =
   "Merhaba, Koleksiyon Seti (2 fiziksel kitap) satışa çıktığında haber almak istiyorum.";
 const SET_ORDER_MESSAGE =
-  "Merhaba, Koleksiyon Seti'ni (Vazgeçilmez Olma Sanatı + Çekicilik Sanatı, 2 fiziksel kitap, 1700 TL) satın almak istiyorum.";
+  "Merhaba, Koleksiyon Seti'ni (Vazgeçilmez Olma Sanatı + Çekicilik Sanatı, 2 fiziksel kitap, 1700 TL) satın almak istiyorum." +
+  "\n\nVazgeçilmez Olma Sanatı imzası için isim: \nÇekicilik Sanatı imzası için isim: ";
 
 export const KOLEKSIYON_SETI_CONFIG = {
   name: "Koleksiyon Seti",

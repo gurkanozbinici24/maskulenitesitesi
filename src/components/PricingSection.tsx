@@ -15,6 +15,7 @@ import {
   ShoppingBag,
   Info,
 } from "lucide-react";
+import PhysicalPerks from "./ui/PhysicalPerks";
 import {
   ThemeButton,
   ThemeBadge,
@@ -263,6 +264,8 @@ export default function PricingSection() {
                   <span>{physicalRenovated.shippingNote}</span>
                 </span>
               </div>
+
+              <PhysicalPerks theme="kitap1" className="my-4" />
 
               {/* Özellik Listesi */}
               <div className="space-y-2.5 sm:space-y-3 lg:space-y-2.5 my-4 sm:my-5 lg:my-4">

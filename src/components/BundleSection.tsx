@@ -5,6 +5,7 @@ import { Check, Heart, MessageCircle, Package, Sparkles, Truck } from "lucide-re
 import { Book3DModel } from "./HeroSection";
 import { useCekicilikLaunchStatus } from "./ui/BookCountdown";
 import { ThemeButton } from "./ui/ThemeSystem";
+import PhysicalPerks from "./ui/PhysicalPerks";
 import { KOLEKSIYON_SETI_CONFIG as SET } from "@/config/cekicilikConfig";
 
 const pad = (n: number) => String(n).padStart(2, "0");
@@ -116,6 +117,7 @@ export default function BundleSection() {
             {[
               "Vazgeçilmez Olma Sanatı (Yenilenmiş Edisyon) + Çekicilik Sanatı",
               "Kapıya kadar ücretsiz kargo",
+              "İki kitap da isminize özel imzalı",
             ].map((t) => (
               <li key={t} className="flex items-start gap-3">
                 <span className="mt-0.5 flex h-4 w-4 flex-shrink-0 items-center justify-center rounded-full border border-gold-500/50 bg-gold-500/15 text-gold-400">
@@ -125,6 +127,8 @@ export default function BundleSection() {
               </li>
             ))}
           </ul>
+
+          <PhysicalPerks theme="kitap1" className="mx-auto mt-6 max-w-md lg:mx-0" />
 
           <div className="mx-auto mt-7 max-w-md lg:mx-0" data-sticky-hide>
             {isOnSale ? (
