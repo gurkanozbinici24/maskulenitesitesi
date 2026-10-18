@@ -53,12 +53,12 @@ const MESSAGES: { id: string; w: number; h: number; cat: Cat; date: string; text
 
 const TABS: { key: "tumu" | Cat; label: string; icon?: typeof Zap }[] = [
   { key: "tumu", label: "Tümü" },
-  { key: "kargo", label: "Flash Kargo", icon: Zap },
+  { key: "kargo", label: "Flash Hızda Kargo", icon: Zap },
   { key: "imza", label: "İsme Özel İmza", icon: PenLine },
   { key: "yorum", label: "Okur Yorumları", icon: Quote },
 ];
 
-const CAT_LABEL: Record<Cat, string> = { kargo: "Flash Kargo", imza: "İsme Özel İmza", yorum: "Okur Yorumu" };
+const CAT_LABEL: Record<Cat, string> = { kargo: "Flash Hızda Kargo", imza: "İsme Özel İmza", yorum: "Okur Yorumu" };
 
 export default function ReadersSection() {
   const [tab, setTab] = useState<(typeof TABS)[number]["key"]>("tumu");
