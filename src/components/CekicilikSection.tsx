@@ -95,29 +95,32 @@ export default function CekicilikSection() {
             <div data-sticky-hide>
               <BookCountdown theme="kitap2" size="lg" />
             </div>
+            <div className="mt-6">
+            {CEKICILIK_PREVIEW_PAGES.length > 0 && (
+              <BookPreview
+                variant="card"
+                theme="kitap2"
+                heading="İlk Sayfaları Oku"
+                pages={CEKICILIK_PREVIEW_PAGES}
+                cta={
+                  isOnSale
+                    ? {
+                        label: "Hemen Tamamına Eriş – 600 TL",
+                        href: CEKICILIK_SANATI_CONFIG.products.ebook.whatsappUrl,
+                        external: true,
+                      }
+                    : {
+                        label: "5 Kasım'da Tamamına Eriş – Haber Al",
+                        href: CEKICILIK_SANATI_CONFIG.notifyWhatsappUrl,
+                        external: true,
+                      }
+                }
+              />
+            )}
+            </div>
           </div>
         </div>
 
-        {CEKICILIK_PREVIEW_PAGES.length > 0 && (
-          <BookPreview
-            theme="kitap2"
-            heading="İlk Sayfaları Oku"
-            pages={CEKICILIK_PREVIEW_PAGES}
-            cta={
-              isOnSale
-                ? {
-                    label: "Hemen Tamamına Eriş – 600 TL",
-                    href: CEKICILIK_SANATI_CONFIG.products.ebook.whatsappUrl,
-                    external: true,
-                  }
-                : {
-                    label: "5 Kasım'da Tamamına Eriş – Haber Al",
-                    href: CEKICILIK_SANATI_CONFIG.notifyWhatsappUrl,
-                    external: true,
-                  }
-            }
-          />
-        )}
       </div>
     </section>
   );

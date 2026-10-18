@@ -28,11 +28,14 @@ export default function BookPreview({
   heading,
   pages,
   cta,
+  variant = "section",
 }: {
   theme: BookTheme;
   heading: string;
   pages: PreviewPage[];
   cta: PreviewCta;
+  /** "section": büyük ayrı bölüm; "card": satın alma kartlarının yanında kompakt kutu */
+  variant?: "section" | "card";
 }) {
   const [open, setOpen] = useState<number | null>(null);
   const isGold = theme === "kitap1";
@@ -112,7 +115,59 @@ export default function BookPreview({
     </div>
   );
 
-  return (
+  const cardBorder = isGold
+    ? "border-gold-500/40 bg-gradient-to-br from-mahogany-950/70 via-matte-950 to-matte-950 hover:border-gold-400/70"
+    : "border-crimson-700/50 bg-gradient-to-br from-crimson-950/60 via-matte-950 to-matte-950 hover:border-crimson-500/70";
+
+  const body =
+    variant === "card" ? (
+      <button
+        type="button"
+        onClick={() => setOpen(0)}
+        className={`group w-full rounded-2xl border p-5 text-left transition-all duration-500 ${cardBorder}`}
+      >
+        <div className="flex items-center gap-5">
+          {/* Yelpaze gibi açılmış küçük sayfalar */}
+          <div className="relative flex-shrink-0 w-[104px] h-[100px] sm:w-[120px] sm:h-[110px]">
+            {pages.slice(0, 3).map((p, i) => (
+              <div
+                key={p.src}
+                className="absolute top-1 w-[62px] sm:w-[70px] aspect-[2/3] overflow-hidden rounded-[4px] border border-white/15 bg-black shadow-[0_10px_25px_rgba(0,0,0,0.8)] transition-transform duration-500"
+                style={{
+                  left: `${i * 20}px`,
+                  zIndex: 3 - i,
+                  transform: `rotate(${(i - 1) * 7}deg) translateY(${i === 1 ? -4 : 0}px)`,
+                }}
+              >
+                <Image src={p.src} alt="" fill sizes="80px" className="object-cover object-top" />
+              </div>
+            ))}
+          </div>
+
+          <div className="min-w-0 flex-1">
+            <div className={`inline-flex items-center gap-1.5 text-[10px] font-bold tracking-[0.25em] uppercase ${accent}`}>
+              <Eye className="w-3.5 h-3.5" />
+              Kitaptan Önizleme
+            </div>
+            <div className="mt-1 font-cinzel text-lg sm:text-xl font-bold text-white leading-tight">{heading}</div>
+            <p className="mt-1 text-xs text-zinc-400 leading-snug">
+              İlk sayfalar sana hediye. Dokun, büyüt ve oku.
+            </p>
+          </div>
+        </div>
+
+        <span
+          className={`mt-4 flex min-h-[44px] w-full items-center justify-center gap-2 rounded-xl border text-xs sm:text-sm font-extrabold uppercase tracking-wider transition-colors ${
+            isGold
+              ? "border-gold-500/50 text-gold-300 group-hover:bg-gold-500/10"
+              : "border-crimson-500/50 text-crimson-200 group-hover:bg-crimson-500/10"
+          }`}
+        >
+          <Eye className="w-4 h-4" />
+          İlk {pages.length} Sayfayı Oku
+        </span>
+      </button>
+    ) : (
     <div className="mt-16 sm:mt-20">
       <div className="text-center mb-8">
         <div className={`inline-flex items-center gap-2 text-[11px] font-bold tracking-[0.3em] uppercase ${accent}`}>
@@ -162,6 +217,12 @@ export default function BookPreview({
           <span>{cta.label}</span>
         </ThemeButton>
       </div>
+    </div>
+    );
+
+  return (
+    <>
+      {body}
 
       {/* Büyük okuma penceresi */}
       {open !== null && (
@@ -186,7 +247,7 @@ export default function BookPreview({
               </button>
             </div>
 
-            <div className="relative mx-auto aspect-[2/3] max-h-[78svh] overflow-hidden rounded-lg border border-white/10 bg-black">
+            <div className="relative mx-auto aspect-[2/3] max-h-[70svh] overflow-hidden rounded-lg border border-white/10 bg-black">
               <Image
                 src={pages[open].src}
                 alt={pages[open].title}
@@ -197,6 +258,32 @@ export default function BookPreview({
               />
               {pages[open].clearUntil < 100 && <LockedOverlay page={pages[open]} big />}
             </div>
+
+            {pages[open].clearUntil >= 100 && (
+              <div className="mt-3 flex flex-col sm:flex-row items-center justify-center gap-2">
+                {open < pages.length - 1 && (
+                  <button
+                    type="button"
+                    onClick={() => go(1)}
+                    className="min-h-[44px] w-full sm:w-auto px-5 rounded-xl border border-white/15 text-xs font-bold uppercase tracking-wider text-zinc-200 hover:bg-white/5"
+                  >
+                    Sonraki Sayfa →
+                  </button>
+                )}
+                <ThemeButton
+                  theme={theme}
+                  variant="primary"
+                  size="md"
+                  href={cta.href}
+                  target={cta.external ? "_blank" : undefined}
+                  rel={cta.external ? "noopener noreferrer" : undefined}
+                  onClick={cta.onClick}
+                  className="w-full sm:w-auto"
+                >
+                  <span>{cta.label}</span>
+                </ThemeButton>
+              </div>
+            )}
 
             {pages.length > 1 && (
               <>
@@ -221,6 +308,6 @@ export default function BookPreview({
           </div>
         </div>
       )}
-    </div>
+    </>
   );
 }

@@ -198,19 +198,23 @@ export default function VazgecilmezSection() {
                 )}
               </div>
             </div>
+
+            <div className="mt-4">
+              <BookPreview
+                  variant="card"
+                  theme="kitap1"
+                  heading="İlk Sayfaları Oku"
+                  pages={VAZGECILMEZ_PREVIEW_PAGES}
+                  cta={{
+                    label: "Hemen Tamamına Eriş – 600 TL",
+                    href: ebook.whatsappUrl,
+                    external: true,
+                  }}
+                />
+            </div>
           </div>
         </div>
 
-        <BookPreview
-          theme="kitap1"
-          heading="İlk Sayfaları Oku"
-          pages={VAZGECILMEZ_PREVIEW_PAGES}
-          cta={{
-            label: "Hemen Tamamına Eriş – 600 TL",
-            href: ebook.whatsappUrl,
-            external: true,
-          }}
-        />
       </div>
     </section>
   );
