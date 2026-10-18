@@ -25,6 +25,9 @@ export default function Home() {
       {/* 2a. Vazgeçilmez Olma Sanatı tanıtım */}
       <VazgecilmezSection />
 
+      {/* 2b. Çekicilik Sanatı tanıtım (iki kitap tanıtımı art arda) */}
+      <CekicilikSection />
+
       {/* 2. Neler Kazanacaksın Bölümü */}
       <BenefitsSection />
 
@@ -34,8 +37,6 @@ export default function Home() {
       {/* 5. Satın Alma & Fiyatlandırma Bölümü */}
       <PricingSection />
 
-      {/* 5b. Çekicilik Sanatı (Yeni Kitap) */}
-      <CekicilikSection />
 
       {/* 6. Ortak: Sosyal Kanıt */}
       <SocialProofBanner />
