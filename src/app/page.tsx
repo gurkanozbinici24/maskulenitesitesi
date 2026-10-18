@@ -2,6 +2,7 @@ import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
 import BookChooserSection from "@/components/BookChooserSection";
 import VazgecilmezSection from "@/components/VazgecilmezSection";
+import BookDivider from "@/components/BookDivider";
 import BenefitsSection from "@/components/BenefitsSection";
 import SecretLawShowcase from "@/components/SecretLawShowcase";
 import SocialProofBanner from "@/components/SocialProofBanner";
@@ -29,6 +30,9 @@ export default function Home() {
       <CekicilikSection />
 
       {/* 2. Neler Kazanacaksın Bölümü */}
+      {/* Vazgeçilmez detaylarına geçiş ayracı */}
+      <BookDivider />
+
       <BenefitsSection />
 
       {/* 3. Gizli Arşiv Vitrini: 100 Sarsılmaz Kanundan Biri (3D Sansürlü Kart) */}

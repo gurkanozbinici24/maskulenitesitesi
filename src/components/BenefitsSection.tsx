@@ -189,7 +189,7 @@ export default function BenefitsSection() {
   return (
     <section
       id="kazanimlar"
-      className="relative py-24 sm:py-28 overflow-hidden bg-gradient-to-b from-matte-950 via-[#0f0a06] to-matte-950 border-t border-zinc-900"
+      className="relative py-24 sm:py-28 overflow-hidden bg-gradient-to-b from-matte-950 via-[#0f0a06] to-matte-950"
     >
       {/* Arka plan: altın ışık ve ince ızgara */}
       <div className="pointer-events-none absolute top-1/3 left-1/2 -translate-x-1/2 w-[900px] h-[600px] rounded-full bg-gold-500/[0.07] blur-[140px]" />
