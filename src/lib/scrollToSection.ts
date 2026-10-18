@@ -11,7 +11,7 @@ export function scrollToSection(id: string, reducedMotion = false): boolean {
   const headerBottom = header ? header.getBoundingClientRect().bottom : 0;
   const paddingTop = parseFloat(getComputedStyle(el).paddingTop) || 0;
   const y =
-    el.getBoundingClientRect().top + window.scrollY + paddingTop - headerBottom - 20;
+    el.getBoundingClientRect().top + window.scrollY + paddingTop - headerBottom - 12;
 
   window.scrollTo({ top: Math.max(0, y), behavior: reducedMotion ? "auto" : "smooth" });
   return true;

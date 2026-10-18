@@ -62,12 +62,25 @@ export default function VazgecilmezSection() {
           highlightText="Sanatı"
           subtitle={"İlişkilerde kazanma sanatı. Kuralları koyan taraf\u00a0ol."}
           titleClassName="text-[min(6.2vw,1.8rem)] sm:text-fluid-3xl whitespace-nowrap"
+          className="lg:hidden"
         />
 
         <div className="grid lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] gap-10 lg:gap-16 items-center">
-          {/* 3D Kapak */}
+          {/* Sol sütun: bilgisayarda başlık + 3D kapak */}
+          <div className="flex flex-col items-center">
+          <div className="hidden lg:block text-center mb-2">
+            <ThemeBadge theme="kitap1" status="etiket" className="text-[10px]">
+              <span>1. KİTAP • ERKEKLER İÇİN</span>
+            </ThemeBadge>
+            <h2 className="mt-4 font-black uppercase tracking-tight leading-[1.05] text-white text-[2.6rem] xl:text-[2.9rem]">
+              Vazgeçilmez Olma <span className="gold-text-gradient">Sanatı</span>
+            </h2>
+            <p className="mt-3 text-sm text-zinc-400">
+              İlişkilerde kazanma sanatı. Kuralları koyan taraf{"\u00a0"}ol.
+            </p>
+          </div>
           <div
-            className="book-3d-scene relative flex flex-col items-center justify-center py-6"
+            className="book-3d-scene relative flex flex-col items-center justify-center py-6 lg:py-4"
             onMouseEnter={() => setFocused(true)}
             onMouseLeave={() => setFocused(false)}
             onClick={() => setFocused((f) => !f)}
@@ -78,16 +91,17 @@ export default function VazgecilmezSection() {
               orientation="left"
               isFocused={focused}
               isDimmed={false}
-              sizeClassName="w-[210px] h-[315px] sm:w-[250px] sm:h-[375px] lg:w-[300px] lg:h-[450px]"
+              sizeClassName="w-[210px] h-[315px] sm:w-[250px] sm:h-[375px] lg:h-[min(390px,40svh)] lg:w-[calc(min(390px,40svh)*0.6667)]"
               imageSizes="(max-width: 1024px) 60vw, 300px"
             />
             <div className="pointer-events-none mt-8 h-4 w-[70%] max-w-[260px] rounded-full bg-gold-500/40 blur-lg" />
             <div className="pointer-events-none -mt-3 h-3 w-[55%] max-w-[200px] rounded-full bg-black/90 blur-md" />
           </div>
+          </div>
 
           {/* Tanıtım + satın alma */}
           <div>
-            <div className="grid sm:grid-cols-3 gap-3 mb-8">
+            <div className="grid sm:grid-cols-3 gap-3 mb-4 lg:mb-4">
               {HIGHLIGHTS.map(({ icon: Icon, title, text }) => (
                 <div
                   key={title}

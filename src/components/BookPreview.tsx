@@ -124,15 +124,16 @@ export default function BookPreview({
       <button
         type="button"
         onClick={() => setOpen(0)}
-        className={`group w-full rounded-2xl border p-5 text-left transition-all duration-500 ${cardBorder}`}
+        className={`group w-full rounded-2xl border p-5 lg:py-4 text-left transition-all duration-500 ${cardBorder}`}
       >
-        <div className="flex items-center gap-5">
+        <div className="flex flex-col lg:flex-row lg:items-center gap-4">
+        <div className="flex items-center gap-5 lg:flex-1 min-w-0">
           {/* Yelpaze gibi açılmış küçük sayfalar */}
-          <div className="relative flex-shrink-0 w-[104px] h-[100px] sm:w-[120px] sm:h-[110px]">
+          <div className="relative flex-shrink-0 w-[104px] h-[100px] sm:w-[120px] sm:h-[110px] lg:w-[104px] lg:h-[96px]">
             {pages.slice(0, 3).map((p, i) => (
               <div
                 key={p.src}
-                className="absolute top-1 w-[62px] sm:w-[70px] aspect-[2/3] overflow-hidden rounded-[4px] border border-white/15 bg-black shadow-[0_10px_25px_rgba(0,0,0,0.8)] transition-transform duration-500"
+                className="absolute top-1 w-[62px] sm:w-[70px] lg:w-[60px] aspect-[2/3] overflow-hidden rounded-[4px] border border-white/15 bg-black shadow-[0_10px_25px_rgba(0,0,0,0.8)] transition-transform duration-500"
                 style={{
                   left: `${i * 20}px`,
                   zIndex: 3 - i,
@@ -157,7 +158,7 @@ export default function BookPreview({
         </div>
 
         <span
-          className={`mt-4 flex min-h-[44px] w-full items-center justify-center gap-2 rounded-xl border text-xs sm:text-sm font-extrabold uppercase tracking-wider transition-colors ${
+          className={`flex min-h-[44px] w-full lg:w-auto lg:flex-shrink-0 lg:px-5 items-center justify-center gap-2 rounded-xl border text-xs sm:text-sm font-extrabold uppercase tracking-wider transition-colors ${
             isGold
               ? "border-gold-500/50 text-gold-300 group-hover:bg-gold-500/10"
               : "border-crimson-500/50 text-crimson-200 group-hover:bg-crimson-500/10"
@@ -166,6 +167,7 @@ export default function BookPreview({
           <Eye className="w-4 h-4" />
           İlk {pages.length} Sayfayı Oku
         </span>
+        </div>
       </button>
     ) : (
     <div className="mt-16 sm:mt-20">
