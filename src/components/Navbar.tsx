@@ -1,7 +1,8 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Menu, X, ArrowUpRight, BookOpen } from "lucide-react";
+import Image from "next/image";
+import { Menu, X, ArrowUpRight } from "lucide-react";
 import { ThemeButton } from "./ui/ThemeSystem";
 import { useCekicilikLaunchStatus } from "./ui/BookCountdown";
 
@@ -51,9 +52,14 @@ export default function Navbar() {
               href="/"
               className="flex items-center gap-2.5 group focus:outline-none min-w-0"
             >
-              <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-lg bg-gradient-to-br from-mahogany-800 to-matte-950 border border-gold-500/45 flex items-center justify-center shadow-gold-glow group-hover:border-gold-400 transition-colors flex-shrink-0">
-                <BookOpen className="w-4 h-4 sm:w-4.5 sm:h-4.5 text-gold-400" />
-              </div>
+              <Image
+                src="/aslan-logo.png"
+                alt="Gürkan Özbinici aslan logosu"
+                width={486}
+                height={664}
+                priority
+                className="h-9 sm:h-10 w-auto flex-shrink-0 drop-shadow-[0_0_8px_rgba(212,175,55,0.35)] transition-transform duration-300 group-hover:scale-105"
+              />
               <span className="font-cinzel font-bold tracking-[0.14em] sm:tracking-[0.18em] text-xs sm:text-sm md:text-base text-zinc-100 uppercase group-hover:text-gold-300 transition-colors truncate">
                 GÜRKAN ÖZBİNİCİ
               </span>
