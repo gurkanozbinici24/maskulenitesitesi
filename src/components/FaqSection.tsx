@@ -33,7 +33,7 @@ const faqs: FaqItem[] = [
     id: 4,
     question: "Çekicilik Sanatı ne zaman çıkıyor, nasıl satın alabilirim?",
     answer:
-      "Çekicilik Sanatı 5 Kasım saat 20:00'de satışa çıkıyor. E-Kitap 600 TL, Fiziksel Kitap ise kapıya kadar ücretsiz kargo ile 1000 TL. Siparişlerinizi WhatsApp üzerinden verebilirsiniz; satış başladığında sitedeki satın alma butonları otomatik olarak açılacak.",
+      "Çekicilik Sanatı 5 Kasım saat 18:00'de satışa çıkıyor. E-Kitap 600 TL, Fiziksel Kitap ise kapıya kadar ücretsiz kargo ile 1000 TL. Siparişlerinizi WhatsApp üzerinden verebilirsiniz; satış başladığında sitedeki satın alma butonları otomatik olarak açılacak.",
   },
   {
     id: 5,

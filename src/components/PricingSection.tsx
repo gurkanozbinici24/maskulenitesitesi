@@ -305,7 +305,7 @@ export default function PricingSection() {
                   <div>
                     <div className="text-[11px] font-bold uppercase tracking-widest text-gold-300/90 mb-2 text-center">
                       <span className="sm:hidden">Satışa kalan süre</span>
-                      <span className="hidden sm:inline">5 Kasım 20:00 Satış Başlangıcına Kalan Süre</span>
+                      <span className="hidden sm:inline">5 Kasım 18:00 Satış Başlangıcına Kalan Süre</span>
                     </div>
                     <BookCountdown
                       theme="kitap1"

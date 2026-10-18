@@ -5,12 +5,12 @@ import { CEKICILIK_PREVIEW_TEXT } from "./cekicilikPreviewText";
  * Merkezi Lansman, Geri Sayım ve Satış Yapılandırması (İki Kitap Ortak Config)
  *
  * Hem "Çekicilik Sanatı" hem de "Vazgeçilmez Olma Sanatı — Yenilenmiş Edisyon"
- * aynı çıkış tarihini (5 Kasım 2026 20:00 TSİ), aynı geri sayımı ve aynı
+ * aynı çıkış tarihini (5 Kasım 2026 18:00 TSİ), aynı geri sayımı ve aynı
  * ödeme bayrağını (KART_ODEME_AKTIF) kullanır.
  */
 
 /** Satış başlangıç ve geri sayım hedef tarihi (Türkiye saati, UTC+3) */
-export const RELEASE_DATE = "2026-11-05T20:00:00+03:00";
+export const RELEASE_DATE = "2026-11-05T18:00:00+03:00";
 
 /** Tanıtım filmi linki (YouTube veya Instagram). Boş bırakılırsa buton gizlenir, doluysa açılır pencerede oynatılır. */
 export const TRAILER_URL = "";
