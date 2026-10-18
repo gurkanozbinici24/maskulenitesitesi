@@ -107,10 +107,10 @@ export default function LawArchive() {
           title="100 Sarsılmaz"
           highlightText="Kanun"
           subtitle="Kitapta 100 kanun var. Üçü senin için açıldı; parlayanlara dokun ve oku. Kalan 97'si yalnızca kitapta."
-          className="mb-10 sm:mb-14"
+          className="mb-10 sm:mb-14 lg:mb-8"
         />
 
-        <div className="grid items-start gap-8 lg:grid-cols-[minmax(0,5fr)_minmax(0,6fr)] lg:gap-12">
+        <div className="grid items-start gap-8 lg:grid-cols-[minmax(0,420px)_minmax(0,1fr)] lg:gap-12 lg:items-center">
           {/* 100'lük ızgara */}
           <div>
             <div className="mb-3 flex items-center justify-between text-[11px] font-bold uppercase tracking-[0.2em]">
@@ -159,7 +159,8 @@ export default function LawArchive() {
           </div>
 
           {/* Okuma paneli */}
-          <div ref={panelRef} className="relative rounded-2xl bg-gradient-to-b from-gold-500/50 via-gold-500/15 to-mahogany-700/40 p-px lg:sticky lg:top-28">
+          <div>
+          <div ref={panelRef} className="relative rounded-2xl bg-gradient-to-b from-gold-500/50 via-gold-500/15 to-mahogany-700/40 p-px">
             <div
               key={selected}
               className="law-fade relative min-h-[320px] overflow-hidden rounded-[15px] bg-gradient-to-br from-[#17100a] via-matte-950 to-black p-7 sm:p-9"
@@ -211,25 +212,26 @@ export default function LawArchive() {
               )}
             </div>
           </div>
+            <div className="mt-6 flex flex-col items-center" data-sticky-hide>
+              <ThemeButton
+                theme="kitap1"
+                variant="primary"
+                size="lg"
+                href="#fiyat-kartlari"
+                onClick={goPricing}
+                className="w-full"
+              >
+                <ScrollText className="h-5 w-5" />
+                <span>100 Kanunun Tamamına Eriş</span>
+                <ArrowRight className="h-4 w-4" />
+              </ThemeButton>
+              <span className="mt-3 text-[11px] uppercase tracking-[0.2em] text-zinc-500">
+                Bu arşiv dışarı sızdırılmaz
+              </span>
+            </div>
+          </div>
         </div>
 
-        <div className="mt-12 flex flex-col items-center" data-sticky-hide>
-          <ThemeButton
-            theme="kitap1"
-            variant="primary"
-            size="lg"
-            href="#fiyat-kartlari"
-            onClick={goPricing}
-            className="w-full sm:w-auto"
-          >
-            <ScrollText className="h-5 w-5" />
-            <span>100 Kanunun Tamamına Eriş</span>
-            <ArrowRight className="h-4 w-4" />
-          </ThemeButton>
-          <span className="mt-3 text-[11px] uppercase tracking-[0.2em] text-zinc-500">
-            Bu arşiv dışarı sızdırılmaz
-          </span>
-        </div>
       </div>
     </section>
   );
