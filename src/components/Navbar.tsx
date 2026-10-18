@@ -78,7 +78,7 @@ export default function Navbar() {
 
               <a
                 href="/#sosyal-kanit"
-                className="hidden 2xl:flex text-xs lg:text-sm font-medium text-zinc-300 hover:text-gold-300 active:text-gold-200 transition-colors whitespace-nowrap"
+                className="hidden text-xs lg:text-sm font-medium text-zinc-300 hover:text-gold-300 active:text-gold-200 transition-colors whitespace-nowrap"
               >
                 Topluluk & Güven
               </a>
