@@ -69,8 +69,14 @@ export const VAZGECILMEZ_PREVIEW_PAGES = [
   { src: "/sayfa3.png", title: "Bölüm 1: İyi Çocuk Masalının Sonu", clearUntil: 46 },
 ];
 
-/** Çekicilik Sanatı önizleme sayfaları: görseller gelince doldurulacak (boşken bölüm gizli). */
-export const CEKICILIK_PREVIEW_PAGES: { src: string; title: string; clearUntil: number }[] = [];
+/** Çekicilik Sanatı önizleme sayfaları (sıra: Kadın, İstediğinde, Her Kapının, Anahtarıdır). */
+export const CEKICILIK_PREVIEW_PAGES: { src: string; title: string; clearUntil: number }[] = [
+  { src: "/cekicilik-sayfa1.jpg", title: "Kadın", clearUntil: 100 },
+  { src: "/cekicilik-sayfa2.jpg", title: "İstediğinde", clearUntil: 100 },
+  { src: "/cekicilik-sayfa3.jpg", title: "Her Kapının", clearUntil: 100 },
+  // Son sayfa "bu sayfada bitiyor" vurgusundan hemen sonra kilitlenir
+  { src: "/cekicilik-sayfa4.jpg", title: "Anahtarıdır", clearUntil: 75 },
+];
 
 export const VAZGECILMEZ_CONFIG = {
   bookTitle: "Vazgeçilmez Olma Sanatı",

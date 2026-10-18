@@ -110,7 +110,7 @@ export default function CekicilikSection() {
                         external: true,
                       }
                     : {
-                        label: "5 Kasım'da Tamamına Eriş – Haber Al",
+                        label: "5 Kasım'da Çıkıyor · Haber Al",
                         href: CEKICILIK_SANATI_CONFIG.notifyWhatsappUrl,
                         external: true,
                       }

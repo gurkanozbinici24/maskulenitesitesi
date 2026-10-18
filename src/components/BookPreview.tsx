@@ -106,7 +106,7 @@ export default function BookPreview({
               cta.onClick?.(e);
               if (!cta.external) close();
             }}
-            className="w-full max-w-xs"
+            className="w-full max-w-sm"
           >
             <span>{cta.label}</span>
           </ThemeButton>
