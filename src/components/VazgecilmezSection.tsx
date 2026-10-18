@@ -102,7 +102,7 @@ export default function VazgecilmezSection() {
               ))}
             </div>
 
-            <div className="grid sm:grid-cols-2 gap-4">
+            <div className="grid sm:grid-cols-2 gap-4" data-sticky-hide>
               {/* E-Kitap: şimdi satışta */}
               <div className="rounded-2xl border border-gold-500/50 bg-gradient-to-br from-mahogany-950/80 to-matte-950 p-5 flex flex-col shadow-gold-glow">
                 <ThemeBadge theme="kitap1" status="satista" className="self-start text-[10px]">

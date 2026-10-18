@@ -21,21 +21,18 @@ export default function SecretLawShowcase() {
         </div>
 
         {/* 3 Seçkin Örnek Üst Başlığı */}
-        <h2 className="font-cinzel text-fluid-2xl font-extrabold text-gold-500 tracking-[0.14em] uppercase mb-14 select-none max-w-3xl mx-auto [text-shadow:0_0_20px_rgba(212,175,55,0.25)]">
+        <h2 className="font-cinzel text-fluid-2xl font-extrabold text-gold-500 tracking-[0.14em] uppercase mb-8 md:mb-14 select-none max-w-3xl mx-auto [text-shadow:0_0_20px_rgba(212,175,55,0.25)]">
           GİZLİ ARŞİVDEN: 100 SARSILMAZ KANUNDAN 3 SEÇKİN ÖRNEK
         </h2>
 
         {/* Kart Dizilimi (Ortadaki Kart 100% Keskin 2D, Yan Kartlar Ayrı 3D Açıyla Katlanmış) */}
-        <div className="relative flex flex-col md:flex-row items-center justify-center mb-16 gap-8 md:gap-0">
+        <div className="relative grid grid-cols-2 gap-3 md:flex md:flex-row items-stretch md:items-center justify-center mb-12 md:mb-16 md:gap-0">
           
           {/* ========================================================= */}
           {/* 1. SOL KANAT KARTI: KANUN #41 (Sayfa 148 - 3D Açılı & Buzlu) */}
           {/* ========================================================= */}
           <div
-            className="group relative flex flex-col justify-between w-full max-w-sm md:max-w-md lg:max-w-[400px] min-h-[380px] sm:min-h-[410px] rounded-2xl p-7 sm:p-8 bg-black border border-gold-650/30 shadow-[0_20px_50px_rgba(0,0,0,1)] transition-all duration-500 overflow-hidden z-10 md:origin-right md:-mr-16 lg:-mr-20 opacity-75 hover:opacity-95"
-            style={{
-              transform: "perspective(1000px) rotateY(48deg)",
-            }}
+            className="order-2 md:order-none group relative flex flex-col justify-between w-full max-w-sm md:max-w-md lg:max-w-[400px] min-h-[150px] md:min-h-[410px] rounded-2xl p-4 md:p-8 bg-black border border-gold-650/30 shadow-[0_20px_50px_rgba(0,0,0,1)] transition-all duration-500 overflow-hidden z-10 md:origin-right md:-mr-16 lg:-mr-20 opacity-75 hover:opacity-95 md:[transform:perspective(1000px)_rotateY(48deg)]"
           >
             {/* Köşe Braketleri */}
             <div className="absolute top-3 left-3 w-3.5 h-3.5 border-t border-l border-gold-550/40 pointer-events-none z-10" />
@@ -44,7 +41,7 @@ export default function SecretLawShowcase() {
             <div className="absolute bottom-3 right-3 w-3.5 h-3.5 border-b border-r border-gold-550/40 pointer-events-none z-10" />
 
             {/* Arka Planda Yoğun Bulanık Metin */}
-            <div className="filter blur-[9px] opacity-20 select-none pointer-events-none">
+            <div className="hidden md:block filter blur-[9px] opacity-20 select-none pointer-events-none">
               <div className="flex items-center justify-between pb-3.5 mb-6 border-b border-zinc-900 text-[10px] sm:text-[11px] font-mono tracking-[0.22em]">
                 <span className="text-gold-550 uppercase font-bold">SAYFA 148</span>
                 <span className="text-zinc-500 uppercase">KORUMALI METİN</span>
@@ -57,7 +54,7 @@ export default function SecretLawShowcase() {
 
             {/* ÖN KATMAN: Karartma & Parlayan Büyük Kilit */}
             <div className="absolute inset-0 bg-black/80 backdrop-blur-[7px] flex flex-col items-center justify-center p-6 select-none z-20 transition-all duration-300">
-              <div className="w-14 h-14 rounded-2xl bg-black/90 border border-gold-500/50 flex items-center justify-center text-gold-500 shadow-[0_0_30px_rgba(212,175,55,0.3)] mb-3 group-hover:scale-110 group-hover:border-gold-500 transition-all">
+              <div className="w-10 h-10 md:w-14 md:h-14 rounded-2xl bg-black/90 border border-gold-500/50 flex items-center justify-center text-gold-500 shadow-[0_0_30px_rgba(212,175,55,0.3)] mb-2 md:mb-3 group-hover:scale-110 group-hover:border-gold-500 transition-all">
                 <Lock className="w-6 h-6 text-gold-500" strokeWidth={1.5} />
               </div>
               <span className="text-xs font-mono tracking-[0.22em] text-gold-500 uppercase font-bold text-center">
@@ -72,7 +69,7 @@ export default function SecretLawShowcase() {
             </div>
 
             {/* Mühür Alt Metni */}
-            <div className="mt-8 pt-4 border-t border-zinc-950 flex items-center justify-center text-center">
+            <div className="hidden md:flex mt-8 pt-4 border-t border-zinc-950 items-center justify-center text-center">
               <span className="text-[9px] sm:text-[10px] font-mono tracking-[0.22em] text-zinc-600 uppercase select-none">
                 BU ARŞİV DIŞARI SIZDIRILMAZ.
               </span>
@@ -84,7 +81,7 @@ export default function SecretLawShowcase() {
           {/* 2. ORTA KART: KANUN #93 (Sayfa 221 - 100% NET, KESKİN & ODAK) */}
           {/* ========================================================= */}
           <div
-            className="relative flex flex-col justify-between w-full max-w-lg md:max-w-xl lg:max-w-[490px] min-h-[410px] sm:min-h-[440px] rounded-2xl p-8 sm:p-9 lg:p-10 bg-black border-2 border-gold-500/80 shadow-[0_35px_90px_rgba(0,0,0,1),0_0_60px_rgba(212,175,55,0.18)] z-30 select-text"
+            className="order-1 md:order-none col-span-2 relative flex flex-col justify-between w-full max-w-lg md:max-w-xl lg:max-w-[490px] md:min-h-[440px] rounded-2xl p-6 sm:p-9 lg:p-10 bg-black border-2 border-gold-500/80 shadow-[0_35px_90px_rgba(0,0,0,1),0_0_60px_rgba(212,175,55,0.18)] z-30 select-text"
             style={{
               WebkitFontSmoothing: "antialiased",
               MozOsxFontSmoothing: "grayscale",
@@ -152,10 +149,7 @@ export default function SecretLawShowcase() {
           {/* 3. SAĞ KANAT KARTI: KANUN #62 (Sayfa 84 - 3D Açılı & Buzlu) */}
           {/* ========================================================= */}
           <div
-            className="group relative flex flex-col justify-between w-full max-w-sm md:max-w-md lg:max-w-[400px] min-h-[380px] sm:min-h-[410px] rounded-2xl p-7 sm:p-8 bg-black border border-gold-650/30 shadow-[0_20px_50px_rgba(0,0,0,1)] transition-all duration-500 overflow-hidden z-10 md:origin-left md:-ml-16 lg:-ml-20 opacity-75 hover:opacity-95"
-            style={{
-              transform: "perspective(1000px) rotateY(-48deg)",
-            }}
+            className="order-3 md:order-none group relative flex flex-col justify-between w-full max-w-sm md:max-w-md lg:max-w-[400px] min-h-[150px] md:min-h-[410px] rounded-2xl p-4 md:p-8 bg-black border border-gold-650/30 shadow-[0_20px_50px_rgba(0,0,0,1)] transition-all duration-500 overflow-hidden z-10 md:origin-left md:-ml-16 lg:-ml-20 opacity-75 hover:opacity-95 md:[transform:perspective(1000px)_rotateY(-48deg)]"
           >
             {/* Köşe Braketleri */}
             <div className="absolute top-3 left-3 w-3.5 h-3.5 border-t border-l border-gold-550/40 pointer-events-none z-10" />
@@ -164,7 +158,7 @@ export default function SecretLawShowcase() {
             <div className="absolute bottom-3 right-3 w-3.5 h-3.5 border-b border-r border-gold-550/40 pointer-events-none z-10" />
 
             {/* Arka Planda Yoğun Bulanık Metin */}
-            <div className="filter blur-[9px] opacity-20 select-none pointer-events-none">
+            <div className="hidden md:block filter blur-[9px] opacity-20 select-none pointer-events-none">
               <div className="flex items-center justify-between pb-3.5 mb-6 border-b border-zinc-900 text-[10px] sm:text-[11px] font-mono tracking-[0.22em]">
                 <span className="text-gold-550 uppercase font-bold">SAYFA 84</span>
                 <span className="text-zinc-500 uppercase">KORUMALI METİN</span>
@@ -177,7 +171,7 @@ export default function SecretLawShowcase() {
 
             {/* ÖN KATMAN: Karartma & Parlayan Büyük Kilit */}
             <div className="absolute inset-0 bg-black/80 backdrop-blur-[7px] flex flex-col items-center justify-center p-6 select-none z-20 transition-all duration-300">
-              <div className="w-14 h-14 rounded-2xl bg-black/90 border border-gold-500/50 flex items-center justify-center text-gold-500 shadow-[0_0_30px_rgba(212,175,55,0.3)] mb-3 group-hover:scale-110 group-hover:border-gold-500 transition-all">
+              <div className="w-10 h-10 md:w-14 md:h-14 rounded-2xl bg-black/90 border border-gold-500/50 flex items-center justify-center text-gold-500 shadow-[0_0_30px_rgba(212,175,55,0.3)] mb-2 md:mb-3 group-hover:scale-110 group-hover:border-gold-500 transition-all">
                 <Lock className="w-6 h-6 text-gold-500" strokeWidth={1.5} />
               </div>
               <span className="text-xs font-mono tracking-[0.22em] text-gold-500 uppercase font-bold text-center">
@@ -192,7 +186,7 @@ export default function SecretLawShowcase() {
             </div>
 
             {/* Mühür Alt Metni */}
-            <div className="mt-8 pt-4 border-t border-zinc-950 flex items-center justify-center text-center">
+            <div className="hidden md:flex mt-8 pt-4 border-t border-zinc-950 items-center justify-center text-center">
               <span className="text-[9px] sm:text-[10px] font-mono tracking-[0.22em] text-zinc-600 uppercase select-none">
                 BU ARŞİV DIŞARI SIZDIRILMAZ.
               </span>

@@ -248,6 +248,7 @@ export default function BenefitsSection() {
                 <span className="h-px w-10 bg-gold-500/60" />
               </div>
 
+              <div data-sticky-hide className="relative">
               <ThemeButton
                 theme="kitap1"
                 variant="primary"
@@ -261,6 +262,7 @@ export default function BenefitsSection() {
                 <span>Gücü Eline Al</span>
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </ThemeButton>
+              </div>
             </div>
           </div>
         </div>

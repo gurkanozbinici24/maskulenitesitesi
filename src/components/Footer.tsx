@@ -46,16 +46,16 @@ export default function Footer() {
                   <BookOpen className="w-4 h-4 text-gold-400" />
                 </div>
                 <span className="font-extrabold tracking-wider text-lg text-white uppercase">
-                  Vazgeçilmez Olma Sanatı
+                  Gürkan Özbinici
                 </span>
               </div>
 
               <p className="text-sm text-zinc-400 max-w-sm leading-relaxed">
-                İlişki psikolojisi, çekim dinamikleri ve çerçeve yönetimi üzerine inşa edilmiş başvuru kaynağı.
+                Vazgeçilmez Olma Sanatı (erkekler için) ve Çekicilik Sanatı (kadınlar için): ilişki psikolojisi üzerine iki başucu kitabı.
               </p>
 
               <div className="pt-2 flex items-center gap-4 text-xs text-zinc-500">
-                <span>Özel Edisyon Baskı</span>
+                <span>2 Kitap</span>
                 <span>•</span>
                 <span>İlişki Psikolojisi</span>
               </div>
@@ -72,15 +72,15 @@ export default function Footer() {
                     href="/#vazgecilmez"
                     className="hover:text-gold-400 transition-colors"
                   >
-                    Neler Kazanacaksın?
+                    Vazgeçilmez Olma Sanatı
                   </a>
                 </li>
                 <li>
                   <a
-                    href="/#sosyal-kanit"
+                    href="/#cekicilik-sanati"
                     className="hover:text-gold-400 transition-colors"
                   >
-                    Topluluk & Güven
+                    Çekicilik Sanatı
                   </a>
                 </li>
                 <li>
@@ -193,7 +193,7 @@ export default function Footer() {
           <div className="pt-8 flex flex-col items-center gap-6">
             <div className="w-full flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-zinc-500">
               <div className="text-center sm:text-left">
-                © {new Date().getFullYear()} <strong>Vazgeçilmez Olma Sanatı</strong>. Tüm Hakları Saklıdır. İzinsiz kopyalanamaz veya çoğaltılamaz.
+                © {new Date().getFullYear()} <strong>Gürkan Özbinici</strong>. Tüm Hakları Saklıdır. İzinsiz kopyalanamaz veya çoğaltılamaz.
               </div>
 
               <button

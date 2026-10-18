@@ -92,7 +92,9 @@ export default function CekicilikSection() {
               ))}
             </div>
 
-            <BookCountdown theme="kitap2" size="lg" />
+            <div data-sticky-hide>
+              <BookCountdown theme="kitap2" size="lg" />
+            </div>
           </div>
         </div>
 

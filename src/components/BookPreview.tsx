@@ -148,7 +148,7 @@ export default function BookPreview({
         ))}
       </div>
 
-      <div className="mt-6 flex justify-center">
+      <div className="mt-6 flex justify-center" data-sticky-hide>
         <ThemeButton
           theme={theme}
           variant="primary"

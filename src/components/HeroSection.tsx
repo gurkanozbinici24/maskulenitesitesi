@@ -185,6 +185,23 @@ export default function HeroSection() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  // Sayfada satın alma alanı görünürken alttaki sabit bar gizlensin (iki buton üst üste binmesin)
+  const [hideBar, setHideBar] = useState(false);
+  useEffect(() => {
+    if (typeof IntersectionObserver === "undefined") return;
+    const visible = new Set<Element>();
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => (e.isIntersecting ? visible.add(e.target) : visible.delete(e.target)));
+        setHideBar(visible.size > 0);
+      },
+      { rootMargin: "0px", threshold: 0 }
+    );
+    const els = document.querySelectorAll("[data-sticky-hide]");
+    els.forEach((el) => io.observe(el));
+    return () => io.disconnect();
+  }, []);
+
   // Mobilde kullanıcı dokunmadığı sürece 4 saniyede bir otomatik kitap geçişi
   useEffect(() => {
     if (prefersReducedMotion || userInteractedMobile) return;
@@ -423,8 +440,8 @@ export default function HeroSection() {
 
                   {/* 3. Kısa Not Alanı (Sabit Yükseklik - İki Kitapta Eşit) */}
                   <div className="h-11 flex flex-col items-center justify-center mt-0.5 mb-2.5">
-                    <span className="text-xs font-semibold text-mahogany-200">
-                      Erkekler için ilişki psikolojisi
+                    <span className="text-[11px] font-semibold text-mahogany-200">
+                      Erkekler için
                     </span>
                     <span className="text-[11px] font-medium text-gold-300/90 mt-0.5">
                       {isOnSale
@@ -519,8 +536,8 @@ export default function HeroSection() {
 
                   {/* 3. Kısa Not + Kompakt Tek Satır Geri Sayım (Sabit Yükseklik) */}
                   <div className="h-11 flex flex-col items-center justify-center mt-0.5 mb-2.5">
-                    <span className="text-xs font-semibold text-crimson-300">
-                      Kadınlar için ilişki psikolojisi
+                    <span className="text-[11px] font-semibold text-crimson-300">
+                      Kadınlar için
                     </span>
                     {!isOnSale ? (
                       <div className="inline-flex items-center gap-1.5 mt-0.5 px-2.5 py-0.5 rounded-md bg-crimson-950/80 border border-crimson-800/70 text-[11px] font-mono font-bold text-gold-300">
@@ -595,7 +612,7 @@ export default function HeroSection() {
             onTouchEnd={handleTouchEnd}
           >
             {/* 1. Yelpaze (Fan) Düzeninde Yan Yana İki 3D Kitap */}
-            <div className="relative w-full max-w-[390px] h-[300px] sm:h-[320px] flex items-center justify-center gap-5 my-auto">
+            <div className="relative w-full max-w-[390px] h-[min(300px,38svh)] sm:h-[320px] flex items-center justify-center gap-5 my-auto">
               {/* Sol Kitap Arkası Kalıcı Sıcak Altın/Konyak Hâle */}
               <div
                 className={`pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 w-40 h-56 rounded-full blur-2xl transition-all duration-500 ${
@@ -630,7 +647,7 @@ export default function HeroSection() {
                   book="kitap1"
                   isFocused={mobileSelectedBook === "kitap1"}
                   isDimmed={false}
-                  sizeClassName="w-[162px] h-[243px] sm:w-[180px] sm:h-[270px]"
+                  sizeClassName="h-[min(243px,30svh)] w-[calc(min(243px,30svh)*0.6667)] sm:w-[180px] sm:h-[270px]"
                 />
               </div>
 
@@ -650,7 +667,7 @@ export default function HeroSection() {
                   book="kitap2"
                   isFocused={mobileSelectedBook === "kitap2"}
                   isDimmed={false}
-                  sizeClassName="w-[162px] h-[243px] sm:w-[180px] sm:h-[270px]"
+                  sizeClassName="h-[min(243px,30svh)] w-[calc(min(243px,30svh)*0.6667)] sm:w-[180px] sm:h-[270px]"
                 />
               </div>
             </div>
@@ -658,7 +675,7 @@ export default function HeroSection() {
             {/* 2. Seçili Kitabın Rozeti, Adı ve Kısa Bilgisi (Yumuşak Geçişli) */}
             <div className="w-full max-w-sm flex flex-col items-center text-center pb-1">
               {/* Kitap Seçim Sekmeleri */}
-              <div className="inline-flex items-center gap-1.5 p-1 rounded-full bg-matte-900/90 border border-zinc-800/90 mb-3">
+              <div className="inline-flex items-center gap-1.5 p-1 rounded-full bg-matte-900/90 border border-zinc-800/90 mb-2">
                 <button
                   type="button"
                   onClick={() => handleSelectMobileBook("kitap1")}
@@ -688,17 +705,17 @@ export default function HeroSection() {
                   key="mobile-kitap1"
                   className="animate-countdown-digit flex flex-col items-center"
                 >
-                  <div className="flex items-center justify-center gap-2 mb-1.5">
+                  <div className="flex items-center justify-center gap-2 mb-1 whitespace-nowrap">
                     <ThemeBadge
                       theme="kitap1"
                       status="satista"
-                      className="px-3 py-0.5 text-[10px]"
+                      className="px-2.5 py-0.5 text-[9px] whitespace-nowrap"
                     >
                       <Zap className="w-3 h-3 fill-black text-black" />
                       <span>E-KİTAP SATIŞTA</span>
                     </ThemeBadge>
-                    <span className="text-xs font-semibold text-mahogany-200">
-                      Erkekler için ilişki psikolojisi
+                    <span className="text-[11px] font-semibold text-mahogany-200">
+                      Erkekler için
                     </span>
                   </div>
 
@@ -716,12 +733,12 @@ export default function HeroSection() {
                   key="mobile-kitap2"
                   className="animate-countdown-digit flex flex-col items-center"
                 >
-                  <div className="flex items-center justify-center gap-2 mb-1.5">
+                  <div className="flex items-center justify-center gap-2 mb-1 whitespace-nowrap">
                     {isOnSale ? (
                       <ThemeBadge
                         theme="kitap2"
                         status="satista"
-                        className="px-3 py-0.5 text-[10px]"
+                        className="px-2.5 py-0.5 text-[9px] whitespace-nowrap"
                       >
                         <span className="w-1.5 h-1.5 rounded-full bg-emerald-300 animate-pulse" />
                         <span>SATIŞTA</span>
@@ -730,14 +747,14 @@ export default function HeroSection() {
                       <ThemeBadge
                         theme="kitap2"
                         status="yakinda"
-                        className="px-3 py-0.5 text-[10px]"
+                        className="px-2.5 py-0.5 text-[9px] whitespace-nowrap"
                       >
                         <Clock className="w-3 h-3 text-crimson-300" />
-                        <span>5 KASIM&apos;DA GELİYOR</span>
+                        <span>5 KASIM&apos;DA</span>
                       </ThemeBadge>
                     )}
-                    <span className="text-xs font-semibold text-crimson-300">
-                      Kadınlar için ilişki psikolojisi
+                    <span className="text-[11px] font-semibold text-crimson-300">
+                      Kadınlar için
                     </span>
                   </div>
 
@@ -779,7 +796,7 @@ export default function HeroSection() {
       {/* MOBİL SABİT ALT BAR (Yarı saydam bulanık, seçili kitaba göre tek büyük buton) */}
       {/* ===================================================================== */}
       <div
-        className="fixed bottom-0 inset-x-0 z-40 lg:hidden bg-matte-950/80 backdrop-blur-xl border-t border-white/10 px-4 pt-2.5 pb-[max(0.6rem,env(safe-area-inset-bottom))] shadow-[0_-8px_30px_rgba(0,0,0,0.85)]"
+        className={`fixed bottom-0 inset-x-0 z-40 lg:hidden transition-transform duration-300 ${hideBar ? "translate-y-full" : "translate-y-0"} bg-matte-950/80 backdrop-blur-xl border-t border-white/10 px-4 pt-2.5 pb-[max(0.6rem,env(safe-area-inset-bottom))] shadow-[0_-8px_30px_rgba(0,0,0,0.85)]`}
         role="region"
         aria-label="Hızlı satın alma çubuğu"
       >

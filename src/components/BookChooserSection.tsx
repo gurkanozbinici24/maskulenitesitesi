@@ -64,7 +64,7 @@ export default function BookChooserSection() {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-6 lg:gap-8">
+        <div className="grid md:grid-cols-2 gap-6 lg:gap-8" data-sticky-hide>
           {BOOKS.map((b) => {
             const isGold = b.theme === "kitap1";
             return (

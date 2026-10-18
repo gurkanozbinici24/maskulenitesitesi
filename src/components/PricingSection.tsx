@@ -57,6 +57,7 @@ export default function PricingSection() {
         {/* 2-Card Side-by-Side Pricing Grid */}
         <div
           id="fiyat-kartlari"
+          data-sticky-hide
           className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-8 max-w-5xl mx-auto items-stretch scroll-mt-24"
         >
           {/* ========================================================================= */}
