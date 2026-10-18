@@ -139,6 +139,19 @@ export default function BookChooserSection() {
             );
           })}
         </div>
+        {/* Koleksiyon Seti kısa yolu */}
+        <a
+          href="#koleksiyon-seti"
+          onClick={(e) => scrollTo(e, "koleksiyon-seti")}
+          className="group mx-auto mt-6 flex max-w-3xl flex-col items-center justify-center gap-1 rounded-xl border border-white/10 bg-[linear-gradient(90deg,rgba(212,175,55,0.10),rgba(0,0,0,0.4)_50%,rgba(185,28,28,0.14))] px-5 py-3.5 text-center transition-colors hover:border-gold-500/40 sm:flex-row sm:gap-3"
+        >
+          <span className="text-sm text-zinc-300">Kararsız mısın? İkisini birden al:</span>
+          <span className="flex items-baseline gap-2">
+            <span className="text-sm text-zinc-500 line-through decoration-crimson-500">2000 TL</span>
+            <span className="font-mono text-lg font-black text-gold-300">1700 TL</span>
+            <span className="text-gold-400 transition-transform group-hover:translate-x-1">→</span>
+          </span>
+        </a>
       </div>
     </section>
   );

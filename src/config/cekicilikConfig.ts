@@ -205,3 +205,22 @@ export const CEKICILIK_SANATI_CONFIG = {
   notifyWhatsappUrl: buildWhatsAppUrl(NOTIFY_WHATSAPP_MESSAGE),
   products: CEKICILIK_PRODUCTS,
 } as const;
+
+/* ============================================================================
+ * 3. KOLEKSİYON SETİ: İki fiziksel kitap birlikte (5 Kasım'da satışta)
+ * ========================================================================== */
+
+const SET_NOTIFY_MESSAGE =
+  "Merhaba, Koleksiyon Seti (2 fiziksel kitap) satışa çıktığında haber almak istiyorum.";
+const SET_ORDER_MESSAGE =
+  "Merhaba, Koleksiyon Seti'ni (Vazgeçilmez Olma Sanatı + Çekicilik Sanatı, 2 fiziksel kitap, 1700 TL) satın almak istiyorum.";
+
+export const KOLEKSIYON_SETI_CONFIG = {
+  name: "Koleksiyon Seti",
+  oldPrice: 2000,
+  price: 1700,
+  currency: "TL",
+  releaseDate: RELEASE_DATE,
+  notifyWhatsappUrl: buildWhatsAppUrl(SET_NOTIFY_MESSAGE),
+  orderWhatsappUrl: buildWhatsAppUrl(SET_ORDER_MESSAGE),
+} as const;
