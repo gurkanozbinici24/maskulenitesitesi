@@ -221,6 +221,8 @@ export const KOLEKSIYON_SETI_CONFIG = {
   price: 1700,
   currency: "TL",
   releaseDate: RELEASE_DATE,
+  /** "Lansmana Özel" etiketinin kendiliğinden kalkacağı an */
+  launchSpecialUntil: "2026-11-30T23:59:59+03:00",
   notifyWhatsappUrl: buildWhatsAppUrl(SET_NOTIFY_MESSAGE),
   orderWhatsappUrl: buildWhatsAppUrl(SET_ORDER_MESSAGE),
 } as const;

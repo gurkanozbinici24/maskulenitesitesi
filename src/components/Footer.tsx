@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { BookOpen, Mail, MessageSquare, ArrowUp } from "lucide-react";
+import { Mail, MessageSquare, ArrowUp } from "lucide-react";
 import LegalModal from "./LegalModal";
 
 export default function Footer() {
@@ -32,7 +32,7 @@ export default function Footer() {
 
   return (
     <>
-      <footer className="bg-matte-950 pt-16 pb-12 relative text-zinc-400">
+      <footer className="bg-matte-950 pt-16 pb-28 lg:pb-12 relative text-zinc-400">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
           {/* Main Footer Row */}
@@ -41,9 +41,8 @@ export default function Footer() {
             {/* Col 1 & 2: Brand Info */}
             <div className="lg:col-span-2 space-y-4">
               <div className="flex items-center gap-2.5">
-                <div className="w-8 h-8 rounded-lg bg-zinc-900 border border-gold-500/40 flex items-center justify-center">
-                  <BookOpen className="w-4 h-4 text-gold-400" />
-                </div>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src="/aslan-logo.png" alt="Gürkan Özbinici aslan logosu" className="h-10 w-auto drop-shadow-[0_0_8px_rgba(212,175,55,0.35)]" />
                 <span className="font-extrabold tracking-wider text-lg text-white uppercase">
                   Gürkan Özbinici
                 </span>

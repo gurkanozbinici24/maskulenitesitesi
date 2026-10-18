@@ -165,6 +165,7 @@ export default function HeroSection() {
 
   // Alt bar: kullanıcı bir kitabın bölümündeyken o kitabın butonunu göstersin
   const [sectionBook, setSectionBook] = useState<MobileBookSelection | null>(null);
+  const [pastHero, setPastHero] = useState(false);
   useEffect(() => {
     const inRange = (startId: string, endId: string, y: number) => {
       const a = document.getElementById(startId);
@@ -175,6 +176,7 @@ export default function HeroSection() {
       return y >= top && y < bottom;
     };
     const onScroll = () => {
+      setPastHero(window.scrollY > window.innerHeight * 0.9);
       const y = window.scrollY + window.innerHeight / 2;
       if (inRange("cekicilik-sanati", "cekicilik-sanati", y)) setSectionBook("kitap2");
       else if (inRange("vazgecilmez", "fiyatlandirma", y)) setSectionBook("kitap1");
@@ -801,7 +803,7 @@ export default function HeroSection() {
         aria-label="Hızlı satın alma çubuğu"
       >
         <div className="max-w-md mx-auto">
-          {(sectionBook ?? mobileSelectedBook) === "kitap1" ? (
+          {(sectionBook ?? (pastHero ? "kitap1" : mobileSelectedBook)) === "kitap1" ? (
             <ThemeButton
               theme="kitap1"
               variant="primary"

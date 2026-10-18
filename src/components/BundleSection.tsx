@@ -16,6 +16,8 @@ const pad = (n: number) => String(n).padStart(2, "0");
 export default function BundleSection() {
   const [hover, setHover] = useState(false);
   const { mounted, isOnSale, timeLeft } = useCekicilikLaunchStatus(SET.releaseDate);
+  const special = useCekicilikLaunchStatus(SET.launchSpecialUntil);
+  const showSpecial = !special.isOnSale; // bitiş anı gelince etiket kalkar
   const units = [
     { l: "Gün", v: timeLeft.days },
     { l: "Saat", v: timeLeft.hours },
@@ -91,13 +93,15 @@ export default function BundleSection() {
           </p>
 
           {/* Fiyat */}
+          {showSpecial && (
           <div className="mt-6 flex justify-center lg:justify-start">
             <span className="inline-flex items-center gap-1.5 rounded-md bg-gradient-to-r from-gold-300 via-gold-400 to-gold-600 px-3 py-1 text-[11px] font-black uppercase tracking-[0.2em] text-black shadow-gold-glow">
               <Sparkles className="h-3.5 w-3.5" />
               Lansmana Özel
             </span>
           </div>
-          <div className="mt-3 flex items-end justify-center gap-4 lg:justify-start">
+          )}
+          <div className={`${showSpecial ? "mt-3" : "mt-6"} flex items-end justify-center gap-4 lg:justify-start`}>
             <span className="relative pb-1.5 font-mono text-2xl font-bold text-zinc-500">
               {SET.oldPrice} TL
               <span className="absolute left-[-4%] top-1/2 h-[2px] w-[108%] -rotate-6 bg-crimson-500" />
