@@ -5,7 +5,8 @@ import { Book3DModel } from "./HeroSection";
 import { Shield, Compass, Flame, MessageCircle, Truck, Zap, Clock } from "lucide-react";
 import { useCekicilikLaunchStatus } from "./ui/BookCountdown";
 import { ThemeBadge, ThemeButton, ThemeSectionHeader } from "./ui/ThemeSystem";
-import { VAZGECILMEZ_CONFIG } from "@/config/cekicilikConfig";
+import { VAZGECILMEZ_CONFIG, VAZGECILMEZ_PREVIEW_PAGES } from "@/config/cekicilikConfig";
+import BookPreview from "./BookPreview";
 
 /**
  * Vazgeçilmez Olma Sanatı tanıtım bölümü (id="vazgecilmez").
@@ -199,6 +200,17 @@ export default function VazgecilmezSection() {
             </div>
           </div>
         </div>
+
+        <BookPreview
+          theme="kitap1"
+          heading="İlk Sayfaları Oku"
+          pages={VAZGECILMEZ_PREVIEW_PAGES}
+          cta={{
+            label: "Hemen Tamamına Eriş – 600 TL",
+            href: ebook.whatsappUrl,
+            external: true,
+          }}
+        />
       </div>
     </section>
   );

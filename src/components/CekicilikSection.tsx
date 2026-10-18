@@ -5,7 +5,9 @@ import { Book3DModel } from "./HeroSection";
 import { Crown, Gem, HeartHandshake } from "lucide-react";
 import { BookCountdown } from "./ui/BookCountdown";
 import { ThemeSectionHeader } from "./ui/ThemeSystem";
-import { CEKICILIK_SANATI_CONFIG } from "@/config/cekicilikConfig";
+import { CEKICILIK_SANATI_CONFIG, CEKICILIK_PREVIEW_PAGES } from "@/config/cekicilikConfig";
+import BookPreview from "./BookPreview";
+import { useCekicilikLaunchStatus } from "./ui/BookCountdown";
 
 /**
  * Çekicilik Sanatı bölümü (id="cekicilik-sanati").
@@ -33,6 +35,7 @@ const HIGHLIGHTS = [
 
 export default function CekicilikSection() {
   const [focused, setFocused] = useState(false);
+  const { isOnSale } = useCekicilikLaunchStatus();
   return (
     <section
       id="cekicilik-sanati"
@@ -92,6 +95,27 @@ export default function CekicilikSection() {
             <BookCountdown theme="kitap2" size="lg" />
           </div>
         </div>
+
+        {CEKICILIK_PREVIEW_PAGES.length > 0 && (
+          <BookPreview
+            theme="kitap2"
+            heading="İlk Sayfaları Oku"
+            pages={CEKICILIK_PREVIEW_PAGES}
+            cta={
+              isOnSale
+                ? {
+                    label: "Hemen Tamamına Eriş – 600 TL",
+                    href: CEKICILIK_SANATI_CONFIG.products.ebook.whatsappUrl,
+                    external: true,
+                  }
+                : {
+                    label: "5 Kasım'da Tamamına Eriş – Haber Al",
+                    href: CEKICILIK_SANATI_CONFIG.notifyWhatsappUrl,
+                    external: true,
+                  }
+            }
+          />
+        )}
       </div>
     </section>
   );

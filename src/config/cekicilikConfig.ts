@@ -58,6 +58,19 @@ const VAZGECILMEZ_PHYSICAL_NOTIFY_MESSAGE =
 const VAZGECILMEZ_PHYSICAL_ORDER_MESSAGE =
   "Merhaba, Vazgeçilmez Olma Sanatı Yenilenmiş Edisyon fiziksel kitabını satın almak istiyorum.";
 
+/**
+ * Kitaptan önizleme sayfaları. clearUntil: sayfanın yüzde kaçı net görünür (gerisi bulanık).
+ * Yeni sayfa eklemek için görseli /public klasörüne koyup buraya ekleyin.
+ */
+export const VAZGECILMEZ_PREVIEW_PAGES = [
+  { src: "/sayfa1.png", title: "Bu Kitabı Okumadan Önce", clearUntil: 58 },
+  { src: "/sayfa2.png", title: "Bu Kitabı Bitirdiğinde", clearUntil: 50 },
+  { src: "/sayfa3.png", title: "Bölüm 1: İyi Çocuk Masalının Sonu", clearUntil: 46 },
+];
+
+/** Çekicilik Sanatı önizleme sayfaları: görseller gelince doldurulacak (boşken bölüm gizli). */
+export const CEKICILIK_PREVIEW_PAGES: { src: string; title: string; clearUntil: number }[] = [];
+
 export const VAZGECILMEZ_CONFIG = {
   bookTitle: "Vazgeçilmez Olma Sanatı",
   coverImage: "/vazgecilmez-yeni-kapak.jpg",
