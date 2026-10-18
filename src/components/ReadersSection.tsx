@@ -13,12 +13,11 @@ import { ThemeSectionHeader } from "./ui/ThemeSystem";
  */
 
 const PHOTO_HEIGHTS = [
-  996, 747, 747, 996, 996, 995, 996, 995, 996, 747, 996, 996, 996, 995, 747, 996, 996, 995, 747, 996,
-  996, 746, 744,
+  1280, 960, 960, 1280, 1281, 1280, 1280, 1280, 1281, 960, 1280, 1281, 1280, 1280, 960, 1281, 1280, 1280, 960, 1280, 1281, 959, 957, 1281, 1161, 965,
 ];
 const PHOTOS = PHOTO_HEIGHTS.map((h, i) => ({
   src: `/okurlar/okur-${String(i + 1).padStart(2, "0")}.webp`,
-  w: 560,
+  w: 720,
   h,
 }));
 
@@ -80,16 +79,22 @@ export default function ReadersSection() {
             type="button"
             onClick={() => setLightbox(p.src)}
             aria-label="Okur fotoğrafını büyüt"
-            className="relative h-44 sm:h-60 flex-shrink-0 overflow-hidden rounded-xl border border-gold-500/20 bg-black shadow-[0_10px_30px_rgba(0,0,0,0.6)] transition-transform duration-300 hover:-translate-y-1 hover:border-gold-500/60"
+            className="group/ph relative h-52 sm:h-72 flex-shrink-0 overflow-hidden rounded-2xl bg-black p-[3px] shadow-[0_14px_40px_rgba(0,0,0,0.7)] ring-1 ring-gold-500/30 transition-all duration-500 hover:-translate-y-1.5 hover:ring-gold-400/80 hover:shadow-[0_18px_45px_rgba(0,0,0,0.8),0_0_30px_rgba(212,175,55,0.25)]"
             style={{ aspectRatio: `${p.w} / ${p.h}` }}
           >
             <Image
               src={p.src}
               alt="Okurumuzun elindeki Vazgeçilmez Olma Sanatı kitabı"
               fill
-              sizes="(max-width: 640px) 110px, 180px"
-              className="object-cover"
+              sizes="(max-width: 640px) 130px, 220px"
+              className="rounded-[13px] object-cover transition-transform duration-700 group-hover/ph:scale-105"
             />
+            {/* premium çerçeve: altta karartma + altın parıltı */}
+            <span className="pointer-events-none absolute inset-[3px] rounded-[13px] bg-[linear-gradient(180deg,transparent_55%,rgba(0,0,0,0.65)_100%)] shadow-[inset_0_0_25px_rgba(0,0,0,0.55)]" />
+            <span className="pointer-events-none absolute inset-x-6 top-[3px] h-px bg-gradient-to-r from-transparent via-gold-300/70 to-transparent" />
+            <span className="pointer-events-none absolute bottom-2.5 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full border border-gold-500/40 bg-black/60 px-2 py-0.5 text-[9px] font-bold uppercase tracking-[0.18em] text-gold-300 backdrop-blur-sm">
+              ✓ Okur
+            </span>
           </button>
         ))}
       </div>
@@ -210,7 +215,7 @@ export default function ReadersSection() {
             <X className="h-5 w-5" />
           </button>
           <div className="relative h-[85vh] w-full max-w-md">
-            <Image src={lightbox} alt="Okur fotoğrafı" fill sizes="448px" className="object-contain" />
+            <Image src={lightbox} alt="Okur fotoğrafı" fill sizes="(max-width: 640px) 100vw, 448px" quality={90} className="rounded-2xl object-contain" />
           </div>
         </div>
       )}
