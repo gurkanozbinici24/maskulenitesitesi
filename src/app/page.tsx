@@ -4,7 +4,7 @@ import BookChooserSection from "@/components/BookChooserSection";
 import VazgecilmezSection from "@/components/VazgecilmezSection";
 import BookDivider from "@/components/BookDivider";
 import BenefitsSection from "@/components/BenefitsSection";
-import SecretLawShowcase from "@/components/SecretLawShowcase";
+import LawArchive from "@/components/LawArchive";
 import SocialProofBanner from "@/components/SocialProofBanner";
 import PricingSection from "@/components/PricingSection";
 import CekicilikSection from "@/components/CekicilikSection";
@@ -36,7 +36,7 @@ export default function Home() {
       <BenefitsSection />
 
       {/* 3. Gizli Arşiv Vitrini: 100 Sarsılmaz Kanundan Biri (3D Sansürlü Kart) */}
-      <SecretLawShowcase />
+      <LawArchive />
 
       {/* 5. Satın Alma & Fiyatlandırma Bölümü */}
       <PricingSection />
