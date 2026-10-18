@@ -360,7 +360,7 @@ export default function BookPreview({
           aria-modal="true"
           id="book-reader"
         >
-          <div className={`relative w-full transition-[max-width] duration-300 ${zoom ? "max-w-[min(760px,100%)]" : "max-w-[560px]"}`} onClick={(e) => e.stopPropagation()}>
+          <div className={`relative w-full transition-[max-width] duration-300 ${zoom ? "max-w-[min(495px,100%)]" : "max-w-[560px]"}`} onClick={(e) => e.stopPropagation()}>
             <div className="mb-3 flex items-center justify-between gap-3">
               <span className={`font-cinzel text-sm font-bold tracking-wider ${accent}`}>
                 {open + 1} / {pages.length} · {pages[open].title}
@@ -398,7 +398,7 @@ export default function BookPreview({
                 src={pages[open].src}
                 alt={pages[open].title}
                 fill
-                sizes={zoom ? "(max-width: 640px) 160vw, 760px" : "560px"}
+                sizes={zoom ? "(max-width: 640px) 160vw, 495px" : "560px"}
                 quality={95}
                 className="object-contain object-top"
               />
