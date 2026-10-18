@@ -242,7 +242,7 @@ export default function SamplePagesModal({
                     </div>
 
                     <div className="text-[10px] text-zinc-500 font-mono">
-                      256-Bit SSL • Anında Teslimat
+                      Yazar Onaylı Orijinal Eser
                     </div>
                   </div>
                 )}

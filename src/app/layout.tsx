@@ -30,8 +30,8 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  title: 'Vazgeçilmez Olma Sanatı | İlişki Psikolojisi ve Maskülenite',
-  description: 'Maskülenite, redpill, kırmızıhap felsefesi ve ilişki dinamikleri üzerine sarsılmaz kanunlar. Vazgeçilmez Olma Sanatı kitabının resmi ve tek basımı.',
+  title: 'Gürkan Özbinici | Vazgeçilmez Olma Sanatı & Çekicilik Sanatı',
+  description: 'Maskülenite, redpill, kırmızıhap felsefesi ve ilişki dinamikleri üzerine sarsılmaz kanunlar. Vazgeçilmez Olma Sanatı (erkekler için) ve Çekicilik Sanatı (kadınlar için) kitaplarının resmi sitesi.',
   keywords: [
     'maskülenite',
     'maskulenitesitesi',

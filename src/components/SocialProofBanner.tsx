@@ -29,7 +29,7 @@ export default function SocialProofBanner() {
               </h3>
               
               <p className="mt-3 text-sm sm:text-base text-zinc-300 font-normal leading-relaxed">
-                Maskulenitesitesi hesabımızda milyonlarca kez izlenen o acımasız gerçekler. Milyonlarca erkeğin hayatını kökten değiştiren tavizsiz stratejiler, şimdi tek bir başucu kaynağında toplandı.
+                Maskulenitesitesi hesabımızda milyonlarca kez izlenen o acımasız gerçekler. Milyonlarca kişinin ilişkilere bakışını kökten değiştiren tavizsiz stratejiler, şimdi iki başucu kitabında: biri erkekler, biri kadınlar için.
               </p>
             </div>
 
@@ -59,10 +59,10 @@ export default function SocialProofBanner() {
               {/* Stat 3 */}
               <div className="group/stat relative p-4 sm:p-5 rounded-2xl bg-matte-950/90 border border-gold-500/40 text-center flex flex-col items-center justify-center col-span-2 sm:col-span-1 shadow-gold-glow cursor-default select-none transition-all duration-300 ease-[cubic-bezier(0.25,1,0.5,1)] hover:-translate-y-1.5 hover:scale-[1.03] hover:border-gold-400 hover:shadow-[0_18px_40px_rgba(0,0,0,0.9),0_0_35px_rgba(212,175,55,0.38)]">
                 <div className="text-xl sm:text-2xl font-black text-gold-400 font-mono whitespace-nowrap transition-colors duration-300 group-hover/stat:text-gold-300">
-                  SADECE 200
+                  2 KİTAP
                 </div>
                 <div className="text-[11px] font-bold text-gold-300 uppercase tracking-wider mt-1 transition-colors duration-300 group-hover/stat:text-gold-200">
-                  ÖZEL İMZALI KOPYA
+                  ERKEK & KADIN İÇİN
                 </div>
               </div>
 

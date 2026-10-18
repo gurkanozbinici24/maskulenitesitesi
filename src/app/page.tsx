@@ -4,6 +4,7 @@ import BenefitsSection from "@/components/BenefitsSection";
 import SecretLawShowcase from "@/components/SecretLawShowcase";
 import SocialProofBanner from "@/components/SocialProofBanner";
 import PricingSection from "@/components/PricingSection";
+import CekicilikSection from "@/components/CekicilikSection";
 import FaqSection from "@/components/FaqSection";
 import Footer from "@/components/Footer";
 
@@ -27,6 +28,9 @@ export default function Home() {
 
       {/* 5. Satın Alma & Fiyatlandırma Bölümü */}
       <PricingSection />
+
+      {/* 5b. Çekicilik Sanatı (Yeni Kitap) */}
+      <CekicilikSection />
 
       {/* 6. Sıkça Sorulan Sorular (SSS) Akordiyon Bölümü */}
       <FaqSection />

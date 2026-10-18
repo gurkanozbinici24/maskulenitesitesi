@@ -50,7 +50,7 @@ export default function PricingSection() {
           badgeText="KÜTÜPHANENİ DONAT"
           title="VAZGEÇİLMEZ OLMAYA"
           highlightText="İLK ADIMI AT"
-          subtitle="Kuralları koyan taraf olmak ve taktikleri hemen uygulamaya başlamak için E-Kitap sürümüne saniyeler içinde erişebilir veya yeni kapağı ve okunaklı büyük puntosuyla hazırlanan Fiziksel Yenilenmiş Edisyon'u tercih edebilirsiniz."
+          subtitle="Kuralları koyan taraf olmak ve taktikleri hemen uygulamaya başlamak için E-Kitap sürümünü hemen sipariş edebilir veya yeni kapağı ve okunaklı büyük puntosuyla hazırlanan Fiziksel Yenilenmiş Edisyon'u tercih edebilirsiniz."
           className="mb-14 sm:mb-16"
         />
 
@@ -75,7 +75,7 @@ export default function PricingSection() {
                 className="px-4 py-1.5 tracking-wider"
               >
                 <Zap className="w-3.5 h-3.5 fill-black text-black" />
-                <span>ANINDA TESLİMAT</span>
+                <span>E-KİTAP SATIŞTA</span>
               </ThemeBadge>
             </div>
 
@@ -100,7 +100,7 @@ export default function PricingSection() {
                 Kargo bekleme veya adres girme süreçleriyle vakit kaybetmeyin.
                 Ödemenizin ardından e-kitabınız (dijital formatta) doğrudan
                 e-posta adresinize gönderilir. Telefon, tablet veya
-                bilgisayarınızdan saniyeler içinde okumaya başlayın.
+                bilgisayarınızdan hemen okumaya başlayın.
               </p>
 
               {/* Price Tag */}
@@ -134,7 +134,6 @@ export default function PricingSection() {
                   </div>
                   <span className="text-sm text-zinc-200">
                     <strong>PDF, EPUB ve Kindle (.mobi)</strong> formatlarında
-                    anında indirme
                   </span>
                 </div>
 
@@ -153,7 +152,7 @@ export default function PricingSection() {
                     <Check className="w-3 h-3" />
                   </div>
                   <span className="text-sm text-zinc-200">
-                    Fiziksel kargo beklemeden, e-posta adresinize anında dijital
+                    Fiziksel kargo beklemeden, e-posta adresinize dijital
                     teslimat.
                   </span>
                 </div>
@@ -178,8 +177,8 @@ export default function PricingSection() {
               <div className="flex items-center justify-center gap-1.5 mt-3 text-xs text-zinc-400 font-medium">
                 <Mail className="w-3.5 h-3.5 text-gold-400" />
                 <span>
-                  Otomatik sistem ile e-posta adresinize saniyeler içinde
-                  teslimat.
+                  WhatsApp'tan sipariş verin, ödemenin ardından e-kitabınız
+                  e-postanıza gönderilsin.
                 </span>
               </div>
             </div>

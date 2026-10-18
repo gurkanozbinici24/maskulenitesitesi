@@ -148,7 +148,8 @@ body {
 /* Kitabın üzerine gelindiğinde öne çıkıp yüzünü kullanıcıya döner */
 .book-3d-object-focused {
   animation-play-state: paused !important;
-  transform: translateZ(46px) rotateY(0deg) rotateX(0deg) rotateZ(0deg) scale(1.06) !important;
+  transform: translateZ(70px) rotateY(-4deg) rotateX(2deg) rotateZ(0deg) scale(1.1) !important;
+  filter: brightness(1.08) saturate(1.1);
 }
 
 /* Diğer kitabın üzerine gelindiğinde geri çekilip sönükleşir */

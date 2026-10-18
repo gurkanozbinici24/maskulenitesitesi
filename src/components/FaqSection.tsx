@@ -21,13 +21,13 @@ const faqs: FaqItem[] = [
     id: 2,
     question: "Yenilenmiş Edisyon fiziksel kitabın içerik olarak E-Kitap veya 1. Baskı'dan farkı var mı?",
     answer:
-      "Hayır, içerik birebir aynıdır. 227 sayfalık tüm bölümler ve ilişki psikolojisi kanunları eksiksiz olarak yer alır. Yenilenmiş Edisyon; yeni kapağı ve okuma konforunu artıran daha büyük, okunaklı puntosuyla fiziksel kitap tutkunları için hazırlandı. Kargo beklemek istemeyen okurlarımız ise E-Kitap sürümünü hemen satın alarak saniyeler içinde okumaya başlayabilir.",
+      "Hayır, içerik birebir aynıdır. 227 sayfalık tüm bölümler ve ilişki psikolojisi kanunları eksiksiz olarak yer alır. Yenilenmiş Edisyon; yeni kapağı ve okuma konforunu artıran daha büyük, okunaklı puntosuyla fiziksel kitap tutkunları için hazırlandı. Kargo beklemek istemeyen okurlarımız ise E-Kitap sürümünü hemen sipariş ederek okumaya başlayabilir.",
   },
   {
     id: 3,
     question: "Dijital E-Kitap paketini satın aldığımda nasıl okuyacağım?",
     answer:
-      "Ödemenizi tamamladığınız an e-kitap (PDF, EPUB ve Kindle formatlarında) doğrudan e-posta adresinize gönderilir ve cihazınıza indirilebilir duruma gelir. Kargo bekleme veya gecikme yoktur; telefon, tablet veya bilgisayarınızdan saniyeler içinde okumaya başlayabilirsiniz.",
+      "Siparişinizi WhatsApp üzerinden verirsiniz. Ödemeniz onaylandıktan sonra e-kitap (PDF, EPUB ve Kindle formatlarında) e-posta adresinize gönderilir. Kargo beklemeden telefon, tablet veya bilgisayarınızdan okumaya başlayabilirsiniz.",
   },
 ];
 

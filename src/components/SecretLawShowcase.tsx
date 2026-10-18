@@ -142,7 +142,7 @@ export default function SecretLawShowcase() {
             {/* Otoriter Mühür Alt Metni */}
             <div className="mt-8 pt-4 border-t border-zinc-950 flex items-center justify-center text-center">
               <span className="text-[10px] font-mono tracking-[0.22em] text-zinc-500 uppercase select-none">
-                BU ARŞİV DIŞARI SIZDIRILMAZ. TAM METİN SADECE 200 KİŞİYE ÖZELDİR.
+                BU ARŞİV DIŞARI SIZDIRILMAZ. TAM METİN YALNIZCA KİTAPTA.
               </span>
             </div>
           </div>

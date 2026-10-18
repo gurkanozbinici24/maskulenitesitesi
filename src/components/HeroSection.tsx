@@ -112,7 +112,8 @@ function Book3DModel({
           }
           fill
           priority
-          sizes="(max-width: 640px) 150px, (max-width: 1024px) 180px, 220px"
+          sizes="(max-width: 1024px) 45vw, 420px"
+          quality={90}
           className={`object-cover ${
             isKitap1 ? "object-center" : "object-[50%_68%]"
           }`}
@@ -245,7 +246,7 @@ export default function HeroSection() {
         ref={stageRef}
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
-        className="relative min-h-[100svh] lg:h-[100svh] w-full max-w-full flex flex-col justify-between pt-[84px] pb-[76px] lg:pt-[92px] lg:pb-6 overflow-hidden bg-matte-950 select-none"
+        className="relative min-h-[100svh] lg:h-[100svh] w-full max-w-full flex flex-col justify-between pt-[116px] pb-[84px] lg:pt-[108px] lg:pb-8 overflow-hidden bg-matte-950 select-none"
       >
         {/* =================================================================== */}
         {/* 1. ARKA PLAN ATMOSFERİ, IŞIK SAHNESİ VE PARTİKÜLLER                 */}
@@ -295,14 +296,8 @@ export default function HeroSection() {
           {/* ÜST MERKEZ BAŞLIK ALANI (Kompakt, Maks 2 Satır Başlık)            */}
           {/* ----------------------------------------------------------------- */}
           <div className="animate-hero-title text-center max-w-4xl mx-auto pt-1 sm:pt-2">
-            <div className="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-mahogany-900/85 border border-gold-500/35 shadow-gold-glow mb-1.5">
-              <Sparkles className="w-3 h-3 text-gold-400" />
-              <span className="font-cinzel text-[10px] sm:text-xs font-bold tracking-[0.24em] uppercase text-gold-300">
-                GÜRKAN ÖZBİNİCİ
-              </span>
-            </div>
 
-            <h1 className="font-cinzel text-[clamp(1.45rem,4.6vw,2.45rem)] font-black tracking-tight text-white leading-[1.1] mb-1.5">
+            <h1 className="font-cinzel text-[clamp(1.6rem,5vw,2.9rem)] font-black tracking-tight text-white leading-[1.1] mb-2">
               <span className="gold-text-gradient">
                 İlişkilerin Gizli Kanunları
               </span>
@@ -349,7 +344,7 @@ export default function HeroSection() {
                 {/* 3D Kitap + Kalıcı Sıcak Altın/Konyak Işık Hâlesi */}
                 <div className="book-3d-scene relative flex flex-col items-center justify-center py-1">
                   <div
-                    className={`pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-56 h-72 rounded-full blur-3xl transition-all duration-500 ${
+                    className={`pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-[26rem] rounded-full blur-3xl transition-all duration-500 ${
                       desktopHoverBook === "kitap1"
                         ? "bg-gradient-to-tr from-gold-500/50 via-mahogany-500/45 to-amber-400/35 scale-125 opacity-100"
                         : "bg-gradient-to-tr from-mahogany-600/45 via-gold-500/28 to-amber-500/20 opacity-90"
@@ -360,18 +355,18 @@ export default function HeroSection() {
                     book="kitap1"
                     isFocused={desktopHoverBook === "kitap1"}
                     isDimmed={desktopHoverBook === "kitap2"}
-                    sizeClassName="h-[min(35svh,270px)] w-[calc(min(35svh,270px)*0.6667)]"
+                    sizeClassName="h-[min(46svh,420px)] w-[calc(min(46svh,420px)*0.6667)]"
                   />
 
                   {/* Zemin Yansıması & Gölge */}
                   <div
-                    className={`pointer-events-none mt-4 h-3.5 w-44 rounded-full blur-lg transition-all duration-500 ${
+                    className={`pointer-events-none mt-4 h-4 w-60 rounded-full blur-lg transition-all duration-500 ${
                       desktopHoverBook === "kitap1"
                         ? "bg-gold-500/50 scale-110"
                         : "bg-gold-500/28"
                     }`}
                   />
-                  <div className="pointer-events-none -mt-2.5 h-2.5 w-36 rounded-full bg-black/90 blur-md" />
+                  <div className="pointer-events-none -mt-2.5 h-3 w-52 rounded-full bg-black/90 blur-md" />
                 </div>
 
                 {/* Kitabın Hemen Altı: Rozet, Kitap Adı, Kısa Not ve Buton (Birebir Aynı Hizada) */}
@@ -434,7 +429,7 @@ export default function HeroSection() {
                 {/* 3D Kitap + Kalıcı Kırmızı ve Hafif Zümrüt Işık Hâlesi */}
                 <div className="book-3d-scene relative flex flex-col items-center justify-center py-1">
                   <div
-                    className={`pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-56 h-72 rounded-full blur-3xl transition-all duration-500 ${
+                    className={`pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-[26rem] rounded-full blur-3xl transition-all duration-500 ${
                       desktopHoverBook === "kitap2"
                         ? "bg-gradient-to-tl from-crimson-500/55 via-crimson-800/45 to-emerald-500/35 scale-125 opacity-100"
                         : "bg-gradient-to-tl from-crimson-600/45 via-crimson-900/35 to-emerald-500/20 opacity-90"
@@ -445,18 +440,18 @@ export default function HeroSection() {
                     book="kitap2"
                     isFocused={desktopHoverBook === "kitap2"}
                     isDimmed={desktopHoverBook === "kitap1"}
-                    sizeClassName="h-[min(35svh,270px)] w-[calc(min(35svh,270px)*0.6667)]"
+                    sizeClassName="h-[min(46svh,420px)] w-[calc(min(46svh,420px)*0.6667)]"
                   />
 
                   {/* Zemin Yansıması & Gölge */}
                   <div
-                    className={`pointer-events-none mt-4 h-3.5 w-44 rounded-full blur-lg transition-all duration-500 ${
+                    className={`pointer-events-none mt-4 h-4 w-60 rounded-full blur-lg transition-all duration-500 ${
                       desktopHoverBook === "kitap2"
                         ? "bg-crimson-500/50 scale-110"
                         : "bg-crimson-600/30"
                     }`}
                   />
-                  <div className="pointer-events-none -mt-2.5 h-2.5 w-36 rounded-full bg-black/90 blur-md" />
+                  <div className="pointer-events-none -mt-2.5 h-3 w-52 rounded-full bg-black/90 blur-md" />
                 </div>
 
                 {/* Kitabın Hemen Altı: Rozet, Kitap Adı, Kısa Not + Sayaç ve Buton */}
@@ -567,7 +562,7 @@ export default function HeroSection() {
             onTouchEnd={handleTouchEnd}
           >
             {/* 1. Yelpaze (Fan) Düzeninde Yan Yana İki 3D Kitap */}
-            <div className="relative w-full max-w-[360px] h-[255px] sm:h-[280px] flex items-center justify-center my-auto">
+            <div className="relative w-full max-w-[390px] h-[300px] sm:h-[320px] flex items-center justify-center gap-5 my-auto">
               {/* Sol Kitap Arkası Kalıcı Sıcak Altın/Konyak Hâle */}
               <div
                 className={`pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 w-40 h-56 rounded-full blur-2xl transition-all duration-500 ${
@@ -592,17 +587,17 @@ export default function HeroSection() {
                 role="button"
                 tabIndex={0}
                 aria-label="Vazgeçilmez Olma Sanatı kitabını seç"
-                className={`relative transition-all duration-500 ease-out cursor-pointer -mr-3.5 ${
+                className={`relative transition-all duration-500 ease-out cursor-pointer ${
                   mobileSelectedBook === "kitap1"
-                    ? "z-20 scale-105 -rotate-1 translate-y-0"
-                    : "z-10 scale-[0.88] -rotate-6 translate-y-2.5 opacity-80"
+                    ? "z-20 scale-105 translate-y-0"
+                    : "z-10 scale-[0.9] -rotate-3 translate-y-2 opacity-70"
                 }`}
               >
                 <Book3DModel
                   book="kitap1"
                   isFocused={mobileSelectedBook === "kitap1"}
                   isDimmed={false}
-                  sizeClassName="w-[144px] h-[216px] sm:w-[162px] sm:h-[243px]"
+                  sizeClassName="w-[162px] h-[243px] sm:w-[180px] sm:h-[270px]"
                 />
               </div>
 
@@ -612,17 +607,17 @@ export default function HeroSection() {
                 role="button"
                 tabIndex={0}
                 aria-label="Çekicilik Sanatı kitabını seç"
-                className={`relative transition-all duration-500 ease-out cursor-pointer -ml-3.5 ${
+                className={`relative transition-all duration-500 ease-out cursor-pointer ${
                   mobileSelectedBook === "kitap2"
-                    ? "z-20 scale-105 rotate-1 translate-y-0"
-                    : "z-10 scale-[0.88] rotate-6 translate-y-2.5 opacity-80"
+                    ? "z-20 scale-105 translate-y-0"
+                    : "z-10 scale-[0.9] rotate-3 translate-y-2 opacity-70"
                 }`}
               >
                 <Book3DModel
                   book="kitap2"
                   isFocused={mobileSelectedBook === "kitap2"}
                   isDimmed={false}
-                  sizeClassName="w-[144px] h-[216px] sm:w-[162px] sm:h-[243px]"
+                  sizeClassName="w-[162px] h-[243px] sm:w-[180px] sm:h-[270px]"
                 />
               </div>
             </div>
