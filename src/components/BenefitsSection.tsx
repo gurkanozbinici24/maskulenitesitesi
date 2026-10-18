@@ -118,7 +118,7 @@ function BenefitCard({ b, index }: { b: Benefit; index: number }) {
           transition: "transform 300ms ease-out, background 500ms, box-shadow 500ms",
         }}
       >
-        <div className="relative h-full overflow-hidden rounded-[15px] bg-gradient-to-b from-[#16100a] via-matte-950 to-matte-950 p-7 sm:p-8 flex flex-col">
+        <div className="relative h-full overflow-hidden rounded-[15px] bg-gradient-to-b from-[#16100a] via-matte-950 to-matte-950 p-7 sm:p-8 lg:px-7 lg:py-6 flex flex-col">
           {/* Dev Romen rakamı filigranı */}
           <span className="pointer-events-none absolute -top-6 -right-2 font-cinzel text-[9rem] font-black leading-none text-gold-500/[0.06] group-hover:text-gold-500/[0.12] transition-colors duration-500 select-none">
             {b.numeral}
@@ -126,7 +126,7 @@ function BenefitCard({ b, index }: { b: Benefit; index: number }) {
           {/* Üst ışık */}
           <div className="pointer-events-none absolute -top-24 left-1/2 -translate-x-1/2 w-64 h-48 rounded-full bg-gold-500/10 blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
-          <div className="relative flex items-center gap-4 mb-6">
+          <div className="relative flex items-center gap-4 mb-6 lg:mb-4">
             <div className="relative w-14 h-14 flex-shrink-0">
               <div className="absolute inset-0 rounded-full bg-gold-500/20 blur-md group-hover:bg-gold-400/40 transition-colors" />
               <div className="relative w-14 h-14 rounded-full border border-gold-500/60 bg-gradient-to-br from-mahogany-800 to-matte-950 flex items-center justify-center text-gold-300 shadow-inner">
@@ -137,7 +137,7 @@ function BenefitCard({ b, index }: { b: Benefit; index: number }) {
               <div className="text-[10px] font-bold tracking-[0.3em] text-gold-500/80 uppercase">
                 Adım {b.numeral}
               </div>
-              <h3 className="font-cinzel text-xl sm:text-2xl font-bold text-white leading-tight group-hover:text-gold-200 transition-colors">
+              <h3 className="font-cinzel text-xl sm:text-2xl lg:text-[1.35rem] font-bold text-white leading-tight group-hover:text-gold-200 transition-colors">
                 {b.title}
               </h3>
             </div>
@@ -146,10 +146,10 @@ function BenefitCard({ b, index }: { b: Benefit; index: number }) {
           <div className="relative text-xs font-semibold text-gold-400 italic font-playfair mb-3">
             {b.subtitle}
           </div>
-          <p className="relative text-sm text-zinc-400 leading-relaxed mb-6">{b.description}</p>
+          <p className="relative text-sm text-zinc-400 leading-relaxed mb-6 lg:mb-4">{b.description}</p>
 
           {/* Önce / Sonra dönüşümü */}
-          <div className="relative rounded-xl border border-gold-500/15 bg-black/40 p-4 mb-6">
+          <div className="relative rounded-xl border border-gold-500/15 bg-black/40 p-4 lg:py-3 mb-6 lg:mb-4">
             <div className="flex items-start gap-3">
               <span className="mt-0.5 text-[10px] font-bold tracking-widest text-zinc-500 uppercase w-12 flex-shrink-0">
                 Önce
@@ -158,7 +158,7 @@ function BenefitCard({ b, index }: { b: Benefit; index: number }) {
                 {b.before}
               </span>
             </div>
-            <div className="my-2.5 ml-[3.75rem] h-px bg-gradient-to-r from-gold-500/50 to-transparent" />
+            <div className="my-2.5 lg:my-2 ml-[3.75rem] h-px bg-gradient-to-r from-gold-500/50 to-transparent" />
             <div className="flex items-start gap-3">
               <span className="mt-0.5 text-[10px] font-bold tracking-widest text-gold-400 uppercase w-12 flex-shrink-0">
                 Sonra
@@ -167,7 +167,7 @@ function BenefitCard({ b, index }: { b: Benefit; index: number }) {
             </div>
           </div>
 
-          <ul className="relative mt-auto space-y-2.5">
+          <ul className="relative mt-auto space-y-2.5 lg:space-y-2">
             {b.takeaways.map((t) => (
               <li key={t} className="flex items-start gap-2.5">
                 <span className="mt-0.5 w-4 h-4 rounded-full bg-gold-500/15 border border-gold-500/40 flex items-center justify-center flex-shrink-0 text-gold-400">
@@ -209,12 +209,12 @@ export default function BenefitsSection() {
           title="Vazgeçilmez Olma Sanatı ile"
           highlightText="Neler Kazanacaksın?"
           subtitle="Bu bir tavsiye kitabı değil, bir güç manifestosudur. İlişkilerde kontrolü eline almak, kadın doğasını şifrelerine kadar çözmek ve vazgeçilmez bir otorite olmak isteyenler için yazıldı."
-          className="mb-14 sm:mb-16"
+          className="mb-14 sm:mb-16 lg:mb-10"
         />
 
         {/* Üç adımlık dönüşüm yolu */}
         <div className="relative">
-          <div className="pointer-events-none hidden md:block absolute top-[4.6rem] left-[8%] right-[8%] h-px bg-gradient-to-r from-transparent via-gold-500/50 to-transparent" />
+          <div className="pointer-events-none hidden md:block absolute top-[4.6rem] lg:top-[4.1rem] left-[8%] right-[8%] h-px bg-gradient-to-r from-transparent via-gold-500/50 to-transparent" />
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 items-stretch">
             {benefits.map((b, i) => (
               <BenefitCard key={b.title} b={b} index={i} />
