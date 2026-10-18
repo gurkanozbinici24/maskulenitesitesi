@@ -2,7 +2,7 @@ import { Users, Award, ShieldCheck, Flame, ShieldAlert, Sparkles } from "lucide-
 
 export default function SocialProofBanner() {
   return (
-    <section id="sosyal-kanit" className="py-16 relative overflow-hidden bg-matte-950 border-y border-zinc-800/80">
+    <section id="sosyal-kanit" className="py-16 relative overflow-hidden bg-matte-950">
       {/* Background Accent Gradients */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3/4 h-32 bg-gold-500/5 blur-3xl pointer-events-none" />
 

@@ -12,7 +12,7 @@ export default function BookDivider() {
   return (
     <div
       id="vazgecilmez-derinlik"
-      className="relative overflow-hidden border-y border-gold-500/20 bg-gradient-to-b from-matte-950 via-[#140c06] to-matte-950 py-12 sm:py-16"
+      className="relative overflow-hidden bg-gradient-to-b from-matte-950 via-[#140c06] to-matte-950 py-12 sm:py-16"
     >
       <div className="pointer-events-none absolute left-1/2 top-1/2 h-48 w-[700px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-gold-500/10 blur-[100px]" />
 

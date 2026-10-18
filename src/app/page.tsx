@@ -10,6 +10,7 @@ import PricingSection from "@/components/PricingSection";
 import CekicilikSection from "@/components/CekicilikSection";
 import FaqSection from "@/components/FaqSection";
 import Footer from "@/components/Footer";
+import SectionDivider from "@/components/ui/SectionDivider";
 
 export default function Home() {
   return (
@@ -21,16 +22,20 @@ export default function Home() {
       <HeroSection />
 
       {/* 1b. Hangi kitap senin için? */}
+      <SectionDivider variant="split" />
       <BookChooserSection />
 
       {/* 2a. Vazgeçilmez Olma Sanatı tanıtım */}
+      <SectionDivider variant="gold" />
       <VazgecilmezSection />
 
       {/* 2b. Çekicilik Sanatı tanıtım (iki kitap tanıtımı art arda) */}
+      <SectionDivider variant="split" />
       <CekicilikSection />
 
       {/* 2. Neler Kazanacaksın Bölümü */}
       {/* Vazgeçilmez detaylarına geçiş ayracı */}
+      <SectionDivider variant="split" />
       <BookDivider />
 
       <BenefitsSection />
@@ -43,12 +48,15 @@ export default function Home() {
 
 
       {/* 6. Ortak: Sosyal Kanıt */}
+      <SectionDivider variant="split" />
       <SocialProofBanner />
 
       {/* 6. Sıkça Sorulan Sorular (SSS) Akordiyon Bölümü */}
+      <SectionDivider variant="split" />
       <FaqSection />
 
       {/* 7. Footer */}
+      <SectionDivider variant="split" />
       <Footer />
     </main>
   );

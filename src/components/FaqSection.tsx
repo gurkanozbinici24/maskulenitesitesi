@@ -53,7 +53,7 @@ export default function FaqSection() {
   return (
     <section
       id="sss"
-      className="py-24 relative overflow-hidden bg-matte-950 border-t border-zinc-900 scroll-mt-24"
+      className="py-24 relative overflow-hidden bg-matte-950 scroll-mt-24"
     >
       {/* Arka Plan Atmosfer Işıkları */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-gold-500/5 blur-[150px] pointer-events-none" />

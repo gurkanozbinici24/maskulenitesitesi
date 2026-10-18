@@ -49,7 +49,7 @@ export default function BookChooserSection() {
   return (
     <section
       id="kitap-secimi"
-      className="relative py-20 sm:py-24 bg-matte-950 border-t border-zinc-900 overflow-hidden"
+      className="relative py-20 sm:py-24 bg-matte-950 overflow-hidden"
     >
       <div className="pointer-events-none absolute inset-y-0 left-0 w-1/2 bg-gradient-to-r from-gold-500/[0.06] to-transparent" />
       <div className="pointer-events-none absolute inset-y-0 right-0 w-1/2 bg-gradient-to-l from-crimson-700/[0.10] to-transparent" />
