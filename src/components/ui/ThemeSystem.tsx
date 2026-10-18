@@ -64,7 +64,7 @@ export function ThemeButton({
     },
     kitap2: {
       primary:
-        "text-white bg-gradient-to-r from-emerald-500 via-emerald-600 to-emerald-700 shadow-emerald-glow hover:shadow-emerald-glow-lg active:shadow-emerald-glow hover:brightness-110 active:brightness-95 active:scale-[0.98] font-extrabold",
+        "text-white bg-gradient-to-r from-crimson-500 via-crimson-700 to-crimson-900 shadow-crimson-glow hover:shadow-crimson-glow-lg active:shadow-crimson-glow hover:brightness-110 active:brightness-95 active:scale-[0.98] font-extrabold",
       secondary:
         "text-zinc-200 hover:text-crimson-300 active:text-crimson-200 bg-matte-900 hover:bg-crimson-950/60 active:bg-crimson-950/80 border border-crimson-900/60 hover:border-crimson-500/50 active:border-crimson-400/70 active:scale-[0.98] font-semibold shadow-sm",
       outline:

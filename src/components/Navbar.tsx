@@ -62,23 +62,23 @@ export default function Navbar() {
             {/* Desktop Nav Items & Kompakt Satın Alma Butonu */}
             <nav className="hidden md:flex items-center gap-5 lg:gap-7 ml-auto flex-shrink-0">
               <a
+                href="/#kazanimlar"
+                className="text-xs lg:text-sm font-medium text-zinc-300 hover:text-gold-300 active:text-gold-200 transition-colors whitespace-nowrap"
+              >
+                Vazgeçilmez Olma Sanatı
+              </a>
+
+              <a
                 href="/#cekicilik-sanati"
                 className="text-xs lg:text-sm font-semibold text-crimson-300 hover:text-crimson-200 transition-colors flex items-center gap-1.5 whitespace-nowrap"
               >
-                Yeni Kitap
+                Çekicilik Sanatı
                 <span className="text-[9px] font-black px-1.5 py-0.5 rounded bg-crimson-700 text-white">YAKINDA</span>
               </a>
 
               <a
-                href="/#kazanimlar"
-                className="text-xs lg:text-sm font-medium text-zinc-300 hover:text-gold-300 active:text-gold-200 transition-colors whitespace-nowrap"
-              >
-                Neler Kazanacaksın?
-              </a>
-
-              <a
                 href="/#sosyal-kanit"
-                className="text-xs lg:text-sm font-medium text-zinc-300 hover:text-gold-300 active:text-gold-200 transition-colors whitespace-nowrap"
+                className="hidden 2xl:flex text-xs lg:text-sm font-medium text-zinc-300 hover:text-gold-300 active:text-gold-200 transition-colors whitespace-nowrap"
               >
                 Topluluk & Güven
               </a>
@@ -124,20 +124,21 @@ export default function Navbar() {
         {mobileMenuOpen && (
           <div className="md:hidden bg-matte-900/95 border-b border-zinc-800 backdrop-blur-xl px-4 pt-3 pb-5 space-y-1.5">
             <a
-              href="/#cekicilik-sanati"
-              onClick={() => setMobileMenuOpen(false)}
-              className="min-h-[44px] flex items-center gap-2 px-3 py-2 text-sm font-semibold text-crimson-300 hover:bg-zinc-800/40 rounded-md"
-            >
-              Yeni Kitap: Çekicilik Sanatı
-              <span className="text-[9px] font-black px-1.5 py-0.5 rounded bg-crimson-700 text-white">YAKINDA</span>
-            </a>
-            <a
               href="/#kazanimlar"
               onClick={() => setMobileMenuOpen(false)}
               className="min-h-[44px] flex items-center px-3 py-2 text-sm font-semibold text-zinc-200 hover:text-gold-400 active:text-gold-300 hover:bg-zinc-800/40 rounded-md"
             >
-              Neler Kazanacaksın?
+              Vazgeçilmez Olma Sanatı
             </a>
+            <a
+              href="/#cekicilik-sanati"
+              onClick={() => setMobileMenuOpen(false)}
+              className="min-h-[44px] flex items-center gap-2 px-3 py-2 text-sm font-semibold text-crimson-300 hover:bg-zinc-800/40 rounded-md"
+            >
+              Çekicilik Sanatı
+              <span className="text-[9px] font-black px-1.5 py-0.5 rounded bg-crimson-700 text-white">YAKINDA</span>
+            </a>
+
             <a
               href="/#sosyal-kanit"
               onClick={() => setMobileMenuOpen(false)}

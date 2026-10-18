@@ -88,7 +88,7 @@ export function CekicilikNotifyButtons({
         rel="noopener noreferrer"
         className="min-h-[48px]"
       >
-        <MessageCircle className="w-4 h-4 text-emerald-300 flex-shrink-0" />
+        <MessageCircle className="w-4 h-4 text-white flex-shrink-0" />
         <span>WhatsApp&apos;tan Haber Al</span>
       </ThemeButton>
 
@@ -101,9 +101,9 @@ export function CekicilikNotifyButtons({
         href={CEKICILIK_SANATI_CONFIG.instagramUrl}
         target="_blank"
         rel="noopener noreferrer"
-        className="min-h-[48px] border-emerald-500/35 hover:border-emerald-400/60"
+        className="min-h-[48px] border-crimson-500/40 hover:border-crimson-400/70"
       >
-        <Instagram className="w-4 h-4 text-emerald-400 flex-shrink-0" />
+        <Instagram className="w-4 h-4 text-crimson-300 flex-shrink-0" />
         <span>Instagram&apos;da Takip Et</span>
       </ThemeButton>
 

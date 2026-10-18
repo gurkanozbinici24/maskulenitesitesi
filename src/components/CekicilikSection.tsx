@@ -43,7 +43,7 @@ export default function CekicilikSection() {
       <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <ThemeSectionHeader
           theme="kitap2"
-          badgeText="YENİ KİTAP • KADINLAR İÇİN"
+          badgeText="2. KİTAP • KADINLAR İÇİN"
           title="Çekicilik"
           highlightText="Sanatı"
           subtitle="Çekim gücü ve arzu duyulan vazgeçilmez kadının ilişki sanatı."

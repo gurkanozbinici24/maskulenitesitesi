@@ -1,5 +1,6 @@
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
+import BookChooserSection from "@/components/BookChooserSection";
 import BenefitsSection from "@/components/BenefitsSection";
 import SecretLawShowcase from "@/components/SecretLawShowcase";
 import SocialProofBanner from "@/components/SocialProofBanner";
@@ -17,20 +18,23 @@ export default function Home() {
       {/* 1. Hero Bölümü */}
       <HeroSection />
 
+      {/* 1b. Hangi kitap senin için? */}
+      <BookChooserSection />
+
       {/* 2. Neler Kazanacaksın Bölümü */}
       <BenefitsSection />
 
       {/* 3. Gizli Arşiv Vitrini: 100 Sarsılmaz Kanundan Biri (3D Sansürlü Kart) */}
       <SecretLawShowcase />
 
-      {/* 4. Sosyal Kanıt Bannerı */}
-      <SocialProofBanner />
-
       {/* 5. Satın Alma & Fiyatlandırma Bölümü */}
       <PricingSection />
 
       {/* 5b. Çekicilik Sanatı (Yeni Kitap) */}
       <CekicilikSection />
+
+      {/* 6. Ortak: Sosyal Kanıt */}
+      <SocialProofBanner />
 
       {/* 6. Sıkça Sorulan Sorular (SSS) Akordiyon Bölümü */}
       <FaqSection />

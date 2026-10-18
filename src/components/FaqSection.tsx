@@ -29,6 +29,18 @@ const faqs: FaqItem[] = [
     answer:
       "Siparişinizi WhatsApp üzerinden verirsiniz. Ödemeniz onaylandıktan sonra e-kitap (PDF, EPUB ve Kindle formatlarında) e-posta adresinize gönderilir. Kargo beklemeden telefon, tablet veya bilgisayarınızdan okumaya başlayabilirsiniz.",
   },
+  {
+    id: 4,
+    question: "Çekicilik Sanatı ne zaman çıkıyor, nasıl satın alabilirim?",
+    answer:
+      "Çekicilik Sanatı 5 Kasım saat 20:00'de satışa çıkıyor. E-Kitap 600 TL, Fiziksel Kitap ise kapıya kadar ücretsiz kargo ile 1000 TL. Siparişlerinizi WhatsApp üzerinden verebilirsiniz; satış başladığında sitedeki satın alma butonları otomatik olarak açılacak.",
+  },
+  {
+    id: 5,
+    question: "Hangi kitap bana göre?",
+    answer:
+      "Vazgeçilmez Olma Sanatı erkekler için, Çekicilik Sanatı kadınlar için yazıldı. İkisi aynı ilişki dinamiklerini iki farklı taraftan anlatır; ilişkinin iki tarafını da anlamak isteyenler ikisini birlikte okuyabilir.",
+  },
 ];
 
 export default function FaqSection() {
@@ -56,7 +68,7 @@ export default function FaqSection() {
           badgeText="AKLINDAKİ TÜM SORULAR & CEVAPLAR"
           title="Sıkça Sorulan"
           highlightText="Sorular"
-          subtitle="E-Kitap anında erişimi, Fiziksel Yenilenmiş Edisyon ve sipariş süreçleri hakkında merak edilen detaylar."
+          subtitle="İki kitap, e-kitap ve fiziksel baskı seçenekleri ve sipariş süreci hakkında merak edilenler."
           className="mb-16"
         />
 

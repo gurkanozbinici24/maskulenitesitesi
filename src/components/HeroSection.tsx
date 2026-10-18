@@ -543,7 +543,7 @@ export default function HeroSection() {
                       }
                       className="w-full max-w-[320px] min-h-[48px] h-[48px]"
                     >
-                      <Flame className="w-4 h-4 text-emerald-300 flex-shrink-0" />
+                      <Flame className="w-4 h-4 text-white flex-shrink-0" />
                       <span>Hemen Satın Al – 600 TL&apos;den başlayan</span>
                       <ArrowRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
                     </ThemeButton>
@@ -794,7 +794,7 @@ export default function HeroSection() {
               }
               className="min-h-[50px] py-3 text-sm font-black"
             >
-              <Flame className="w-4 h-4 text-emerald-300 flex-shrink-0" />
+              <Flame className="w-4 h-4 text-white flex-shrink-0" />
               <span>Hemen Satın Al – 600 TL&apos;den başlayan</span>
               <ArrowRight className="w-4 h-4 ml-1" />
             </ThemeButton>
