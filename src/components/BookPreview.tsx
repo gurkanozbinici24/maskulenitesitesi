@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useState } from "react";
 import Image from "next/image";
-import { ChevronLeft, ChevronRight, Eye, Lock, X } from "lucide-react";
+import { ChevronLeft, ChevronRight, Eye, Lock, X, ZoomIn, ZoomOut } from "lucide-react";
 import { ThemeButton, type BookTheme } from "./ui/ThemeSystem";
 
 export interface PreviewPage {
@@ -38,9 +38,13 @@ export default function BookPreview({
   variant?: "section" | "card";
 }) {
   const [open, setOpen] = useState<number | null>(null);
+  const [zoom, setZoom] = useState(false);
   const isGold = theme === "kitap1";
 
-  const close = useCallback(() => setOpen(null), []);
+  const close = useCallback(() => {
+    setOpen(null);
+    setZoom(false);
+  }, []);
   const go = useCallback(
     (d: number) => setOpen((i) => (i === null ? i : (i + d + pages.length) % pages.length)),
     [pages.length]
@@ -229,16 +233,26 @@ export default function BookPreview({
       {/* Büyük okuma penceresi */}
       {open !== null && (
         <div
-          className="fixed inset-0 z-[60] flex items-center justify-center bg-black/90 backdrop-blur-md p-3 sm:p-6"
+          className={`fixed inset-0 z-[60] flex justify-center bg-black/90 backdrop-blur-md p-3 sm:p-6 ${zoom ? "items-start overflow-y-auto" : "items-center"}`}
           onClick={close}
           role="dialog"
           aria-modal="true"
         >
-          <div className="relative w-full max-w-[560px]" onClick={(e) => e.stopPropagation()}>
+          <div className={`relative w-full transition-[max-width] duration-300 ${zoom ? "max-w-[min(1000px,100%)]" : "max-w-[560px]"}`} onClick={(e) => e.stopPropagation()}>
             <div className="mb-3 flex items-center justify-between gap-3">
               <span className={`font-cinzel text-sm font-bold tracking-wider ${accent}`}>
                 {open + 1} / {pages.length} · {pages[open].title}
               </span>
+              <div className="flex items-center gap-2">
+              <button
+                type="button"
+                onClick={() => setZoom((z) => !z)}
+                aria-label={zoom ? "Küçült" : "Büyüt"}
+                className="min-h-[44px] flex items-center gap-2 rounded-full bg-zinc-900 border border-zinc-700 px-4 text-xs font-bold uppercase tracking-wider text-zinc-200 hover:text-white"
+              >
+                {zoom ? <ZoomOut className="w-4 h-4" /> : <ZoomIn className="w-4 h-4" />}
+                {zoom ? "Küçült" : "Büyüt"}
+              </button>
               <button
                 type="button"
                 onClick={close}
@@ -247,18 +261,24 @@ export default function BookPreview({
               >
                 <X className="w-5 h-5" />
               </button>
+              </div>
             </div>
 
-            <div className="relative mx-auto aspect-[2/3] max-h-[70svh] overflow-hidden rounded-lg border border-white/10 bg-black">
+            <div className={zoom ? "-mx-3 overflow-x-auto px-3 sm:mx-0 sm:overflow-visible sm:px-0" : ""}>
+            <div
+              onDoubleClick={() => setZoom((z) => !z)}
+              className={`relative mx-auto aspect-[2/3] overflow-hidden rounded-lg border border-white/10 bg-black ${zoom ? "w-[150%] max-w-none sm:w-full cursor-zoom-out" : "max-h-[70svh] cursor-zoom-in"}`}
+            >
               <Image
                 src={pages[open].src}
                 alt={pages[open].title}
                 fill
-                sizes="560px"
+                sizes={zoom ? "(max-width: 640px) 160vw, 1000px" : "560px"}
                 quality={95}
                 className="object-contain object-top"
               />
               {pages[open].clearUntil < 100 && <LockedOverlay page={pages[open]} big />}
+            </div>
             </div>
 
             {pages[open].clearUntil >= 100 && (
@@ -293,7 +313,7 @@ export default function BookPreview({
                   type="button"
                   onClick={() => go(-1)}
                   aria-label="Önceki sayfa"
-                  className="absolute left-1 sm:-left-14 top-1/2 min-h-[44px] min-w-[44px] flex items-center justify-center rounded-full bg-black/80 border border-white/15 text-white"
+                  className={`${zoom ? "fixed left-6 hidden sm:flex" : "absolute left-1 sm:-left-14 flex"} top-1/2 z-10 min-h-[44px] min-w-[44px] items-center justify-center rounded-full bg-black/80 border border-white/15 text-white`}
                 >
                   <ChevronLeft className="w-5 h-5" />
                 </button>
@@ -301,7 +321,7 @@ export default function BookPreview({
                   type="button"
                   onClick={() => go(1)}
                   aria-label="Sonraki sayfa"
-                  className="absolute right-1 sm:-right-14 top-1/2 min-h-[44px] min-w-[44px] flex items-center justify-center rounded-full bg-black/80 border border-white/15 text-white"
+                  className={`${zoom ? "fixed right-6 hidden sm:flex" : "absolute right-1 sm:-right-14 flex"} top-1/2 z-10 min-h-[44px] min-w-[44px] items-center justify-center rounded-full bg-black/80 border border-white/15 text-white`}
                 >
                   <ChevronRight className="w-5 h-5" />
                 </button>
