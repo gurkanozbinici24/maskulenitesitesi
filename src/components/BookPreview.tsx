@@ -120,7 +120,7 @@ export default function BookPreview({
           Kitaptan Önizleme
         </div>
         <h3 className="mt-2 font-cinzel text-[clamp(1.3rem,3.2vw,2rem)] font-bold text-white">{heading}</h3>
-        <p className="mt-2 text-sm text-zinc-400">Sayfaya dokunarak büyüt ve oku.</p>
+        <p className="mt-2 text-sm text-zinc-400">İlk sayfalar sana hediye. Sayfaya dokunarak büyüt ve oku.</p>
       </div>
 
       {/* Sayfalar: telefonda yatay kaydırma, bilgisayarda yan yana */}
@@ -140,7 +140,7 @@ export default function BookPreview({
               sizes="(max-width: 640px) 80vw, 400px"
               className="object-cover object-top"
             />
-            <LockedOverlay page={p} />
+            {p.clearUntil < 100 && <LockedOverlay page={p} />}
             <span className="absolute top-2 right-2 rounded-full bg-black/70 border border-white/10 px-2 py-0.5 text-[10px] font-semibold text-zinc-300 opacity-0 group-hover:opacity-100 transition-opacity">
               Büyüt
             </span>
@@ -195,7 +195,7 @@ export default function BookPreview({
                 quality={95}
                 className="object-contain object-top"
               />
-              <LockedOverlay page={pages[open]} big />
+              {pages[open].clearUntil < 100 && <LockedOverlay page={pages[open]} big />}
             </div>
 
             {pages.length > 1 && (

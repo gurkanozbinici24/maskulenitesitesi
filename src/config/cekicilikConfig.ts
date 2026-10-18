@@ -60,11 +60,12 @@ const VAZGECILMEZ_PHYSICAL_ORDER_MESSAGE =
 
 /**
  * Kitaptan önizleme sayfaları. clearUntil: sayfanın yüzde kaçı net görünür (gerisi bulanık).
+ * 100 = sayfa tamamen açık. Öneri: ilk sayfalar açık, son sayfa en can alıcı yerde kilitli.
  * Yeni sayfa eklemek için görseli /public klasörüne koyup buraya ekleyin.
  */
 export const VAZGECILMEZ_PREVIEW_PAGES = [
-  { src: "/sayfa1.png", title: "Bu Kitabı Okumadan Önce", clearUntil: 58 },
-  { src: "/sayfa2.png", title: "Bu Kitabı Bitirdiğinde", clearUntil: 50 },
+  { src: "/sayfa1.png", title: "Bu Kitabı Okumadan Önce", clearUntil: 100 },
+  { src: "/sayfa2.png", title: "Bu Kitabı Bitirdiğinde", clearUntil: 100 },
   { src: "/sayfa3.png", title: "Bölüm 1: İyi Çocuk Masalının Sonu", clearUntil: 46 },
 ];
 
