@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { ArrowRight, Check } from "lucide-react";
 import { ThemeBadge, ThemeButton } from "./ui/ThemeSystem";
+import { scrollToSection } from "@/lib/scrollToSection";
 import { VAZGECILMEZ_CONFIG, CEKICILIK_SANATI_CONFIG } from "@/config/cekicilikConfig";
 
 /**
@@ -42,11 +43,7 @@ const BOOKS = [
 
 export default function BookChooserSection() {
   const scrollTo = (e: React.MouseEvent<HTMLElement>, id: string) => {
-    const el = document.getElementById(id);
-    if (el) {
-      e.preventDefault();
-      el.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
+    if (scrollToSection(id)) e.preventDefault();
   };
 
   return (

@@ -6,6 +6,7 @@ import dynamic from "next/dynamic";
 import { ArrowRight, Bell, Clock, Flame, Sparkles, Zap } from "lucide-react";
 import { ThemeBadge, ThemeButton } from "./ui/ThemeSystem";
 import { useCekicilikLaunchStatus } from "./ui/BookCountdown";
+import { scrollToSection } from "@/lib/scrollToSection";
 
 // Lazy-load react-three-fiber sahnesi (SSR kapalı, açılış hızını etkilemez)
 const HeroParticlesCanvas = dynamic(() => import("./HeroParticlesCanvas"), {
@@ -156,6 +157,28 @@ export default function HeroSection() {
     return () => mediaQuery.removeEventListener("change", handleChange);
   }, []);
 
+  // Alt bar: kullanıcı bir kitabın bölümündeyken o kitabın butonunu göstersin
+  const [sectionBook, setSectionBook] = useState<MobileBookSelection | null>(null);
+  useEffect(() => {
+    const inRange = (startId: string, endId: string, y: number) => {
+      const a = document.getElementById(startId);
+      const b = document.getElementById(endId);
+      if (!a || !b) return false;
+      const top = a.getBoundingClientRect().top + window.scrollY;
+      const bottom = b.getBoundingClientRect().bottom + window.scrollY;
+      return y >= top && y < bottom;
+    };
+    const onScroll = () => {
+      const y = window.scrollY + window.innerHeight / 2;
+      if (inRange("cekicilik-sanati", "cekicilik-sanati", y)) setSectionBook("kitap2");
+      else if (inRange("vazgecilmez", "fiyatlandirma", y)) setSectionBook("kitap1");
+      else setSectionBook(null);
+    };
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   // Mobilde kullanıcı dokunmadığı sürece 4 saniyede bir otomatik kitap geçişi
   useEffect(() => {
     if (prefersReducedMotion || userInteractedMobile) return;
@@ -228,10 +251,14 @@ export default function HeroSection() {
 
       if (target) {
         e.preventDefault();
-        target.scrollIntoView({
-          behavior: prefersReducedMotion ? "auto" : "smooth",
-          block: "start",
-        });
+        if (target.tagName === "SECTION" && target.id) {
+          scrollToSection(target.id, prefersReducedMotion);
+        } else {
+          target.scrollIntoView({
+            behavior: prefersReducedMotion ? "auto" : "smooth",
+            block: "start",
+          });
+        }
       }
     },
     [prefersReducedMotion]
@@ -751,7 +778,7 @@ export default function HeroSection() {
         aria-label="Hızlı satın alma çubuğu"
       >
         <div className="max-w-md mx-auto">
-          {mobileSelectedBook === "kitap1" ? (
+          {(sectionBook ?? mobileSelectedBook) === "kitap1" ? (
             <ThemeButton
               theme="kitap1"
               variant="primary"
