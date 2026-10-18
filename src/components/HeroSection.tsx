@@ -445,11 +445,22 @@ export default function HeroSection() {
                     <span className="text-[11px] font-semibold text-mahogany-200">
                       Erkekler için
                     </span>
-                    <span className="text-[11px] font-medium text-gold-300/90 mt-0.5">
-                      {isOnSale
-                        ? "Fiziksel Yenilenmiş Edisyon Şimdi Satışta"
-                        : "Fiziksel Yenilenmiş Edisyon 5 Kasım'da"}
-                    </span>
+                    {isOnSale ? (
+                      <span className="text-[11px] font-medium text-gold-300/90 mt-0.5">
+                        Fiziksel Yenilenmiş Edisyon Şimdi Satışta
+                      </span>
+                    ) : (
+                      <div className="inline-flex items-center gap-1.5 mt-0.5 px-2.5 py-0.5 rounded-md bg-mahogany-950/90 border border-gold-500/50 text-[11px] font-mono font-bold text-gold-200 shadow-[0_0_12px_rgba(212,175,55,0.25)]">
+                        <span className="font-sans font-semibold text-gold-400/90 mr-0.5">Fiziksel:</span>
+                        <span>{mounted ? formatTwoDigits(timeLeft.days) : "--"}G</span>
+                        <span className="text-gold-500/70">:</span>
+                        <span>{mounted ? formatTwoDigits(timeLeft.hours) : "--"}S</span>
+                        <span className="text-gold-500/70">:</span>
+                        <span>{mounted ? formatTwoDigits(timeLeft.minutes) : "--"}D</span>
+                        <span className="text-gold-500/70">:</span>
+                        <span>{mounted ? formatTwoDigits(timeLeft.seconds) : "--"}Sn</span>
+                      </div>
+                    )}
                   </div>
 
                   {/* 4. Satın Alma Butonu (İki Kitapta Aynı Boyut ve Hiza) */}
@@ -724,11 +735,24 @@ export default function HeroSection() {
                   <h2 className="font-cinzel text-lg sm:text-xl font-bold text-white leading-tight">
                     Vazgeçilmez Olma Sanatı
                   </h2>
-                  <p className="text-xs text-gold-300/90 mt-1">
-                    {isOnSale
-                      ? "Fiziksel Yenilenmiş Edisyon Şimdi Satışta"
-                      : "Fiziksel Yenilenmiş Edisyon 5 Kasım'da"}
-                  </p>
+                  {isOnSale ? (
+                    <p className="text-xs text-gold-300/90 mt-1">
+                      Fiziksel Yenilenmiş Edisyon Şimdi Satışta
+                    </p>
+                  ) : (
+                    <div className="mt-1">
+                      <div className="inline-flex items-center gap-1.5 mt-0.5 px-2.5 py-0.5 rounded-md bg-mahogany-950/90 border border-gold-500/50 text-xs font-mono font-bold text-gold-200 shadow-[0_0_12px_rgba(212,175,55,0.25)]">
+                        <span className="font-sans font-semibold text-gold-400/90 mr-0.5">Fiziksel:</span>
+                        <span>{mounted ? formatTwoDigits(timeLeft.days) : "--"}G</span>
+                        <span className="text-gold-500/70">:</span>
+                        <span>{mounted ? formatTwoDigits(timeLeft.hours) : "--"}S</span>
+                        <span className="text-gold-500/70">:</span>
+                        <span>{mounted ? formatTwoDigits(timeLeft.minutes) : "--"}D</span>
+                        <span className="text-gold-500/70">:</span>
+                        <span>{mounted ? formatTwoDigits(timeLeft.seconds) : "--"}Sn</span>
+                      </div>
+                    </div>
+                  )}
                 </div>
               ) : (
                 <div
