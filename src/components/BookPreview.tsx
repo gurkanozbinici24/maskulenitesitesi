@@ -179,7 +179,16 @@ export default function BookPreview({
 
         <div className="space-y-4 text-[17px] leading-[1.75] text-[#f4ece2]">
           {shown.map((p, i) =>
-            p.startsWith(">") ? (
+            p.startsWith("- ") ? (
+              <p key={i} className="relative -mt-2 pl-6">
+                <span
+                  className={`absolute left-1 top-[0.7em] h-2 w-2 rotate-45 border border-gold-300 ${
+                    isGold ? "bg-crimson-700" : "bg-crimson-600"
+                  }`}
+                />
+                {renderRich(p.slice(2))}
+              </p>
+            ) : p.startsWith(">") ? (
               <p
                 key={i}
                 className={`border-y border-gold-500/40 py-3 text-center text-[18px] font-semibold italic ${

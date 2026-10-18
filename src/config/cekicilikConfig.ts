@@ -1,3 +1,4 @@
+import { VAZGECILMEZ_PREVIEW_TEXT } from "./vazgecilmezPreviewText";
 import { CEKICILIK_PREVIEW_TEXT } from "./cekicilikPreviewText";
 
 /**
@@ -65,10 +66,17 @@ const VAZGECILMEZ_PHYSICAL_ORDER_MESSAGE =
  * 100 = sayfa tamamen açık. Öneri: ilk sayfalar açık, son sayfa en can alıcı yerde kilitli.
  * Yeni sayfa eklemek için görseli /public klasörüne koyup buraya ekleyin.
  */
-export const VAZGECILMEZ_PREVIEW_PAGES = [
-  { src: "/sayfa1.png", title: "Bu Kitabı Okumadan Önce", clearUntil: 100 },
-  { src: "/sayfa2.png", title: "Bu Kitabı Bitirdiğinde", clearUntil: 100 },
-  { src: "/sayfa3.png", title: "Bölüm 1: İyi Çocuk Masalının Sonu", clearUntil: 46 },
+export const VAZGECILMEZ_PREVIEW_PAGES: {
+  src: string;
+  title: string;
+  clearUntil: number;
+  text?: string[];
+  visibleParas?: number;
+}[] = [
+  { src: "/vazgecilmez-sayfa1.jpg", title: "Bu Kitabı Okumadan Önce", clearUntil: 100, text: VAZGECILMEZ_PREVIEW_TEXT[0] },
+  { src: "/vazgecilmez-sayfa2.jpg", title: "Bu Kitabı Bitirdiğinde", clearUntil: 100, text: VAZGECILMEZ_PREVIEW_TEXT[1] },
+  // 3. sayfa ikinci paragrafın ilk satırlarından sonra kilitlenir
+  { src: "/vazgecilmez-sayfa3.jpg", title: "İyi Çocuk Masalının Sonu", clearUntil: 45, text: VAZGECILMEZ_PREVIEW_TEXT[2], visibleParas: 1 },
 ];
 
 /** Çekicilik Sanatı önizleme sayfaları (sıra: Kadın, İstediğinde, Her Kapının, Anahtarıdır). */
