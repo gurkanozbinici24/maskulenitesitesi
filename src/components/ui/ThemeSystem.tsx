@@ -222,6 +222,8 @@ export interface ThemeSectionHeaderProps {
   subtitle?: React.ReactNode;
   align?: "center" | "left";
   className?: string;
+  /** Başlık yazı boyutunu değiştirmek için (varsayılan: text-fluid-3xl) */
+  titleClassName?: string;
 }
 
 export function ThemeSectionHeader({
@@ -233,6 +235,7 @@ export function ThemeSectionHeader({
   subtitle,
   align = "center",
   className = "",
+  titleClassName = "text-fluid-3xl",
 }: ThemeSectionHeaderProps) {
   const gradientClass =
     theme === "kitap1" ? "gold-text-gradient" : "crimson-text-gradient";
@@ -252,7 +255,7 @@ export function ThemeSectionHeader({
         </div>
       )}
 
-      <h2 className="text-fluid-3xl font-black text-white tracking-tight uppercase leading-tight">
+      <h2 className={`${titleClassName} font-black text-white tracking-tight uppercase leading-tight`}>
         {title}{" "}
         {highlightText && (
           <span className={gradientClass}>{highlightText}</span>

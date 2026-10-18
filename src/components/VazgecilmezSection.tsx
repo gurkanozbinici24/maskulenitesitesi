@@ -59,7 +59,8 @@ export default function VazgecilmezSection() {
           badgeText="1. KİTAP • ERKEKLER İÇİN"
           title="Vazgeçilmez Olma"
           highlightText="Sanatı"
-          subtitle="İlişkilerde kazanma sanatı. Kuralları koyan taraf ol."
+          subtitle="İlişkilerde kazanma sanatı. Kuralları koyan taraf\u00a0ol."
+          titleClassName="text-[min(6.2vw,1.8rem)] sm:text-fluid-3xl whitespace-nowrap"
         />
 
         <div className="grid lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] gap-10 lg:gap-16 items-center">
