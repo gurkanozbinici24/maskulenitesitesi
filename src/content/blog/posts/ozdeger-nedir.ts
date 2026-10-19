@@ -8,7 +8,7 @@ const post: BlogPost = {
   excerpt:
     "Kendine değer vermeyen biri, ilişkide sürekli onay arar, sınır koyamaz ve az olanla yetinir. Özdeğerin ne olduğunu, ilişkilerde nasıl göründüğünü ve nasıl inşa edileceğini anlattım.",
   date: "2026-10-19",
-  readMin: 5,
+  readMin: 6,
   book: "ikisi",
   category: "Değer ve Saygı",
   cover: "/blog/ozdeger-nedir.jpg",
@@ -89,6 +89,16 @@ Vazgeçilmez Olma Sanatı'nda erkeklere şunu söylüyorum: Aynaya baktığında
 **6. "Hayır" de.** Her "hayır", kendine "Benim ihtiyaçlarım da önemli" mesajı verir. Küçük şeylerle başla. İstemediğin bir davete, istemediğin bir iyiliğe.
 
 **7. Yalnızlıkla barış.** Yalnız kalamayan insan, yalnız kalmamak için her şeye katlanır. Vazgeçilmez Olma Sanatı'nın "Yalnızlıktan Korkmayan Adam" bölümünde bunu anlatıyorum: Kendi başına kahve içmekten, yürümekten, kendi düşünceleriyle baş başa kalmaktan keyif alan biri, dışarıdan gelen sahte ilgiye muhtaç olmaz.
+
+## Aynı reddedilme, iki insan
+
+İki insan düşün. İkisi de birkaç haftadır görüştükleri birinden aynı mesajı alıyor: "Sen çok iyi birisin ama bu işin yürüyeceğini sanmıyorum."
+
+**Düşük özdeğerli olan** bu mesajı kendi değerine dair bir hüküm olarak okur. "Demek ki yeterince iyi değilim. Belki daha ilgili olsaydım, daha az talep etseydim..." Cevap olarak uzun bir mesaj yazar, ikna etmeye çalışır, bir şans daha ister. Reddedilmeyi kişisel bir başarısızlık olarak yaşar ve haftalarca bunu düşünür.
+
+**Yüksek özdeğerli olan** da üzülür. Ama mesajı kendi değerine dair bir hüküm olarak değil, bir uyumsuzluk bilgisi olarak okur. "Anlıyorum. Sana iyi şanslar." yazar ve gününe devam eder. Vazgeçilmez Olma Sanatı'nın "Reddedilme İnfazı" bölümünde dediğim gibi: Reddedilmek senin zayıflığın değil, anında çalışan bir kalite filtresidir.
+
+Fark, acı hissedip hissetmemekte değil. Fark, o acının seni tanımlamasına izin verip vermemekte.
 
 ## Özdeğer ve kibir
 

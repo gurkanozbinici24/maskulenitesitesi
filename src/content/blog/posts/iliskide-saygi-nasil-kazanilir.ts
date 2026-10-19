@@ -8,7 +8,7 @@ const post: BlogPost = {
   excerpt:
     "Saygı istenerek, bağırarak ya da uzun konuşmalarla kazanılmaz. Sınır çizilerek ve o sınır korunarak kazanılır. İlişkide saygıyı inşa eden davranışları ve saygıyı yerle bir eden hataları anlattım.",
   date: "2026-10-19",
-  readMin: 6,
+  readMin: 7,
   book: "vazgecilmez",
   category: "Değer ve Saygı",
   cover: "/blog/iliskide-saygi-nasil-kazanilir.jpg",
@@ -89,6 +89,16 @@ Bu kadar. Ne tehdit, ne sitem, ne geçmiş hataların listesi.
 **6. Gidebilme gücünü koru.** Bu en zor ama en önemli olanı. Bir ilişkideki mutlak güç, o ilişkiye en az muhtaç olan kişinin elindedir. "Ne olursa olsun buradayım" garantisini verdiğin an, karşı tarafa sana istediği gibi davranma hakkını vermiş olursun.
 
 Bu, sürekli ayrılıkla tehdit etmek demek değil. Tam tersi: Asla blöf yapmamak. Ama sınırların gerçekten çiğnendiğinde, sessizce ve kararlılıkla masadan kalkabilecek bir iç güce sahip olmak.
+
+## Aynı saygısızlık, iki tepki
+
+Bir arkadaş akşamı. Partnerin herkesin önünde seninle ilgili küçümseyici bir şaka yapıyor. Masada kahkahalar.
+
+**Birinci tepki:** O an gülüp geçiyorsun. Eve dönünce içindeki kırgınlık büyüyor ve gece yarısı uzun bir konuşma başlıyor. "Beni nasıl herkesin önünde küçük düşürürsün? Geçen ay da annenin yanında aynısını yapmıştın. Zaten bana hiç saygın yok." Konuşma saatlerce sürüyor, eski defterler açılıyor, sonunda ikiniz de yorgun ve küskün uyuyorsunuz. Bir hafta sonra aynı şaka tekrar yapılıyor.
+
+**İkinci tepki:** Şakaya gülmüyorsun. Yüzünde bir değişiklik olmadan, sakin bir şekilde konuyu değiştiriyorsun. Eve dönünce, sakin bir anda tek bir cümle kuruyorsun: "Bu akşam arkadaşlarının yanında yaptığın şaka hoşuma gitmedi. Tekrar olmasını istemiyorum." Sonra susuyorsun. Tartışmaya girmiyorsun, geçmişi açmıyorsun.
+
+İkinci tepkide ne bağırış var ne tehdit. Ama karşı taraf iki şey öğreniyor: Senin bir sınırın var ve o sınırı uzun konuşmalarla değil, net bir duruşla koruyorsun. Eğer aynı şey tekrar ederse, artık bir iletişim sorunu değil, bir karakter sorunuyla karşı karşıyasın demektir. Ve o noktada karar senindir.
 
 ## Saygı ile korku arasındaki fark
 

@@ -8,7 +8,7 @@ const post: BlogPost = {
   excerpt:
     "Her mesaja saniyesinde cevap, her isteğe evet, her hesabı ödemek ve karşılığında hiçbir şey. \"Simp\" kelimesi bir hakaret gibi kullanılıyor ama altında ciddi bir mesele var. Fazla vermenin bedelini ve dengeyi kurmanın yolunu anlattım.",
   date: "2026-10-19",
-  readMin: 6,
+  readMin: 7,
   book: "vazgecilmez",
   category: "Değer ve Saygı",
   cover: "/blog/simp-ne-demek.jpg",
@@ -111,6 +111,16 @@ Bu, karşı tarafı zorlamak ya da oyun oynamak demek değil. Sadece her şeyi t
 - Onun sorunlarını çözmeye koşmadan önce, senin sorunlarında yanında olup olmadığına bak.
 
 Eğer bunları yaptığında karşı taraf soğuyorsa, ilişkiye hiçbir yatırım yapmak istemiyorsa, aldığın cevap nettir.
+
+## Bir ilişkinin iki versiyonu
+
+İki ay önce tanıştınız. Hoşlanıyorsun.
+
+**Birinci versiyonda** her sabah ilk mesajı sen atıyorsun. O saatler sonra kısa bir cevap veriyor. Hafta sonu planlarını sen yapıyorsun, her hesabı sen ödüyorsun. Arkadaşlarınla maç planın vardı, o "Bu akşam canım sıkılıyor" deyince iptal ettin. Doğum gününde pahalı bir hediye aldın, onun doğum gününde bir mesaj geldi. Bir gün soğuduğunu hissediyorsun ve daha çok çabalamaya başlıyorsun: daha çok mesaj, daha çok sürpriz. Üçüncü ayın sonunda "Seni bir arkadaş gibi görüyorum" mesajı geliyor.
+
+**İkinci versiyonda** ilgini gösteriyorsun ama kendi hayatını bırakmıyorsun. Bazen ilk mesajı sen atıyorsun, bazen o. Hafta sonu bir plan yapıyorsun, bir sonrakini o yapıyor. Arkadaşlarınla maç akşamında "Bu akşam maç var, yarın akşam görüşelim" diyorsun. Bir gün soğuduğunu hissettiğinde peşinden koşmuyorsun; kendi programına devam ediyorsun ve onun bir adım atmasını bekliyorsun.
+
+İkinci versiyon soğuk ya da oyun değil. Sadece dengeli. Ve dengeli bir ilişkide, iki insan da ilişkiye bir şeyler koyduğu için iki taraf da onu kaybetmekten korkar.
 
 ## Kadınlar için aynı tuzak
 

@@ -8,7 +8,7 @@ const post: BlogPost = {
   excerpt:
     "Ezberlenmiş açılış cümleleri, pahalı hediyeler, \"alfa\" pozları. Hiçbiri kalıcı bir çekim yaratmaz. Kadınları gerçekten etkileyen erkek özelliklerini ve bunların nasıl inşa edildiğini anlattım.",
   date: "2026-10-19",
-  readMin: 6,
+  readMin: 7,
   book: "vazgecilmez",
   category: "Çekim",
   cover: "/blog/kadinlara-cekici-gelen-erkek-ozellikleri.jpg",
@@ -113,6 +113,16 @@ Son olarak, bütün bu özelliklerin üzerinde duran bir temel: Saygı.
 Çekicilik Sanatı'nda kadınlara "koruyucu adam" ile "kontrolcü adam" arasındaki farkı anlatıyorum. Koruyucu adam gece geç saatte "Çıkarken yaz, seni ben alırım" der ve gece boyunca bir kez bile aramaz. Kontrolcü adam on bir kez arar, konum ister, "Kimlerle oradasın?" diye sorgular.
 
 Koruyucu adam yük alır, kontrolcü adam yük yükler. Kadınlara gerçekten çekici gelen, birincisidir. Sınırları olan ama başkasının sınırlarına da saygı duyan adam.
+
+## Aynı kahve, iki adam
+
+İlk buluşma. Aynı kafe, aynı masa, aynı kadın.
+
+**Birinci adam** masaya oturur oturmaz anlatmaya başlıyor: işi, terfisi, arabası, geçen yaz gittiği tatil. Kadın bir şey anlattığında "Vay, ne güzel" deyip hemen kendi hikâyesine dönüyor. Sessizlik olduğunda panikliyor, yeni bir konu açıyor. Hesabı ödemek için ısrar ediyor, kadını eve bırakmak için ısrar ediyor ve buluşmadan on dakika sonra "Eve vardın mı? Bu akşam çok güzeldi" mesajı atıyor.
+
+**İkinci adam** arkasına yaslanıyor. Soru soruyor ve cevabı gerçekten dinliyor. Bazen kadını hafifçe şaşırtan, gülümseten bir yorum yapıyor. Sessizlik olduğunda rahatsız olmuyor, kahvesinden bir yudum alıyor. Kendisi hakkında sorulduğunda kısa ve ilgi çekici cevaplar veriyor. Sohbetin en keyifli yerinde "Benim kalkmam lazım, yarın erken işim var" diyor. Hesabı gösteriş yapmadan hallediyor ve kadına iyi akşamlar diliyor. O gece mesaj atmıyor.
+
+Vazgeçilmez Olma Sanatı'nın ilk buluşma bölümünde bu iki adamı anlatıyorum. Birincisi kendini satmaya çalışıyor; ikincisi kendi değerinden emin bir şekilde karşısındakini tanıyor. Kadın eve döndüğünde birincisini "iyi bir adam" olarak hatırlıyor. İkincisini ise merak ediyor.
 
 ## Bunlar nasıl inşa edilir?
 

@@ -8,7 +8,7 @@ const post: BlogPost = {
   excerpt:
     "Güvensizlik çoğu zaman sözle değil, küçük davranışlarla belli olur. Telefon karıştırmak, sürekli onay istemek, her şeyi açıklamak. Farkında olmadan verdiğin 9 sinyali ve yerine ne yapacağını anlattım.",
   date: "2026-10-19",
-  readMin: 5,
+  readMin: 6,
   book: "vazgecilmez",
   category: "Çekim",
   cover: "/blog/guvensizlik-isaretleri.jpg",
@@ -111,6 +111,22 @@ Kadın eski sevgilisinden bahsettiğinde, "Ben ondan daha iyiyim" diye kendini k
 Vazgeçilmez Olma Sanatı'nın "Hayaletle Savaşan Adam" bölümünde bunu anlatıyorum: Geçmişteki bir adamla rekabete giren her zaman kaybeder. Çünkü karşındaki bir insan değil, onun zihninde kusursuzlaştırılmış bir hayalettir.
 
 **Yerine:** Hayaletle yarışma. Sakin bir şekilde sınırını söyle: "Ben başkasının gölgesiyle yarışmam." Ve kendi standardında kal.
+
+## Aynı akşam, iki adam
+
+Kız arkadaşın akşam yemeğinde iş yerindeki yeni projeden bahsediyor ve bir erkek iş arkadaşının ne kadar komik biri olduğunu anlatıyor.
+
+**Birinci adam** bir an duruyor. Yüzü değişiyor. "Kim bu adam? Ne zamandır çalışıyorsunuz? Neden bana daha önce bahsetmedin?" Sorular art arda geliyor. Yemeğin geri kalanı gergin geçiyor. O gece onun telefonuna göz atma isteğiyle uyuyamıyor. Ertesi gün iş arkadaşının Instagram profilini buluyor.
+
+**İkinci adam** gülümsüyor. "İyi ki eğlenceli insanlarla çalışıyorsun, iş daha keyifli geçiyordur." Sohbete devam ediyor, projeyi soruyor. Akşam keyifli geçiyor. Vazgeçilmez Olma Sanatı'nın "Buz Gibi Özgüven" bölümündeki duruş bu: Rakipsiz olduğuna inanan bir adam, etraftaki her isme dönüp bakmaz.
+
+İkinci adam saf değil. Eğer gerçekten bir sınır aşılırsa, yani bir saygısızlık, bir yalan, açık bir flört olursa, bunu görür ve bağırmadan, sakin bir şekilde masadan kalkar. Ama her gölgeyi bir tehdit olarak görmez. Çünkü değerini başkalarının varlığıyla ölçmez.
+
+## Güvensizliğin kökü
+
+Bu davranışların neredeyse hepsinin kökünde aynı şey var: **kaybetme korkusu.** Ve kaybetme korkusu çoğu zaman, kendi hayatının yeterince dolu olmamasından beslenir.
+
+Hayatı dolu bir adam, yani işi, hedefleri, dostları, sporu olan biri, bir kadını kaybetmekten korksa bile bu korkunun onu yönetmesine izin vermez. Çünkü bilir ki o kadın gitse de hayatı devam eder. Vazgeçilmez Olma Sanatı'ndaki cümleyle: Kaybetmekten korkmayanlar vazgeçilmez olur.
 
 ## Güvensizlik bir son değil
 
