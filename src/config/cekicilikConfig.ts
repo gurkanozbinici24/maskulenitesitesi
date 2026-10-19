@@ -95,7 +95,7 @@ export const VAZGECILMEZ_PREVIEW_PAGES: {
   { src: "/vazgecilmez-sayfa3.jpg", title: "İyi Çocuk Masalının Sonu", clearUntil: 45, text: VAZGECILMEZ_PREVIEW_TEXT[2], visibleParas: 1 },
 ];
 
-/** Çekicilik Sanatı önizleme sayfaları (sıra: Kadın, İstediğinde, Her Kapının, Anahtarıdır). */
+/** Çekicilik Sanatı önizleme sayfaları (sıra: Kadın, İstediğinde, Her Kapının). */
 export const CEKICILIK_PREVIEW_PAGES: {
   src: string;
   title: string;
@@ -108,8 +108,7 @@ export const CEKICILIK_PREVIEW_PAGES: {
   { src: "/cekicilik-sayfa1.jpg", title: "Kadın", clearUntil: 100, text: CEKICILIK_PREVIEW_TEXT[0] },
   { src: "/cekicilik-sayfa2.jpg", title: "İstediğinde", clearUntil: 100, text: CEKICILIK_PREVIEW_TEXT[1] },
   { src: "/cekicilik-sayfa3.jpg", title: "Her Kapının", clearUntil: 100, text: CEKICILIK_PREVIEW_TEXT[2] },
-  // Son sayfa "bu sayfada bitiyor" vurgusundan hemen sonra kilitlenir
-  { src: "/cekicilik-sayfa4.jpg", title: "Anahtarıdır", clearUntil: 75, text: CEKICILIK_PREVIEW_TEXT[3], visibleParas: 4 },
+  // 4. sayfa ("Anahtarıdır") önceki sayfaların tekrarı gibi durduğu için önizlemeden çıkarıldı.
 ];
 
 export const VAZGECILMEZ_CONFIG = {
