@@ -11,6 +11,11 @@ import breadcrumbingNedir from "./posts/breadcrumbing-nedir";
 import guiltTripNedir from "./posts/guilt-trip-nedir";
 import itmeCekmeDongusu from "./posts/itme-cekme-dongusu";
 import narsistSevgiliBelirtileri from "./posts/narsist-sevgili-belirtileri";
+import iliskideSaygiNasilKazanilir from "./posts/iliskide-saygi-nasil-kazanilir";
+import ozdegerNedir from "./posts/ozdeger-nedir";
+import simpNeDemek from "./posts/simp-ne-demek";
+import kadinlaraCekiciGelenErkekOzellikleri from "./posts/kadinlara-cekici-gelen-erkek-ozellikleri";
+import guvensizlikIsaretleri from "./posts/guvensizlik-isaretleri";
 import iyiCocukSendromu from "./posts/iyi-cocuk-sendromu";
 import hangiKitapSanaGore from "./posts/hangi-kitap-sana-gore";
 import vazgecilmezOlmaSanatiKitabi from "./posts/vazgecilmez-olma-sanati-kitabi";
@@ -30,6 +35,11 @@ export const POSTS: BlogPost[] = [
   guiltTripNedir,
   itmeCekmeDongusu,
   narsistSevgiliBelirtileri,
+  iliskideSaygiNasilKazanilir,
+  ozdegerNedir,
+  simpNeDemek,
+  kadinlaraCekiciGelenErkekOzellikleri,
+  guvensizlikIsaretleri,
   iyiCocukSendromu,
   hangiKitapSanaGore,
   vazgecilmezOlmaSanatiKitabi,
