@@ -75,7 +75,7 @@ Maskülen erkeği tek cümleyle anlatmak zor. Ama gündelik hayatta onu ele vere
 - **Sakin kalır.** Kriz anında bağırmaz, panik yapmaz. Ortamın en sakin insanı olur.
 - **Sorumluluk alır.** Hatasını kabul eder, suçu başkasına atmaz.
 - **Bedenine ve zihnine yatırım yapar.** Spor, disiplin, okuma, gelişim hayatının bir parçasıdır.
-- **Koruyucudur ama kontrolcü değildir.** Sevdiklerini korur, onları yönetmeye çalışmaz.
+- **Koruyucudur ve çizgisi nettir.** Sevdiklerini korur; ilişkisinde neyi kabul edip neyi etmeyeceğini baştan söyler.
 
 Bu özelliklerin her birini ayrıntılı olarak [maskülen erkeğin 12 özelliği](/blog/maskulen-erkek-ozellikleri) yazısında anlattım.
 
@@ -85,7 +85,7 @@ Maskülenite kelimesi o kadar çok yanlış kullanılıyor ki, ne olmadığını
 
 **1. Maskülenite öfke değildir.** Bağıran, kapı çarpan, tartışmada sesini yükselten adam güçlü değildir. Kendini kontrol edemeyen adamdır. Gerçek güç, sesini yükseltmeden ciddiye alınabilmektir.
 
-**2. Maskülenite kontrol değildir.** Partnerinin telefonunu karıştıran, kıyafetine karışan, arkadaşlarını seçen adam maskülen değil, güvensizdir. Kendine güvenen adam kimseyi zincirlemez. Çünkü bilir ki zincirle tutulan, ilk fırsatta gider.
+**2. Maskülenite çizgisiz olmak değildir.** "Benim karım istediğini giyer, kimle isterse konuşur" diyen adama modern, özgüvenli adam dediler. Değil. Maskülen adamın ilişkide çizgisi vardır ve bunu baştan, açıkça söyler. Eşler arasında gizli saklı olmaz; gerektiğinde telefon da masaya konur, çünkü saklanacak bir şey yoksa sorun da yoktur. Kıyafette ölçü vardır. Kadının erkek arkadaşlarıyla ayrı bir dünyası olmaz. Ama maskülen adam bunu bağırarak, tehditle, zorla dayatmaz. Çizgisini söyler. Karşı taraf bu çizgiye uymuyorsa, yalvarmaz, kavga etmez. Yoluna bakar. Çünkü çizgisi olan adam, çizgisine uymayanı zorla tutmaz; bırakır.
 
 **3. Maskülenite duygusuzluk değildir.** Maskülen adam da üzülür, kırılır, korkar. Farkı şu: Duygularının esiri olmaz. Hissettiğini hisseder ama kararlarını o anki duygu dalgasına teslim etmez.
 

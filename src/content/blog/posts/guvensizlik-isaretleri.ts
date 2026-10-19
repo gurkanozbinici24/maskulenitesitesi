@@ -25,7 +25,7 @@ const post: BlogPost = {
     },
     {
       q: "Partnerime güvensizliğimi itiraf etmeli miyim?",
-      a: "Duygularını sakin bir şekilde paylaşmak sağlıklıdır; ama güvensizliğini onun sorumluluğuna yüklemek değil. 'Bazen kıskanıyorum ve bunun üzerinde çalışıyorum' demek ile 'Beni kıskandırma, telefonunu göster' demek arasında büyük fark var.",
+      a: "Duygularını sakin bir şekilde paylaşmak sağlıklıdır; ama güvensizliğini onun sorumluluğuna yüklemek değil. 'Bazen kıskanıyorum ve bunun üzerinde çalışıyorum' demek ile 'Sen beni kıskandırıyorsun, her şeyin suçlusu sensin' demek arasında büyük fark var.",
     },
     {
       q: "Bu işaretler sadece erkekler için mi geçerli?",

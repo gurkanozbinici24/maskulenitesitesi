@@ -96,8 +96,8 @@ Temiz, düzenli, yerine uygun giyinmiş. Pahalı olması gerekmez. Ama kendine �
 **10. Sözünün eridir.**
 "Yaparım" dediğini yapar. "Ararım" dediğinde arar. Yapamayacaksa baştan söyler. Güven, büyük jestlerle değil, tutulan küçük sözlerle inşa edilir.
 
-**11. Koruyucudur ama kontrolcü değildir.**
-Bu ayrım çok önemli. Koruyucu erkek sevdiklerini tehlikeden korur. Kontrolcü erkek ise sevdiklerini kendi korkularından "korumaya" çalışır: telefonunu karıştırır, kıyafetine karışır, arkadaşlarını seçer. Biri güvenden doğar, diğeri güvensizlikten. Maskülen erkek karşısındakini kontrol etmeye çalışmaz; sadece hangi masada oturacağına kendisi karar verir.
+**11. Koruyucudur ve çizgisi nettir.**
+Maskülen erkek sevdiğini sahiplenir. "Ne giyerse giysin, kimle konuşursa konuşsun, bana ne" diyen adam özgüvenli değil, ilgisizdir. Maskülen erkeğin ilişkide çizgisi vardır: Eşler arasında gizli saklı olmaz, telefon gerektiğinde ortadadır. Kıyafette ölçü vardır. Kadının erkek arkadaşlarıyla ayrı bir dünyası olmaz. Bu çizgiyi ilişkinin başında, sakin ve açık bir şekilde söyler. Bağırmaz, tehdit etmez, zorla dayatmaz. Karşı taraf çizgisine uymuyorsa yalvarmaz, kavga etmez; yoluna bakar. Hangi masada oturacağına kendisi karar verir.
 
 **12. Egosunu yönetir.**
 Haklı olmak için kavga etmez. Hatasını kabul edebilir. Başkasının başarısından rahatsız olmaz. Kendinden güçlü insanlarla oturmaktan çekinmez, onlardan öğrenir. Kibir güvensizliğin maskesidir; gerçek özgüven sessizdir.
@@ -130,7 +130,7 @@ Her soruya dürüstçe "evet" ya da "hayır" de. Kimse görmüyor.
 8. Görünüşüme ve yaşadığım ortamın düzenine özen gösteririm.
 9. Son bir ayda istemediğim bir şeye açıklama yapmadan "hayır" dedim.
 10. "Yaparım" dediğim şeyleri yaparım.
-11. Partnerimin telefonunu, kıyafetini veya arkadaşlarını kontrol etmeye çalışmam.
+11. İlişkide neyi kabul edip neyi etmeyeceğimi baştan, açıkça söylerim; uyulmazsa yoluma bakarım.
 12. Hatamı kabul edip özür dileyebilirim.
 
 **10–12 evet:** Sağlam bir temelin var. Şimdi işin bu temeli korumak.
