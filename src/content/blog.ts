@@ -40,7 +40,7 @@ export const POSTS: BlogPost[] = [
     date: "2026-10-19",
     readMin: 6,
     book: "vazgecilmez",
-    cover: "/vazgecilmez-yeni-kapak.jpg",
+    cover: "/blog/vazgecilmez-olma-sanati-kitabi.jpg",
     keywords: ["vazgeçilmez olma sanatı", "vazgeçilmez olma sanatı kitabı", "gürkan özbinici kitap", "erkekler için ilişki kitabı", "maskülenlik"],
     body: `**Vazgeçilmez Olma Sanatı**, ilişkilerde sürekli kendini kanıtlamaya çalışan, alttan alan, taviz verdikçe değersizleşen erkekler için yazdığım bir kitap. Bir tavsiye kitabı değil; ilişkilerin arkasında işleyen güç dinamiklerini, çekim yasalarını ve saygının nasıl kazanıldığını açık açık anlatan bir yol haritası.
 
@@ -103,7 +103,7 @@ Kitabın ilk sayfalarını [sitede ücretsiz okuyabilirsin](/#vazgecilmez).`,
     date: "2026-10-19",
     readMin: 5,
     book: "cekicilik",
-    cover: "/cekicilik-sanati-kapak.jpg",
+    cover: "/blog/cekicilik-sanati-kitabi.jpg",
     keywords: ["çekicilik sanatı", "çekicilik sanatı kitabı", "kadınlar için ilişki kitabı", "gürkan özbinici yeni kitap", "erkek psikolojisi"],
     body: `**Çekicilik Sanatı**, kadınlar için yazdığım ikinci kitabım. **5 Kasım 2026, saat 18:00'de** satışa çıkıyor.
 
@@ -156,7 +156,7 @@ Kitabın ilk sayfalarını çıkıştan önce sitede paylaştım. "Kadın", "İs
     date: "2026-10-19",
     readMin: 4,
     book: "ikisi",
-    cover: "/og-paylasim.jpg",
+    cover: "/blog/hangi-kitap-sana-gore.jpg",
     keywords: ["vazgeçilmez olma sanatı", "çekicilik sanatı", "gürkan özbinici kitapları", "ilişki kitapları", "hangi kitap"],
     body: `Bana en çok gelen sorulardan biri: "Hangi kitabı okumalıyım?" Kısa cevap şu: **Vazgeçilmez Olma Sanatı erkekler için, Çekicilik Sanatı kadınlar için yazıldı.** Ama işin aslı biraz daha ilginç, çünkü iki kitap aynı ilişki dinamiklerini iki farklı taraftan anlatıyor.
 
@@ -208,7 +208,7 @@ O yüzden şunları öneriyorum:
     date: "2026-10-19",
     readMin: 5,
     book: "vazgecilmez",
-    cover: "/kapak.jpg",
+    cover: "/blog/iyi-cocuk-sendromu.jpg",
     keywords: ["iyi çocuk sendromu", "ilişkide değer görmemek", "ilişkide sınır koymak", "maskülenlik", "ilişki tavsiyeleri"],
     body: `Bize küçüklükten beri aynı şey söylendi: "Kadınlara her zaman iyi davran, alttan al, her dediğini yap; gün gelir değerini anlarlar."
 
