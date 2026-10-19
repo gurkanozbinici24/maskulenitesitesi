@@ -12,6 +12,9 @@ import {
   Landmark,
   Lock,
   MessageCircle,
+  Send,
+  Infinity as InfinityIcon,
+  Users,
   ShieldCheck,
   Sparkles,
   Target,
@@ -34,11 +37,21 @@ const AGENDA = [
 ];
 
 const STEPS = [
-  { icon: MessageCircle, title: "WhatsApp'tan yaz", text: "Platform tercihini ve uygun olduğun gün/saatleri hazır mesajla gönder." },
-  { icon: CalendarCheck, title: "Randevunu birlikte belirleyelim", text: "Sana uygun bir zaman dilimini netleştirip randevunu ayırıyoruz." },
-  { icon: Landmark, title: "Ödemeyi yap", text: "Havale/EFT ile ödemeni yap, randevun kesinleşsin." },
-  { icon: Video, title: "Seansa katıl", text: "Saatinde Google Meet linki ya da WhatsApp sesli/görüntülü arama ile bağlanıyoruz." },
+  { icon: Send, title: "Başvurunu gönder", text: "Aşağıdaki kısa formu doldur; başvurun hazır mesaj olarak WhatsApp'tan bize ulaşsın." },
+  { icon: CalendarCheck, title: "Değerlendirme ve dönüş", text: "Her başvuruyu tek tek okuyup WhatsApp'tan dönüş yapıyor, randevu saatini birlikte belirliyoruz." },
+  { icon: Landmark, title: "Ödemeyi yap", text: "Havale/EFT ile ödemeni yap, yerin kesinleşsin." },
+  { icon: Video, title: "Başlıyoruz", text: "Saatinde Google Meet linki ya da WhatsApp sesli/görüntülü arama ile bağlanıyoruz." },
 ];
+
+function Check({ gold = false }: { gold?: boolean }) {
+  return (
+    <span className={`mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full border ${gold ? "border-gold-400 bg-gold-400 text-black" : "border-gold-500/50 bg-gold-500/15 text-gold-300"}`}>
+      <svg viewBox="0 0 12 12" className="h-3 w-3" aria-hidden>
+        <path d="M2.5 6.2 5 8.5 9.5 3.5" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+    </span>
+  );
+}
 
 export default function ConsultationSection() {
   const cardRef = useRef<HTMLDivElement>(null);
@@ -108,17 +121,20 @@ export default function ConsultationSection() {
                 <span className="text-xl font-bold text-gold-400">{C.currency}</span>
                 <span className="ml-1 text-sm text-zinc-500">/ {C.durationMin} dk seans</span>
               </div>
-              <ThemeButton theme="kitap1" variant="primary" size="lg" href={C.whatsappUrl} target="_blank" rel="noopener noreferrer" className="font-black">
-                <MessageCircle className="h-5 w-5" />
-                <span>Randevu Al</span>
+              <ThemeButton theme="kitap1" variant="primary" size="lg" href="#basvuru" className="font-black">
+                <Send className="h-5 w-5" />
+                <span>Başvur</span>
                 <ArrowRight className="h-4 w-4" />
               </ThemeButton>
             </div>
+            <a href="#paketler" className="mt-4 inline-flex items-center gap-2 rounded-full border border-gold-500/30 bg-gold-500/5 px-4 py-2 text-xs font-semibold text-gold-200 transition-colors hover:bg-gold-500/10">
+              <Crown className="h-4 w-4 text-gold-400" /> {C.vip.name}: ayda {C.vip.sessionsPerMonth} seans + 7/24 WhatsApp desteği · {C.vip.priceLabel} TL / {C.vip.period}
+            </a>
             <a
               href={C.instagramUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-4 inline-flex items-center gap-2 text-sm text-zinc-400 transition-colors hover:text-gold-300"
+              className="mt-4 flex w-fit items-center gap-2 text-sm text-zinc-400 transition-colors hover:text-gold-300"
             >
               <Instagram className="h-4 w-4" /> Önce sorun mu var? Instagram&apos;dan yaz
             </a>
@@ -207,63 +223,122 @@ export default function ConsultationSection() {
         </div>
       </section>
 
-      {/* ================= FİYAT KARTI + RANDEVU ADIMLARI ================= */}
-      <section className="relative py-16 sm:py-20">
-        <div className="mx-auto grid max-w-6xl gap-8 px-4 sm:px-6 lg:grid-cols-5 lg:px-8">
-          {/* Fiyat kartı */}
-          <div className="relative overflow-hidden rounded-3xl border border-gold-500/40 bg-[radial-gradient(ellipse_at_top,rgba(212,175,55,0.18),transparent_60%),linear-gradient(180deg,#15100a,#080608)] p-7 shadow-[0_40px_90px_-30px_rgba(0,0,0,0.95),0_0_50px_-15px_rgba(212,175,55,0.45)] sm:p-9 lg:col-span-2">
-            <span className="pointer-events-none absolute inset-x-10 top-0 h-px bg-gradient-to-r from-transparent via-gold-300 to-transparent" />
-            <div className="inline-flex items-center gap-2 rounded-full bg-gold-400 px-3 py-1 text-[10px] font-black uppercase tracking-widest text-black">
-              <Crown className="h-3.5 w-3.5" /> VIP Seans
+      {/* ================= PAKETLER ================= */}
+      <section id="paketler" className="relative scroll-mt-24 py-16 sm:py-24">
+        <style>{`@keyframes vipSpin { to { transform: rotate(360deg) } }`}</style>
+        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+          <div className="mx-auto mb-12 max-w-2xl text-center">
+            <div className="mb-2 text-[11px] font-bold uppercase tracking-[0.25em] text-gold-400">Sana uygun yol</div>
+            <h2 className="font-cinzel text-[clamp(1.7rem,4vw,2.6rem)] font-bold text-white">
+              Birebir <span className="gold-text-gradient">Paketler</span>
+            </h2>
+            <p className="mt-3 text-sm text-zinc-400 sm:text-base">Her iki paket de başvuru ile. Başvurunu gönder, dönüş yapalım.</p>
+          </div>
+
+          <div className="grid items-stretch gap-8 lg:grid-cols-2">
+            {/* Strateji Seansı */}
+            <div className="relative flex flex-col overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-b from-white/[0.06] to-white/[0.01] p-7 shadow-[0_30px_70px_-30px_rgba(0,0,0,0.95)] sm:p-9">
+              <div className="flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.2em] text-gold-300">
+                <Target className="h-4 w-4" /> Tek seans
+              </div>
+              <h3 className="mt-3 font-cinzel text-2xl font-bold text-white">Birebir Strateji Seansı</h3>
+              <p className="mt-2 text-sm text-zinc-400">Belirli bir kriz ya da karar anı için, tek bir derin görüşme.</p>
+              <div className="mt-6 flex items-baseline gap-2">
+                <span className="font-cinzel text-5xl font-bold text-white">{C.priceLabel}</span>
+                <span className="text-xl font-bold text-gold-400">{C.currency}</span>
+                <span className="text-sm text-zinc-500">/ {C.durationMin} dk</span>
+              </div>
+              <ul className="mb-8 mt-7 space-y-3 text-sm text-zinc-200">
+                {[
+                  `${C.durationMin} dakika kesintisiz birebir görüşme`,
+                  "Google Meet veya WhatsApp, sesli ya da görüntülü",
+                  "Durumuna özel kriz ve güç dinamikleri analizi",
+                  "Uygulanabilir, kişiye özel aksiyon planı",
+                  "Konuşulan her şey %100 gizli kalır",
+                ].map((t) => (
+                  <li key={t} className="flex items-start gap-3">
+                    <Check />
+                    {t}
+                  </li>
+                ))}
+              </ul>
+              <ThemeButton theme="kitap1" variant="secondary" size="lg" fullWidth href="#basvuru" className="mt-auto font-black">
+                <Send className="h-5 w-5" />
+                <span>Seans için başvur</span>
+              </ThemeButton>
             </div>
-            <h3 className="mt-4 font-cinzel text-2xl font-bold text-white">Birebir Strateji Seansı</h3>
-            <div className="mt-5 flex items-baseline gap-2">
-              <span className="font-cinzel text-6xl font-bold text-white">{C.priceLabel}</span>
-              <span className="text-2xl font-bold text-gold-400">{C.currency}</span>
-            </div>
-            <div className="mt-1 text-sm text-zinc-400">Tek seans · {C.durationMin} dakika</div>
-            <ul className="mt-6 space-y-3 text-sm text-zinc-200">
-              {[
-                `${C.durationMin} dakika kesintisiz birebir görüşme`,
-                "Google Meet veya WhatsApp üzerinden",
-                "Sesli ya da görüntülü, sen seç",
-                "Durumuna özel kriz ve güç dinamikleri analizi",
-                "Uygulanabilir, kişiye özel aksiyon planı",
-                "Konuşulan her şey %100 gizli kalır",
-              ].map((t) => (
-                <li key={t} className="flex items-start gap-3">
-                  <span className="mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full border border-gold-500/50 bg-gold-500/15 text-gold-300">
-                    <svg viewBox="0 0 12 12" className="h-3 w-3" aria-hidden><path d="M2.5 6.2 5 8.5 9.5 3.5" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" /></svg>
+
+            {/* VIP Mentörlük */}
+            <div className="group relative rounded-3xl p-[2px] shadow-[0_50px_110px_-30px_rgba(0,0,0,0.95),0_0_70px_-15px_rgba(212,175,55,0.55)]">
+              {/* dönen altın çerçeve */}
+              <div className="pointer-events-none absolute inset-0 overflow-hidden rounded-3xl">
+                <div className="absolute left-1/2 top-1/2 h-[200%] w-[200%] -translate-x-1/2 -translate-y-1/2 motion-safe:animate-[vipSpin_6s_linear_infinite] [background:conic-gradient(from_0deg,transparent_0deg,#f5e2a8_40deg,#d4af37_80deg,transparent_140deg,transparent_220deg,#8c6200_280deg,transparent_340deg)]" />
+              </div>
+              <div className="relative flex h-full flex-col overflow-hidden rounded-[22px] bg-[radial-gradient(ellipse_at_top,rgba(212,175,55,0.22),transparent_55%),linear-gradient(180deg,#17110a,#060406)] p-7 sm:p-9">
+                <div className="flex items-center justify-between gap-3">
+                  <div className="flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.2em] text-gold-300">
+                    <Crown className="h-4 w-4" /> Aylık mentörlük
+                  </div>
+                  <span className="rounded-full bg-gradient-to-r from-gold-300 to-gold-600 px-3 py-1 text-[10px] font-black uppercase tracking-widest text-black">
+                    En kapsamlı
                   </span>
-                  {t}
-                </li>
-              ))}
-            </ul>
-            <ThemeButton theme="kitap1" variant="primary" size="lg" fullWidth href={C.whatsappUrl} target="_blank" rel="noopener noreferrer" className="mt-8 font-black">
-              <MessageCircle className="h-5 w-5" />
-              <span>WhatsApp&apos;tan Randevu Al</span>
-            </ThemeButton>
-            <p className="mt-3 text-center text-xs text-zinc-500">Randevu saatini birlikte belirliyoruz.</p>
+                </div>
+                <h3 className="mt-3 font-cinzel text-3xl font-bold text-white">{C.vip.name}</h3>
+                <p className="mt-2 text-sm text-zinc-300">Süreç boyunca yanında olduğum, birebir ve sürekli bir yol arkadaşlığı.</p>
+                <div className="mt-6 flex items-baseline gap-2">
+                  <span className="font-cinzel text-5xl font-bold text-white [text-shadow:0_0_30px_rgba(212,175,55,0.5)] sm:text-6xl">{C.vip.priceLabel}</span>
+                  <span className="text-xl font-bold text-gold-400">{C.currency}</span>
+                  <span className="text-sm text-zinc-400">/ {C.vip.period}</span>
+                </div>
+                <div className="mt-6 grid grid-cols-2 gap-3">
+                  <div className="rounded-2xl border border-gold-500/30 bg-black/40 p-4">
+                    <Users className="h-5 w-5 text-gold-400" />
+                    <div className="mt-2 font-cinzel text-2xl font-bold text-white">{C.vip.sessionsPerMonth} seans</div>
+                    <div className="text-[11px] uppercase tracking-wider text-zinc-400">her ay, birebir</div>
+                  </div>
+                  <div className="rounded-2xl border border-emerald-500/30 bg-black/40 p-4">
+                    <InfinityIcon className="h-5 w-5 text-emerald-400" />
+                    <div className="mt-2 font-cinzel text-2xl font-bold text-white">7/24</div>
+                    <div className="text-[11px] uppercase tracking-wider text-zinc-400">WhatsApp desteği</div>
+                  </div>
+                </div>
+                <ul className="mt-6 space-y-3 text-sm text-zinc-100">
+                  {[
+                    `Her ay ${C.vip.sessionsPerMonth} birebir seans (Google Meet veya WhatsApp)`,
+                    "7/24 WhatsApp üzerinden doğrudan destek",
+                    "Seanslar arasında kriz anlarında yalnız kalmazsın",
+                    "Konuşulan her şey %100 gizli kalır",
+                  ].map((t) => (
+                    <li key={t} className="flex items-start gap-3">
+                      <Check gold />
+                      {t}
+                    </li>
+                  ))}
+                </ul>
+                <ThemeButton theme="kitap1" variant="primary" size="lg" fullWidth href="#basvuru" className="mt-8 font-black">
+                  <Crown className="h-5 w-5" />
+                  <span>VIP Mentörlüğe başvur</span>
+                </ThemeButton>
+              </div>
+            </div>
           </div>
 
           {/* Adımlar */}
-          <div className="lg:col-span-3">
-            <div className="mb-6">
-              <div className="mb-2 text-[11px] font-bold uppercase tracking-[0.25em] text-gold-400">Kolay randevu</div>
+          <div className="mt-20">
+            <div className="mb-8 text-center">
+              <div className="mb-2 text-[11px] font-bold uppercase tracking-[0.25em] text-gold-400">Nasıl işliyor?</div>
               <h2 className="font-cinzel text-[clamp(1.6rem,3.5vw,2.3rem)] font-bold text-white">
-                Nasıl <span className="gold-text-gradient">Randevu Alınır?</span>
+                Başvurudan <span className="gold-text-gradient">İlk Seansa</span>
               </h2>
             </div>
-            <ol className="space-y-4">
+            <ol className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
               {STEPS.map((s, i) => (
-                <li key={s.title} className="group flex gap-4 rounded-2xl border border-white/10 bg-white/[0.03] p-5 transition-all hover:-translate-y-0.5 hover:border-gold-500/40 hover:bg-white/[0.05]">
-                  <span className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-gold-300 to-gold-600 font-black text-black">{i + 1}</span>
-                  <div>
-                    <div className="flex items-center gap-2 font-bold text-white">
-                      <s.icon className="h-4 w-4 text-gold-400" /> {s.title}
-                    </div>
-                    <p className="mt-1 text-sm text-zinc-400">{s.text}</p>
+                <li key={s.title} className="rounded-2xl border border-white/10 bg-white/[0.03] p-5 transition-all hover:-translate-y-0.5 hover:border-gold-500/40">
+                  <span className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-gold-300 to-gold-600 font-black text-black">{i + 1}</span>
+                  <div className="mt-3 flex items-center gap-2 font-bold text-white">
+                    <s.icon className="h-4 w-4 text-gold-400" /> {s.title}
                   </div>
+                  <p className="mt-1 text-sm text-zinc-400">{s.text}</p>
                 </li>
               ))}
             </ol>

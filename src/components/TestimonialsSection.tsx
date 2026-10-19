@@ -13,7 +13,6 @@ import {
   Flame,
 } from "lucide-react";
 import { ThemeButton, ThemeSectionHeader } from "./ui/ThemeSystem";
-import { DANISMANLIK_CONFIG } from "@/config/cekicilikConfig";
 
 const testimonials = [
   { id: 2, src: "/m2.jpg", title: "Danışan Dönüşümü #1", tag: "Çerçeve Kontrolü" },
@@ -206,12 +205,10 @@ export default function TestimonialsSection() {
             theme="kitap1"
             variant="primary"
             size="md"
-            href={DANISMANLIK_CONFIG.whatsappUrl}
-            target="_blank"
-            rel="noopener noreferrer"
+            href="#basvuru"
             className="flex-shrink-0 w-full sm:w-auto whitespace-nowrap"
           >
-            <span>Hemen Seans Al</span>
+            <span>Hemen Başvur</span>
             <ArrowRight className="w-4 h-4" />
           </ThemeButton>
         </div>

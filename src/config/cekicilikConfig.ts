@@ -270,4 +270,14 @@ export const DANISMANLIK_CONFIG = {
   formats: "Sesli veya görüntülü",
   whatsappUrl: buildWhatsAppUrl(DANISMANLIK_MESAJ),
   instagramUrl: INSTAGRAM_URL,
+  /** VIP Mentörlük (aylık) */
+  vip: {
+    name: "VIP Mentörlük",
+    price: 30000,
+    priceLabel: "30.000",
+    period: "ay",
+    sessionsPerMonth: 4,
+  },
+  /** Başvurunun gönderileceği WhatsApp hattı */
+  phone: WHATSAPP_PHONE,
 } as const;

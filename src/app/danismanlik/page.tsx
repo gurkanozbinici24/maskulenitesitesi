@@ -3,12 +3,13 @@ import Navbar from "@/components/Navbar";
 import ConsultationSection from "@/components/ConsultationSection";
 import TestimonialsSection from "@/components/TestimonialsSection";
 import ConsultationFaq from "@/components/ConsultationFaq";
+import ConsultationApply from "@/components/ConsultationApply";
 import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
   title: "Birebir Strateji Seansı (VIP) | Gürkan Özbinici",
   description:
-    "Gürkan Özbinici ile 45 dakikalık birebir ilişki stratejisi seansı. Google Meet veya WhatsApp üzerinden, sesli ya da görüntülü. 3.500 TL.",
+    "Gürkan Özbinici ile birebir strateji seansı (45 dk, 3.500 TL) ve VIP Mentörlük (ayda 4 seans + 7/24 WhatsApp desteği). Başvuru ile.",
 };
 
 export default function DanismanlikPage() {
@@ -21,6 +22,7 @@ export default function DanismanlikPage() {
       <div className="pt-16 sm:pt-20">
         <ConsultationSection />
         <TestimonialsSection />
+        <ConsultationApply />
         <ConsultationFaq />
       </div>
 

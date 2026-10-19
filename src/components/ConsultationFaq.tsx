@@ -11,8 +11,16 @@ const FAQS = [
     a: "Hayır. Seansı sesli ya da görüntülü yapabilirsin; tercih tamamen sana ait.",
   },
   {
-    q: "Seans ücreti ne kadar, ödemeyi nasıl yapıyorum?",
-    a: `Birebir seans ücreti ${C.priceLabel} TL'dir. Randevu saatini WhatsApp'tan birlikte belirledikten sonra ödemeyi havale/EFT ile yapıyorsun ve randevun kesinleşiyor.`,
+    q: "Ücretler ne kadar, ödemeyi nasıl yapıyorum?",
+    a: `Birebir Strateji Seansı ${C.priceLabel} TL (${C.durationMin} dk), ${C.vip.name} aylık ${C.vip.priceLabel} TL'dir. Başvurun değerlendirilip randevu netleşince ödemeyi havale/EFT ile yapıyorsun.`,
+  },
+  {
+    q: "VIP Mentörlük nasıl işliyor?",
+    a: `Her ay ${C.vip.sessionsPerMonth} birebir seans yapıyoruz; seanslar arasında da 7/24 WhatsApp üzerinden doğrudan bana ulaşabiliyorsun. Ücret aylıktır.`,
+  },
+  {
+    q: "Neden başvuru ile çalışıyorsunuz?",
+    a: "Her görüşmeye tam hazırlıkla girmek için başvuruları tek tek okuyorum. Böylece seansın ilk dakikasından itibaren doğrudan senin durumuna odaklanabiliyoruz.",
   },
   {
     q: "Konuştuklarımız gizli kalır mı?",
@@ -24,7 +32,7 @@ const FAQS = [
   },
   {
     q: "Randevu saatini nasıl belirliyoruz?",
-    a: "WhatsApp'tan uygun olduğun gün ve saatleri yazıyorsun, sana uygun bir zaman dilimini birlikte netleştiriyoruz.",
+    a: "Başvuru formunda uygun olduğun gün ve saatleri yazıyorsun; dönüş yaparken sana uygun bir zaman dilimini birlikte netleştiriyoruz.",
   },
 ];
 
