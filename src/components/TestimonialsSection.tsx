@@ -17,11 +17,10 @@ import { ThemeButton, ThemeSectionHeader } from "./ui/ThemeSystem";
 const testimonials = [
   { id: 2, src: "/m2.jpg", title: "Danışan Dönüşümü #1", tag: "Çerçeve Kontrolü" },
   { id: 3, src: "/m3.jpg", title: "Danışan Dönüşümü #2", tag: "Güç Dengesi" },
-  { id: 4, src: "/m4.jpg", title: "Danışan Dönüşümü #3", tag: "Tavizsiz Duruş" },
-  { id: 5, src: "/m5.jpg", title: "Danışan Dönüşümü #4", tag: "Saygı İnşası" },
-  { id: 6, src: "/m6.jpg", title: "Danışan Dönüşümü #5", tag: "İlişki Yönetimi" },
-  { id: 7, src: "/m7.jpg", title: "Danışan Dönüşümü #6", tag: "Stratejik Hamle" },
-  { id: 8, src: "/m8.jpg", title: "Danışan Dönüşümü #7", tag: "Mutlak Hakimiyet" },
+  { id: 5, src: "/m5.jpg", title: "Danışan Dönüşümü #3", tag: "Saygı İnşası" },
+  { id: 6, src: "/m6.jpg", title: "Danışan Dönüşümü #4", tag: "İlişki Yönetimi" },
+  { id: 7, src: "/m7.jpg", title: "Danışan Dönüşümü #5", tag: "Stratejik Hamle" },
+  { id: 8, src: "/m8.jpg", title: "Danışan Dönüşümü #6", tag: "Mutlak Hakimiyet" },
 ];
 
 export default function TestimonialsSection() {
