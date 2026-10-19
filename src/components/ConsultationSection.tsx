@@ -347,11 +347,19 @@ export default function ConsultationSection() {
                     </span>
                   </div>
                 )}
-                <p className="mt-3 rounded-xl border border-gold-500/20 bg-black/30 px-3 py-2 text-xs leading-relaxed text-zinc-300">
-                  Tek tek alsan: 4 seans <span className="text-white">(14.000 TL)</span> + 4 hafta mesaj koçluğu{" "}
-                  <span className="text-white">(14.000 TL)</span> + acil kriz görüşmesi + imzalı kitaplar.{" "}
-                  <span className="font-semibold text-gold-300">Hepsi tek pakette, aylık {VIP_PRICE_LABEL} TL.</span>
-                </p>
+                <div className="mt-3 rounded-xl border border-gold-500/30 bg-black/40 px-4 py-3">
+                  <div className="font-cinzel text-sm font-bold text-gold-200">Toplam {C.vip.totalValueLabel} TL değerinde paket</div>
+                  <div className="mt-1.5 grid grid-cols-[1fr_auto] gap-x-4 gap-y-0.5 text-xs text-zinc-400">
+                    <span>4 birebir seans</span><span className="text-right text-zinc-200">14.000 TL</span>
+                    <span>4 hafta 7/24 mesaj koçluğu</span><span className="text-right text-zinc-200">14.000 TL</span>
+                    <span>2 imzalı fiziksel kitap</span><span className="text-right text-zinc-200">2.000 TL</span>
+                    <span>Acil kriz görüşmesi (15 dk)</span><span className="text-right text-zinc-200">1.200 TL</span>
+                    <span>Seans sonrası aksiyon planları</span><span className="text-right text-zinc-200">dahil</span>
+                  </div>
+                  <div className="mt-2 border-t border-gold-500/20 pt-2 text-xs font-semibold text-gold-300">
+                    Hepsi tek pakette, aylık {VIP_PRICE_LABEL} TL.
+                  </div>
+                </div>
                 <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-3">
                   <div className="rounded-2xl border border-gold-500/30 bg-black/40 p-4">
                     <Users className="h-5 w-5 text-gold-400" />

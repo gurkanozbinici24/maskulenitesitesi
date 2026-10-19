@@ -287,6 +287,8 @@ export const DANISMANLIK_CONFIG = {
      * LANSMAN FİYATI: ilk 3 VIP danışana özel.
      * Her VIP satışında launchSlotsLeft'i 1 azaltın; 0 olunca site otomatik olarak liste fiyatına (30.000) döner.
      */
+    /** Paket değeri: 4 seans 14.000 + 4 hafta mesaj koçluğu 14.000 + 2 imzalı fiziksel kitap 2.000 + 15 dk kriz görüşmesi 1.200 */
+    totalValueLabel: "31.200",
     launchPrice: 20000,
     launchPriceLabel: "20.000",
     launchSlotsTotal: 3,
