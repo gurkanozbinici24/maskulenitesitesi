@@ -10,6 +10,7 @@ import {
   Headphones,
   Instagram,
   Landmark,
+  Gift,
   Lock,
   MessageCircle,
   Send,
@@ -248,13 +249,29 @@ export default function ConsultationSection() {
                 <span className="text-xl font-bold text-gold-400">{C.currency}</span>
                 <span className="text-sm text-zinc-500">/ {C.durationMin} dk</span>
               </div>
-              <ul className="mb-8 mt-7 space-y-3 text-sm text-zinc-200">
+              <div className="mt-6 grid grid-cols-2 gap-3">
+                <div className="relative overflow-hidden rounded-2xl border border-gold-500/40 bg-gradient-to-b from-gold-500/15 to-black/40 p-4">
+                  <span className="absolute right-2 top-2 rounded-full bg-gold-400 px-2 py-0.5 text-[9px] font-black uppercase tracking-widest text-black">Hediye</span>
+                  <Gift className="h-5 w-5 text-gold-400" />
+                  <div className="mt-2 font-cinzel text-2xl font-bold text-white">2 e-kitap</div>
+                  <div className="text-[11px] uppercase tracking-wider text-zinc-400">iki kitabın dijital sürümü</div>
+                </div>
+                <div className="relative overflow-hidden rounded-2xl border border-emerald-500/40 bg-gradient-to-b from-emerald-500/15 to-black/40 p-4">
+                  <span className="absolute right-2 top-2 rounded-full bg-emerald-400 px-2 py-0.5 text-[9px] font-black uppercase tracking-widest text-black">Hediye</span>
+                  <MessageCircle className="h-5 w-5 text-emerald-400" />
+                  <div className="mt-2 font-cinzel text-2xl font-bold text-white">1 hafta</div>
+                  <div className="text-[11px] uppercase tracking-wider text-zinc-400">WhatsApp desteği</div>
+                </div>
+              </div>
+              <ul className="mb-8 mt-6 space-y-3 text-sm text-zinc-200">
                 {[
                   `${C.durationMin} dakika kesintisiz birebir görüşme`,
                   "Google Meet veya WhatsApp, sesli ya da görüntülü",
                   "Durumuna özel kriz ve güç dinamikleri analizi",
                   "Uygulanabilir, kişiye özel aksiyon planı",
                   "Konuşulan her şey %100 gizli kalır",
+                  "Hediye: Vazgeçilmez Olma Sanatı ve Çekicilik Sanatı e-kitapları",
+                  "Hediye: Seans sonrası 1 hafta WhatsApp'tan soru sorma hakkı",
                 ].map((t) => (
                   <li key={t} className="flex items-start gap-3">
                     <Check />
@@ -290,7 +307,7 @@ export default function ConsultationSection() {
                   <span className="text-xl font-bold text-gold-400">{C.currency}</span>
                   <span className="text-sm text-zinc-400">/ {C.vip.period}</span>
                 </div>
-                <div className="mt-6 grid grid-cols-2 gap-3">
+                <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-3">
                   <div className="rounded-2xl border border-gold-500/30 bg-black/40 p-4">
                     <Users className="h-5 w-5 text-gold-400" />
                     <div className="mt-2 font-cinzel text-2xl font-bold text-white">{C.vip.sessionsPerMonth} seans</div>
@@ -300,6 +317,12 @@ export default function ConsultationSection() {
                     <InfinityIcon className="h-5 w-5 text-emerald-400" />
                     <div className="mt-2 font-cinzel text-2xl font-bold text-white">7/24</div>
                     <div className="text-[11px] uppercase tracking-wider text-zinc-400">Canlı mesaj koçluğu</div>
+                  </div>
+                  <div className="relative col-span-2 overflow-hidden rounded-2xl border border-gold-400/60 bg-gradient-to-b from-gold-500/20 to-black/40 p-4 sm:col-span-1">
+                    <span className="absolute right-2 top-2 rounded-full bg-gold-400 px-2 py-0.5 text-[9px] font-black uppercase tracking-widest text-black">Hediye</span>
+                    <Gift className="h-5 w-5 text-gold-300" />
+                    <div className="mt-2 font-cinzel text-2xl font-bold text-white">2 kitap</div>
+                    <div className="text-[11px] uppercase tracking-wider text-zinc-400">ismine imzalı, kapına</div>
                   </div>
                 </div>
                 <ul className="mt-6 space-y-3.5 text-sm text-zinc-100">
@@ -320,9 +343,6 @@ export default function ConsultationSection() {
                     </li>
                   ))}
                 </ul>
-                <div className="mt-6 flex items-center justify-center gap-2 rounded-xl border border-gold-500/30 bg-gold-500/5 px-4 py-2.5 text-xs font-semibold text-gold-200">
-                  <Users className="h-4 w-4 text-gold-400" /> Her ay en fazla {C.vip.monthlySlots} kişiyle çalışıyorum
-                </div>
                 <ThemeButton theme="kitap1" variant="primary" size="lg" fullWidth href="#basvuru" className="mt-8 font-black">
                   <Crown className="h-5 w-5" />
                   <span>VIP Mentörlüğe başvur</span>

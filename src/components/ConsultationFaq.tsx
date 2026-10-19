@@ -15,8 +15,12 @@ const FAQS = [
     a: `Birebir Strateji Seansı ${C.priceLabel} TL (${C.durationMin} dk), ${C.vip.name} aylık ${C.vip.priceLabel} TL'dir. Başvurun değerlendirilip randevu netleşince ödemeyi havale/EFT ile yapıyorsun.`,
   },
   {
+    q: "Strateji Seansı'nda hediyeler neler?",
+    a: "Seans alan herkese Vazgeçilmez Olma Sanatı ve Çekicilik Sanatı e-kitapları hediye edilir (Çekicilik Sanatı 5 Kasım'da çıktığında gönderilir). Ayrıca seansın ardından 1 hafta boyunca WhatsApp'tan aklına takılanları sorabilirsin.",
+  },
+  {
     q: "VIP Mentörlük nasıl işliyor?",
-    a: `Her ay ${C.vip.sessionsPerMonth} birebir seans yapıyoruz. Seanslar arasında 7/24 WhatsApp'tan yazabiliyorsun (${C.vip.supportNote.toLocaleLowerCase("tr")}). Her seanstan sonra yazılı aksiyon planı alıyorsun, ayda bir 15 dakikalık acil kriz görüşmesi hakkın var ve iki kitap ismine imzalı olarak hediye gönderiliyor. Ücret aylıktır; her ay en fazla ${C.vip.monthlySlots} kişiyle çalışıyorum.`,
+    a: `Her ay ${C.vip.sessionsPerMonth} birebir seans yapıyoruz. Seanslar arasında 7/24 WhatsApp'tan yazabiliyorsun (${C.vip.supportNote.toLocaleLowerCase("tr")}). Her seanstan sonra yazılı aksiyon planı alıyorsun, ayda bir 15 dakikalık acil kriz görüşmesi hakkın var ve iki kitap ismine imzalı olarak hediye gönderiliyor. Ücret aylıktır.`,
   },
   {
     q: "Neden başvuru ile çalışıyorsunuz?",
