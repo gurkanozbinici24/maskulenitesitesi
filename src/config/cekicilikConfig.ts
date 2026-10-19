@@ -107,8 +107,9 @@ export const CEKICILIK_PREVIEW_PAGES: {
 }[] = [
   { src: "/cekicilik-sayfa1.jpg", title: "Kadın", clearUntil: 100, text: CEKICILIK_PREVIEW_TEXT[0] },
   { src: "/cekicilik-sayfa2.jpg", title: "İstediğinde", clearUntil: 100, text: CEKICILIK_PREVIEW_TEXT[1] },
-  { src: "/cekicilik-sayfa3.jpg", title: "Her Kapının", clearUntil: 100, text: CEKICILIK_PREVIEW_TEXT[2] },
+  // Son sayfa: "…her kapıyı açacağını fısıldadılar, değil mi?" satırından sonra kilitlenir (merak noktası).
   // 4. sayfa ("Anahtarıdır") önceki sayfaların tekrarı gibi durduğu için önizlemeden çıkarıldı.
+  { src: "/cekicilik-sayfa3.jpg", title: "Her Kapının", clearUntil: 70, text: CEKICILIK_PREVIEW_TEXT[2], visibleParas: 5 },
 ];
 
 export const VAZGECILMEZ_CONFIG = {
