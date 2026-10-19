@@ -257,16 +257,16 @@ export const KOLEKSIYON_SETI_CONFIG = {
  * 4. BİREBİR DANIŞMANLIK (VIP strateji seansı)
  * ========================================================================== */
 const DANISMANLIK_MESAJ =
-  "Merhaba, 45 dakikalık birebir strateji seansı (6.500 TL) için randevu almak istiyorum." +
+  "Merhaba, 45 dakikalık birebir strateji seansı (7.000 TL) için randevu almak istiyorum." +
   "\n\nTercih ettiğim platform (Google Meet / WhatsApp): " +
   "\nUygun olduğum gün ve saatler: ";
 
 export const DANISMANLIK_CONFIG = {
-  price: 6500,
-  priceLabel: "6.500",
+  price: 7000,
+  priceLabel: "7.000",
   currency: "TL",
-  /** Seans + hediyelerin toplam değeri (6.500 seans + 1.200 e-kitap + 3.500 WhatsApp desteği) */
-  totalValueLabel: "11.200",
+  /** Seans + hediyelerin toplam değeri (7.000 seans + 1.200 e-kitap + 3.500 WhatsApp desteği) */
+  totalValueLabel: "11.700",
   gifts: [
     { label: "2 e-kitap", value: "1.200" },
     { label: "1 hafta WhatsApp desteği", value: "3.500" },
@@ -289,13 +289,13 @@ export const DANISMANLIK_CONFIG = {
      */
     /** Paketteki kalemlerin tek tek değeri (toplamı fiyattan düşükse sitede üstü çizili "değer" gösterilmez) */
     items: [
-      { label: "4 birebir seans", value: 26000 },
+      { label: "4 birebir seans", value: 28000 },
       { label: "4 hafta boyunca ulaşılabilir mesaj koçluğu", value: 14000 },
       { label: "2 imzalı fiziksel kitap", value: 2000 },
-      { label: "Acil kriz görüşmesi (15 dk)", value: 2200 },
+      { label: "Acil kriz görüşmesi (15 dk)", value: 2300 },
     ],
-    totalValue: 44200,
-    totalValueLabel: "44.200",
+    totalValue: 46300,
+    totalValueLabel: "46.300",
     launchPrice: 20000,
     launchPriceLabel: "20.000",
     launchSlotsTotal: 3,

@@ -42,7 +42,7 @@ export default function SeoJsonLd() {
         areaServed: { "@type": "Country", name: "Türkiye" },
         availableChannel: { "@type": "ServiceChannel", serviceUrl: `${SITE}/danismanlik` },
         url: `${SITE}/danismanlik`,
-        offers: { "@type": "Offer", price: "6500", priceCurrency: "TRY", url: `${SITE}/danismanlik` },
+        offers: { "@type": "Offer", price: "7000", priceCurrency: "TRY", url: `${SITE}/danismanlik` },
       },
       {
         "@type": "Book",
