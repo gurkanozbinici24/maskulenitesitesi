@@ -265,9 +265,9 @@ export const DANISMANLIK_CONFIG = {
   price: 10000,
   priceLabel: "10.000",
   currency: "TL",
-  /** Paket değeri = kalemlerin toplamı: 10.000 seans + 1.200 e-kitap + 7.000 WhatsApp desteği = 18.200 */
-  totalValue: 18200,
-  totalValueLabel: "18.200",
+  /** Üstü çizili paket değeri (kalemlerin toplamı 22.000: 10.000 seans + 2.000 fiziksel kitap + 10.000 WhatsApp desteği) */
+  totalValue: 20000,
+  totalValueLabel: "20.000",
   /**
    * GÖRÜNÜR AYLIK KONTENJAN (elle güncellenir)
    * Her onaylanan başvuruda ilgili "left" değerini 1 azaltın; ay başında total'e geri alın.
@@ -276,8 +276,8 @@ export const DANISMANLIK_CONFIG = {
   quotaMonth: "Ekim",
   quota: { total: 8, left: 8 },
   gifts: [
-    { label: "2 e-kitap", value: "1.200" },
-    { label: "2 hafta WhatsApp desteği", value: "7.000" },
+    { label: "2 fiziksel kitap", value: "2.000" },
+    { label: "2 hafta WhatsApp desteği", value: "10.000" },
   ],
   durationMin: 45,
   platforms: ["Google Meet", "WhatsApp"],
