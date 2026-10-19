@@ -274,7 +274,7 @@ export const DANISMANLIK_CONFIG = {
    * left 0 olunca sitede "Bu ayın kontenjanı doldu" yazar, başvurular bir sonraki aya sıralanır.
    */
   quotaMonth: "Ekim",
-  quota: { total: 8, left: 8 },
+  quota: { total: 8, left: 5 },
   gifts: [
     { label: "2 fiziksel kitap", value: "2.000" },
     { label: "2 hafta WhatsApp desteği", value: "10.000" },
