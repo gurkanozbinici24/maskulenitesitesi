@@ -94,7 +94,7 @@ export default function TestimonialsSection() {
             badgeText="KANITLANMIŞ ETKİ & GERÇEK DÖNÜŞÜMLER"
             title="Sarsılmaz Sonuçlar &"
             highlightText="Danışan Yorumları"
-            subtitle="Birebir strateji seanslarından sonra danışanlarımızın bize yazdığı gerçek WhatsApp mesajları. Erkek ya da kadın; saygıyı, özgüveni ve kontrolü geri kazananların kendi sözleri."
+            subtitle="Birebir strateji seanslarından sonra danışanlarımızın bize yazdığı gerçek WhatsApp mesajları. Saygıyı, özgüveni ve kontrolü geri kazananların kendi sözleri."
             className="mb-0"
           />
 

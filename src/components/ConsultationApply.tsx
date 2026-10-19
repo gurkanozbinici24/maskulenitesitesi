@@ -75,7 +75,7 @@ export default function ConsultationApply() {
             Başvurunu <span className="gold-text-gradient">Gönder</span>
           </h2>
           <p className="mx-auto mt-3 max-w-xl text-sm text-zinc-400 sm:text-base">
-            Her başvuruyu tek tek okuyorum ve <span className="font-semibold text-white">her başvuru kabul edilmez</span>. Her ay
+            Birebir danışmanlık yalnızca erkeklere özel. Her başvuruyu tek tek okuyorum ve <span className="font-semibold text-white">her başvuru kabul edilmez</span>. Her ay
             sınırlı sayıda danışanla çalışıyorum; uygun gördüğüm başvurulara WhatsApp&apos;tan dönüş yapıp randevunu birlikte
             belirliyoruz.
           </p>

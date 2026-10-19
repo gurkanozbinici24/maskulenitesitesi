@@ -36,8 +36,9 @@ export default function SeoJsonLd() {
       {
         "@type": "Service",
         "@id": `${SITE}/danismanlik#hizmet`,
-        name: "İlişki Koçluğu ve İlişki Danışmanlığı",
+        name: "Erkekler İçin İlişki Koçluğu ve İlişki Danışmanlığı",
         serviceType: "İlişki koçluğu",
+        audience: { "@type": "PeopleAudience", suggestedGender: "male" },
         provider: author,
         areaServed: { "@type": "Country", name: "Türkiye" },
         availableChannel: { "@type": "ServiceChannel", serviceUrl: `${SITE}/danismanlik` },

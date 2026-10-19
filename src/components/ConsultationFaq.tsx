@@ -36,7 +36,7 @@ const FAQS = [
   },
   {
     q: "Danışmanlık sadece erkekler için mi?",
-    a: "Hayır. İlişkisinde kontrolü ve öz saygıyı geri kazanmak isteyen kadın ve erkek herkes seans alabilir.",
+    a: "Evet. Birebir strateji seansı ve VIP Mentörlük yalnızca erkeklere veriliyor. Kadın okurlarım için ilişki dinamiklerini kadın tarafından anlattığım Çekicilik Sanatı kitabını yazdım; 5 Kasım'da çıkıyor.",
   },
   {
     q: "Randevu saatini nasıl belirliyoruz?",

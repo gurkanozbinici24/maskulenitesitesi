@@ -22,7 +22,7 @@ export default function MentorshipTeaser() {
             <div className="flex items-center justify-center gap-1.5 text-[10px] font-bold uppercase tracking-[0.22em] text-gold-400 sm:justify-start">
               <Crown className="h-3.5 w-3.5" /> Kitabın ötesine geçmek isteyenlere
             </div>
-            <p className="mt-1 text-sm font-semibold text-white sm:text-base">Birebir strateji seansı ve VIP Mentörlük</p>
+            <p className="mt-1 text-sm font-semibold text-white sm:text-base">Erkeklere özel birebir strateji seansı ve VIP Mentörlük</p>
             <p className="mt-1 flex items-center justify-center gap-1.5 text-xs text-zinc-400 sm:justify-start">
               <Gift className="h-3.5 w-3.5 text-gold-400" />
               İlk seansına özel 2 fiziksel kitap ve 2 hafta WhatsApp desteği hediye

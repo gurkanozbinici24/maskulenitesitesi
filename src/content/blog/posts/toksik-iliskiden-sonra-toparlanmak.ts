@@ -153,7 +153,7 @@ Bu yazıdaki tavsiyeler toksik, yıpratıcı ilişkiler içindir. Ama eğer ili�
 
 Bir defter al ve ilk sayfaya şu başlığı yaz: "Gerçekte ne oldu?" Altına toksik ilişkide yaşadığın, aklında en net duran beş olayı yaz. İkinci sayfaya "Bir daha asla kabul etmeyeceğim üç şey" yaz. Bu defteri sakla. Kafandaki ses seni geriye çağırdığında, defter sana gerçeği hatırlatacak.
 
-Toksik ilişki örüntülerini erkekler için Vazgeçilmez Olma Sanatı'nın "Zehirli Kadınlar ve Filtreleme Sanatı" bölümünde, kadınlar için Çekicilik Sanatı'nın "Erkeğin Maskesi" ve "Aynı Adamı Başka İsimle Seçme" bölümlerinde ayrıntılı anlattım. Süreci birebir konuşmak istersen [birebir strateji seansı](/danismanlik) için başvurabilirsin.`,
+Toksik ilişki örüntülerini erkekler için Vazgeçilmez Olma Sanatı'nın "Zehirli Kadınlar ve Filtreleme Sanatı" bölümünde, kadınlar için Çekicilik Sanatı'nın "Erkeğin Maskesi" ve "Aynı Adamı Başka İsimle Seçme" bölümlerinde ayrıntılı anlattım. Erkeksen ve süreci birebir konuşmak istersen [birebir strateji seansı](/danismanlik) için başvurabilirsin.`,
 };
 
 export default post;

@@ -89,7 +89,7 @@ export default function ConsultationSection() {
           {/* Sol */}
           <div className="lg:col-span-7">
             <div className="inline-flex items-center gap-2 rounded-full border border-gold-500/40 bg-black/50 px-4 py-1.5 text-[11px] font-bold uppercase tracking-[0.22em] text-gold-300">
-              <Crown className="h-3.5 w-3.5" /> İlişki Koçluğu · Birebir Danışmanlık
+              <Crown className="h-3.5 w-3.5" /> Erkeklere Özel · İlişki Koçluğu
             </div>
             <h1 className="mt-5 font-cinzel text-[clamp(2.1rem,5.2vw,3.9rem)] font-bold leading-[1.05] text-white">
               İlişkinde <span className="gold-text-gradient">kontrolü</span>
@@ -97,8 +97,8 @@ export default function ConsultationSection() {
             </h1>
             <p className="mt-5 max-w-xl text-base leading-relaxed text-zinc-300 sm:text-lg">
               Bu bir dertleşme değil; durumunu, sana oynanan oyunları ve ilişkideki güç dengesini birlikte çözümlediğimiz{" "}
-              <strong className="text-white">{C.durationMin} dakikalık stratejik bir seans</strong>. Erkek ya da kadın, masadan ne
-              yapacağını bilerek kalkarsın. Klasik bir ilişki danışmanlığı değil; sonuca odaklı, birebir ilişki koçluğu.
+              <strong className="text-white">{C.durationMin} dakikalık stratejik bir seans</strong>. Masadan ne yapacağını bilerek
+              kalkarsın. <strong className="text-white">Birebir danışmanlığı yalnızca erkeklere veriyorum.</strong> Klasik bir ilişki danışmanlığı değil; sonuca odaklı, birebir ilişki koçluğu.
             </p>
 
             {/* Bilgi çipleri */}
@@ -249,7 +249,7 @@ export default function ConsultationSection() {
             <h2 className="font-cinzel text-[clamp(1.7rem,4vw,2.6rem)] font-bold text-white">
               Birebir <span className="gold-text-gradient">Paketler</span>
             </h2>
-            <p className="mt-3 text-sm text-zinc-400 sm:text-base">Her iki paket de başvuru ile. Her ay sınırlı sayıda danışanla çalışıyorum; her başvuru kabul edilmez.</p>
+            <p className="mt-3 text-sm text-zinc-400 sm:text-base">Her iki paket de yalnızca erkeklere özel ve başvuru ile. Her ay sınırlı sayıda danışanla çalışıyorum; her başvuru kabul edilmez.</p>
           </div>
 
           <div className="grid items-stretch gap-8 lg:grid-cols-2">

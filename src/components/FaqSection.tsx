@@ -83,7 +83,7 @@ const faqs: FaqItem[] = [
     id: 12,
     question: "Birebir görüşme yapıyor musunuz?",
     answer:
-      "Evet. Google Meet veya WhatsApp üzerinden 45 dakikalık birebir strateji seansları ve aylık VIP Mentörlük sunuyorum.",
+      "Evet, yalnızca erkeklerle. Google Meet veya WhatsApp üzerinden 45 dakikalık birebir strateji seansları ve aylık VIP Mentörlük sunuyorum.",
     link: { href: "/danismanlik", label: "Özel Danışmanlık sayfasını incele →" },
   },
 ];

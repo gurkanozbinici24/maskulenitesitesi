@@ -166,7 +166,7 @@ Bunu yaptığında iki şeyden biri olur: Ya geri döner, ama bu sefer seni kayb
 
 Telefonunu al. Eski sevgilinin profiline, hikâyelerine ve son görülmesine bakmayı bugünden itibaren bırak. Bildirimlerini sessize al. Sonra bir kâğıda "Bir daha asla kabul etmeyeceğim üç şey" yaz ve cüzdanına koy. Eski sevgili ya da yeni biri, o kâğıt sana kim olduğunu hatırlatacak.
 
-Bu konuyu erkek tarafından Vazgeçilmez Olma Sanatı'nın "Aynı Kitabı İki Kere Okumak" ve "Kürkçü Dükkânı Sendromu" bölümlerinde, kadın tarafından ise Çekicilik Sanatı'nın "Panter Giderken" bölümünde ayrıntılı anlattım. Durumunu birebir konuşmak istersen [birebir strateji seansı](/danismanlik) için başvurabilirsin.`,
+Bu konuyu erkek tarafından Vazgeçilmez Olma Sanatı'nın "Aynı Kitabı İki Kere Okumak" ve "Kürkçü Dükkânı Sendromu" bölümlerinde, kadın tarafından ise Çekicilik Sanatı'nın "Panter Giderken" bölümünde ayrıntılı anlattım. Erkeksen ve durumunu birebir konuşmak istersen [birebir strateji seansı](/danismanlik) için başvurabilirsin.`,
 };
 
 export default post;
