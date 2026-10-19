@@ -5,6 +5,12 @@ import ayrilikAcisiNeKadarSurer from "./posts/ayrilik-acisi-ne-kadar-surer";
 import noContactKurali from "./posts/no-contact-kurali";
 import eskiSevgiliYazincaNeYapmali from "./posts/eski-sevgili-yazinca-ne-yapmali";
 import toksikIliskidenSonraToparlanmak from "./posts/toksik-iliskiden-sonra-toparlanmak";
+import askBombardimaniNedir from "./posts/ask-bombardimani-nedir";
+import gaslightingNedir from "./posts/gaslighting-nedir";
+import breadcrumbingNedir from "./posts/breadcrumbing-nedir";
+import guiltTripNedir from "./posts/guilt-trip-nedir";
+import itmeCekmeDongusu from "./posts/itme-cekme-dongusu";
+import narsistSevgiliBelirtileri from "./posts/narsist-sevgili-belirtileri";
 import iyiCocukSendromu from "./posts/iyi-cocuk-sendromu";
 import hangiKitapSanaGore from "./posts/hangi-kitap-sana-gore";
 import vazgecilmezOlmaSanatiKitabi from "./posts/vazgecilmez-olma-sanati-kitabi";
@@ -18,6 +24,12 @@ export const POSTS: BlogPost[] = [
   noContactKurali,
   eskiSevgiliYazincaNeYapmali,
   toksikIliskidenSonraToparlanmak,
+  askBombardimaniNedir,
+  gaslightingNedir,
+  breadcrumbingNedir,
+  guiltTripNedir,
+  itmeCekmeDongusu,
+  narsistSevgiliBelirtileri,
   iyiCocukSendromu,
   hangiKitapSanaGore,
   vazgecilmezOlmaSanatiKitabi,
