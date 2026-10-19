@@ -14,12 +14,14 @@ import CekicilikSection from "@/components/CekicilikSection";
 import FaqSection from "@/components/FaqSection";
 import MentorshipTeaser from "@/components/MentorshipTeaser";
 import Footer from "@/components/Footer";
+import SeoJsonLd from "@/components/SeoJsonLd";
 import SectionDivider from "@/components/ui/SectionDivider";
 
 export default function Home() {
   return (
     <main className="min-h-screen bg-matte-950 text-zinc-100 flex flex-col selection:bg-gold-500 selection:text-black">
       {/* Navigation */}
+      <SeoJsonLd />
       <Navbar />
 
       {/* 1. Hero Bölümü */}

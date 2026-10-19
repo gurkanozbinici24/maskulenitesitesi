@@ -7,7 +7,8 @@ import ConsultationApply from "@/components/ConsultationApply";
 import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
-  title: "Birebir Strateji Seansı (VIP) | Gürkan Özbinici",
+  title: "Özel Danışmanlık – Gürkan Özbinici ile Birebir Strateji Seansı",
+  alternates: { canonical: "/danismanlik" },
   description:
     "Gürkan Özbinici ile birebir strateji seansı (45 dk, 3.500 TL; ilk seansa özel 2 e-kitap ve 1 hafta WhatsApp desteği hediye) ve VIP Mentörlük (ayda 4 seans + 7/24 WhatsApp desteği). Başvuru ile.",
 };

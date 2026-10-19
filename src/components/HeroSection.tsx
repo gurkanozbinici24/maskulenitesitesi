@@ -349,6 +349,9 @@ export default function HeroSection() {
           {/* ----------------------------------------------------------------- */}
           <div className="animate-hero-title text-center max-w-4xl mx-auto pt-1 sm:pt-2">
 
+            <p className="mb-1 text-[10px] sm:text-[11px] font-bold uppercase tracking-[0.3em] text-gold-400/80">
+              Maskülenite · Gürkan Özbinici
+            </p>
             <h1 className="font-cinzel text-[clamp(1.6rem,5vw,2.9rem)] font-black tracking-tight text-white leading-[1.1] mb-2">
               <span className="gold-text-gradient">
                 İlişkilerin Gizli Kanunları

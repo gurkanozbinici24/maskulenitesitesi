@@ -1,0 +1,9 @@
+import { MetadataRoute } from "next";
+
+export default function robots(): MetadataRoute.Robots {
+  return {
+    rules: [{ userAgent: "*", allow: "/" }],
+    sitemap: "https://maskulenitesitesi.vercel.app/sitemap.xml",
+    host: "https://maskulenitesitesi.vercel.app",
+  };
+}
