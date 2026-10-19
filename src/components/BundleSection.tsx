@@ -6,6 +6,7 @@ import { Book3DModel } from "./HeroSection";
 import { useCekicilikLaunchStatus } from "./ui/BookCountdown";
 import { ThemeButton } from "./ui/ThemeSystem";
 import PhysicalPerks from "./ui/PhysicalPerks";
+import GiftLink from "./ui/GiftLink";
 import { KOLEKSIYON_SETI_CONFIG as SET } from "@/config/cekicilikConfig";
 
 const pad = (n: number) => String(n).padStart(2, "0");
@@ -144,6 +145,9 @@ export default function BundleSection() {
                 <MessageCircle className="h-5 w-5" />
                 <span>Seti Sipariş Et – {SET.price} TL</span>
               </ThemeButton>
+            ) : null}
+            {isOnSale ? (
+              <GiftLink href={SET.giftWhatsappUrl} className="mt-2" />
             ) : (
               <>
                 <div className="mb-3 grid grid-cols-4 gap-2">

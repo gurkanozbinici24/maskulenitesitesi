@@ -8,6 +8,7 @@ import { ThemeBadge, ThemeButton, ThemeSectionHeader } from "./ui/ThemeSystem";
 import { VAZGECILMEZ_CONFIG, VAZGECILMEZ_PREVIEW_PAGES } from "@/config/cekicilikConfig";
 import BookPreview from "./BookPreview";
 import PhysicalPerks from "./ui/PhysicalPerks";
+import GiftLink from "./ui/GiftLink";
 
 /**
  * Vazgeçilmez Olma Sanatı tanıtım bölümü (id="vazgecilmez").
@@ -174,19 +175,21 @@ export default function VazgecilmezSection() {
                 <PhysicalPerks theme="kitap1" size="sm" className="mb-4" />
 
                 {isOnSale ? (
-                  <ThemeButton
-                    theme="kitap1"
-                    variant="primary"
-                    size="md"
-                    fullWidth
-                    href={physicalRenovated.orderWhatsappUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="mt-auto"
-                  >
-                    <MessageCircle className="w-4 h-4 flex-shrink-0" />
-                    <span>Sipariş Ver</span>
-                  </ThemeButton>
+                  <div className="mt-auto space-y-2">
+                    <ThemeButton
+                      theme="kitap1"
+                      variant="primary"
+                      size="md"
+                      fullWidth
+                      href={physicalRenovated.orderWhatsappUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <MessageCircle className="w-4 h-4 flex-shrink-0" />
+                      <span>Sipariş Ver</span>
+                    </ThemeButton>
+                    <GiftLink href={physicalRenovated.giftWhatsappUrl} />
+                  </div>
                 ) : (
                   <div className="mt-auto">
                     <div className="grid grid-cols-4 gap-1.5 mb-3">

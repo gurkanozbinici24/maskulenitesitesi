@@ -47,6 +47,36 @@ const faqs: FaqItem[] = [
     answer:
       "Her fiziksel kitap isminize özel imzalanarak gönderilir; imza için ismi sipariş mesajınıza yazmanız yeterli. Hediye alıyorsanız, hediye edeceğiniz kişinin ismini yazabilirsiniz. Saat 14:00'e kadar verilen siparişler aynı gün Yurtiçi Kargo'ya teslim edilir ve 2 gün içinde kapınızda olur.",
   },
+  {
+    id: 7,
+    question: "Paket dışarıdan belli olur mu?",
+    answer:
+      "Hayır. Kitaplar dışarıdan içeriği görünmeyen, korumalı ve sade bir paketle gönderilir. Paketin üzerinde kitabın adı veya kapağı yer almaz.",
+  },
+  {
+    id: 8,
+    question: "Hangi kargo firmasıyla gönderiyorsunuz?",
+    answer:
+      "Tüm siparişler Yurtiçi Kargo ile kapıya kadar ücretsiz gönderilir. Kargoya verildiğinde takip numaranızı WhatsApp'tan iletiyoruz. Adreste bulunamayacaksanız sipariş sırasında belirtmeniz yeterli.",
+  },
+  {
+    id: 9,
+    question: "Ödemeyi nasıl yapıyorum?",
+    answer:
+      "Siparişinizi WhatsApp'tan verdikten sonra ödeme bilgilerini size iletiyoruz; havale veya EFT ile ödeme yapabilirsiniz. Ödemeniz onaylandığı an siparişiniz hazırlanmaya başlar.",
+  },
+  {
+    id: 10,
+    question: "E-kitabı telefonda okuyabilir miyim?",
+    answer:
+      "Evet. E-kitap PDF, EPUB ve Kindle formatlarında e-posta adresinize gönderilir. PDF dosyası telefon, tablet veya bilgisayarınızda doğrudan açılır; EPUB ve Kindle sürümlerini dilediğiniz okuma uygulamasıyla kullanabilirsiniz.",
+  },
+  {
+    id: 11,
+    question: "Kitabı hediye olarak gönderebilir miyim?",
+    answer:
+      "Elbette. Fiziksel kitap kartlarındaki “Hediye olarak gönder” seçeneğiyle sipariş verin, hediye edeceğiniz kişinin adını yazın; kitap onun ismine imzalanıp doğrudan adresine gönderilir.",
+  },
 ];
 
 export default function FaqSection() {

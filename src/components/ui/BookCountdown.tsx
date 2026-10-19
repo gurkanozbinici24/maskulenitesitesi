@@ -1,6 +1,7 @@
 "use client";
 
 import PhysicalPerks from "./PhysicalPerks";
+import GiftLink from "./GiftLink";
 import React, { useEffect, useState } from "react";
 import {
   BookOpen,
@@ -399,6 +400,7 @@ export function CekicilikSalesOptions({
                   <MessageCircle className="w-4 h-4 text-emerald-400 flex-shrink-0" />
                   <span>WhatsApp ile Sipariş Ver</span>
                 </ThemeButton>
+                {isPhysical && <GiftLink href={item.giftWhatsappUrl} />}
 
                 {kartOdemeAktif && (
                   <ThemeButton
@@ -598,6 +600,7 @@ export function CekicilikSalesOptions({
             <MessageCircle className="w-5 h-5 text-white flex-shrink-0" />
             <span>WhatsApp ile Sipariş Ver ({physical.price} TL)</span>
           </ThemeButton>
+          <GiftLink href={physical.giftWhatsappUrl} />
 
           {kartOdemeAktif && (
             <ThemeButton

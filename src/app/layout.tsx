@@ -1,6 +1,8 @@
 import type { Metadata, Viewport } from "next";
 import { Inter, Cinzel, Playfair_Display, Great_Vibes } from "next/font/google";
 import "./globals.css";
+import { Analytics } from "@vercel/analytics/next";
+import ClickTracker from "@/components/ClickTracker";
 
 const inter = Inter({
   subsets: ["latin", "latin-ext"],
@@ -37,6 +39,7 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://maskulenitesitesi.vercel.app"),
   title: 'Gürkan Özbinici | Vazgeçilmez Olma Sanatı & Çekicilik Sanatı',
   description: 'Maskülenite, redpill, kırmızıhap felsefesi ve ilişki dinamikleri üzerine sarsılmaz kanunlar. Vazgeçilmez Olma Sanatı (erkekler için) ve Çekicilik Sanatı (kadınlar için) kitaplarının resmi sitesi.',
   keywords: [
@@ -58,10 +61,10 @@ export const metadata: Metadata = {
       "Biri erkek için, biri kadın için. Aynı oyunun iki tarafı. 800.000+ kişinin takip ettiği vizyon.",
     images: [
       {
-        url: "/vazgecilmez-yeni-kapak.jpg",
-        width: 800,
-        height: 1200,
-        alt: "Vazgeçilmez Olma Sanatı - Gürkan Özbinici",
+        url: "/og-paylasim.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Vazgeçilmez Olma Sanatı & Çekicilik Sanatı - Gürkan Özbinici",
       },
     ],
   },
@@ -70,7 +73,7 @@ export const metadata: Metadata = {
     title: "Vazgeçilmez Olma Sanatı & Çekicilik Sanatı | Gürkan Özbinici",
     description:
       "Biri erkek için, biri kadın için. Aynı oyunun iki tarafı. 800.000+ kişinin takip ettiği vizyon.",
-    images: ["/vazgecilmez-yeni-kapak.jpg"],
+    images: ["/og-paylasim.jpg"],
   },
   verification: {
     google: 'FT_hlSHvBdHwjwHh17ErA2kpRHd1ocBNIsuddA0iz9Q',
@@ -93,6 +96,8 @@ export default function RootLayout({
         style={{ backgroundColor: "#050507", color: "#f4f4f5" }}
       >
         {children}
+        <ClickTracker />
+        <Analytics />
       </body>
     </html>
   );

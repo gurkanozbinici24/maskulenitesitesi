@@ -16,6 +16,7 @@ import {
   Info,
 } from "lucide-react";
 import PhysicalPerks from "./ui/PhysicalPerks";
+import GiftLink from "./ui/GiftLink";
 import {
   ThemeButton,
   ThemeBadge,
@@ -350,6 +351,7 @@ export default function PricingSection() {
                     <span className="hidden sm:inline">WhatsApp ile Sipariş Ver (1000 TL)</span>
                     <ArrowRight className="w-4 h-4" />
                   </ThemeButton>
+                  <GiftLink href={physicalRenovated.giftWhatsappUrl} />
 
                   {KART_ODEME_AKTIF && (
                     <ThemeButton

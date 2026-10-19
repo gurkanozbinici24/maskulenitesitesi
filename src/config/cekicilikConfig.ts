@@ -39,6 +39,9 @@ export const PHYSICAL_PERKS = {
 
 /** Fiziksel sipariş mesajlarına eklenen satır: imza için isim sipariş anında alınır */
 const IMZA_SATIRI = "\n\nİmza için isim: ";
+/** Hediye siparişleri için mesaj eki */
+const HEDIYE_SATIRI = "\n\nHediye edeceğim kişinin adı (imza için): ";
+const hediyeMesaji = (urun: string) => `Merhaba, ${urun} hediye olarak göndermek istiyorum.` + HEDIYE_SATIRI;
 
 export interface CekicilikProductOption {
   id:
@@ -58,6 +61,8 @@ export interface CekicilikProductOption {
   features: string[];
   whatsappMessage: string;
   whatsappUrl: string;
+  /** Sadece fiziksel ürünlerde: "Hediye olarak gönder" WhatsApp linki */
+  giftWhatsappUrl?: string;
 }
 
 export function buildWhatsAppUrl(message: string, phone = WHATSAPP_PHONE): string {
@@ -146,6 +151,7 @@ export const VAZGECILMEZ_CONFIG = {
     notifyWhatsappUrl: buildWhatsAppUrl(VAZGECILMEZ_PHYSICAL_NOTIFY_MESSAGE),
     orderWhatsappMessage: VAZGECILMEZ_PHYSICAL_ORDER_MESSAGE,
     orderWhatsappUrl: buildWhatsAppUrl(VAZGECILMEZ_PHYSICAL_ORDER_MESSAGE),
+    giftWhatsappUrl: buildWhatsAppUrl(hediyeMesaji("Vazgeçilmez Olma Sanatı (Yenilenmiş Edisyon) kitabını")),
   },
 } as const;
 
@@ -207,6 +213,7 @@ export const CEKICILIK_PRODUCTS: {
     ],
     whatsappMessage: PHYSICAL_WHATSAPP_MESSAGE,
     whatsappUrl: buildWhatsAppUrl(PHYSICAL_WHATSAPP_MESSAGE),
+    giftWhatsappUrl: buildWhatsAppUrl(hediyeMesaji("Çekicilik Sanatı fiziksel kitabını")),
   },
 };
 
@@ -243,4 +250,5 @@ export const KOLEKSIYON_SETI_CONFIG = {
   launchSpecialUntil: "2026-11-30T23:59:59+03:00",
   notifyWhatsappUrl: buildWhatsAppUrl(SET_NOTIFY_MESSAGE),
   orderWhatsappUrl: buildWhatsAppUrl(SET_ORDER_MESSAGE),
+  giftWhatsappUrl: buildWhatsAppUrl(hediyeMesaji("Koleksiyon Seti'ni (2 fiziksel kitap)")),
 } as const;
