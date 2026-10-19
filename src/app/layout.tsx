@@ -39,7 +39,7 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://maskulenitesitesi.vercel.app"),
+  metadataBase: new URL("https://www.maskulenitesitesi.com.tr"),
   title: {
     default: "Maskülenite | Gürkan Özbinici – Vazgeçilmez Olma Sanatı & Çekicilik Sanatı",
     template: "%s | Maskülenite",
@@ -97,7 +97,7 @@ export const metadata: Metadata = {
     images: ["/og-paylasim.jpg"],
   },
   verification: {
-    google: 'FT_hlSHvBdHwjwHh17ErA2kpRHd1ocBNIsuddA0iz9Q',
+    google: ['FT_hlSHvBdHwjwHh17ErA2kpRHd1ocBNIsuddA0iz9Q', '4s4j88lGltaahe7jVmczHiXjiYPm6QzurxRwXvTJMJ8'],
   },
 };
 

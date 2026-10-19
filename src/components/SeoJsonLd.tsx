@@ -1,6 +1,6 @@
 import { INSTAGRAM_URL } from "@/config/cekicilikConfig";
 
-const SITE = "https://maskulenitesitesi.vercel.app";
+const SITE = "https://www.maskulenitesitesi.com.tr";
 
 /**
  * Google'a sitenin kim/ne olduğunu anlatan yapılandırılmış veri (schema.org JSON-LD).
