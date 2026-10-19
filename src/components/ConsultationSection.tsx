@@ -327,12 +327,10 @@ export default function ConsultationSection() {
                 <h3 className="mt-3 font-cinzel text-3xl font-bold text-white">{C.vip.name}</h3>
                 <p className="mt-2 text-sm text-zinc-300">Süreç boyunca yanında olduğum, birebir ve sürekli bir yol arkadaşlığı.</p>
                 <div className="mt-6 flex items-baseline gap-2">
-                  {VIP_LAUNCH_ACTIVE && (
-                    <span className="relative mr-1 font-cinzel text-2xl font-bold text-zinc-500">
-                      {C.vip.priceLabel}
-                      <span className="absolute left-[-6%] top-1/2 h-[2px] w-[112%] -rotate-6 bg-crimson-500" />
-                    </span>
-                  )}
+                  <span className="relative mr-1 font-cinzel text-2xl font-bold text-zinc-500">
+                    {C.vip.totalValueLabel}
+                    <span className="absolute left-[-6%] top-1/2 h-[2px] w-[112%] -rotate-6 bg-crimson-500" />
+                  </span>
                   <span className="font-cinzel text-5xl font-bold text-white [text-shadow:0_0_30px_rgba(212,175,55,0.5)] sm:text-6xl">{VIP_PRICE_LABEL}</span>
                   <span className="text-xl font-bold text-gold-400">{C.currency}</span>
                   <span className="text-sm text-zinc-400">/ {C.vip.period}</span>
