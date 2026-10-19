@@ -1,4 +1,4 @@
-import { INSTAGRAM_URL } from "@/config/cekicilikConfig";
+import { FACEBOOK_URL, INSTAGRAM_URL } from "@/config/cekicilikConfig";
 
 const SITE = "https://www.maskulenitesitesi.com.tr";
 
@@ -33,7 +33,7 @@ export default function SeoJsonLd() {
         knowsAbout: ["Sosyoloji", "Maskülenlik", "İlişkiler", "İlişki psikolojisi", "İlişki koçluğu", "Çekim dinamikleri"],
         description:
           "Sosyoloji eğitimli yazar ve ilişki koçu; Vazgeçilmez Olma Sanatı ve Çekicilik Sanatı kitaplarının yazarı, @maskulenitesitesi hesabının kurucusu.",
-        sameAs: [INSTAGRAM_URL],
+        sameAs: [INSTAGRAM_URL, FACEBOOK_URL],
       },
       {
         "@type": "Service",

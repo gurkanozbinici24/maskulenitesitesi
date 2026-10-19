@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { INSTAGRAM_URL } from "@/config/cekicilikConfig";
+import { FACEBOOK_URL, INSTAGRAM_URL } from "@/config/cekicilikConfig";
 
 const SITE = "https://www.maskulenitesitesi.com.tr";
 const URL = `${SITE}/gurkan-ozbinici`;
@@ -74,7 +74,7 @@ const FAQ = [
   },
   {
     q: "Gürkan Özbinici'nin Instagram hesabı hangisi?",
-    a: "Resmi Instagram hesabı @maskulenitesitesi, resmi web sitesi maskulenitesitesi.com.tr'dir.",
+    a: "Resmi Instagram hesabı @maskulenitesitesi'dir. Facebook'ta da Gürkan Özbinici adıyla yer alır; resmi web sitesi maskulenitesitesi.com.tr'dir.",
   },
 ];
 
@@ -102,7 +102,7 @@ export default function GurkanOzbiniciPage() {
     hasCredential: { "@type": "EducationalOccupationalCredential", credentialCategory: "Lisans", about: "Sosyoloji" },
     description:
       "Sosyoloji eğitimli yazar ve ilişki koçu. 2019'dan beri maskülenlik ve ilişkiler üzerine içerik üretiyor; Vazgeçilmez Olma Sanatı ve Çekicilik Sanatı kitaplarının yazarı.",
-    sameAs: [INSTAGRAM_URL],
+    sameAs: [INSTAGRAM_URL, FACEBOOK_URL],
   };
   const jsonLd = {
     "@context": "https://schema.org",
@@ -226,7 +226,11 @@ export default function GurkanOzbiniciPage() {
             <a href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer" className="text-gold-300 underline decoration-gold-500/40 underline-offset-4 hover:text-gold-200">
               @maskulenitesitesi
             </a>{" "}
-            Instagram hesabında 800 binin, Facebook&apos;ta 100 binin üzerinde; diğer platformlarla birlikte toplamda 1 milyonun
+            Instagram hesabında 800 binin,{" "}
+            <a href={FACEBOOK_URL} target="_blank" rel="noopener noreferrer" className="text-gold-300 underline decoration-gold-500/40 underline-offset-4 hover:text-gold-200">
+              Facebook&apos;ta
+            </a>{" "}
+            100 binin üzerinde; diğer platformlarla birlikte toplamda 1 milyonun
             üzerinde gerçek takipçisi var. Kitlesinin 300 bini aşkın kısmı kadınlardan oluşuyor; bu da anlattığı dinamiklerin
             yalnızca erkeklere değil, ilişkinin iki tarafına da hitap ettiğini gösteriyor.
           </p>
@@ -281,6 +285,12 @@ export default function GurkanOzbiniciPage() {
               Instagram:{" "}
               <a href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer me" className="text-gold-300 hover:text-gold-200">
                 @maskulenitesitesi
+              </a>
+            </li>
+            <li>
+              Facebook:{" "}
+              <a href={FACEBOOK_URL} target="_blank" rel="noopener noreferrer me" className="text-gold-300 hover:text-gold-200">
+                Gürkan Özbinici
               </a>
             </li>
             <li>

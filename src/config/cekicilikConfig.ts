@@ -23,6 +23,7 @@ export const WHATSAPP_PHONE = "905455207999";
 
 /** Resmi Instagram adresi */
 export const INSTAGRAM_URL = "https://www.instagram.com/maskulenitesitesi";
+export const FACEBOOK_URL = "https://www.facebook.com/profile.php?id=100008198462879";
 
 /* ============================================================================
  * FİZİKSEL KİTAP AYRICALIKLARI: Flash Hızda Kargo + İsme Özel İmza
