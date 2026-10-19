@@ -13,6 +13,7 @@ import {
   Flame,
 } from "lucide-react";
 import { ThemeButton, ThemeSectionHeader } from "./ui/ThemeSystem";
+import { DANISMANLIK_CONFIG } from "@/config/cekicilikConfig";
 
 const testimonials = [
   { id: 2, src: "/m2.jpg", title: "Danışan Dönüşümü #1", tag: "Çerçeve Kontrolü" },
@@ -94,7 +95,7 @@ export default function TestimonialsSection() {
             badgeText="KANITLANMIŞ ETKİ & GERÇEK DÖNÜŞÜMLER"
             title="Sarsılmaz Sonuçlar &"
             highlightText="Danışan Yorumları"
-            subtitle="Birebir strateji seanslarımızda durumunu baştan inşa eden, karşı tarafın ucuz manipülasyonlarını çöpe atıp saygıyı ve kontrolü geri kazanan erkeklerin gerçek mesajları."
+            subtitle="Birebir strateji seanslarından sonra danışanlarımızın bize yazdığı gerçek WhatsApp mesajları. Erkek ya da kadın; saygıyı, özgüveni ve kontrolü geri kazananların kendi sözleri."
             className="mb-0"
           />
 
@@ -205,7 +206,7 @@ export default function TestimonialsSection() {
             theme="kitap1"
             variant="primary"
             size="md"
-            href="https://wa.me/905455207999?text=Merhaba,%20Özel%20Danışmanlık%20ve%20Koçluk%20Seansı%20almak%20istiyorum."
+            href={DANISMANLIK_CONFIG.whatsappUrl}
             target="_blank"
             rel="noopener noreferrer"
             className="flex-shrink-0 w-full sm:w-auto whitespace-nowrap"

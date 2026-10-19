@@ -1,14 +1,14 @@
-﻿import type { Metadata } from "next";
+import type { Metadata } from "next";
 import Navbar from "@/components/Navbar";
 import ConsultationSection from "@/components/ConsultationSection";
 import TestimonialsSection from "@/components/TestimonialsSection";
-import FaqSection from "@/components/FaqSection";
+import ConsultationFaq from "@/components/ConsultationFaq";
 import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
-  title: "Özel Danışmanlık & VIP Mentörlük | Vazgeçilmez Olma Sanatı",
+  title: "Birebir Strateji Seansı (VIP) | Gürkan Özbinici",
   description:
-    "Gürkan Özbinici ile birebir ilişki psikolojisi, stratejik çerçeve yönetimi ve kişisel kriz analizi seansları.",
+    "Gürkan Özbinici ile 45 dakikalık birebir ilişki stratejisi seansı. Google Meet veya WhatsApp üzerinden, sesli ya da görüntülü. 2.500 TL.",
 };
 
 export default function DanismanlikPage() {
@@ -18,10 +18,10 @@ export default function DanismanlikPage() {
       <Navbar />
 
       {/* Dedicated Page Content with Spacing for Fixed Navbar */}
-      <div className="pt-20 sm:pt-24">
+      <div className="pt-16 sm:pt-20">
         <ConsultationSection />
         <TestimonialsSection />
-        <FaqSection />
+        <ConsultationFaq />
       </div>
 
       {/* Footer */}

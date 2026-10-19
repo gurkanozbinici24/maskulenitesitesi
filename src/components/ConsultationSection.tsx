@@ -1,205 +1,275 @@
 "use client";
 
+import { useCallback, useRef } from "react";
 import Image from "next/image";
 import {
-  Calendar,
-  Clock,
-  ShieldCheck,
-  Zap,
   ArrowRight,
-  Instagram,
-  CheckCircle2,
-  Lock,
+  CalendarCheck,
+  Clock,
   Crown,
-  Sparkles,
-  PhoneCall,
+  Headphones,
+  Instagram,
+  Landmark,
+  Lock,
   MessageCircle,
+  ShieldCheck,
+  Sparkles,
+  Target,
+  Video,
+  Zap,
 } from "lucide-react";
-import { ThemeButton, ThemeSectionHeader } from "./ui/ThemeSystem";
+import { ThemeButton } from "./ui/ThemeSystem";
+import { DANISMANLIK_CONFIG as C } from "@/config/cekicilikConfig";
+
+/**
+ * Özel Danışmanlık (VIP) sayfası — premium yeniden tasarım.
+ * Fiyat, süre ve platformlar DANISMANLIK_CONFIG'den gelir.
+ */
+
+const AGENDA = [
+  { min: "0–10", icon: Headphones, title: "Durumunu dinliyorum", text: "Yaşadığın süreci baştan sona, hiçbir yargı olmadan anlatıyorsun. Gerçek resmi birlikte ortaya çıkarıyoruz." },
+  { min: "10–30", icon: Target, title: "Kriz ve güç dinamikleri analizi", text: "Yapılan hataları, sana oynanan oyunları ve ilişkideki dengeyi tek tek çözümlüyoruz." },
+  { min: "30–40", icon: Zap, title: "Sana özel aksiyon planı", text: "Ne söyleyeceğin, ne zaman geri çekileceğin, sınırlarını nasıl koruyacağın: net ve uygulanabilir adımlar." },
+  { min: "40–45", icon: Sparkles, title: "Soruların ve sonraki adım", text: "Aklında kalan her soruyu soruyorsun, seanstan ne yapacağını bilerek ayrılıyorsun." },
+];
+
+const STEPS = [
+  { icon: MessageCircle, title: "WhatsApp'tan yaz", text: "Platform tercihini ve uygun olduğun gün/saatleri hazır mesajla gönder." },
+  { icon: CalendarCheck, title: "Randevunu birlikte belirleyelim", text: "Sana uygun bir zaman dilimini netleştirip randevunu ayırıyoruz." },
+  { icon: Landmark, title: "Ödemeyi yap", text: "Havale/EFT ile ödemeni yap, randevun kesinleşsin." },
+  { icon: Video, title: "Seansa katıl", text: "Saatinde Google Meet linki ya da WhatsApp sesli/görüntülü arama ile bağlanıyoruz." },
+];
 
 export default function ConsultationSection() {
+  const cardRef = useRef<HTMLDivElement>(null);
+  const onMove = useCallback((e: React.MouseEvent) => {
+    if (!window.matchMedia("(pointer: fine)").matches) return;
+    const el = cardRef.current;
+    if (!el) return;
+    const r = el.getBoundingClientRect();
+    const px = (e.clientX - r.left) / r.width;
+    const py = (e.clientY - r.top) / r.height;
+    el.style.setProperty("--ry", `${(px - 0.5) * 14}deg`);
+    el.style.setProperty("--rx", `${(0.5 - py) * 10}deg`);
+    el.style.setProperty("--gx", `${px * 100}%`);
+    el.style.setProperty("--gy", `${py * 100}%`);
+  }, []);
+  const onLeave = () => {
+    cardRef.current?.style.setProperty("--ry", "0deg");
+    cardRef.current?.style.setProperty("--rx", "0deg");
+  };
+
   return (
-    <section
-      id="danismanlik"
-      className="py-24 relative overflow-hidden bg-matte-900/90 border-t border-zinc-800/80 scroll-mt-20"
-    >
-      {/* Arka Plan Atmosfer Işıkları */}
-      <div className="absolute top-1/4 -left-20 w-96 h-96 bg-gold-500/10 rounded-full blur-[140px] pointer-events-none" />
-      <div className="absolute bottom-10 right-0 w-[450px] h-[450px] bg-amber-500/10 rounded-full blur-[160px] pointer-events-none" />
+    <>
+      {/* ================= HERO ================= */}
+      <section id="danismanlik" className="relative scroll-mt-20 overflow-hidden pb-20 pt-10 sm:pb-28 sm:pt-16">
+        <style>{`
+          @keyframes consFloat { 0%,100% { transform: translateY(0) } 50% { transform: translateY(-10px) } }
+          @keyframes consSway { 0%,100% { transform: rotateY(-7deg) rotateX(3deg) } 50% { transform: rotateY(6deg) rotateX(1deg) } }
+        `}</style>
+        <div className="pointer-events-none absolute -left-40 top-10 h-[520px] w-[620px] rounded-full bg-gold-500/10 blur-[140px]" />
+        <div className="pointer-events-none absolute -right-40 bottom-0 h-[480px] w-[560px] rounded-full bg-amber-600/10 blur-[150px]" />
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(rgba(212,175,55,0.06)_1px,transparent_1px)] [background-size:28px_28px] [mask-image:radial-gradient(ellipse_at_center,black,transparent_70%)]" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        
-        {/* Üst Başlık ve Tanıtım */}
-        <ThemeSectionHeader
-          theme="kitap1"
-          badgeIcon={<Crown className="w-3.5 h-3.5 text-gold-400" />}
-          badgeText="VIP BİREBİR STRATEJİ & MENTÖRLÜK"
-          title="Özel Danışmanlık &"
-          highlightText="Koçluk Seansı"
-          subtitle="İlişkilerinde kontrolü kaybettiğin kritik bir krizde misin? Kendi kurallarını koyup karşındakinin sana gönüllü saygı duymasını sağlayacak tavizsiz stratejileri doğrudan 1-e-1 masaya yatırıyoruz."
-          className="mb-16 sm:mb-20"
-        />
-
-        {/* Ana İçerik Izgarası: Sol İçerik & Sağ Görsel */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-10 items-center">
-          
-          {/* Sol Kolon: Detaylar, Değer Maddeleri ve Butonlar */}
-          <div className="lg:col-span-7 flex flex-col items-start text-left">
-            
-            <div className="inline-flex items-center gap-2 text-xs font-mono font-bold text-gold-400 tracking-wider uppercase mb-3">
-              <Sparkles className="w-4 h-4" />
-              <span>1 Saatlik Canlı Sesli / Görüntülü Seans</span>
+        <div className="relative mx-auto grid max-w-7xl items-center gap-14 px-4 sm:px-6 lg:grid-cols-12 lg:gap-10 lg:px-8">
+          {/* Sol */}
+          <div className="lg:col-span-7">
+            <div className="inline-flex items-center gap-2 rounded-full border border-gold-500/40 bg-black/50 px-4 py-1.5 text-[11px] font-bold uppercase tracking-[0.22em] text-gold-300">
+              <Crown className="h-3.5 w-3.5" /> VIP Birebir Strateji Seansı
             </div>
-
-            <h3 className="text-fluid-2xl font-extrabold text-white tracking-tight mb-5">
-              Acımasız Gerçeklerle Yüzleş, Durumu Kökünden Değiştir.
-            </h3>
-
-            <p className="text-fluid-base text-zinc-300 leading-relaxed mb-8">
-              Bu sıradan bir dertleşme değil, kadının zihnini, sana oynanan manipülasyonları 
-              ve ilişkideki güç dengelerini cerrahi bir hassasiyetle parçalarına ayırdığımız 
-              <strong> stratejik bir operasyondur</strong>. Mevcut durumunu bizzat dinliyor, 
-              yapılan ölümcül hataları deşifre ediyor ve masadan <strong>çerçevesi sarsılmaz bir erkek</strong> olarak 
-              kalkman için sana özel bir yol haritası çiziyoruz.
+            <h1 className="mt-5 font-cinzel text-[clamp(2.1rem,5.2vw,3.9rem)] font-bold leading-[1.05] text-white">
+              İlişkinde <span className="gold-text-gradient">kontrolü</span>
+              <br /> geri al.
+            </h1>
+            <p className="mt-5 max-w-xl text-base leading-relaxed text-zinc-300 sm:text-lg">
+              Bu bir dertleşme değil; durumunu, sana oynanan oyunları ve ilişkideki güç dengesini birlikte çözümlediğimiz{" "}
+              <strong className="text-white">{C.durationMin} dakikalık stratejik bir seans</strong>. Erkek ya da kadın, masadan ne
+              yapacağını bilerek kalkarsın.
             </p>
 
-            {/* Özellik Listesi */}
-            <div className="w-full space-y-4 mb-10">
-              <div className="flex items-start gap-3.5 p-3.5 rounded-xl bg-matte-850/80 border border-zinc-800 hover:border-gold-500/30 transition-colors">
-                <div className="p-2 rounded-lg bg-gold-500/10 text-gold-400 flex-shrink-0 mt-0.5">
-                  <PhoneCall className="w-4 h-4" />
-                </div>
-                <div>
-                  <h4 className="text-sm font-bold text-white">60 Dakika Kesintisiz Birebir Görüşme</h4>
-                  <p className="text-xs text-zinc-400 mt-0.5">Google Meet / Zoom üzerinden sesli veya görüntülü doğrudan birebir analiz.</p>
-                </div>
-              </div>
-
-              <div className="flex items-start gap-3.5 p-3.5 rounded-xl bg-matte-850/80 border border-zinc-800 hover:border-gold-500/30 transition-colors">
-                <div className="p-2 rounded-lg bg-gold-500/10 text-gold-400 flex-shrink-0 mt-0.5">
-                  <Zap className="w-4 h-4" />
-                </div>
-                <div>
-                  <h4 className="text-sm font-bold text-white">Kriz Çözümü & Güç Dinamikleri Analizi</h4>
-                  <p className="text-xs text-zinc-400 mt-0.5">İlişkinde sınırlarını nasıl koruyacağını ve kaybettiğin saygıyı nasıl geri alacağını netleştiriyoruz.</p>
-                </div>
-              </div>
-
-              <div className="flex items-start gap-3.5 p-3.5 rounded-xl bg-matte-850/80 border border-zinc-800 hover:border-gold-500/30 transition-colors">
-                <div className="p-2 rounded-lg bg-gold-500/10 text-gold-400 flex-shrink-0 mt-0.5">
-                  <CheckCircle2 className="w-4 h-4" />
-                </div>
-                <div>
-                  <h4 className="text-sm font-bold text-white">Kişiye Özel Aksiyon ve Mesajlaşma Stratejisi</h4>
-                  <p className="text-xs text-zinc-400 mt-0.5">Hangi durumda ne söyleyeceğini, ne zaman geri çekileceğini ve nasıl tavizsiz duracağını öğren.</p>
-                </div>
-              </div>
-
-              <div className="flex items-start gap-3.5 p-3.5 rounded-xl bg-matte-850/80 border border-zinc-800 hover:border-gold-500/30 transition-colors">
-                <div className="p-2 rounded-lg bg-gold-500/10 text-gold-400 flex-shrink-0 mt-0.5">
-                  <ShieldCheck className="w-4 h-4" />
-                </div>
-                <div>
-                  <h4 className="text-sm font-bold text-white">%100 Gizlilik & Tavizsiz Güvence</h4>
-                  <p className="text-xs text-zinc-400 mt-0.5">Konuşulan her konu ve paylaşılan tüm detaylar mutlak gizlilik prensibiyle korunur.</p>
-                </div>
-              </div>
+            {/* Bilgi çipleri */}
+            <div className="mt-7 flex flex-wrap gap-2.5">
+              {[
+                { icon: Clock, t: `${C.durationMin} dakika birebir` },
+                { icon: Video, t: "Google Meet veya WhatsApp" },
+                { icon: Headphones, t: "Sesli ya da görüntülü" },
+                { icon: Lock, t: "%100 gizlilik" },
+              ].map(({ icon: I, t }) => (
+                <span key={t} className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-3.5 py-2 text-xs font-semibold text-zinc-200 backdrop-blur">
+                  <I className="h-4 w-4 text-gold-400" /> {t}
+                </span>
+              ))}
             </div>
 
-            {/* İki Adet Buton */}
-            <div className="w-full flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-2">
-              {/* Ana Buton: Altın Sarısı, Vurucu */}
-              <ThemeButton
-                theme="kitap1"
-                variant="primary"
-                size="lg"
-                href="https://wa.me/905455207999?text=Merhaba,%20Özel%20Danışmanlık%20ve%20Koçluk%20Seansı%20almak%20istiyorum."
-                target="_blank"
-                rel="noopener noreferrer"
-                className="font-black"
-              >
-                <MessageCircle className="w-5 h-5 fill-black/15 text-black" />
-                <span>HEMEN SEANS AL</span>
-                <ArrowRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
-              </ThemeButton>
-
-              {/* İkincil Buton: Instagram İletişim / Sade & Şık */}
-              <ThemeButton
-                theme="kitap1"
-                variant="secondary"
-                size="lg"
-                href="https://www.instagram.com/maskulenitesitesi"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="normal-case tracking-normal gap-2.5"
-              >
-                <div className="w-5 h-5 rounded-md bg-gradient-to-tr from-amber-500 via-rose-500 to-purple-600 flex items-center justify-center text-white flex-shrink-0">
-                  <Instagram className="w-3.5 h-3.5" />
-                </div>
-                <span>Instagram ile İletişim / Sorunuz mu var?</span>
+            {/* Fiyat + CTA */}
+            <div className="mt-9 flex flex-col gap-5 sm:flex-row sm:items-center">
+              <div className="flex items-baseline gap-2">
+                <span className="font-cinzel text-5xl font-bold text-white [text-shadow:0_0_30px_rgba(212,175,55,0.4)] sm:text-6xl">{C.priceLabel}</span>
+                <span className="text-xl font-bold text-gold-400">{C.currency}</span>
+                <span className="ml-1 text-sm text-zinc-500">/ {C.durationMin} dk seans</span>
+              </div>
+              <ThemeButton theme="kitap1" variant="primary" size="lg" href={C.whatsappUrl} target="_blank" rel="noopener noreferrer" className="font-black">
+                <MessageCircle className="h-5 w-5" />
+                <span>Randevu Al</span>
+                <ArrowRight className="h-4 w-4" />
               </ThemeButton>
             </div>
-
-            {/* Mikro Güven İpuçları */}
-            <div className="flex flex-wrap items-center gap-6 mt-6 text-xs text-zinc-400">
-              <div className="flex items-center gap-1.5">
-                <Clock className="w-3.5 h-3.5 text-gold-400" />
-                <span>Haftalık Sınırlı 5 Seans Kontenjanı</span>
-              </div>
-              <div className="flex items-center gap-1.5">
-                <Calendar className="w-3.5 h-3.5 text-gold-400" />
-                <span>Size Uygun Güne Randevu</span>
-              </div>
-              <div className="flex items-center gap-1.5">
-                <Lock className="w-3.5 h-3.5 text-zinc-400" />
-                <span>Güvenli Ödeme</span>
-              </div>
-            </div>
-
+            <a
+              href={C.instagramUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-4 inline-flex items-center gap-2 text-sm text-zinc-400 transition-colors hover:text-gold-300"
+            >
+              <Instagram className="h-4 w-4" /> Önce sorun mu var? Instagram&apos;dan yaz
+            </a>
           </div>
 
-          {/* Sağ Kolon: Otoriter Profil Görseli Kartı */}
-          <div className="lg:col-span-5 flex flex-col items-center justify-center relative">
-            
-            {/* Arka Ambiyans */}
-            <div className="absolute w-72 h-72 sm:w-96 sm:h-96 bg-gold-500/15 rounded-full blur-3xl pointer-events-none" />
-
-            {/* Çerçeveli Görsel Kartı */}
-            <div className="relative group w-full max-w-md mx-auto">
-              <div className="relative rounded-3xl overflow-hidden border-2 border-gold-500/40 group-hover:border-gold-400 shadow-[0_20px_50px_rgba(0,0,0,0.8),0_0_30px_rgba(212,175,55,0.2)] transition-all duration-500 bg-matte-950">
-                <Image
-                  src="/insta_profile_800k.jpg"
-                  alt="Maskülenite Sitesi Özel Danışmanlık ve Koçluk"
-                  width={600}
-                  height={800}
-                  priority
-                  className="w-full h-auto object-cover block group-hover:scale-[1.02] transition-transform duration-500"
-                />
-
-                {/* Alt Kısım Şık Rozet & Otorite İmzası */}
-                <div className="absolute inset-x-0 bottom-0 p-5 bg-gradient-to-t from-black via-black/80 to-transparent">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <div className="text-white font-extrabold text-sm sm:text-base tracking-tight">
-                        Gürkan Özbinici
-                      </div>
-                      <div className="text-gold-400 text-xs font-mono font-semibold">
-                        @maskulenitesitesi • 800K+ Topluluk
-                      </div>
+          {/* Sağ: 3D portre kartı */}
+          <div className="relative lg:col-span-5 [perspective:1200px]">
+            <div className="pointer-events-none absolute left-1/2 top-1/2 h-[420px] w-[420px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-gold-500/20 blur-3xl" />
+            <div className="motion-safe:animate-[consSway_10s_ease-in-out_infinite] [transform-style:preserve-3d]">
+              <div
+                ref={cardRef}
+                onMouseMove={onMove}
+                onMouseLeave={onLeave}
+                className="group relative mx-auto max-w-md [--gx:50%] [--gy:0%] [--rx:0deg] [--ry:0deg] [transform:rotateX(var(--rx))_rotateY(var(--ry))] [transform-style:preserve-3d] transition-transform duration-300 ease-out"
+              >
+                <div className="relative overflow-hidden rounded-[28px] p-[2px] shadow-[0_50px_100px_-25px_rgba(0,0,0,0.95),0_0_60px_-10px_rgba(212,175,55,0.35)] [background:linear-gradient(135deg,#f5e2a8,#8c6200_35%,#2a1d08_55%,#d4af37)]">
+                  <div className="relative overflow-hidden rounded-[26px] bg-black">
+                    <Image
+                      src="/insta_profile_800k.jpg"
+                      alt="Gürkan Özbinici — birebir strateji seansı"
+                      width={1254}
+                      height={1254}
+                      priority
+                      className="h-auto w-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
+                    />
+                    <span className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100 [background:radial-gradient(500px_circle_at_var(--gx)_var(--gy),rgba(255,226,150,0.18),transparent_45%)]" />
+                    <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black via-black/85 to-transparent p-5 pt-16">
+                      <div className="font-cinzel text-lg font-bold text-white">Gürkan Özbinici</div>
+                      <div className="text-xs font-semibold text-gold-300">@maskulenitesitesi · 800K+ topluluk</div>
                     </div>
-                    <div className="px-2.5 py-1 rounded-full bg-gold-500/20 border border-gold-500/40 text-gold-300 text-[10px] font-bold uppercase tracking-wider">
-                      Resmi Mentörlük
+                  </div>
+                </div>
+
+                {/* Süzülen rozetler */}
+                <div className="absolute -left-4 top-8 [transform:translateZ(60px)] sm:-left-10">
+                  <div className="motion-safe:animate-[consFloat_6s_ease-in-out_infinite] rounded-2xl border border-gold-500/40 bg-black/80 px-4 py-3 shadow-2xl backdrop-blur-md">
+                    <div className="font-cinzel text-2xl font-bold leading-none text-gold-300">{C.durationMin} dk</div>
+                    <div className="mt-1 text-[10px] font-bold uppercase tracking-widest text-zinc-400">Birebir seans</div>
+                  </div>
+                </div>
+                <div className="absolute -right-3 top-1/2 [transform:translateZ(80px)] sm:-right-8">
+                  <div className="motion-safe:animate-[consFloat_7s_ease-in-out_infinite] rounded-2xl border border-emerald-500/40 bg-black/80 px-4 py-3 shadow-2xl backdrop-blur-md [animation-delay:-2s]">
+                    <div className="flex items-center gap-1.5 text-sm font-bold text-emerald-300">
+                      <ShieldCheck className="h-4 w-4" /> Gizlilik
                     </div>
+                    <div className="mt-0.5 text-[10px] font-bold uppercase tracking-widest text-zinc-400">Her şey aramızda</div>
+                  </div>
+                </div>
+                <div className="absolute -bottom-5 left-8 [transform:translateZ(50px)]">
+                  <div className="motion-safe:animate-[consFloat_8s_ease-in-out_infinite] flex items-center gap-2 rounded-full border border-white/15 bg-black/85 px-4 py-2 text-xs font-semibold text-zinc-200 shadow-2xl backdrop-blur-md [animation-delay:-4s]">
+                    <Video className="h-4 w-4 text-gold-400" /> Google Meet · WhatsApp
                   </div>
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
 
+      {/* ================= SEANS AKIŞI ================= */}
+      <section className="relative border-t border-white/5 py-20 sm:py-24">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+          <div className="mx-auto mb-12 max-w-2xl text-center">
+            <div className="mb-3 text-[11px] font-bold uppercase tracking-[0.25em] text-gold-400">{C.durationMin} dakikada neler oluyor?</div>
+            <h2 className="font-cinzel text-[clamp(1.7rem,4vw,2.6rem)] font-bold text-white">
+              Seansın <span className="gold-text-gradient">Akışı</span>
+            </h2>
+          </div>
+          <div className="relative">
+            <div className="pointer-events-none absolute left-[22px] top-2 bottom-2 w-px bg-gradient-to-b from-gold-400/70 via-gold-500/30 to-transparent md:left-0 md:right-0 md:top-[22px] md:bottom-auto md:h-px md:w-auto md:bg-gradient-to-r" />
+            <ol className="relative grid gap-8 md:grid-cols-4 md:gap-6">
+              {AGENDA.map((a) => (
+                <li key={a.min} className="relative flex gap-4 md:flex-col">
+                  <span className="relative z-10 flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-full border border-gold-400/60 bg-gradient-to-br from-gold-300 to-gold-700 text-black shadow-gold-glow">
+                    <a.icon className="h-5 w-5" />
+                  </span>
+                  <div className="rounded-2xl border border-white/10 bg-gradient-to-b from-white/[0.05] to-transparent p-5 transition-colors hover:border-gold-500/40">
+                    <div className="font-mono text-xs font-bold text-gold-400">{a.min}. dakika</div>
+                    <h3 className="mt-1 text-base font-bold text-white">{a.title}</h3>
+                    <p className="mt-1.5 text-sm leading-relaxed text-zinc-400">{a.text}</p>
+                  </div>
+                </li>
+              ))}
+            </ol>
+          </div>
+        </div>
+      </section>
+
+      {/* ================= FİYAT KARTI + RANDEVU ADIMLARI ================= */}
+      <section className="relative py-16 sm:py-20">
+        <div className="mx-auto grid max-w-6xl gap-8 px-4 sm:px-6 lg:grid-cols-5 lg:px-8">
+          {/* Fiyat kartı */}
+          <div className="relative overflow-hidden rounded-3xl border border-gold-500/40 bg-[radial-gradient(ellipse_at_top,rgba(212,175,55,0.18),transparent_60%),linear-gradient(180deg,#15100a,#080608)] p-7 shadow-[0_40px_90px_-30px_rgba(0,0,0,0.95),0_0_50px_-15px_rgba(212,175,55,0.45)] sm:p-9 lg:col-span-2">
+            <span className="pointer-events-none absolute inset-x-10 top-0 h-px bg-gradient-to-r from-transparent via-gold-300 to-transparent" />
+            <div className="inline-flex items-center gap-2 rounded-full bg-gold-400 px-3 py-1 text-[10px] font-black uppercase tracking-widest text-black">
+              <Crown className="h-3.5 w-3.5" /> VIP Seans
+            </div>
+            <h3 className="mt-4 font-cinzel text-2xl font-bold text-white">Birebir Strateji Seansı</h3>
+            <div className="mt-5 flex items-baseline gap-2">
+              <span className="font-cinzel text-6xl font-bold text-white">{C.priceLabel}</span>
+              <span className="text-2xl font-bold text-gold-400">{C.currency}</span>
+            </div>
+            <div className="mt-1 text-sm text-zinc-400">Tek seans · {C.durationMin} dakika</div>
+            <ul className="mt-6 space-y-3 text-sm text-zinc-200">
+              {[
+                `${C.durationMin} dakika kesintisiz birebir görüşme`,
+                "Google Meet veya WhatsApp üzerinden",
+                "Sesli ya da görüntülü, sen seç",
+                "Durumuna özel kriz ve güç dinamikleri analizi",
+                "Uygulanabilir, kişiye özel aksiyon planı",
+                "Konuşulan her şey %100 gizli kalır",
+              ].map((t) => (
+                <li key={t} className="flex items-start gap-3">
+                  <span className="mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full border border-gold-500/50 bg-gold-500/15 text-gold-300">
+                    <svg viewBox="0 0 12 12" className="h-3 w-3" aria-hidden><path d="M2.5 6.2 5 8.5 9.5 3.5" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" /></svg>
+                  </span>
+                  {t}
+                </li>
+              ))}
+            </ul>
+            <ThemeButton theme="kitap1" variant="primary" size="lg" fullWidth href={C.whatsappUrl} target="_blank" rel="noopener noreferrer" className="mt-8 font-black">
+              <MessageCircle className="h-5 w-5" />
+              <span>WhatsApp&apos;tan Randevu Al</span>
+            </ThemeButton>
+            <p className="mt-3 text-center text-xs text-zinc-500">Randevu saatini birlikte belirliyoruz.</p>
           </div>
 
+          {/* Adımlar */}
+          <div className="lg:col-span-3">
+            <div className="mb-6">
+              <div className="mb-2 text-[11px] font-bold uppercase tracking-[0.25em] text-gold-400">Kolay randevu</div>
+              <h2 className="font-cinzel text-[clamp(1.6rem,3.5vw,2.3rem)] font-bold text-white">
+                Nasıl <span className="gold-text-gradient">Randevu Alınır?</span>
+              </h2>
+            </div>
+            <ol className="space-y-4">
+              {STEPS.map((s, i) => (
+                <li key={s.title} className="group flex gap-4 rounded-2xl border border-white/10 bg-white/[0.03] p-5 transition-all hover:-translate-y-0.5 hover:border-gold-500/40 hover:bg-white/[0.05]">
+                  <span className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-gold-300 to-gold-600 font-black text-black">{i + 1}</span>
+                  <div>
+                    <div className="flex items-center gap-2 font-bold text-white">
+                      <s.icon className="h-4 w-4 text-gold-400" /> {s.title}
+                    </div>
+                    <p className="mt-1 text-sm text-zinc-400">{s.text}</p>
+                  </div>
+                </li>
+              ))}
+            </ol>
+          </div>
         </div>
-
-      </div>
-    </section>
+      </section>
+    </>
   );
 }

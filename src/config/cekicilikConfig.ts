@@ -252,3 +252,22 @@ export const KOLEKSIYON_SETI_CONFIG = {
   orderWhatsappUrl: buildWhatsAppUrl(SET_ORDER_MESSAGE),
   giftWhatsappUrl: buildWhatsAppUrl(hediyeMesaji("Koleksiyon Seti'ni (2 fiziksel kitap)")),
 } as const;
+
+/* ============================================================================
+ * 4. BİREBİR DANIŞMANLIK (VIP strateji seansı)
+ * ========================================================================== */
+const DANISMANLIK_MESAJ =
+  "Merhaba, 45 dakikalık birebir strateji seansı (2.500 TL) için randevu almak istiyorum." +
+  "\n\nTercih ettiğim platform (Google Meet / WhatsApp): " +
+  "\nUygun olduğum gün ve saatler: ";
+
+export const DANISMANLIK_CONFIG = {
+  price: 2500,
+  priceLabel: "2.500",
+  currency: "TL",
+  durationMin: 45,
+  platforms: ["Google Meet", "WhatsApp"],
+  formats: "Sesli veya görüntülü",
+  whatsappUrl: buildWhatsAppUrl(DANISMANLIK_MESAJ),
+  instagramUrl: INSTAGRAM_URL,
+} as const;
