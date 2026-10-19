@@ -290,12 +290,12 @@ export const DANISMANLIK_CONFIG = {
     /** Paketteki kalemlerin tek tek değeri (toplamı fiyattan düşükse sitede üstü çizili "değer" gösterilmez) */
     items: [
       { label: "4 birebir seans", value: 28000 },
-      { label: "4 hafta boyunca ulaşılabilir mesaj koçluğu", value: 14000 },
+      { label: "4 hafta boyunca ulaşılabilir mesaj koçluğu", value: 37700 },
       { label: "2 imzalı fiziksel kitap", value: 2000 },
       { label: "Acil kriz görüşmesi (15 dk)", value: 2300 },
     ],
-    totalValue: 46300,
-    totalValueLabel: "46.300",
+    totalValue: 70000,
+    totalValueLabel: "70.000",
     launchPrice: 20000,
     launchPriceLabel: "20.000",
     launchSlotsTotal: 3,
