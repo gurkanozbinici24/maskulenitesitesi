@@ -139,7 +139,7 @@ export default function ConsultationSection() {
                 📚 2 e-kitap <span className="text-gold-300">(1.200 TL değerinde)</span>
               </span>
               <span className="inline-flex items-center gap-1.5 rounded-full border border-emerald-500/40 bg-emerald-500/10 px-3 py-1.5 text-xs font-semibold text-emerald-100">
-                💬 1 hafta WhatsApp desteği <span className="text-emerald-300">(3.500 TL değerinde)</span>
+                💬 2 hafta WhatsApp desteği <span className="text-emerald-300">(7.000 TL değerinde)</span>
               </span>
             </div>
             <p className="mt-2 text-xs text-zinc-500">İlk seansında toplam {C.totalValueLabel} TL değerindeki paket, yalnızca {C.priceLabel} TL.</p>
@@ -280,9 +280,9 @@ export default function ConsultationSection() {
                 <div className="relative overflow-hidden rounded-2xl border border-emerald-500/40 bg-gradient-to-b from-emerald-500/15 to-black/40 p-4">
                   <span className="absolute right-2 top-2 rounded-full bg-emerald-400 px-2 py-0.5 text-[9px] font-black uppercase tracking-widest text-black">İlk seansa</span>
                   <MessageCircle className="h-5 w-5 text-emerald-400" />
-                  <div className="mt-2 font-cinzel text-2xl font-bold text-white">1 hafta</div>
+                  <div className="mt-2 font-cinzel text-2xl font-bold text-white">2 hafta</div>
                   <div className="text-[11px] uppercase tracking-wider text-zinc-400">WhatsApp desteği</div>
-                  <div className="mt-2 text-xs font-bold text-emerald-300">3.500 TL değerinde</div>
+                  <div className="mt-2 text-xs font-bold text-emerald-300">7.000 TL değerinde</div>
                   <div className="text-[10px] text-zinc-500">seansla ilgili soruların için</div>
                 </div>
               </div>
@@ -294,7 +294,7 @@ export default function ConsultationSection() {
                   "Uygulanabilir, kişiye özel aksiyon planı",
                   "Konuşulan her şey %100 gizli kalır",
                   "İlk seansına özel hediye: Vazgeçilmez Olma Sanatı ve Çekicilik Sanatı e-kitapları (1.200 TL değerinde)",
-                  "İlk seansına özel hediye: seansla ilgili soruların için 1 hafta WhatsApp desteği (3.500 TL değerinde)",
+                  "İlk seansına özel hediye: seansla ilgili soruların için 2 hafta WhatsApp desteği (7.000 TL değerinde)",
                 ].map((t) => (
                   <li key={t} className="flex items-start gap-3">
                     <Check />

@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   title: "İlişki Koçluğu ve İlişki Danışmanlığı – Gürkan Özbinici ile Birebir Seans",
   alternates: { canonical: "/danismanlik" },
   description:
-    "Gürkan Özbinici ile birebir ilişki koçluğu ve ilişki danışmanlığı: 45 dakikalık strateji seansı (7.000 TL, ilk seansa özel 2 e-kitap ve 1 hafta WhatsApp desteği hediye) ve VIP Mentörlük. Google Meet veya WhatsApp, başvuru ile.",
+    "Gürkan Özbinici ile birebir ilişki koçluğu ve ilişki danışmanlığı: 45 dakikalık strateji seansı (7.000 TL, ilk seansa özel 2 e-kitap ve 2 hafta WhatsApp desteği hediye) ve VIP Mentörlük. Google Meet veya WhatsApp, başvuru ile.",
   keywords: ["ilişki koçluğu", "ilişki danışmanlığı", "ilişki koçu", "online ilişki danışmanı", "gürkan özbinici danışmanlık", "maskülenite danışmanlık"],
 };
 
