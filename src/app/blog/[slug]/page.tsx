@@ -89,7 +89,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
             <div className="mb-4 text-[11px] font-semibold uppercase tracking-wider text-gold-400/80">
               {fmt(p.date)} · {p.readMin} dk okuma
             </div>
-            <h1 className="font-cinzel text-[clamp(1.8rem,4.6vw,2.9rem)] font-bold leading-[1.15] text-white">{p.title}</h1>
+            <h1 className="font-cinzel text-[clamp(1.8rem,4.6vw,2.9rem)] font-bold leading-[1.15] text-white">{p.title.toLocaleUpperCase("tr-TR")}</h1>
             <div className="mt-6 flex items-center gap-3">
               <Image src="/insta_profile_800k.jpg" alt="Gürkan Özbinici" width={44} height={44} className="rounded-full border border-gold-500/50" />
               <div>
@@ -109,7 +109,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
           <aside className="relative mt-16 overflow-hidden rounded-3xl border border-gold-500/40 bg-[linear-gradient(135deg,rgba(212,175,55,0.14),rgba(10,8,6,0.9)_55%)] p-7 sm:p-9">
             <span className="pointer-events-none absolute inset-x-10 top-0 h-px bg-gradient-to-r from-transparent via-gold-300/80 to-transparent" />
             <div className="text-[11px] font-bold uppercase tracking-[0.25em] text-gold-400">Kitapta devamı var</div>
-            <div className="mt-2 font-cinzel text-2xl font-bold text-white">{cta.title}</div>
+            <div className="mt-2 font-cinzel text-2xl font-bold text-white">{cta.title.toLocaleUpperCase("tr-TR")}</div>
             <p className="mt-2 text-sm text-zinc-300 sm:text-base">{cta.text}</p>
             <Link
               href={cta.href}

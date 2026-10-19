@@ -208,7 +208,7 @@ O yüzden şunları öneriyorum:
     date: "2026-10-19",
     readMin: 5,
     book: "vazgecilmez",
-    cover: "/vazgecilmez-sayfa3.jpg",
+    cover: "/kapak.jpg",
     keywords: ["iyi çocuk sendromu", "ilişkide değer görmemek", "ilişkide sınır koymak", "maskülenlik", "ilişki tavsiyeleri"],
     body: `Bize küçüklükten beri aynı şey söylendi: "Kadınlara her zaman iyi davran, alttan al, her dediğini yap; gün gelir değerini anlarlar."
 

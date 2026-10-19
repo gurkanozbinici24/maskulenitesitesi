@@ -53,7 +53,7 @@ export default function BlogBody({ body }: { body: string }) {
               if (l.startsWith("## ")) {
                 return (
                   <h2 key={li} className="!mt-12 font-cinzel text-[clamp(1.35rem,3vw,1.8rem)] font-bold leading-snug text-white">
-                    {l.slice(3)}
+                    {l.slice(3).toLocaleUpperCase("tr-TR")}
                   </h2>
                 );
               }
