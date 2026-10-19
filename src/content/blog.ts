@@ -40,7 +40,7 @@ export const POSTS: BlogPost[] = [
     date: "2026-10-19",
     readMin: 6,
     book: "vazgecilmez",
-    cover: "/blog/vazgecilmez-olma-sanati-kitabi.jpg",
+    cover: "/vazgecilmez-yeni-kapak.jpg",
     keywords: ["vazgeçilmez olma sanatı", "vazgeçilmez olma sanatı kitabı", "gürkan özbinici kitap", "erkekler için ilişki kitabı", "maskülenlik"],
     body: `**Vazgeçilmez Olma Sanatı**, ilişkilerde sürekli kendini kanıtlamaya çalışan, alttan alan, taviz verdikçe değersizleşen erkekler için yazdığım bir kitap. Bir tavsiye kitabı değil; ilişkilerin arkasında işleyen güç dinamiklerini, çekim yasalarını ve saygının nasıl kazanıldığını açık açık anlatan bir yol haritası.
 
@@ -156,7 +156,7 @@ Kitabın ilk sayfalarını çıkıştan önce sitede paylaştım. "Kadın", "İs
     date: "2026-10-19",
     readMin: 4,
     book: "ikisi",
-    cover: "/blog/hangi-kitap-sana-gore.jpg",
+    cover: "/og-paylasim.jpg",
     keywords: ["vazgeçilmez olma sanatı", "çekicilik sanatı", "gürkan özbinici kitapları", "ilişki kitapları", "hangi kitap"],
     body: `Bana en çok gelen sorulardan biri: "Hangi kitabı okumalıyım?" Kısa cevap şu: **Vazgeçilmez Olma Sanatı erkekler için, Çekicilik Sanatı kadınlar için yazıldı.** Ama işin aslı biraz daha ilginç, çünkü iki kitap aynı ilişki dinamiklerini iki farklı taraftan anlatıyor.
 
