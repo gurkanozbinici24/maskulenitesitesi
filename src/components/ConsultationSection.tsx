@@ -134,7 +134,7 @@ export default function ConsultationSection() {
             </div>
             <div className="mt-4 flex flex-wrap items-center gap-2">
               <span className="inline-flex items-center gap-1.5 rounded-full bg-gold-400 px-3 py-1.5 text-[11px] font-black uppercase tracking-wider text-black">
-                <Gift className="h-3.5 w-3.5" /> Seansla birlikte hediye
+                <Gift className="h-3.5 w-3.5" /> İlk seansına özel hediye
               </span>
               <span className="inline-flex items-center gap-1.5 rounded-full border border-gold-500/40 bg-gold-500/10 px-3 py-1.5 text-xs font-semibold text-gold-100">
                 📚 2 e-kitap <span className="text-gold-300">(1.200 TL değerinde)</span>
@@ -143,7 +143,7 @@ export default function ConsultationSection() {
                 💬 1 hafta WhatsApp desteği <span className="text-emerald-300">(3.500 TL değerinde)</span>
               </span>
             </div>
-            <p className="mt-2 text-xs text-zinc-500">Toplam {C.totalValueLabel} TL değerindeki paket, yalnızca {C.priceLabel} TL.</p>
+            <p className="mt-2 text-xs text-zinc-500">İlk seansında toplam {C.totalValueLabel} TL değerindeki paket, yalnızca {C.priceLabel} TL.</p>
             <a href="#paketler" className="mt-4 inline-flex items-center gap-2 rounded-full border border-gold-500/30 bg-gold-500/5 px-4 py-2 text-xs font-semibold text-gold-200 transition-colors hover:bg-gold-500/10">
               <Crown className="h-4 w-4 text-gold-400" /> {C.vip.name}: ayda {C.vip.sessionsPerMonth} seans + 7/24 canlı mesaj koçluğu · {C.vip.priceLabel} TL / {C.vip.period}
             </a>
@@ -269,21 +269,22 @@ export default function ConsultationSection() {
                 <span className="text-xl font-bold text-gold-400">{C.currency}</span>
                 <span className="text-sm text-zinc-500">/ {C.durationMin} dk</span>
               </div>
-              <div className="mt-1 text-xs font-semibold text-gold-300">Toplam {C.totalValueLabel} TL değerinde paket</div>
+              <div className="mt-1 text-xs font-semibold text-gold-300">İlk seansına özel: toplam {C.totalValueLabel} TL değerinde paket</div>
               <div className="mt-5 grid grid-cols-2 gap-3">
                 <div className="relative overflow-hidden rounded-2xl border border-gold-500/40 bg-gradient-to-b from-gold-500/15 to-black/40 p-4">
-                  <span className="absolute right-2 top-2 rounded-full bg-gold-400 px-2 py-0.5 text-[9px] font-black uppercase tracking-widest text-black">Hediye</span>
+                  <span className="absolute right-2 top-2 rounded-full bg-gold-400 px-2 py-0.5 text-[9px] font-black uppercase tracking-widest text-black">İlk seansa</span>
                   <Gift className="h-5 w-5 text-gold-400" />
                   <div className="mt-2 font-cinzel text-2xl font-bold text-white">2 e-kitap</div>
                   <div className="text-[11px] uppercase tracking-wider text-zinc-400">iki kitabın dijital sürümü</div>
                   <div className="mt-2 text-xs font-bold text-gold-300">1.200 TL değerinde</div>
                 </div>
                 <div className="relative overflow-hidden rounded-2xl border border-emerald-500/40 bg-gradient-to-b from-emerald-500/15 to-black/40 p-4">
-                  <span className="absolute right-2 top-2 rounded-full bg-emerald-400 px-2 py-0.5 text-[9px] font-black uppercase tracking-widest text-black">Hediye</span>
+                  <span className="absolute right-2 top-2 rounded-full bg-emerald-400 px-2 py-0.5 text-[9px] font-black uppercase tracking-widest text-black">İlk seansa</span>
                   <MessageCircle className="h-5 w-5 text-emerald-400" />
                   <div className="mt-2 font-cinzel text-2xl font-bold text-white">1 hafta</div>
                   <div className="text-[11px] uppercase tracking-wider text-zinc-400">WhatsApp desteği</div>
                   <div className="mt-2 text-xs font-bold text-emerald-300">3.500 TL değerinde</div>
+                  <div className="text-[10px] text-zinc-500">seansla ilgili soruların için</div>
                 </div>
               </div>
               <ul className="mb-8 mt-6 space-y-3 text-sm text-zinc-200">
@@ -293,8 +294,8 @@ export default function ConsultationSection() {
                   "Durumuna özel kriz ve güç dinamikleri analizi",
                   "Uygulanabilir, kişiye özel aksiyon planı",
                   "Konuşulan her şey %100 gizli kalır",
-                  "Hediye: Vazgeçilmez Olma Sanatı ve Çekicilik Sanatı e-kitapları (1.200 TL değerinde)",
-                  "Hediye: Seans sonrası 1 hafta WhatsApp desteği (3.500 TL değerinde)",
+                  "İlk seansına özel hediye: Vazgeçilmez Olma Sanatı ve Çekicilik Sanatı e-kitapları (1.200 TL değerinde)",
+                  "İlk seansına özel hediye: seansla ilgili soruların için 1 hafta WhatsApp desteği (3.500 TL değerinde)",
                 ].map((t) => (
                   <li key={t} className="flex items-start gap-3">
                     <Check />
@@ -330,6 +331,11 @@ export default function ConsultationSection() {
                   <span className="text-xl font-bold text-gold-400">{C.currency}</span>
                   <span className="text-sm text-zinc-400">/ {C.vip.period}</span>
                 </div>
+                <p className="mt-2 rounded-xl border border-gold-500/20 bg-black/30 px-3 py-2 text-xs leading-relaxed text-zinc-300">
+                  Tek tek alsan: 4 seans <span className="text-white">(14.000 TL)</span> + 4 hafta mesaj koçluğu{" "}
+                  <span className="text-white">(14.000 TL)</span> + acil kriz görüşmesi + imzalı kitaplar.{" "}
+                  <span className="font-semibold text-gold-300">Hepsi tek pakette, aylık {C.vip.priceLabel} TL.</span>
+                </p>
                 <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-3">
                   <div className="rounded-2xl border border-gold-500/30 bg-black/40 p-4">
                     <Users className="h-5 w-5 text-gold-400" />
