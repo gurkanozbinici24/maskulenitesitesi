@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useRef } from "react";
+import { Fragment, useCallback, useRef } from "react";
 import Image from "next/image";
 import {
   ArrowRight,
@@ -23,7 +23,7 @@ import {
   Zap,
 } from "lucide-react";
 import { ThemeButton } from "./ui/ThemeSystem";
-import { DANISMANLIK_CONFIG as C, VIP_LAUNCH_ACTIVE, VIP_PRICE_LABEL } from "@/config/cekicilikConfig";
+import { DANISMANLIK_CONFIG as C, VIP_LAUNCH_ACTIVE, VIP_PRICE_LABEL, VIP_SHOW_VALUE } from "@/config/cekicilikConfig";
 
 /**
  * Özel Danışmanlık (VIP) sayfası — premium yeniden tasarım.
@@ -327,10 +327,12 @@ export default function ConsultationSection() {
                 <h3 className="mt-3 font-cinzel text-3xl font-bold text-white">{C.vip.name}</h3>
                 <p className="mt-2 text-sm text-zinc-300">Süreç boyunca yanında olduğum, birebir ve sürekli bir yol arkadaşlığı.</p>
                 <div className="mt-6 flex items-baseline gap-2">
-                  <span className="relative mr-1 font-cinzel text-2xl font-bold text-zinc-500">
-                    {C.vip.totalValueLabel}
-                    <span className="absolute left-[-6%] top-1/2 h-[2px] w-[112%] -rotate-6 bg-crimson-500" />
-                  </span>
+                  {VIP_SHOW_VALUE && (
+                    <span className="relative mr-1 font-cinzel text-2xl font-bold text-zinc-500">
+                      {C.vip.totalValueLabel}
+                      <span className="absolute left-[-6%] top-1/2 h-[2px] w-[112%] -rotate-6 bg-crimson-500" />
+                    </span>
+                  )}
                   <span className="font-cinzel text-5xl font-bold text-white [text-shadow:0_0_30px_rgba(212,175,55,0.5)] sm:text-6xl">{VIP_PRICE_LABEL}</span>
                   <span className="text-xl font-bold text-gold-400">{C.currency}</span>
                   <span className="text-sm text-zinc-400">/ {C.vip.period}</span>
@@ -346,12 +348,16 @@ export default function ConsultationSection() {
                   </div>
                 )}
                 <div className="mt-3 rounded-xl border border-gold-500/30 bg-black/40 px-4 py-3">
-                  <div className="font-cinzel text-sm font-bold text-gold-200">Toplam {C.vip.totalValueLabel} TL değerinde paket</div>
+                  <div className="font-cinzel text-sm font-bold text-gold-200">
+                    {VIP_SHOW_VALUE ? `Toplam ${C.vip.totalValueLabel} TL değerinde paket` : "Pakete dahil olanlar"}
+                  </div>
                   <div className="mt-1.5 grid grid-cols-[1fr_auto] gap-x-4 gap-y-0.5 text-xs text-zinc-400">
-                    <span>4 birebir seans</span><span className="text-right text-zinc-200">14.000 TL</span>
-                    <span>4 hafta 7/24 mesaj koçluğu</span><span className="text-right text-zinc-200">14.000 TL</span>
-                    <span>2 imzalı fiziksel kitap</span><span className="text-right text-zinc-200">2.000 TL</span>
-                    <span>Acil kriz görüşmesi (15 dk)</span><span className="text-right text-zinc-200">1.200 TL</span>
+                    {C.vip.items.map((it) => (
+                      <Fragment key={it.label}>
+                        <span>{it.label}</span>
+                        <span className="text-right text-zinc-200">{it.value.toLocaleString("tr-TR")} TL</span>
+                      </Fragment>
+                    ))}
                     <span>Seans sonrası aksiyon planları</span><span className="text-right text-zinc-200">dahil</span>
                   </div>
                   <div className="mt-2 border-t border-gold-500/20 pt-2 text-xs font-semibold text-gold-300">

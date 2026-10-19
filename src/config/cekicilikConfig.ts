@@ -257,16 +257,16 @@ export const KOLEKSIYON_SETI_CONFIG = {
  * 4. BİREBİR DANIŞMANLIK (VIP strateji seansı)
  * ========================================================================== */
 const DANISMANLIK_MESAJ =
-  "Merhaba, 45 dakikalık birebir strateji seansı (3.500 TL) için randevu almak istiyorum." +
+  "Merhaba, 45 dakikalık birebir strateji seansı (6.500 TL) için randevu almak istiyorum." +
   "\n\nTercih ettiğim platform (Google Meet / WhatsApp): " +
   "\nUygun olduğum gün ve saatler: ";
 
 export const DANISMANLIK_CONFIG = {
-  price: 3500,
-  priceLabel: "3.500",
+  price: 6500,
+  priceLabel: "6.500",
   currency: "TL",
-  /** Seans + hediyelerin toplam değeri (3.500 seans + 1.200 e-kitap + 3.500 WhatsApp desteği) */
-  totalValueLabel: "8.200",
+  /** Seans + hediyelerin toplam değeri (6.500 seans + 1.200 e-kitap + 3.500 WhatsApp desteği) */
+  totalValueLabel: "11.200",
   gifts: [
     { label: "2 e-kitap", value: "1.200" },
     { label: "1 hafta WhatsApp desteği", value: "3.500" },
@@ -279,20 +279,27 @@ export const DANISMANLIK_CONFIG = {
   /** VIP Mentörlük (aylık) */
   vip: {
     name: "VIP Mentörlük",
-    price: 30000,
-    priceLabel: "30.000",
+    price: 45000,
+    priceLabel: "45.000",
     period: "ay",
     sessionsPerMonth: 4,
     /**
      * LANSMAN FİYATI: ilk 3 VIP danışana özel.
-     * Her VIP satışında launchSlotsLeft'i 1 azaltın; 0 olunca site otomatik olarak liste fiyatına (30.000) döner.
+     * Her VIP satışında launchSlotsLeft'i 1 azaltın; 0 olunca site otomatik olarak liste fiyatına (priceLabel) döner.
      */
-    /** Paket değeri: 4 seans 14.000 + 4 hafta mesaj koçluğu 14.000 + 2 imzalı fiziksel kitap 2.000 + 15 dk kriz görüşmesi 1.200 */
-    totalValueLabel: "31.200",
+    /** Paketteki kalemlerin tek tek değeri (toplamı fiyattan düşükse sitede üstü çizili "değer" gösterilmez) */
+    items: [
+      { label: "4 birebir seans", value: 26000 },
+      { label: "4 hafta 7/24 mesaj koçluğu", value: 14000 },
+      { label: "2 imzalı fiziksel kitap", value: 2000 },
+      { label: "Acil kriz görüşmesi (15 dk)", value: 2200 },
+    ],
+    totalValue: 44200,
+    totalValueLabel: "44.200",
     launchPrice: 20000,
     launchPriceLabel: "20.000",
     launchSlotsTotal: 3,
-    launchSlotsLeft: 3,
+    launchSlotsLeft: 0,
     monthlySlots: 5,
     supportNote: "24:00'ten sonra yazılan mesajlar ertesi gün cevaplanır.",
   },
@@ -302,6 +309,10 @@ export const DANISMANLIK_CONFIG = {
 
 /** VIP için şu an geçerli fiyat (lansman kontenjanı varsa lansman fiyatı) */
 export const VIP_LAUNCH_ACTIVE = DANISMANLIK_CONFIG.vip.launchSlotsLeft > 0;
+/** Paket değeri fiyattan yüksekse üstü çizili değer gösterilir */
+export const VIP_SHOW_VALUE =
+  DANISMANLIK_CONFIG.vip.totalValue >
+  (VIP_LAUNCH_ACTIVE ? DANISMANLIK_CONFIG.vip.launchPrice : DANISMANLIK_CONFIG.vip.price);
 export const VIP_PRICE_LABEL = VIP_LAUNCH_ACTIVE
   ? DANISMANLIK_CONFIG.vip.launchPriceLabel
   : DANISMANLIK_CONFIG.vip.priceLabel;
