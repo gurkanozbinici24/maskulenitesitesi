@@ -265,6 +265,12 @@ export const DANISMANLIK_CONFIG = {
   price: 3500,
   priceLabel: "3.500",
   currency: "TL",
+  /** Seans + hediyelerin toplam değeri (3.500 seans + 1.200 e-kitap + 3.500 WhatsApp desteği) */
+  totalValueLabel: "8.200",
+  gifts: [
+    { label: "2 e-kitap", value: "1.200" },
+    { label: "1 hafta WhatsApp desteği", value: "3.500" },
+  ],
   durationMin: 45,
   platforms: ["Google Meet", "WhatsApp"],
   formats: "Sesli veya görüntülü",
