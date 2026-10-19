@@ -128,7 +128,7 @@ export default function ConsultationSection() {
               </ThemeButton>
             </div>
             <a href="#paketler" className="mt-4 inline-flex items-center gap-2 rounded-full border border-gold-500/30 bg-gold-500/5 px-4 py-2 text-xs font-semibold text-gold-200 transition-colors hover:bg-gold-500/10">
-              <Crown className="h-4 w-4 text-gold-400" /> {C.vip.name}: ayda {C.vip.sessionsPerMonth} seans + 7/24 WhatsApp desteği · {C.vip.priceLabel} TL / {C.vip.period}
+              <Crown className="h-4 w-4 text-gold-400" /> {C.vip.name}: ayda {C.vip.sessionsPerMonth} seans + 7/24 canlı mesaj koçluğu · {C.vip.priceLabel} TL / {C.vip.period}
             </a>
             <a
               href={C.instagramUrl}
@@ -299,22 +299,30 @@ export default function ConsultationSection() {
                   <div className="rounded-2xl border border-emerald-500/30 bg-black/40 p-4">
                     <InfinityIcon className="h-5 w-5 text-emerald-400" />
                     <div className="mt-2 font-cinzel text-2xl font-bold text-white">7/24</div>
-                    <div className="text-[11px] uppercase tracking-wider text-zinc-400">WhatsApp desteği</div>
+                    <div className="text-[11px] uppercase tracking-wider text-zinc-400">Canlı mesaj koçluğu</div>
                   </div>
                 </div>
-                <ul className="mt-6 space-y-3 text-sm text-zinc-100">
+                <ul className="mt-6 space-y-3.5 text-sm text-zinc-100">
                   {[
-                    `Her ay ${C.vip.sessionsPerMonth} birebir seans (Google Meet veya WhatsApp)`,
-                    "7/24 WhatsApp üzerinden doğrudan destek",
-                    "Seanslar arasında kriz anlarında yalnız kalmazsın",
-                    "Konuşulan her şey %100 gizli kalır",
-                  ].map((t) => (
+                    { t: `Her ay ${C.vip.sessionsPerMonth} birebir seans`, d: "Google Meet veya WhatsApp, sesli ya da görüntülü." },
+                    { t: "7/24 Canlı Mesaj Koçluğu", d: `Karşı tarafla yazışmanın ekran görüntüsünü at; ne cevap vereceğini, ne zaman susacağını birlikte belirleyelim. ${C.vip.supportNote}` },
+                    { t: "Her seans sonrası yazılı aksiyon planı", d: "Konuştuklarımızın özeti ve atacağın adımlar elinde kalır." },
+                    { t: "Ayda 1 acil kriz görüşmesi", d: "Plan dışı, 15 dakikalık hızlı bir arama hakkı." },
+                    { t: "Hoş geldin hediyesi", d: "İki kitap da isminize özel imzalı olarak kapınıza gelir." },
+                    { t: "%100 gizlilik", d: "Konuşulan her şey aramızda kalır." },
+                  ].map(({ t, d }) => (
                     <li key={t} className="flex items-start gap-3">
                       <Check gold />
-                      {t}
+                      <span>
+                        <span className="font-semibold text-white">{t}</span>
+                        <span className="block text-xs leading-relaxed text-zinc-400">{d}</span>
+                      </span>
                     </li>
                   ))}
                 </ul>
+                <div className="mt-6 flex items-center justify-center gap-2 rounded-xl border border-gold-500/30 bg-gold-500/5 px-4 py-2.5 text-xs font-semibold text-gold-200">
+                  <Users className="h-4 w-4 text-gold-400" /> Her ay en fazla {C.vip.monthlySlots} kişiyle çalışıyorum
+                </div>
                 <ThemeButton theme="kitap1" variant="primary" size="lg" fullWidth href="#basvuru" className="mt-8 font-black">
                   <Crown className="h-5 w-5" />
                   <span>VIP Mentörlüğe başvur</span>

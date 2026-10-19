@@ -277,6 +277,9 @@ export const DANISMANLIK_CONFIG = {
     priceLabel: "30.000",
     period: "ay",
     sessionsPerMonth: 4,
+    /** Gerçek kontenjan: ayda en fazla kaç VIP danışan */
+    monthlySlots: 5,
+    supportNote: "24:00'ten sonra yazılan mesajlar ertesi gün cevaplanır.",
   },
   /** Başvurunun gönderileceği WhatsApp hattı */
   phone: WHATSAPP_PHONE,

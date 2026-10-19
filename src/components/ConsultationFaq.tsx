@@ -16,7 +16,7 @@ const FAQS = [
   },
   {
     q: "VIP Mentörlük nasıl işliyor?",
-    a: `Her ay ${C.vip.sessionsPerMonth} birebir seans yapıyoruz; seanslar arasında da 7/24 WhatsApp üzerinden doğrudan bana ulaşabiliyorsun. Ücret aylıktır.`,
+    a: `Her ay ${C.vip.sessionsPerMonth} birebir seans yapıyoruz. Seanslar arasında 7/24 WhatsApp'tan yazabiliyorsun (${C.vip.supportNote.toLocaleLowerCase("tr")}). Her seanstan sonra yazılı aksiyon planı alıyorsun, ayda bir 15 dakikalık acil kriz görüşmesi hakkın var ve iki kitap isminize imzalı olarak hediye gönderiliyor. Ücret aylıktır; her ay en fazla ${C.vip.monthlySlots} kişiyle çalışıyorum.`,
   },
   {
     q: "Neden başvuru ile çalışıyorsunuz?",
