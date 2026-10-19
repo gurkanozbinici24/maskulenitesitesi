@@ -14,7 +14,6 @@ import {
   Lock,
   MessageCircle,
   Send,
-  Infinity as InfinityIcon,
   Users,
   ShieldCheck,
   Sparkles,
@@ -145,7 +144,7 @@ export default function ConsultationSection() {
             </div>
             <p className="mt-2 text-xs text-zinc-500">İlk seansında toplam {C.totalValueLabel} TL değerindeki paket, yalnızca {C.priceLabel} TL.</p>
             <a href="#paketler" className="mt-4 inline-flex items-center gap-2 rounded-full border border-gold-500/30 bg-gold-500/5 px-4 py-2 text-xs font-semibold text-gold-200 transition-colors hover:bg-gold-500/10">
-              <Crown className="h-4 w-4 text-gold-400" /> {C.vip.name}: ayda {C.vip.sessionsPerMonth} seans + 7/24 canlı mesaj koçluğu · {VIP_PRICE_LABEL} TL / {C.vip.period}{VIP_LAUNCH_ACTIVE && " (lansman fiyatı)"}
+              <Crown className="h-4 w-4 text-gold-400" /> {C.vip.name}: ayda {C.vip.sessionsPerMonth} seans + 4 hafta boyunca ulaşılabilir mesaj koçluğu · {VIP_PRICE_LABEL} TL / {C.vip.period}{VIP_LAUNCH_ACTIVE && " (lansman fiyatı)"}
             </a>
             <a
               href={C.instagramUrl}
@@ -371,9 +370,9 @@ export default function ConsultationSection() {
                     <div className="text-[11px] uppercase tracking-wider text-zinc-400">her ay, birebir</div>
                   </div>
                   <div className="rounded-2xl border border-emerald-500/30 bg-black/40 p-4">
-                    <InfinityIcon className="h-5 w-5 text-emerald-400" />
-                    <div className="mt-2 font-cinzel text-2xl font-bold text-white">7/24</div>
-                    <div className="text-[11px] uppercase tracking-wider text-zinc-400">Canlı mesaj koçluğu</div>
+                    <MessageCircle className="h-5 w-5 text-emerald-400" />
+                    <div className="mt-2 font-cinzel text-2xl font-bold text-white">4 hafta</div>
+                    <div className="text-[11px] uppercase tracking-wider text-zinc-400">Ulaşılabilir mesaj koçluğu</div>
                   </div>
                   <div className="relative col-span-2 overflow-hidden rounded-2xl border border-gold-400/60 bg-gradient-to-b from-gold-500/20 to-black/40 p-4 sm:col-span-1">
                     <span className="absolute right-2 top-2 rounded-full bg-gold-400 px-2 py-0.5 text-[9px] font-black uppercase tracking-widest text-black">Hediye</span>
@@ -385,7 +384,7 @@ export default function ConsultationSection() {
                 <ul className="mt-6 space-y-3.5 text-sm text-zinc-100">
                   {[
                     { t: `Her ay ${C.vip.sessionsPerMonth} birebir seans`, d: "Google Meet veya WhatsApp, sesli ya da görüntülü." },
-                    { t: "7/24 Canlı Mesaj Koçluğu", d: `Karşı tarafla yazışmanın ekran görüntüsünü at; ne cevap vereceğini, ne zaman susacağını birlikte belirleyelim. ${C.vip.supportNote}` },
+                    { t: "4 Hafta Boyunca Ulaşılabilir Mesaj Koçluğu", d: `Karşı tarafla yazışmanın ekran görüntüsünü at; ne cevap vereceğini, ne zaman susacağını birlikte belirleyelim. ${C.vip.supportNote}` },
                     { t: "Her seans sonrası yazılı aksiyon planı", d: "Konuştuklarımızın özeti ve atacağın adımlar elinde kalır." },
                     { t: "Ayda 1 acil kriz görüşmesi", d: "Plan dışı, 15 dakikalık hızlı bir arama hakkı." },
                     { t: "Hoş geldin hediyesi", d: "İki kitap da ismine özel imzalı olarak kapına gelir." },
