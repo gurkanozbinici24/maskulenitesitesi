@@ -16,6 +16,10 @@ import ozdegerNedir from "./posts/ozdeger-nedir";
 import simpNeDemek from "./posts/simp-ne-demek";
 import kadinlaraCekiciGelenErkekOzellikleri from "./posts/kadinlara-cekici-gelen-erkek-ozellikleri";
 import guvensizlikIsaretleri from "./posts/guvensizlik-isaretleri";
+import ilkBulusmadanSonraIlkMesaj from "./posts/ilk-bulusmadan-sonra-ilk-mesaj";
+import mesajlasmaHatalari from "./posts/mesajlasma-hatalari";
+import baglanmaStilleri from "./posts/baglanma-stilleri";
+import limeransSaplantiliAsk from "./posts/limerans-saplantili-ask";
 import iyiCocukSendromu from "./posts/iyi-cocuk-sendromu";
 import hangiKitapSanaGore from "./posts/hangi-kitap-sana-gore";
 import vazgecilmezOlmaSanatiKitabi from "./posts/vazgecilmez-olma-sanati-kitabi";
@@ -40,6 +44,10 @@ export const POSTS: BlogPost[] = [
   simpNeDemek,
   kadinlaraCekiciGelenErkekOzellikleri,
   guvensizlikIsaretleri,
+  ilkBulusmadanSonraIlkMesaj,
+  mesajlasmaHatalari,
+  baglanmaStilleri,
+  limeransSaplantiliAsk,
   iyiCocukSendromu,
   hangiKitapSanaGore,
   vazgecilmezOlmaSanatiKitabi,
