@@ -17,12 +17,19 @@ export default function ConsultationApply() {
   const [durum, setDurum] = useState("");
   const [platform, setPlatform] = useState("Google Meet");
   const [zaman, setZaman] = useState("");
+  const [denenen, setDenenen] = useState("");
+  const [hedef, setHedef] = useState("");
+  const [hazirlik, setHazirlik] = useState("");
   const [hata, setHata] = useState("");
 
   const gonder = (e: React.FormEvent) => {
     e.preventDefault();
     if (!ad.trim() || durum.trim().length < 20) {
       setHata("Lütfen adını ve durumunu en az birkaç cümleyle yaz.");
+      return;
+    }
+    if (denenen.trim().length < 10 || hedef.trim().length < 10 || !hazirlik) {
+      setHata("Lütfen eleme sorularının üçünü de cevapla; başvurular bu cevaplara göre değerlendiriliyor.");
       return;
     }
     setHata("");
@@ -41,6 +48,14 @@ export default function ConsultationApply() {
       "",
       "Durumum:",
       durum.trim(),
+      "",
+      "Bugüne kadar denediklerim:",
+      denenen.trim(),
+      "",
+      "Bu süreçten sonra nerede olmak istiyorum:",
+      hedef.trim(),
+      "",
+      `Uygulamaya hazırlığım: ${hazirlik}`,
     ]
       .filter((l, i, a) => !(l === "" && a[i - 1] === ""))
       .join("\n");
@@ -60,8 +75,9 @@ export default function ConsultationApply() {
             Başvurunu <span className="gold-text-gradient">Gönder</span>
           </h2>
           <p className="mx-auto mt-3 max-w-xl text-sm text-zinc-400 sm:text-base">
-            Her başvuruyu tek tek okuyorum. Durumunu kısaca anlat; uygun gördüğüm başvurulara WhatsApp&apos;tan dönüş yapıp
-            randevunu birlikte belirliyoruz.
+            Her başvuruyu tek tek okuyorum ve <span className="font-semibold text-white">her başvuru kabul edilmez</span>. Her ay
+            sınırlı sayıda danışanla çalışıyorum; uygun gördüğüm başvurulara WhatsApp&apos;tan dönüş yapıp randevunu birlikte
+            belirliyoruz.
           </p>
         </div>
 
@@ -124,7 +140,49 @@ export default function ConsultationApply() {
             <span className="mt-1 block text-right text-[10px] text-zinc-500">{durum.length}/900</span>
           </label>
 
-          <div className="mt-2 grid gap-4 sm:grid-cols-2">
+          <div className="mt-4 rounded-2xl border border-gold-500/25 bg-gold-500/[0.04] p-4 sm:p-5">
+            <div className="mb-3 text-[11px] font-bold uppercase tracking-[0.2em] text-gold-300">Değerlendirme soruları</div>
+            <label className="block">
+              <span className="mb-1.5 block text-xs font-semibold text-zinc-300">Bugüne kadar bu durum için neler denedin? *</span>
+              <textarea
+                className={`${input} min-h-[80px] resize-y`}
+                value={denenen}
+                onChange={(e) => setDenenen(e.target.value)}
+                placeholder="Konuşmak, uzaklaşmak, kitap okumak, başka birinden destek almak..."
+                maxLength={400}
+              />
+            </label>
+            <label className="mt-4 block">
+              <span className="mb-1.5 block text-xs font-semibold text-zinc-300">Bu süreçten sonra nerede olmak istiyorsun? *</span>
+              <textarea
+                className={`${input} min-h-[80px] resize-y`}
+                value={hedef}
+                onChange={(e) => setHedef(e.target.value)}
+                placeholder="Somut olarak neyin değişmesini istiyorsun?"
+                maxLength={400}
+              />
+            </label>
+            <div className="mt-4">
+              <span className="mb-1.5 block text-xs font-semibold text-zinc-300">Önerilen adımları uygulamaya ne kadar hazırsın? *</span>
+              <div className="grid gap-2 sm:grid-cols-3">
+                {["Hemen başlamaya hazırım", "Hazırım ama zorlanabilirim", "Önce dinleyip düşünmek istiyorum"].map((h) => (
+                  <button
+                    key={h}
+                    type="button"
+                    onClick={() => setHazirlik(h)}
+                    aria-pressed={hazirlik === h}
+                    className={`rounded-xl border px-3 py-3 text-xs font-bold transition-colors ${
+                      hazirlik === h ? "border-gold-400 bg-gold-500/10 text-gold-200" : "border-white/10 bg-black/40 text-zinc-300 hover:border-gold-500/40"
+                    }`}
+                  >
+                    {h}
+                  </button>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-5 grid gap-4 sm:grid-cols-2">
             <div>
               <span className="mb-1.5 block text-xs font-semibold text-zinc-300">Platform tercihin</span>
               <div className="flex gap-2">

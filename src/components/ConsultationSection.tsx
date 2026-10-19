@@ -22,7 +22,8 @@ import {
   Zap,
 } from "lucide-react";
 import { ThemeButton } from "./ui/ThemeSystem";
-import { DANISMANLIK_CONFIG as C, VIP_LAUNCH_ACTIVE, VIP_PRICE_LABEL, VIP_SHOW_VALUE } from "@/config/cekicilikConfig";
+import { DANISMANLIK_CONFIG as C, SEANS_AVANTAJ, VIP_AVANTAJ, VIP_LAUNCH_ACTIVE, VIP_PRICE_LABEL, VIP_SHOW_VALUE } from "@/config/cekicilikConfig";
+import KontenjanBar from "./KontenjanBar";
 
 /**
  * Özel Danışmanlık (VIP) sayfası — premium yeniden tasarım.
@@ -248,7 +249,7 @@ export default function ConsultationSection() {
             <h2 className="font-cinzel text-[clamp(1.7rem,4vw,2.6rem)] font-bold text-white">
               Birebir <span className="gold-text-gradient">Paketler</span>
             </h2>
-            <p className="mt-3 text-sm text-zinc-400 sm:text-base">Her iki paket de başvuru ile. Başvurunu gönder, dönüş yapalım.</p>
+            <p className="mt-3 text-sm text-zinc-400 sm:text-base">Her iki paket de başvuru ile. Her ay sınırlı sayıda danışanla çalışıyorum; her başvuru kabul edilmez.</p>
           </div>
 
           <div className="grid items-stretch gap-8 lg:grid-cols-2">
@@ -268,7 +269,12 @@ export default function ConsultationSection() {
                 <span className="text-xl font-bold text-gold-400">{C.currency}</span>
                 <span className="text-sm text-zinc-500">/ {C.durationMin} dk</span>
               </div>
-              <div className="mt-1 text-xs font-semibold text-gold-300">İlk seansına özel: toplam {C.totalValueLabel} TL değerinde paket</div>
+              <div className="mt-1 flex flex-wrap items-center gap-2 text-xs font-semibold text-gold-300">
+                <span>İlk seansına özel: toplam {C.totalValueLabel} TL değerinde paket</span>
+                {SEANS_AVANTAJ > 0 && (
+                  <span className="rounded-full bg-crimson-600/90 px-2 py-0.5 text-[10px] font-black uppercase tracking-wider text-white">%{SEANS_AVANTAJ} avantaj</span>
+                )}
+              </div>
               <div className="mt-5 grid grid-cols-2 gap-3">
                 <div className="relative overflow-hidden rounded-2xl border border-gold-500/40 bg-gradient-to-b from-gold-500/15 to-black/40 p-4">
                   <span className="absolute right-2 top-2 rounded-full bg-gold-400 px-2 py-0.5 text-[9px] font-black uppercase tracking-widest text-black">İlk seansa</span>
@@ -302,7 +308,10 @@ export default function ConsultationSection() {
                   </li>
                 ))}
               </ul>
-              <ThemeButton theme="kitap1" variant="secondary" size="lg" fullWidth href="#basvuru" className="mt-auto font-black">
+              <div className="mt-auto">
+                <KontenjanBar ay={C.quotaMonth} total={C.quota.total} left={C.quota.left} tone="zinc" />
+              </div>
+              <ThemeButton theme="kitap1" variant="secondary" size="lg" fullWidth href="#basvuru" className="mt-4 font-black">
                 <Send className="h-5 w-5" />
                 <span>Seans için başvur</span>
               </ThemeButton>
@@ -336,6 +345,13 @@ export default function ConsultationSection() {
                   <span className="text-xl font-bold text-gold-400">{C.currency}</span>
                   <span className="text-sm text-zinc-400">/ {C.vip.period}</span>
                 </div>
+                {VIP_SHOW_VALUE && VIP_AVANTAJ > 0 && (
+                  <div className="mt-2">
+                    <span className="rounded-full bg-crimson-600/90 px-2.5 py-1 text-[10px] font-black uppercase tracking-wider text-white">
+                      Paket değerine göre %{VIP_AVANTAJ} avantaj
+                    </span>
+                  </div>
+                )}
                 {VIP_LAUNCH_ACTIVE && (
                   <div className="mt-3 flex flex-wrap items-center gap-2">
                     <span className="inline-flex items-center gap-1.5 rounded-full bg-gradient-to-r from-crimson-500 to-crimson-700 px-3 py-1 text-[10px] font-black uppercase tracking-widest text-white shadow-[0_0_20px_rgba(220,38,38,0.4)]">
@@ -399,7 +415,8 @@ export default function ConsultationSection() {
                     </li>
                   ))}
                 </ul>
-                <ThemeButton theme="kitap1" variant="primary" size="lg" fullWidth href="#basvuru" className="mt-8 font-black">
+                <KontenjanBar ay={C.quotaMonth} total={C.vip.quota.total} left={C.vip.quota.left} />
+                <ThemeButton theme="kitap1" variant="primary" size="lg" fullWidth href="#basvuru" className="mt-4 font-black">
                   <Crown className="h-5 w-5" />
                   <span>VIP Mentörlüğe başvur</span>
                 </ThemeButton>

@@ -257,16 +257,24 @@ export const KOLEKSIYON_SETI_CONFIG = {
  * 4. BİREBİR DANIŞMANLIK (VIP strateji seansı)
  * ========================================================================== */
 const DANISMANLIK_MESAJ =
-  "Merhaba, 45 dakikalık birebir strateji seansı (7.000 TL) için randevu almak istiyorum." +
+  "Merhaba, 45 dakikalık birebir strateji seansı (10.000 TL) için randevu almak istiyorum." +
   "\n\nTercih ettiğim platform (Google Meet / WhatsApp): " +
   "\nUygun olduğum gün ve saatler: ";
 
 export const DANISMANLIK_CONFIG = {
-  price: 7000,
-  priceLabel: "7.000",
+  price: 10000,
+  priceLabel: "10.000",
   currency: "TL",
-  /** Üstü çizili gösterilen paket değeri (kalemler: 7.000 seans + 1.200 e-kitap + 7.000 WhatsApp desteği) */
-  totalValueLabel: "15.000",
+  /** Paket değeri = kalemlerin toplamı: 10.000 seans + 1.200 e-kitap + 7.000 WhatsApp desteği = 18.200 */
+  totalValue: 18200,
+  totalValueLabel: "18.200",
+  /**
+   * GÖRÜNÜR AYLIK KONTENJAN (elle güncellenir)
+   * Her onaylanan başvuruda ilgili "left" değerini 1 azaltın; ay başında total'e geri alın.
+   * left 0 olunca sitede "Bu ayın kontenjanı doldu" yazar, başvurular bir sonraki aya sıralanır.
+   */
+  quotaMonth: "Ekim",
+  quota: { total: 8, left: 8 },
   gifts: [
     { label: "2 e-kitap", value: "1.200" },
     { label: "2 hafta WhatsApp desteği", value: "7.000" },
@@ -279,8 +287,8 @@ export const DANISMANLIK_CONFIG = {
   /** VIP Mentörlük (aylık) */
   vip: {
     name: "VIP Mentörlük",
-    price: 45000,
-    priceLabel: "45.000",
+    price: 60000,
+    priceLabel: "60.000",
     period: "ay",
     sessionsPerMonth: 4,
     /**
@@ -289,18 +297,20 @@ export const DANISMANLIK_CONFIG = {
      */
     /** Paketteki kalemlerin tek tek değeri (toplamı fiyattan düşükse sitede üstü çizili "değer" gösterilmez) */
     items: [
-      { label: "4 birebir seans", value: 28000 },
+      { label: "4 birebir seans", value: 40000 },
       { label: "4 hafta boyunca ulaşılabilir mesaj koçluğu", value: 37700 },
       { label: "2 imzalı fiziksel kitap", value: 2000 },
-      { label: "Acil kriz görüşmesi (15 dk)", value: 2300 },
+      { label: "Acil kriz görüşmesi (15 dk)", value: 3300 },
     ],
-    totalValue: 70000,
-    totalValueLabel: "70.000",
+    totalValue: 83000,
+    totalValueLabel: "83.000",
     launchPrice: 20000,
     launchPriceLabel: "20.000",
     launchSlotsTotal: 3,
     launchSlotsLeft: 0,
-    monthlySlots: 5,
+    monthlySlots: 3,
+    /** Görünür aylık kontenjan (elle güncellenir, bkz. yukarıdaki quota notu) */
+    quota: { total: 3, left: 3 },
     supportNote: "24:00'ten sonra yazılan mesajlar ertesi gün cevaplanır.",
   },
   /** Başvurunun gönderileceği WhatsApp hattı */
@@ -309,6 +319,11 @@ export const DANISMANLIK_CONFIG = {
 
 /** VIP için şu an geçerli fiyat (lansman kontenjanı varsa lansman fiyatı) */
 export const VIP_LAUNCH_ACTIVE = DANISMANLIK_CONFIG.vip.launchSlotsLeft > 0;
+/** Paket değerine göre avantaj yüzdesi (aşağı yuvarlanır) */
+export const avantajYuzde = (deger: number, fiyat: number) => Math.floor(((deger - fiyat) / deger) * 100);
+export const SEANS_AVANTAJ = avantajYuzde(DANISMANLIK_CONFIG.totalValue, DANISMANLIK_CONFIG.price);
+export const VIP_AVANTAJ = avantajYuzde(DANISMANLIK_CONFIG.vip.totalValue, DANISMANLIK_CONFIG.vip.price);
+
 /** Paket değeri fiyattan yüksekse üstü çizili değer gösterilir */
 export const VIP_SHOW_VALUE =
   DANISMANLIK_CONFIG.vip.totalValue >

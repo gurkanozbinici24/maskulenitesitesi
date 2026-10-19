@@ -27,6 +27,10 @@ const FAQS = [
     a: "Her görüşmeye tam hazırlıkla girmek için başvuruları tek tek okuyorum. Böylece seansın ilk dakikasından itibaren doğrudan senin durumuna odaklanabiliyoruz.",
   },
   {
+    q: "Her başvuru kabul ediliyor mu?",
+    a: `Hayır. Her ay sınırlı sayıda danışanla çalışıyorum (ayda ${C.quota.total} strateji seansı, ${C.vip.quota.total} VIP danışan). Başvuruları tek tek okuyup durumuna gerçekten katkı sağlayabileceğimi düşündüğüm, sürece ciddi yaklaşan kişilerle ilerliyorum. Kontenjan dolduysa başvurun bir sonraki aya sıralanır.`,
+  },
+  {
     q: "Konuştuklarımız gizli kalır mı?",
     a: "Evet. Seansta konuşulan her konu ve paylaştığın tüm detaylar tamamen gizli tutulur.",
   },
