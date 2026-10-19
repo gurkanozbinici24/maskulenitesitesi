@@ -265,8 +265,8 @@ export const DANISMANLIK_CONFIG = {
   price: 7000,
   priceLabel: "7.000",
   currency: "TL",
-  /** Seans + hediyelerin toplam değeri (7.000 seans + 1.200 e-kitap + 7.000 WhatsApp desteği) */
-  totalValueLabel: "15.200",
+  /** Üstü çizili gösterilen paket değeri (kalemler: 7.000 seans + 1.200 e-kitap + 7.000 WhatsApp desteği) */
+  totalValueLabel: "15.000",
   gifts: [
     { label: "2 e-kitap", value: "1.200" },
     { label: "2 hafta WhatsApp desteği", value: "7.000" },
