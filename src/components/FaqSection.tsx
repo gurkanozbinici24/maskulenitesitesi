@@ -86,6 +86,13 @@ const faqs: FaqItem[] = [
       "Evet, yalnızca erkeklerle. Google Meet veya WhatsApp üzerinden 45 dakikalık birebir strateji seansları ve aylık VIP Mentörlük sunuyorum.",
     link: { href: "/danismanlik", label: "Özel Danışmanlık sayfasını incele →" },
   },
+  {
+    id: 13,
+    question: "Gürkan Özbinici kimdir?",
+    answer:
+      "1999 İzmir doğumlu, sosyoloji eğitimli yazar ve ilişki koçu. 2019'dan beri maskülenlik ve ilişkiler üzerine içerik üretiyor; 1 milyonu aşkın takipçiye ulaştı. Vazgeçilmez Olma Sanatı ve Çekicilik Sanatı kitaplarının yazarı.",
+    link: { href: "/gurkan-ozbinici", label: "Hikâyesinin tamamını oku →" },
+  },
 ];
 
 export default function FaqSection() {

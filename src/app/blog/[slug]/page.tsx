@@ -21,7 +21,7 @@ export function generateMetadata({ params }: { params: { slug: string } }): Meta
     description: p.description,
     keywords: p.keywords,
     alternates: { canonical: `/blog/${p.slug}` },
-    authors: [{ name: "Gürkan Özbinici", url: SITE }],
+    authors: [{ name: "Gürkan Özbinici", url: `${SITE}/gurkan-ozbinici` }],
     openGraph: {
       type: "article",
       url: `/blog/${p.slug}`,
@@ -64,7 +64,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
         dateModified: p.updated ?? p.date,
         inLanguage: "tr-TR",
         mainEntityOfPage: `${SITE}/blog/${p.slug}`,
-        author: { "@id": `${SITE}/#gurkan-ozbinici`, "@type": "Person", name: "Gürkan Özbinici", url: SITE },
+        author: { "@id": `${SITE}/#gurkan-ozbinici`, "@type": "Person", name: "Gürkan Özbinici", url: `${SITE}/gurkan-ozbinici` },
         publisher: { "@id": `${SITE}/#gurkan-ozbinici` },
         keywords: p.keywords.join(", "),
       },
@@ -109,13 +109,13 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
               {fmt(p.date)} · {p.readMin} dk okuma
             </div>
             <h1 className="font-cinzel text-[clamp(1.8rem,4.6vw,2.9rem)] font-bold leading-[1.15] text-white">{p.title.toLocaleUpperCase("tr-TR")}</h1>
-            <div className="mt-6 flex items-center gap-3">
+            <Link href="/gurkan-ozbinici" className="group mt-6 flex w-fit items-center gap-3">
               <Image src="/insta_profile_800k.jpg" alt="Gürkan Özbinici" width={44} height={44} className="rounded-full border border-gold-500/50" />
               <div>
-                <div className="text-sm font-bold text-white">Gürkan Özbinici</div>
+                <div className="text-sm font-bold text-white group-hover:text-gold-200">Gürkan Özbinici</div>
                 <div className="text-xs text-zinc-400">Vazgeçilmez Olma Sanatı ve Çekicilik Sanatı&apos;nın yazarı</div>
               </div>
-            </div>
+            </Link>
           </header>
 
           <div className="relative my-10 aspect-[16/9] overflow-hidden rounded-3xl border border-white/10 bg-black">
@@ -155,6 +155,22 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
             >
               {cta.label} →
             </Link>
+          </aside>
+
+          {/* Yazar kutusu */}
+          <aside className="mt-12 flex flex-col gap-5 rounded-3xl border border-white/10 bg-white/[0.03] p-6 sm:flex-row sm:items-center sm:p-7">
+            <Image src="/insta_profile_800k.jpg" alt="Gürkan Özbinici" width={80} height={80} className="h-20 w-20 flex-shrink-0 rounded-full border-2 border-gold-500/60 object-cover" />
+            <div>
+              <div className="text-[11px] font-bold uppercase tracking-[0.25em] text-gold-400">Yazar hakkında</div>
+              <div className="mt-1 font-playfair text-xl font-bold text-white">Gürkan Özbinici</div>
+              <p className="mt-2 text-sm leading-relaxed text-zinc-400">
+                Sosyoloji eğitimli yazar ve ilişki koçu. 2019&apos;dan beri maskülenlik ve ilişkiler üzerine içerik üretiyor;
+                1 milyonu aşkın takipçi, Vazgeçilmez Olma Sanatı ve Çekicilik Sanatı kitaplarının yazarı.
+              </p>
+              <Link href="/gurkan-ozbinici" className="mt-3 inline-block text-sm font-bold text-gold-400 hover:text-gold-300">
+                Gürkan Özbinici kimdir? →
+              </Link>
+            </div>
           </aside>
 
           {related.length > 0 && (

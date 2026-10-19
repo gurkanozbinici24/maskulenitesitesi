@@ -25,12 +25,14 @@ export default function SeoJsonLd() {
         "@id": `${SITE}/#gurkan-ozbinici`,
         name: "Gürkan Özbinici",
         alternateName: "Gurkan Ozbinici",
-        url: SITE,
+        url: `${SITE}/gurkan-ozbinici`,
         image: `${SITE}/insta_profile_800k.jpg`,
+        birthDate: "1999",
+        birthPlace: { "@type": "Place", name: "İzmir, Türkiye" },
         jobTitle: ["Yazar", "İlişki Koçu", "İlişki Danışmanı"],
-        knowsAbout: ["Maskülenlik", "İlişkiler", "İlişki psikolojisi", "İlişki koçluğu", "Çekim dinamikleri"],
+        knowsAbout: ["Sosyoloji", "Maskülenlik", "İlişkiler", "İlişki psikolojisi", "İlişki koçluğu", "Çekim dinamikleri"],
         description:
-          "Vazgeçilmez Olma Sanatı ve Çekicilik Sanatı kitaplarının yazarı; @maskulenitesitesi hesabının kurucusu.",
+          "Sosyoloji eğitimli yazar ve ilişki koçu; Vazgeçilmez Olma Sanatı ve Çekicilik Sanatı kitaplarının yazarı, @maskulenitesitesi hesabının kurucusu.",
         sameAs: [INSTAGRAM_URL],
       },
       {

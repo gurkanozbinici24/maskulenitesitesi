@@ -107,6 +107,14 @@ export default function Footer() {
                 </li>
                 <li>
                   <a
+                    href="/gurkan-ozbinici"
+                    className="hover:text-gold-400 transition-colors"
+                  >
+                    Gürkan Özbinici Kimdir?
+                  </a>
+                </li>
+                <li>
+                  <a
                     href="/#sss"
                     className="hover:text-gold-400 transition-colors"
                   >

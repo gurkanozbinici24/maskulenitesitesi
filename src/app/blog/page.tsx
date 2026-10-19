@@ -29,6 +29,10 @@ export default function BlogIndex() {
             <p className="mt-4 text-sm text-zinc-400 sm:text-base">
               Maskülenlik, ilişkiler ve kitaplarım üzerine; okuyup hemen uygulayabileceğin yazılar.
             </p>
+            <Link href="/gurkan-ozbinici" className="mt-5 inline-flex items-center gap-3 rounded-full border border-gold-500/30 bg-gold-500/5 py-1.5 pl-1.5 pr-4 text-sm text-zinc-200 transition-colors hover:border-gold-400/60 hover:bg-gold-500/10">
+              <Image src="/insta_profile_800k.jpg" alt="Gürkan Özbinici" width={32} height={32} className="h-8 w-8 rounded-full object-cover" />
+              <span>Yazar: <strong className="text-white">Gürkan Özbinici</strong> · Kimdir? →</span>
+            </Link>
           </header>
 
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
