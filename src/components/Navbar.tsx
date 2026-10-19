@@ -90,6 +90,13 @@ export default function Navbar() {
               </a>
 
               <a
+                href="/blog"
+                className="text-xs lg:text-sm font-medium text-zinc-300 hover:text-gold-300 active:text-gold-200 transition-colors whitespace-nowrap"
+              >
+                Blog
+              </a>
+
+              <a
                 href="/danismanlik"
                 className="text-xs lg:text-sm font-semibold text-gold-300 hover:text-gold-200 active:text-gold-100 transition-colors flex items-center gap-1.5 whitespace-nowrap"
               >
@@ -151,6 +158,13 @@ export default function Navbar() {
               className="min-h-[44px] flex items-center px-3 py-2 text-sm font-semibold text-zinc-200 hover:text-gold-400 active:text-gold-300 hover:bg-zinc-800/40 rounded-md"
             >
               Topluluk & Güven
+            </a>
+            <a
+              href="/blog"
+              onClick={() => setMobileMenuOpen(false)}
+              className="min-h-[44px] flex items-center px-3 py-2 text-sm font-semibold text-zinc-200 hover:text-gold-400 active:text-gold-300 hover:bg-zinc-800/40 rounded-md"
+            >
+              Blog
             </a>
             <a
               href="/danismanlik"

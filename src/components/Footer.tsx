@@ -99,6 +99,14 @@ export default function Footer() {
                 </li>
                 <li>
                   <a
+                    href="/blog"
+                    className="hover:text-gold-400 transition-colors"
+                  >
+                    Blog
+                  </a>
+                </li>
+                <li>
+                  <a
                     href="/#sss"
                     className="hover:text-gold-400 transition-colors"
                   >
