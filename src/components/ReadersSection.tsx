@@ -2,23 +2,15 @@
 
 import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
 import Image from "next/image";
-import { BadgeCheck, CheckCheck, Eye, PenLine, Quote, ShieldCheck, X, Zap } from "lucide-react";
+import { CheckCheck, PenLine, Quote, ShieldCheck, X, Zap } from "lucide-react";
 import { ThemeSectionHeader } from "./ui/ThemeSystem";
-import {
-  FEATURED,
-  FLOATING,
-  MESSAGES,
-  PHONE_CHAT,
-  PHOTOS,
-  type Cat,
-  type ChatMsg,
-} from "@/config/readersData";
+import { FEATURED, FLOATING, MESSAGES, PHONE_STORY, PHOTOS, type Cat } from "@/config/readersData";
 
 /**
  * Gerçek okurlar bölümü:
  *  1) Okur fotoğrafları (iki sıra akan duvar)
  *  2) Sayaç şeridi
- *  3) "Canlı WhatsApp Sahnesi": 3D telefon + etrafında süzülen mesajlar (birebir okur metinleri)
+ *  3) "Canlı WhatsApp Sahnesi": 3D telefon, içinde gerçek ekran görüntüleri hikâye gibi akar; etrafta süzülen gerçek mesajlar
  *  4) Öne çıkan yorum
  *  5) Filtrelenebilir mesaj duvarı (orijinal ekran görüntüleri, hepsi aynı ölçekte)
  */
@@ -37,18 +29,6 @@ const CAT_STYLE: Record<Cat, string> = {
 };
 /** Ekran görüntüleri 1.5x çekildi: hepsi bu oranla küçültülünce gerçek WhatsApp boyutunda, eşit puntoda görünür */
 const SHOT_SCALE = 1 / 1.5;
-
-function useReducedMotion() {
-  const [r, setR] = useState(false);
-  useEffect(() => {
-    const m = window.matchMedia("(prefers-reduced-motion: reduce)");
-    setR(m.matches);
-    const on = () => setR(m.matches);
-    m.addEventListener("change", on);
-    return () => m.removeEventListener("change", on);
-  }, []);
-  return r;
-}
 
 /* ---------------------------------------------------------------- Sayaç */
 function Counter({ to, decimals = 0, prefix = "", suffix = "" }: { to: number; decimals?: number; prefix?: string; suffix?: string }) {
@@ -83,197 +63,192 @@ function Counter({ to, decimals = 0, prefix = "", suffix = "" }: { to: number; d
   );
 }
 
-/* ---------------------------------------------------------------- Telefon içi baloncuk */
-function Bubble({ m, className = "" }: { m: ChatMsg | { time: string; text: string; quote?: ChatMsg["quote"] }; className?: string }) {
+/* ---------------------------------------------------------------- WhatsApp varsayılan profil simgesi */
+export function WaAvatar({ size = 32 }: { size?: number }) {
   return (
-    <div className={`relative max-w-[88%] rounded-lg rounded-tl-none bg-[#202c33] px-2.5 pb-1.5 pt-1.5 text-[12.5px] leading-[1.35] text-[#e9edef] shadow-[0_1px_0.5px_rgba(0,0,0,0.3)] ${className}`}>
-      <span className="absolute -left-1.5 top-0 h-0 w-0 border-r-[8px] border-t-[8px] border-r-transparent border-t-[#202c33]" style={{ borderRightColor: "transparent" }} />
-      {m.quote && (
-        <div className="mb-1 rounded-md border-l-4 border-[#d65a8b] bg-black/25 px-2 py-1">
-          <div className="text-[11px] font-semibold text-[#d65a8b]">{m.quote.from}</div>
-          <div className="text-[11.5px] text-[#aebac1]">{m.quote.text}</div>
-        </div>
-      )}
-      <span className="whitespace-pre-wrap break-words">{m.text}</span>
-      <span className="float-right ml-2 mt-1.5 translate-y-0.5 text-[10px] text-[#8696a0]">{m.time}</span>
-    </div>
+    <svg width={size} height={size} viewBox="0 0 212 212" className="flex-shrink-0 rounded-full" aria-hidden>
+      <path fill="#6a7175" d="M106 0C47.5 0 0 47.5 0 106s47.5 106 106 106 106-47.5 106-106S164.5 0 106 0z" />
+      <path fill="#cfd4d6" d="M173.6 164.9c-16.9 19.6-41.8 32-69.6 32s-52.7-12.4-69.6-32c8.4-17.3 25.7-29.6 46.1-31.5 7 4.3 14.9 6.6 23.5 6.6s16.5-2.3 23.5-6.6c20.4 1.9 37.7 14.2 46.1 31.5zM106 46.2c21.6 0 39.1 17.5 39.1 39.1S127.6 124.4 106 124.4 66.9 106.9 66.9 85.3 84.4 46.2 106 46.2z" />
+    </svg>
   );
 }
 
+const byId = (id: string) => MESSAGES.find((m) => m.id === id)!;
+
 /* ---------------------------------------------------------------- Canlı WhatsApp Sahnesi */
 function PhoneStage() {
-  const reduced = useReducedMotion();
   const stageRef = useRef<HTMLDivElement>(null);
-  const [count, setCount] = useState(0);
-  const [typing, setTyping] = useState(false);
+  const [idx, setIdx] = useState(0);
   const [active, setActive] = useState(false);
+  const STORY_MS = 4200;
 
-  // Sahne ekrana girince sohbet başlar
   useEffect(() => {
     const el = stageRef.current;
     if (!el) return;
-    const io = new IntersectionObserver(([e]) => setActive(e.isIntersecting), { threshold: 0.25 });
+    const io = new IntersectionObserver(([e]) => setActive(e.isIntersecting), { threshold: 0.2 });
     io.observe(el);
     return () => io.disconnect();
   }, []);
 
   useEffect(() => {
-    if (reduced) {
-      setCount(PHONE_CHAT.length);
-      return;
-    }
     if (!active) return;
-    let t: ReturnType<typeof setTimeout>;
-    if (count < PHONE_CHAT.length) {
-      setTyping(true);
-      t = setTimeout(() => {
-        setTyping(false);
-        setCount((c) => c + 1);
-      }, count === 0 ? 900 : 1700);
-    } else {
-      t = setTimeout(() => setCount(0), 5000);
-    }
+    const t = setTimeout(() => setIdx((i) => (i + 1) % PHONE_STORY.length), STORY_MS);
     return () => clearTimeout(t);
-  }, [count, active, reduced]);
+  }, [idx, active]);
 
-  // Fare ile 3D paralaks (sadece hassas imleçli cihazlarda)
-  const onMove = useCallback(
-    (e: React.MouseEvent) => {
-      if (reduced || !window.matchMedia("(pointer: fine)").matches) return;
-      const el = stageRef.current;
-      if (!el) return;
-      const r = el.getBoundingClientRect();
-      el.style.setProperty("--mx", (((e.clientX - r.left) / r.width) * 2 - 1).toFixed(3));
-      el.style.setProperty("--my", (((e.clientY - r.top) / r.height) * 2 - 1).toFixed(3));
-    },
-    [reduced],
-  );
+  // Fare ile 3D eğim (masaüstü); telefonda sürekli hafif salınım CSS ile
+  const onMove = useCallback((e: React.MouseEvent) => {
+    if (!window.matchMedia("(pointer: fine)").matches) return;
+    const el = stageRef.current;
+    if (!el) return;
+    const r = el.getBoundingClientRect();
+    el.style.setProperty("--mx", (((e.clientX - r.left) / r.width) * 2 - 1).toFixed(3));
+    el.style.setProperty("--my", (((e.clientY - r.top) / r.height) * 2 - 1).toFixed(3));
+  }, []);
   const onLeave = () => {
     stageRef.current?.style.setProperty("--mx", "0");
     stageRef.current?.style.setProperty("--my", "0");
   };
 
-  const shown = PHONE_CHAT.slice(0, count);
+  const cur = byId(PHONE_STORY[idx]);
   const floatPos = [
-    "left-[2%] top-[10%] -rotate-3",
-    "right-[1%] top-[6%] rotate-2",
-    "left-[6%] bottom-[12%] rotate-2",
-    "right-[5%] bottom-[16%] -rotate-2",
+    "left-0 top-[8%] -rotate-[4deg]",
+    "right-0 top-[10%] rotate-[3deg]",
+    "left-[3%] bottom-[10%] rotate-[3deg]",
+    "right-[2%] bottom-[14%] -rotate-[3deg]",
   ];
-  const depth = [26, 34, 18, 28];
+  const depth = [30, 38, 22, 30];
 
   return (
     <div
       ref={stageRef}
       onMouseMove={onMove}
       onMouseLeave={onLeave}
-      className="relative mx-auto flex min-h-[620px] max-w-6xl items-center justify-center [--mx:0] [--my:0] [perspective:1400px] sm:min-h-[680px]"
+      className="relative mx-auto flex min-h-[640px] max-w-7xl items-center justify-center [--mx:0] [--my:0] [perspective:1300px] sm:min-h-[700px]"
     >
-      {/* Arka ışık */}
-      <div className="pointer-events-none absolute left-1/2 top-1/2 h-[520px] w-[520px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgba(212,175,55,0.22),rgba(31,163,90,0.08)_45%,transparent_70%)] blur-2xl" />
-      <div className="pointer-events-none absolute bottom-10 left-1/2 h-10 w-[300px] -translate-x-1/2 rounded-full bg-black/80 blur-2xl" />
+      <div className="pointer-events-none absolute left-1/2 top-1/2 h-[560px] w-[560px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgba(212,175,55,0.24),rgba(31,163,90,0.08)_45%,transparent_70%)] blur-2xl" />
+      <div className="pointer-events-none absolute bottom-6 left-1/2 h-12 w-[320px] -translate-x-1/2 rounded-full bg-black/90 blur-2xl" />
 
-      {/* Süzülen mesajlar (masaüstü) */}
-      {FLOATING.map((f, i) => (
+      {/* Süzülen gerçek ekran görüntüleri (geniş ekran) */}
+      {FLOATING.map((id, i) => {
+        const m = byId(id);
+        return (
+          <div
+            key={id}
+            className={`pointer-events-none absolute hidden xl:block ${floatPos[i]}`}
+            style={{
+              transform: `translate3d(calc(var(--mx) * ${depth[i]}px), calc(var(--my) * ${depth[i] * 0.7}px), 0)`,
+              transition: "transform 0.25s ease-out",
+            }}
+          >
+            <div className="animate-[readerFloat_7s_ease-in-out_infinite]" style={{ animationDelay: `${i * -1.7}s` }}>
+              <div className="rounded-2xl border border-white/10 bg-[#0b141a]/90 p-2 shadow-[0_30px_70px_-15px_rgba(0,0,0,0.95),0_0_0_1px_rgba(212,175,55,0.1)]">
+                <div className="mb-1.5 flex items-center gap-2 px-1 pt-0.5">
+                  <WaAvatar size={20} />
+                  <span className="text-[11px] font-semibold text-[#e9edef]">{m.who}</span>
+                  <span className="text-[10px] text-[#8696a0]">· {m.date}</span>
+                </div>
+                <Image
+                  src={`/okurlar/mesaj/${m.id}.webp`}
+                  alt={m.text}
+                  width={m.w}
+                  height={m.h}
+                  style={{ width: Math.min(m.w * SHOT_SCALE, 400), height: "auto" }}
+                />
+              </div>
+            </div>
+          </div>
+        );
+      })}
+
+      {/* 3D Telefon: sürekli salınım + fareyle eğim */}
+      <div className="relative z-10 animate-[phoneSway_9s_ease-in-out_infinite] [transform-style:preserve-3d]">
         <div
-          key={i}
-          className={`pointer-events-none absolute hidden w-[270px] lg:block xl:w-[300px] ${floatPos[i]}`}
+          className="[transform-style:preserve-3d]"
           style={{
-            transform: `translate3d(calc(var(--mx) * ${depth[i]}px), calc(var(--my) * ${depth[i] * 0.7}px), 0)`,
-            transition: "transform 0.25s ease-out",
+            transform: "rotateY(calc(var(--mx) * 14deg)) rotateX(calc(var(--my) * -9deg))",
+            transition: "transform 0.3s ease-out",
           }}
         >
-          <div className={reduced ? "" : "animate-[readerFloat_7s_ease-in-out_infinite]"} style={{ animationDelay: `${i * -1.7}s` }}>
-            <div className="rounded-2xl border border-white/10 bg-white/[0.04] p-2.5 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.9),0_0_0_1px_rgba(212,175,55,0.08)] backdrop-blur-md">
-              <div className="mb-1.5 flex items-center gap-1.5 px-0.5 text-[10px] font-bold uppercase tracking-[0.14em] text-gold-300/90">
-                <BadgeCheck className="h-3.5 w-3.5 text-emerald-400" />
-                {f.tag}
-              </div>
-              <Bubble m={f} className="!max-w-full" />
-            </div>
-          </div>
-        </div>
-      ))}
+          <div className="relative h-[600px] w-[300px] rounded-[50px] bg-gradient-to-b from-zinc-600 via-zinc-900 to-zinc-700 p-[10px] shadow-[0_60px_110px_-25px_rgba(0,0,0,0.95),0_0_0_1px_rgba(212,175,55,0.4),0_0_70px_-10px_rgba(212,175,55,0.4)] sm:h-[640px] sm:w-[320px]">
+            <span className="absolute -left-[3px] top-28 h-10 w-[3px] rounded-l bg-zinc-500" />
+            <span className="absolute -left-[3px] top-44 h-16 w-[3px] rounded-l bg-zinc-500" />
+            <span className="absolute -right-[3px] top-36 h-20 w-[3px] rounded-r bg-zinc-500" />
 
-      {/* 3D Telefon */}
-      <div
-        className="relative z-10"
-        style={{
-          transform: reduced
-            ? undefined
-            : "rotateY(calc(var(--mx) * 12deg - 8deg)) rotateX(calc(var(--my) * -8deg + 4deg))",
-          transformStyle: "preserve-3d",
-          transition: "transform 0.3s ease-out",
-        }}
-      >
-        <div className="relative h-[580px] w-[290px] rounded-[48px] bg-gradient-to-b from-zinc-700 via-zinc-900 to-zinc-800 p-[10px] shadow-[0_50px_100px_-20px_rgba(0,0,0,0.95),0_0_0_1px_rgba(212,175,55,0.35),0_0_60px_-10px_rgba(212,175,55,0.35)] sm:h-[620px] sm:w-[310px]">
-          {/* yan tuşlar */}
-          <span className="absolute -left-[3px] top-28 h-10 w-[3px] rounded-l bg-zinc-600" />
-          <span className="absolute -left-[3px] top-44 h-16 w-[3px] rounded-l bg-zinc-600" />
-          <span className="absolute -right-[3px] top-36 h-20 w-[3px] rounded-r bg-zinc-600" />
-          {/* altın kenar ışığı */}
-          <span className="pointer-events-none absolute inset-0 rounded-[48px] bg-[linear-gradient(135deg,rgba(255,240,179,0.35),transparent_30%,transparent_70%,rgba(212,175,55,0.25))] opacity-70 mix-blend-overlay" />
-
-          <div className="relative flex h-full w-full flex-col overflow-hidden rounded-[38px] bg-[#0b141a]">
-            {/* durum çubuğu + çentik */}
-            <div className="relative flex h-7 flex-shrink-0 items-center justify-between bg-[#202c33] px-6 text-[10px] font-semibold text-white/80">
-              <span>9:41</span>
-              <span className="absolute left-1/2 top-1.5 h-[18px] w-[86px] -translate-x-1/2 rounded-full bg-black" />
-              <span>5G ▮▮▮</span>
-            </div>
-            {/* sohbet başlığı */}
-            <div className="flex flex-shrink-0 items-center gap-2.5 bg-[#202c33] px-3 pb-2.5 pt-1">
-              <div className="relative h-9 w-9 overflow-hidden rounded-full bg-gradient-to-br from-gold-300 to-gold-700">
-                <Image src="/vazgecilmez-yeni-kapak.jpg" alt="" fill sizes="36px" className="object-cover" />
+            <div className="relative flex h-full w-full flex-col overflow-hidden rounded-[40px] bg-[#0b141a]">
+              {/* hikâye ilerleme çubukları */}
+              <div className="absolute inset-x-3 top-9 z-20 flex gap-1">
+                {PHONE_STORY.map((_, i) => (
+                  <span key={i} className="h-[3px] flex-1 overflow-hidden rounded-full bg-white/25">
+                    <span
+                      key={`${idx}-${i}`}
+                      className="block h-full bg-white"
+                      style={
+                        i < idx
+                          ? { width: "100%" }
+                          : i === idx
+                            ? { width: "100%", animation: active ? `storyBar ${STORY_MS}ms linear both` : undefined }
+                            : { width: 0 }
+                      }
+                    />
+                  </span>
+                ))}
               </div>
-              <div className="min-w-0 leading-tight">
-                <div className="truncate text-[13.5px] font-semibold text-[#e9edef]">Okur Mesajları</div>
-                <div className="truncate text-[10.5px] text-[#8696a0]">
-                  {typing ? <span className="text-emerald-400">bir okur yazıyor…</span> : "gerçek mesajlardan derlendi"}
-                </div>
+              {/* durum çubuğu */}
+              <div className="relative flex h-8 flex-shrink-0 items-center justify-between bg-[#202c33] px-6 text-[10px] font-semibold text-white/80">
+                <span>{cur.time}</span>
+                <span className="absolute left-1/2 top-1.5 h-[20px] w-[90px] -translate-x-1/2 rounded-full bg-black" />
+                <span>5G ▮▮▮</span>
               </div>
-            </div>
-            {/* mesajlar */}
-            <div
-              className="relative flex flex-1 flex-col justify-end gap-1.5 overflow-hidden px-3 pb-3 pt-2"
-              style={{
-                backgroundImage:
-                  "radial-gradient(rgba(255,255,255,0.035) 1px, transparent 1px), radial-gradient(rgba(255,255,255,0.02) 1px, transparent 1px)",
-                backgroundSize: "22px 22px, 11px 11px",
-                backgroundPosition: "0 0, 6px 6px",
-              }}
-            >
-              {shown.map((m, i) => {
-                const newDay = i === 0 || shown[i - 1].day !== m.day;
-                return (
-                  <div key={`${count}-${i}`} className="flex flex-col animate-[readerPop_0.45s_cubic-bezier(.2,.9,.3,1.2)_both]">
-                    {newDay && (
-                      <span className="mx-auto mb-1 mt-1 rounded-md bg-[#182229] px-2 py-0.5 text-[10px] font-medium text-[#8696a0]">
-                        {m.day}
-                      </span>
-                    )}
-                    <Bubble m={m} />
+              {/* gerçek sohbet başlığı (numara/kullanıcı adı kısmen gizli) */}
+              <div className="flex flex-shrink-0 items-center gap-2.5 bg-[#202c33] px-3 pb-2.5 pt-4">
+                <span className="text-lg leading-none text-[#aebac1]">‹</span>
+                <WaAvatar size={34} />
+                <div className="min-w-0 leading-tight">
+                  <div key={cur.who} className="truncate text-[13.5px] font-semibold text-[#e9edef] animate-[readerPop_0.4s_ease-out_both]">
+                    {cur.who}
                   </div>
-                );
-              })}
-              {typing && (
-                <div className="flex w-14 items-center justify-center gap-1 rounded-lg rounded-tl-none bg-[#202c33] px-3 py-2.5">
-                  {[0, 1, 2].map((d) => (
-                    <span key={d} className="h-1.5 w-1.5 animate-bounce rounded-full bg-[#8696a0]" style={{ animationDelay: `${d * 0.15}s` }} />
-                  ))}
+                  <div className="truncate text-[10.5px] text-[#8696a0]">WhatsApp Business · okur mesajı</div>
                 </div>
-              )}
-            </div>
-            {/* yazma çubuğu (dekoratif) */}
-            <div className="flex flex-shrink-0 items-center gap-2 bg-[#0b141a] px-2.5 pb-4 pt-1.5">
-              <div className="h-8 flex-1 rounded-full bg-[#202c33] px-3 text-[11px] leading-8 text-[#8696a0]">Mesaj</div>
-              <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[#00a884]">
-                <CheckCheck className="h-4 w-4 text-white" />
+              </div>
+              {/* mesaj alanı: orijinal ekran görüntüsü */}
+              <button
+                type="button"
+                onClick={() => setIdx((i) => (i + 1) % PHONE_STORY.length)}
+                aria-label="Sonraki okur mesajı"
+                className="relative flex flex-1 flex-col justify-end gap-2 overflow-hidden px-2.5 pb-4 pt-3 text-left"
+                style={{
+                  backgroundImage:
+                    "radial-gradient(rgba(255,255,255,0.035) 1px, transparent 1px), radial-gradient(rgba(255,255,255,0.02) 1px, transparent 1px)",
+                  backgroundSize: "22px 22px, 11px 11px",
+                  backgroundPosition: "0 0, 6px 6px",
+                }}
+              >
+                <span className="mx-auto rounded-md bg-[#182229] px-2.5 py-1 text-[10.5px] font-medium text-[#8696a0]">
+                  {cur.date} 2026
+                </span>
+                <div key={cur.id} className="animate-[readerPop_0.5s_cubic-bezier(.2,.9,.3,1.2)_both]">
+                  <Image
+                    src={`/okurlar/mesaj/${cur.id}.webp`}
+                    alt={cur.text}
+                    width={cur.w}
+                    height={cur.h}
+                    style={{ width: Math.min(cur.w * SHOT_SCALE, 280), height: "auto" }}
+                    className="max-w-full"
+                  />
+                </div>
+              </button>
+              <div className="flex flex-shrink-0 items-center gap-2 bg-[#0b141a] px-2.5 pb-5 pt-1.5">
+                <div className="h-9 flex-1 rounded-full bg-[#202c33] px-3.5 text-[11.5px] leading-9 text-[#8696a0]">Mesaj</div>
+                <div className="flex h-9 w-9 items-center justify-center rounded-full bg-[#00a884]">
+                  <CheckCheck className="h-4 w-4 text-white" />
+                </div>
               </div>
             </div>
+            {/* cam yansıması + altın kenar */}
+            <span className="pointer-events-none absolute inset-[10px] rounded-[40px] bg-[linear-gradient(115deg,rgba(255,255,255,0.10)_0%,transparent_26%,transparent_100%)]" />
+            <span className="pointer-events-none absolute inset-0 rounded-[50px] bg-[linear-gradient(135deg,rgba(255,240,179,0.35),transparent_30%,transparent_70%,rgba(212,175,55,0.25))] opacity-70 mix-blend-overlay" />
           </div>
-          {/* cam yansıması */}
-          <span className="pointer-events-none absolute inset-[10px] rounded-[38px] bg-[linear-gradient(115deg,rgba(255,255,255,0.09)_0%,transparent_28%,transparent_100%)]" />
         </div>
       </div>
     </div>
@@ -339,7 +314,7 @@ export default function ReadersSection() {
   const [tab, setTab] = useState<(typeof TABS)[number]["key"]>("tumu");
   const [showAll, setShowAll] = useState(false);
   const [lightbox, setLightbox] = useState<string | null>(null);
-  const [showOriginal, setShowOriginal] = useState(false);
+  const featured = byId(FEATURED.id);
   const tabRefs = useRef<(HTMLButtonElement | null)[]>([]);
   const [ind, setInd] = useState({ left: 0, width: 0 });
 
@@ -411,6 +386,11 @@ export default function ReadersSection() {
       <style>{`
         @keyframes readerFloat { 0%,100% { transform: translateY(0) } 50% { transform: translateY(-12px) } }
         @keyframes readerPop { from { opacity: 0; transform: translateY(14px) scale(.96) } to { opacity: 1; transform: none } }
+        @keyframes storyBar { from { transform: translateX(-100%) } to { transform: translateX(0) } }
+        @keyframes phoneSway {
+          0%,100% { transform: rotateY(-16deg) rotateX(6deg) translateY(0) }
+          50% { transform: rotateY(10deg) rotateX(2deg) translateY(-14px) }
+        }
       `}</style>
       <div className="pointer-events-none absolute left-1/2 top-24 h-72 w-[80%] -translate-x-1/2 rounded-full bg-gold-500/10 blur-[120px]" />
 
@@ -436,8 +416,8 @@ export default function ReadersSection() {
       <div className="relative mx-auto mt-12 max-w-4xl px-4">
         <div className="grid grid-cols-3 divide-x divide-gold-500/20 overflow-hidden rounded-2xl border border-gold-500/25 bg-gradient-to-r from-black/60 via-matte-900/80 to-black/60 shadow-[0_0_50px_-20px_rgba(212,175,55,0.5)] backdrop-blur">
           {[
-            { node: <Counter to={MESSAGES.length} />, label: "Okur Mesajı" },
-            { node: <Counter to={PHOTOS.length} />, label: "Okur Fotoğrafı" },
+            { node: <Counter to={200} suffix="+" />, label: "Kitap Satışı" },
+            { node: <Counter to={200} suffix="+" />, label: "Memnun Okur" },
             { node: <Counter to={99.4} decimals={1} prefix="%" />, label: "Memnuniyet" },
           ].map((s) => (
             <div key={s.label} className="px-2 py-5 text-center sm:py-6">
@@ -454,43 +434,39 @@ export default function ReadersSection() {
       </div>
 
       <div className="relative mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
-        {/* 4) Öne çıkan yorum */}
-        <figure className="relative overflow-hidden rounded-3xl border border-gold-500/30 bg-[radial-gradient(ellipse_at_top_left,rgba(212,175,55,0.14),transparent_55%),linear-gradient(180deg,#14100a,#09070a)] p-7 shadow-[0_40px_80px_-30px_rgba(0,0,0,0.95)] sm:p-12">
+        {/* 4) Öne çıkan yorum: orijinal ekran görüntüsü + vurgulanan cümle */}
+        <figure className="relative grid items-center gap-8 overflow-hidden rounded-3xl border border-gold-500/30 bg-[radial-gradient(ellipse_at_top_right,rgba(212,175,55,0.14),transparent_55%),linear-gradient(180deg,#14100a,#09070a)] p-6 shadow-[0_40px_80px_-30px_rgba(0,0,0,0.95)] sm:p-10 md:grid-cols-[auto_1fr]">
           <span className="pointer-events-none absolute inset-x-10 top-0 h-px bg-gradient-to-r from-transparent via-gold-300/80 to-transparent" />
-          <Quote className="absolute -left-2 -top-2 h-28 w-28 rotate-180 text-gold-500/10 sm:h-40 sm:w-40" />
-          <div className="relative">
-            <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-gold-500/40 bg-black/40 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.2em] text-gold-300">
-              <BadgeCheck className="h-3.5 w-3.5 text-emerald-400" />
-              Öne Çıkan Okur Yorumu · {FEATURED.day}
-            </div>
-            {!showOriginal ? (
-              <blockquote className="font-playfair text-[1.05rem] italic leading-relaxed text-zinc-100 sm:text-[1.35rem] sm:leading-[1.7]">
-                “{FEATURED.text}”
-              </blockquote>
-            ) : (
-              <div className="flex justify-center rounded-2xl bg-[#0b141a] p-4">
-                <Image
-                  src={`/okurlar/mesaj/${FEATURED.id}.webp`}
-                  alt={FEATURED.text}
-                  width={532}
-                  height={456}
-                  style={{ width: 532 * SHOT_SCALE * 1.15, height: "auto" }}
-                  className="max-w-full"
-                />
+          <div className="order-2 mx-auto overflow-hidden rounded-2xl border border-white/10 bg-[#0b141a] shadow-[0_25px_50px_-15px_rgba(0,0,0,0.9)] md:order-1">
+            <div className="flex items-center gap-2 bg-[#202c33] px-3 py-2">
+              <WaAvatar size={26} />
+              <div className="leading-tight">
+                <div className="text-[12px] font-semibold text-[#e9edef]">{featured.who}</div>
+                <div className="text-[10px] text-[#8696a0]">{featured.date} 2026 · {featured.time}</div>
               </div>
-            )}
-            <figcaption className="mt-6 flex flex-wrap items-center justify-between gap-3 border-t border-gold-500/15 pt-5">
-              <span className="text-sm text-zinc-400">
-                Vazgeçilmez Olma Sanatı okuru · WhatsApp, {FEATURED.time}
-              </span>
-              <button
-                type="button"
-                onClick={() => setShowOriginal((v) => !v)}
-                className="inline-flex items-center gap-1.5 rounded-full border border-gold-500/40 px-4 py-2 text-xs font-bold uppercase tracking-wider text-gold-300 transition-colors hover:bg-gold-500/10"
-              >
-                <Eye className="h-3.5 w-3.5" />
-                {showOriginal ? "Metne dön" : "Orijinal mesajı gör"}
-              </button>
+            </div>
+            <div className="p-3">
+              <Image
+                src={`/okurlar/mesaj/${featured.id}.webp`}
+                alt={featured.text}
+                width={featured.w}
+                height={featured.h}
+                style={{ width: featured.w * SHOT_SCALE, height: "auto" }}
+                className="max-w-full"
+              />
+            </div>
+          </div>
+          <div className="relative order-1 md:order-2">
+            <Quote className="absolute -left-3 -top-6 h-20 w-20 rotate-180 text-gold-500/15" />
+            <div className="relative mb-4 inline-flex items-center gap-2 rounded-full border border-gold-500/40 bg-black/40 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.2em] text-gold-300">
+              <Quote className="h-3.5 w-3.5" />
+              Öne Çıkan Okur Yorumu
+            </div>
+            <blockquote className="relative font-playfair text-xl italic leading-snug text-zinc-100 sm:text-[1.7rem] sm:leading-[1.35]">
+              “{FEATURED.pull}”
+            </blockquote>
+            <figcaption className="mt-5 text-sm text-zinc-400">
+              {featured.who} · {featured.date} 2026 · <span className="text-zinc-500">mesajın tamamı yanda, olduğu gibi</span>
             </figcaption>
           </div>
         </figure>
@@ -524,26 +500,24 @@ export default function ReadersSection() {
         <div className="mt-8 columns-1 gap-5 md:columns-2" key={tab}>
           {visible.map((m, i) => (
             <TiltCard key={m.id} delay={(i % 4) * 80}>
-              <div className="flex items-center justify-between gap-2 border-b border-white/5 px-4 py-2.5">
-                <div className="flex items-center gap-2.5">
-                  <span className="relative h-8 w-8 overflow-hidden rounded-full bg-gradient-to-br from-zinc-500 to-zinc-800 ring-1 ring-white/10">
-                    <span className="absolute inset-0 m-auto h-3 w-3 -translate-y-1 rounded-full bg-zinc-300/50 blur-[1px]" />
-                    <span className="absolute bottom-[-6px] left-1/2 h-4 w-6 -translate-x-1/2 rounded-full bg-zinc-300/40 blur-[1px]" />
-                  </span>
-                  <div className="leading-tight">
-                    <div className="flex items-center gap-1 text-[12px] font-semibold text-zinc-100">
-                      Doğrulanmış Okur <BadgeCheck className="h-3.5 w-3.5 text-emerald-400" />
+              <div className="flex items-center justify-between gap-2 border-b border-white/5 bg-[#202c33]/70 px-4 py-2.5">
+                <div className="flex min-w-0 items-center gap-2.5">
+                  <WaAvatar size={32} />
+                  <div className="min-w-0 leading-tight">
+                    <div className="truncate text-[12.5px] font-semibold text-[#e9edef]">{m.who}</div>
+                    <div className="text-[10.5px] text-[#8696a0]">
+                      {m.date} 2026 · {m.time}
                     </div>
-                    <div className="text-[10.5px] text-zinc-500">WhatsApp · {m.date}</div>
                   </div>
                 </div>
-                <span className={`rounded-full border px-2 py-0.5 text-[9px] font-bold uppercase tracking-wider ${CAT_STYLE[m.cat]}`}>
+                <span className={`flex-shrink-0 rounded-full border px-2 py-0.5 text-[9px] font-bold uppercase tracking-wider ${CAT_STYLE[m.cat]}`}>
                   {CAT_LABEL[m.cat]}
                 </span>
               </div>
               <div
                 className="px-3 py-3"
                 style={{
+                  backgroundColor: "#0b141a",
                   backgroundImage: "radial-gradient(rgba(255,255,255,0.03) 1px, transparent 1px)",
                   backgroundSize: "18px 18px",
                 }}
@@ -576,8 +550,8 @@ export default function ReadersSection() {
         )}
 
         <p className="mt-8 text-center text-[11px] text-zinc-500">
-          Mesaj ve fotoğraflar okurlarımızın izniyle, isimleri ve numaraları gizlenerek paylaşılmıştır. Telefon
-          ekranındaki mesajlar, farklı okurlardan gelen gerçek mesajların birebir metnidir.
+          Tüm mesajlar WhatsApp Business hattımıza gelen mesajların düzenlenmemiş ekran görüntüleridir. Okurlarımızın
+          izniyle paylaşılmış, gizlilikleri için numara ve kullanıcı adlarının bir kısmı gizlenmiştir.
         </p>
       </div>
 
