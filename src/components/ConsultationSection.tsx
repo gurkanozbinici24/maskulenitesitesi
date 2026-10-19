@@ -373,7 +373,6 @@ export default function ConsultationSection() {
                         <span className="text-right text-zinc-200">{it.value.toLocaleString("tr-TR")} TL</span>
                       </Fragment>
                     ))}
-                    <span>Seans sonrası aksiyon planları</span><span className="text-right text-zinc-200">dahil</span>
                   </div>
                   <div className="mt-2 border-t border-gold-500/20 pt-2 text-xs font-semibold text-gold-300">
                     Hepsi tek pakette, aylık {VIP_PRICE_LABEL} TL.
