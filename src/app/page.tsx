@@ -12,6 +12,7 @@ import SocialProofBanner from "@/components/SocialProofBanner";
 import PricingSection from "@/components/PricingSection";
 import CekicilikSection from "@/components/CekicilikSection";
 import FaqSection from "@/components/FaqSection";
+import MentorshipTeaser from "@/components/MentorshipTeaser";
 import Footer from "@/components/Footer";
 import SectionDivider from "@/components/ui/SectionDivider";
 
@@ -68,6 +69,9 @@ export default function Home() {
       {/* 6. Sıkça Sorulan Sorular (SSS) Akordiyon Bölümü */}
       <SectionDivider variant="split" />
       <FaqSection />
+
+      {/* 6b. Sakin mentörlük şeridi (kitaplarla yarışmaz) */}
+      <MentorshipTeaser />
 
       {/* 7. Footer */}
       <SectionDivider variant="split" />

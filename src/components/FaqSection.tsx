@@ -2,12 +2,14 @@
 
 import { useState } from "react";
 import { ChevronDown, Sparkles, Mail } from "lucide-react";
+import Link from "next/link";
 import { ThemeSectionHeader } from "./ui/ThemeSystem";
 
 interface FaqItem {
   id: number;
   question: string;
   answer: string;
+  link?: { href: string; label: string };
 }
 
 const faqs: FaqItem[] = [
@@ -76,6 +78,13 @@ const faqs: FaqItem[] = [
     question: "Kitabı hediye olarak gönderebilir miyim?",
     answer:
       "Elbette. Fiziksel kitap kartlarındaki “Hediye olarak gönder” seçeneğiyle sipariş verin, hediye edeceğiniz kişinin adını yazın; kitap onun ismine imzalanıp doğrudan adresine gönderilir.",
+  },
+  {
+    id: 12,
+    question: "Birebir görüşme yapıyor musunuz?",
+    answer:
+      "Evet. Google Meet veya WhatsApp üzerinden 45 dakikalık birebir strateji seansları ve aylık VIP Mentörlük sunuyorum.",
+    link: { href: "/danismanlik", label: "Özel Danışmanlık sayfasını incele →" },
   },
 ];
 
@@ -155,6 +164,11 @@ export default function FaqSection() {
                   <div className="overflow-hidden">
                     <div className="px-6 pb-6 sm:px-8 sm:pb-7 text-fluid-sm sm:text-fluid-base text-zinc-300 leading-relaxed border-t border-zinc-800/60 pt-4">
                       {faq.answer}
+                      {faq.link && (
+                        <Link href={faq.link.href} className="mt-2 block font-semibold text-gold-300 hover:text-gold-200">
+                          {faq.link.label}
+                        </Link>
+                      )}
                     </div>
                   </div>
                 </div>
