@@ -9,7 +9,7 @@ import Footer from "@/components/Footer";
 export const metadata: Metadata = {
   title: "Birebir Strateji Seansı (VIP) | Gürkan Özbinici",
   description:
-    "Gürkan Özbinici ile birebir strateji seansı (45 dk, 5.000 TL, 2 e-kitap + 1 hafta WhatsApp desteği hediye) ve VIP Mentörlük (ayda 4 seans + 7/24 WhatsApp desteği). Başvuru ile.",
+    "Gürkan Özbinici ile birebir strateji seansı (45 dk, 3.500 TL; 1.200 TL değerinde 2 e-kitap ve 3.500 TL değerinde 1 hafta WhatsApp desteği hediye) ve VIP Mentörlük (ayda 4 seans + 7/24 WhatsApp desteği). Başvuru ile.",
 };
 
 export default function DanismanlikPage() {

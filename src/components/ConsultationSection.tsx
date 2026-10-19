@@ -255,12 +255,14 @@ export default function ConsultationSection() {
                   <Gift className="h-5 w-5 text-gold-400" />
                   <div className="mt-2 font-cinzel text-2xl font-bold text-white">2 e-kitap</div>
                   <div className="text-[11px] uppercase tracking-wider text-zinc-400">iki kitabın dijital sürümü</div>
+                  <div className="mt-2 text-xs font-bold text-gold-300">1.200 TL değerinde</div>
                 </div>
                 <div className="relative overflow-hidden rounded-2xl border border-emerald-500/40 bg-gradient-to-b from-emerald-500/15 to-black/40 p-4">
                   <span className="absolute right-2 top-2 rounded-full bg-emerald-400 px-2 py-0.5 text-[9px] font-black uppercase tracking-widest text-black">Hediye</span>
                   <MessageCircle className="h-5 w-5 text-emerald-400" />
                   <div className="mt-2 font-cinzel text-2xl font-bold text-white">1 hafta</div>
                   <div className="text-[11px] uppercase tracking-wider text-zinc-400">WhatsApp desteği</div>
+                  <div className="mt-2 text-xs font-bold text-emerald-300">3.500 TL değerinde</div>
                 </div>
               </div>
               <ul className="mb-8 mt-6 space-y-3 text-sm text-zinc-200">
@@ -270,8 +272,8 @@ export default function ConsultationSection() {
                   "Durumuna özel kriz ve güç dinamikleri analizi",
                   "Uygulanabilir, kişiye özel aksiyon planı",
                   "Konuşulan her şey %100 gizli kalır",
-                  "Hediye: Vazgeçilmez Olma Sanatı ve Çekicilik Sanatı e-kitapları",
-                  "Hediye: Seans sonrası 1 hafta WhatsApp'tan soru sorma hakkı",
+                  "Hediye: Vazgeçilmez Olma Sanatı ve Çekicilik Sanatı e-kitapları (1.200 TL değerinde)",
+                  "Hediye: Seans sonrası 1 hafta WhatsApp desteği (3.500 TL değerinde)",
                 ].map((t) => (
                   <li key={t} className="flex items-start gap-3">
                     <Check />

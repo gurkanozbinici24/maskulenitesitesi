@@ -257,13 +257,13 @@ export const KOLEKSIYON_SETI_CONFIG = {
  * 4. BİREBİR DANIŞMANLIK (VIP strateji seansı)
  * ========================================================================== */
 const DANISMANLIK_MESAJ =
-  "Merhaba, 45 dakikalık birebir strateji seansı (5.000 TL) için randevu almak istiyorum." +
+  "Merhaba, 45 dakikalık birebir strateji seansı (3.500 TL) için randevu almak istiyorum." +
   "\n\nTercih ettiğim platform (Google Meet / WhatsApp): " +
   "\nUygun olduğum gün ve saatler: ";
 
 export const DANISMANLIK_CONFIG = {
-  price: 5000,
-  priceLabel: "5.000",
+  price: 3500,
+  priceLabel: "3.500",
   currency: "TL",
   durationMin: 45,
   platforms: ["Google Meet", "WhatsApp"],

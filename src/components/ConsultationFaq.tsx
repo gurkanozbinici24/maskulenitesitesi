@@ -16,7 +16,7 @@ const FAQS = [
   },
   {
     q: "Strateji Seansı'nda hediyeler neler?",
-    a: "Seans alan herkese Vazgeçilmez Olma Sanatı ve Çekicilik Sanatı e-kitapları hediye edilir (Çekicilik Sanatı 5 Kasım'da çıktığında gönderilir). Ayrıca seansın ardından 1 hafta boyunca WhatsApp'tan aklına takılanları sorabilirsin.",
+    a: "Seans alan herkese 1.200 TL değerindeki Vazgeçilmez Olma Sanatı ve Çekicilik Sanatı e-kitapları hediye edilir (Çekicilik Sanatı 5 Kasım'da çıktığında gönderilir). Ayrıca seansın ardından 3.500 TL değerinde 1 haftalık WhatsApp desteği hediyedir; aklına takılanları bu süre boyunca sorabilirsin.",
   },
   {
     q: "VIP Mentörlük nasıl işliyor?",
