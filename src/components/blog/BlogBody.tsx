@@ -47,6 +47,23 @@ export default function BlogBody({ body }: { body: string }) {
             </ul>
           );
         }
+        if (lines.every((l) => /^\d+\.\s/.test(l))) {
+          return (
+            <ol key={bi} className="space-y-3">
+              {lines.map((l, li) => {
+                const m = l.match(/^(\d+)\.\s+(.*)$/)!;
+                return (
+                  <li key={li} className="relative pl-9">
+                    <span className="absolute left-0 top-[0.15em] flex h-6 w-6 items-center justify-center rounded-full border border-gold-500/50 bg-gold-500/10 font-cinzel text-xs font-bold text-gold-300">
+                      {m[1]}
+                    </span>
+                    {inline(m[2])}
+                  </li>
+                );
+              })}
+            </ol>
+          );
+        }
         return (
           <Fragment key={bi}>
             {lines.map((l, li) => {

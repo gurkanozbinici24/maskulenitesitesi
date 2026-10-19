@@ -120,7 +120,7 @@ Vazgeçilmez Olma Sanatı'nda erkeklere "Hayatının merkezine bir kadını koya
 
 Bir kâğıda iki liste yaz. Birincisine "Bu hafta kendime vereceğim üç küçük söz" (örneğin: üç gün yürüyüş, bir kitabın ilk elli sayfası, bir arkadaşı arama). İkincisine "Bu hafta söyleyeceğim bir hayır." Hafta sonunda listeye bak. Tuttuğun her söz, söylediğin her hayır, özdeğerinin bir tuğlası.
 
-Özdeğerin inşasını erkekler için Vazgeçilmez Olma Sanatı'nın "Kendi İmparatorluğunu Kur" ve "Nihai Erillik" bölümlerinde, kadınlar için Çekicilik Sanatı'nın "Kendi Krallığın" ve "Kadının Uyanışı" bölümlerinde anlattım.`,
+Özdeğerin inşasını erkekler için Vazgeçilmez Olma Sanatı'nın "Kendi İmparatorluğunu Kur" ve "Nihai Erillik" bölümlerinde, kadınlar için Çekicilik Sanatı'nın "Kendi Krallığın" ve "Kadının Uyanışı" bölümlerinde anlattım. Özdeğerin erkeklerdeki karşılığını [maskülenite nedir](/blog/maskulenite-nedir) yazısında ayrıca ele aldım.`,
 };
 
 export default post;

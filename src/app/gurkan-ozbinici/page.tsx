@@ -201,7 +201,11 @@ export default function GurkanOzbiniciPage() {
             kurduğu dört kişilik grupta ikili ilişkiler ve toplumsal ilişkiler üzerine düzenli olarak tartışıyordu.
           </p>
           <p className={p}>
-            Arkadaşları onun görüşlerini ve tezlerini başlarda aykırı buldu. Ama maskülenite ve &quot;red pill&quot; olarak bilinen
+            Arkadaşları onun görüşlerini ve tezlerini başlarda aykırı buldu. Ama{" "}
+            <Link href="/blog/maskulenite-nedir" className="text-gold-300 underline decoration-gold-500/40 underline-offset-4 hover:text-gold-200">maskülenite</Link>{" "}
+            ve{" "}
+            <Link href="/blog/red-pill-nedir" className="text-gold-300 underline decoration-gold-500/40 underline-offset-4 hover:text-gold-200">&quot;red pill&quot;</Link>{" "}
+            olarak bilinen
             ilişki dinamikleri yaklaşımı hakkında anlattıkça, bu görüşlerin gündelik hayatta karşılık bulduğunu fark ettiler.
             Akıcı, anlaşılır ve özellikle mantığa dayanan yorumları grupta o kadar ilgi gördü ki, bu konuları sosyal medyada
             daha geniş bir kitleyle paylaşması için ısrarlar giderek arttı.

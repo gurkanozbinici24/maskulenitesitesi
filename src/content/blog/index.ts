@@ -1,5 +1,10 @@
 // Bu dosya otomatik üretilir: yeni yazı için posts/ klasörüne dosya ekleyip listeye import edin.
 import type { BlogPost, BookKey } from "./types";
+import maskuleniteNedir from "./posts/maskulenite-nedir";
+import maskulenErkekOzellikleri from "./posts/maskulen-erkek-ozellikleri";
+import redPillNedir from "./posts/red-pill-nedir";
+import maskulenVeFeminenEnerji from "./posts/maskulen-ve-feminen-enerji";
+import bluePillRedPillBlackPill from "./posts/blue-pill-red-pill-black-pill";
 import eskiSevgiliGeriDonerMi from "./posts/eski-sevgili-geri-doner-mi";
 import ayrilikAcisiNeKadarSurer from "./posts/ayrilik-acisi-ne-kadar-surer";
 import noContactKurali from "./posts/no-contact-kurali";
@@ -28,6 +33,11 @@ import cekicilikSanatiKitabi from "./posts/cekicilik-sanati-kitabi";
 export type { BlogPost, BookKey, BlogFaq } from "./types";
 
 export const POSTS: BlogPost[] = [
+  maskuleniteNedir,
+  maskulenErkekOzellikleri,
+  redPillNedir,
+  maskulenVeFeminenEnerji,
+  bluePillRedPillBlackPill,
   eskiSevgiliGeriDonerMi,
   ayrilikAcisiNeKadarSurer,
   noContactKurali,

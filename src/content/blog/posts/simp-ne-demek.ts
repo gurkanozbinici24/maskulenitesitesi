@@ -132,7 +132,7 @@ Kitaptaki cevap aynı: Fedakârlık yaparak, sürekli vererek bir insanın arzus
 
 Bir kâğıda son bir ayda ilişkiye ne verdiğini yaz: zaman, para, çaba, kendi planlarından vazgeçtiğin anlar. Altına karşı tarafın ne verdiğini yaz. İki liste arasında büyük bir fark varsa, bu hafta tek bir şeyi değiştir: Bir planı iptal etme, bir "hayır" de ya da bir akşamı tamamen kendine ayır. Ve karşı tarafın tepkisini izle.
 
-Fazla vermenin bedelini Vazgeçilmez Olma Sanatı'nın "Fazla Vermenin Bedeli", "Aşk Terazisindeki Devasa Yalan" ve "70/30 Kanunu" bölümlerinde ayrıntılı anlattım.`,
+Fazla vermenin bedelini Vazgeçilmez Olma Sanatı'nın "Fazla Vermenin Bedeli", "Aşk Terazisindeki Devasa Yalan" ve "70/30 Kanunu" bölümlerinde ayrıntılı anlattım. Simp kavramının da içinden çıktığı tartışmayı merak ediyorsan [red pill nedir](/blog/red-pill-nedir) yazısına göz at.`,
 };
 
 export default post;

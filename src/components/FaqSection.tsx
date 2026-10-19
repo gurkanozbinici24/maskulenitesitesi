@@ -87,6 +87,13 @@ const faqs: FaqItem[] = [
     link: { href: "/danismanlik", label: "Özel Danışmanlık sayfasını incele →" },
   },
   {
+    id: 14,
+    question: "Maskülenite nedir?",
+    answer:
+      "Maskülenite, 'erkeksilik' anlamına gelir. Bizim için maskülenite; kendi hayatının yönetimini eline almış, sözünün arkasında duran, sınırı olan ve baskı altında sakin kalabilen bir adamın duruşudur. Kas, öfke ya da kadınlara tepeden bakmak değil.",
+    link: { href: "/blog/maskulenite-nedir", label: "Maskülenite nedir? yazısını oku →" },
+  },
+  {
     id: 13,
     question: "Gürkan Özbinici kimdir?",
     answer:

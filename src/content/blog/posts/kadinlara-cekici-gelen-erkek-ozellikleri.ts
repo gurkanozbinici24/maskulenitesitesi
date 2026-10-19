@@ -139,7 +139,7 @@ Bu dokuz özelliği bir günde kazanamazsın. Ama her biri küçük, günlük ad
 
 Bir kâğıda yukarıdaki dokuz özelliği yaz ve her birine kendini 1'den 10'a kadar puanla. En düşük puan verdiğin iki özelliği seç. Bu ay sadece bu ikisine odaklan. Çekim bir taktik değil, bir karakter inşasıdır ve inşaat tuğla tuğla yapılır.
 
-Bu özelliklerin her birini Vazgeçilmez Olma Sanatı'nda ayrı bölümlerde ayrıntılı anlattım. Kitabın ilk sayfalarını [sitede ücretsiz okuyabilirsin](/#vazgecilmez).`,
+Bu özelliklerin her birini Vazgeçilmez Olma Sanatı'nda ayrı bölümlerde ayrıntılı anlattım. Kitabın ilk sayfalarını [sitede ücretsiz okuyabilirsin](/#vazgecilmez). Bu özelliklerin karşı tarafın gözünden değil, erkeğin kendi hayatı açısından ne anlama geldiğini [maskülen erkeğin 12 özelliği](/blog/maskulen-erkek-ozellikleri) yazısında anlattım.`,
 };
 
 export default post;
