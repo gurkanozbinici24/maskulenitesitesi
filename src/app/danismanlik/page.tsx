@@ -8,7 +8,7 @@ import Footer from "@/components/Footer";
 export const metadata: Metadata = {
   title: "Birebir Strateji Seansı (VIP) | Gürkan Özbinici",
   description:
-    "Gürkan Özbinici ile 45 dakikalık birebir ilişki stratejisi seansı. Google Meet veya WhatsApp üzerinden, sesli ya da görüntülü. 2.500 TL.",
+    "Gürkan Özbinici ile 45 dakikalık birebir ilişki stratejisi seansı. Google Meet veya WhatsApp üzerinden, sesli ya da görüntülü. 3.500 TL.",
 };
 
 export default function DanismanlikPage() {
