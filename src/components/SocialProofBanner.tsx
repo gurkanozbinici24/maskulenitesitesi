@@ -29,7 +29,7 @@ export default function SocialProofBanner() {
               </h3>
               
               <p className="mt-3 text-sm sm:text-base text-zinc-300 font-normal leading-relaxed">
-                Maskulenitesitesi hesabımızda milyonlarca kez izlenen o acımasız gerçekler. Milyonlarca kişinin ilişkilere bakışını kökten değiştiren tavizsiz stratejiler, şimdi iki başucu kitabında: biri erkekler, biri kadınlar için.
+                Maskülenite (@maskulenitesitesi) hesabımızda maskülenlik ve ilişkiler üzerine milyonlarca kez izlenen o acımasız gerçekler. Milyonlarca kişinin ilişkilere bakışını kökten değiştiren tavizsiz stratejiler, şimdi iki başucu kitabında: biri erkekler, biri kadınlar için.
               </p>
             </div>
 

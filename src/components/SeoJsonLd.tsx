@@ -27,10 +27,22 @@ export default function SeoJsonLd() {
         alternateName: "Gurkan Ozbinici",
         url: SITE,
         image: `${SITE}/insta_profile_800k.jpg`,
-        jobTitle: "Yazar, İlişki Danışmanı",
+        jobTitle: ["Yazar", "İlişki Koçu", "İlişki Danışmanı"],
+        knowsAbout: ["Maskülenlik", "İlişkiler", "İlişki psikolojisi", "İlişki koçluğu", "Çekim dinamikleri"],
         description:
           "Vazgeçilmez Olma Sanatı ve Çekicilik Sanatı kitaplarının yazarı; @maskulenitesitesi hesabının kurucusu.",
         sameAs: [INSTAGRAM_URL],
+      },
+      {
+        "@type": "Service",
+        "@id": `${SITE}/danismanlik#hizmet`,
+        name: "İlişki Koçluğu ve İlişki Danışmanlığı",
+        serviceType: "İlişki koçluğu",
+        provider: author,
+        areaServed: { "@type": "Country", name: "Türkiye" },
+        availableChannel: { "@type": "ServiceChannel", serviceUrl: `${SITE}/danismanlik` },
+        url: `${SITE}/danismanlik`,
+        offers: { "@type": "Offer", price: "3500", priceCurrency: "TRY", url: `${SITE}/danismanlik` },
       },
       {
         "@type": "Book",

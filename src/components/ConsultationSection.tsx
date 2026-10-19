@@ -89,7 +89,7 @@ export default function ConsultationSection() {
           {/* Sol */}
           <div className="lg:col-span-7">
             <div className="inline-flex items-center gap-2 rounded-full border border-gold-500/40 bg-black/50 px-4 py-1.5 text-[11px] font-bold uppercase tracking-[0.22em] text-gold-300">
-              <Crown className="h-3.5 w-3.5" /> VIP Birebir Strateji Seansı
+              <Crown className="h-3.5 w-3.5" /> İlişki Koçluğu · Birebir Danışmanlık
             </div>
             <h1 className="mt-5 font-cinzel text-[clamp(2.1rem,5.2vw,3.9rem)] font-bold leading-[1.05] text-white">
               İlişkinde <span className="gold-text-gradient">kontrolü</span>
@@ -98,7 +98,7 @@ export default function ConsultationSection() {
             <p className="mt-5 max-w-xl text-base leading-relaxed text-zinc-300 sm:text-lg">
               Bu bir dertleşme değil; durumunu, sana oynanan oyunları ve ilişkideki güç dengesini birlikte çözümlediğimiz{" "}
               <strong className="text-white">{C.durationMin} dakikalık stratejik bir seans</strong>. Erkek ya da kadın, masadan ne
-              yapacağını bilerek kalkarsın.
+              yapacağını bilerek kalkarsın. Klasik bir ilişki danışmanlığı değil; sonuca odaklı, birebir ilişki koçluğu.
             </p>
 
             {/* Bilgi çipleri */}

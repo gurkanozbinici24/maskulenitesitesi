@@ -7,10 +7,11 @@ import ConsultationApply from "@/components/ConsultationApply";
 import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
-  title: "Özel Danışmanlık – Gürkan Özbinici ile Birebir Strateji Seansı",
+  title: "İlişki Koçluğu ve İlişki Danışmanlığı – Gürkan Özbinici ile Birebir Seans",
   alternates: { canonical: "/danismanlik" },
   description:
-    "Gürkan Özbinici ile birebir strateji seansı (45 dk, 3.500 TL; ilk seansa özel 2 e-kitap ve 1 hafta WhatsApp desteği hediye) ve VIP Mentörlük (ayda 4 seans + 7/24 WhatsApp desteği). Başvuru ile.",
+    "Gürkan Özbinici ile birebir ilişki koçluğu ve ilişki danışmanlığı: 45 dakikalık strateji seansı (3.500 TL, ilk seansa özel 2 e-kitap ve 1 hafta WhatsApp desteği hediye) ve VIP Mentörlük. Google Meet veya WhatsApp, başvuru ile.",
+  keywords: ["ilişki koçluğu", "ilişki danışmanlığı", "ilişki koçu", "online ilişki danışmanı", "gürkan özbinici danışmanlık", "maskülenite danışmanlık"],
 };
 
 export default function DanismanlikPage() {
