@@ -1,5 +1,5 @@
 import { ChevronDown } from "lucide-react";
-import { DANISMANLIK_CONFIG as C } from "@/config/cekicilikConfig";
+import { DANISMANLIK_CONFIG as C, VIP_LAUNCH_ACTIVE, VIP_PRICE_LABEL } from "@/config/cekicilikConfig";
 
 const FAQS = [
   {
@@ -12,7 +12,7 @@ const FAQS = [
   },
   {
     q: "Ücretler ne kadar, ödemeyi nasıl yapıyorum?",
-    a: `Birebir Strateji Seansı ${C.priceLabel} TL (${C.durationMin} dk), ${C.vip.name} aylık ${C.vip.priceLabel} TL'dir. Başvurun değerlendirilip randevu netleşince ödemeyi havale/EFT ile yapıyorsun.`,
+    a: `Birebir Strateji Seansı ${C.priceLabel} TL (${C.durationMin} dk), ${C.vip.name} aylık ${VIP_PRICE_LABEL} TL'dir${VIP_LAUNCH_ACTIVE ? ` (ilk ${C.vip.launchSlotsTotal} danışana özel lansman fiyatı; normal fiyatı ${C.vip.priceLabel} TL)` : ""}. Başvurun değerlendirilip randevu netleşince ödemeyi havale/EFT ile yapıyorsun.`,
   },
   {
     q: "Strateji Seansı'nda hediyeler neler?",

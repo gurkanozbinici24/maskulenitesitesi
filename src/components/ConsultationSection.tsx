@@ -23,7 +23,7 @@ import {
   Zap,
 } from "lucide-react";
 import { ThemeButton } from "./ui/ThemeSystem";
-import { DANISMANLIK_CONFIG as C } from "@/config/cekicilikConfig";
+import { DANISMANLIK_CONFIG as C, VIP_LAUNCH_ACTIVE, VIP_PRICE_LABEL } from "@/config/cekicilikConfig";
 
 /**
  * Özel Danışmanlık (VIP) sayfası — premium yeniden tasarım.
@@ -145,7 +145,7 @@ export default function ConsultationSection() {
             </div>
             <p className="mt-2 text-xs text-zinc-500">İlk seansında toplam {C.totalValueLabel} TL değerindeki paket, yalnızca {C.priceLabel} TL.</p>
             <a href="#paketler" className="mt-4 inline-flex items-center gap-2 rounded-full border border-gold-500/30 bg-gold-500/5 px-4 py-2 text-xs font-semibold text-gold-200 transition-colors hover:bg-gold-500/10">
-              <Crown className="h-4 w-4 text-gold-400" /> {C.vip.name}: ayda {C.vip.sessionsPerMonth} seans + 7/24 canlı mesaj koçluğu · {C.vip.priceLabel} TL / {C.vip.period}
+              <Crown className="h-4 w-4 text-gold-400" /> {C.vip.name}: ayda {C.vip.sessionsPerMonth} seans + 7/24 canlı mesaj koçluğu · {VIP_PRICE_LABEL} TL / {C.vip.period}{VIP_LAUNCH_ACTIVE && " (lansman fiyatı)"}
             </a>
             <a
               href={C.instagramUrl}
@@ -327,14 +327,30 @@ export default function ConsultationSection() {
                 <h3 className="mt-3 font-cinzel text-3xl font-bold text-white">{C.vip.name}</h3>
                 <p className="mt-2 text-sm text-zinc-300">Süreç boyunca yanında olduğum, birebir ve sürekli bir yol arkadaşlığı.</p>
                 <div className="mt-6 flex items-baseline gap-2">
-                  <span className="font-cinzel text-5xl font-bold text-white [text-shadow:0_0_30px_rgba(212,175,55,0.5)] sm:text-6xl">{C.vip.priceLabel}</span>
+                  {VIP_LAUNCH_ACTIVE && (
+                    <span className="relative mr-1 font-cinzel text-2xl font-bold text-zinc-500">
+                      {C.vip.priceLabel}
+                      <span className="absolute left-[-6%] top-1/2 h-[2px] w-[112%] -rotate-6 bg-crimson-500" />
+                    </span>
+                  )}
+                  <span className="font-cinzel text-5xl font-bold text-white [text-shadow:0_0_30px_rgba(212,175,55,0.5)] sm:text-6xl">{VIP_PRICE_LABEL}</span>
                   <span className="text-xl font-bold text-gold-400">{C.currency}</span>
                   <span className="text-sm text-zinc-400">/ {C.vip.period}</span>
                 </div>
-                <p className="mt-2 rounded-xl border border-gold-500/20 bg-black/30 px-3 py-2 text-xs leading-relaxed text-zinc-300">
+                {VIP_LAUNCH_ACTIVE && (
+                  <div className="mt-3 flex flex-wrap items-center gap-2">
+                    <span className="inline-flex items-center gap-1.5 rounded-full bg-gradient-to-r from-crimson-500 to-crimson-700 px-3 py-1 text-[10px] font-black uppercase tracking-widest text-white shadow-[0_0_20px_rgba(220,38,38,0.4)]">
+                      <Sparkles className="h-3.5 w-3.5" /> Lansman fiyatı · ilk {C.vip.launchSlotsTotal} danışana özel
+                    </span>
+                    <span className="text-xs font-semibold text-zinc-300">
+                      Kalan kontenjan: <span className="text-white">{C.vip.launchSlotsLeft}</span>/{C.vip.launchSlotsTotal}
+                    </span>
+                  </div>
+                )}
+                <p className="mt-3 rounded-xl border border-gold-500/20 bg-black/30 px-3 py-2 text-xs leading-relaxed text-zinc-300">
                   Tek tek alsan: 4 seans <span className="text-white">(14.000 TL)</span> + 4 hafta mesaj koçluğu{" "}
                   <span className="text-white">(14.000 TL)</span> + acil kriz görüşmesi + imzalı kitaplar.{" "}
-                  <span className="font-semibold text-gold-300">Hepsi tek pakette, aylık {C.vip.priceLabel} TL.</span>
+                  <span className="font-semibold text-gold-300">Hepsi tek pakette, aylık {VIP_PRICE_LABEL} TL.</span>
                 </p>
                 <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-3">
                   <div className="rounded-2xl border border-gold-500/30 bg-black/40 p-4">

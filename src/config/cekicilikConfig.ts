@@ -283,10 +283,23 @@ export const DANISMANLIK_CONFIG = {
     priceLabel: "30.000",
     period: "ay",
     sessionsPerMonth: 4,
-    /** Gerçek kontenjan: ayda en fazla kaç VIP danışan */
+    /**
+     * LANSMAN FİYATI: ilk 3 VIP danışana özel.
+     * Her VIP satışında launchSlotsLeft'i 1 azaltın; 0 olunca site otomatik olarak liste fiyatına (30.000) döner.
+     */
+    launchPrice: 20000,
+    launchPriceLabel: "20.000",
+    launchSlotsTotal: 3,
+    launchSlotsLeft: 3,
     monthlySlots: 5,
     supportNote: "24:00'ten sonra yazılan mesajlar ertesi gün cevaplanır.",
   },
   /** Başvurunun gönderileceği WhatsApp hattı */
   phone: WHATSAPP_PHONE,
 } as const;
+
+/** VIP için şu an geçerli fiyat (lansman kontenjanı varsa lansman fiyatı) */
+export const VIP_LAUNCH_ACTIVE = DANISMANLIK_CONFIG.vip.launchSlotsLeft > 0;
+export const VIP_PRICE_LABEL = VIP_LAUNCH_ACTIVE
+  ? DANISMANLIK_CONFIG.vip.launchPriceLabel
+  : DANISMANLIK_CONFIG.vip.priceLabel;

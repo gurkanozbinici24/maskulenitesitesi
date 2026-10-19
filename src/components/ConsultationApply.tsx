@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { Crown, Lock, Send, Target } from "lucide-react";
-import { DANISMANLIK_CONFIG as C, buildWhatsAppUrl } from "@/config/cekicilikConfig";
+import { DANISMANLIK_CONFIG as C, VIP_LAUNCH_ACTIVE, VIP_PRICE_LABEL, buildWhatsAppUrl } from "@/config/cekicilikConfig";
 
 type Paket = "seans" | "vip";
 
@@ -28,7 +28,7 @@ export default function ConsultationApply() {
     setHata("");
     const paketAd =
       paket === "vip"
-        ? `${C.vip.name} (${C.vip.priceLabel} TL / ${C.vip.period})`
+        ? `${C.vip.name} (${VIP_PRICE_LABEL} TL / ${C.vip.period}${VIP_LAUNCH_ACTIVE ? ", lansman fiyatı" : ""})`
         : `Birebir Strateji Seansı (${C.priceLabel} TL / ${C.durationMin} dk)`;
     const mesaj = [
       "Merhaba, danışmanlık başvurusu yapmak istiyorum.",
@@ -76,7 +76,7 @@ export default function ConsultationApply() {
             {(
               [
                 { k: "seans", icon: Target, t: "Birebir Strateji Seansı", d: `${C.priceLabel} TL · ${C.durationMin} dk` },
-                { k: "vip", icon: Crown, t: C.vip.name, d: `${C.vip.priceLabel} TL / ${C.vip.period}` },
+                { k: "vip", icon: Crown, t: C.vip.name, d: `${VIP_PRICE_LABEL} TL / ${C.vip.period}${VIP_LAUNCH_ACTIVE ? " · lansman" : ""}` },
               ] as const
             ).map(({ k, icon: I, t, d }) => (
               <button
