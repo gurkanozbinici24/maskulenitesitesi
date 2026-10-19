@@ -43,7 +43,14 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
   const p = getPost(params.slug);
   if (!p) notFound();
   const cta = BOOK_CTA[p.book];
-  const related = POSTS.filter((x) => x.slug !== p.slug).slice(0, 2);
+  const relatedFixed = (p.related ?? []).map((r) => getPost(r)).filter(Boolean) as typeof POSTS;
+  const related = [
+    ...relatedFixed,
+    ...POSTS.filter((x) => x.slug !== p.slug && x.book === p.book && !relatedFixed.includes(x)),
+    ...POSTS.filter((x) => x.slug !== p.slug),
+  ]
+    .filter((x, i, a) => x.slug !== p.slug && a.indexOf(x) === i)
+    .slice(0, 4);
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -61,6 +68,18 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
         publisher: { "@id": `${SITE}/#gurkan-ozbinici` },
         keywords: p.keywords.join(", "),
       },
+      ...(p.faq?.length
+        ? [
+            {
+              "@type": "FAQPage",
+              mainEntity: p.faq.map((f) => ({
+                "@type": "Question",
+                name: f.q,
+                acceptedAnswer: { "@type": "Answer", text: f.a },
+              })),
+            },
+          ]
+        : []),
       {
         "@type": "BreadcrumbList",
         itemListElement: [
@@ -104,6 +123,25 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
           </div>
 
           <BlogBody body={p.body} />
+
+          {p.faq?.length ? (
+            <section className="mt-14">
+              <h2 className="mb-5 font-cinzel text-[clamp(1.35rem,3vw,1.8rem)] font-bold text-white">
+                {"Sık Sorulan Sorular".toLocaleUpperCase("tr-TR")}
+              </h2>
+              <div className="space-y-3">
+                {p.faq.map((f) => (
+                  <details key={f.q} className="group rounded-2xl border border-white/10 bg-white/[0.03] p-5 open:border-gold-500/40">
+                    <summary className="cursor-pointer list-none font-semibold text-white marker:hidden">
+                      <span className="mr-2 text-gold-400 transition-transform group-open:rotate-45 inline-block">+</span>
+                      {f.q}
+                    </summary>
+                    <p className="mt-3 leading-relaxed text-zinc-300">{f.a}</p>
+                  </details>
+                ))}
+              </div>
+            </section>
+          ) : null}
 
           {/* Kitap çağrısı */}
           <aside className="relative mt-16 overflow-hidden rounded-3xl border border-gold-500/40 bg-[linear-gradient(135deg,rgba(212,175,55,0.14),rgba(10,8,6,0.9)_55%)] p-7 sm:p-9">

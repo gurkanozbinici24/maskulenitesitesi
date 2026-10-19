@@ -13,9 +13,6 @@ export const metadata: Metadata = {
   openGraph: { type: "website", url: "/blog", title: "Blog | Maskülenite", images: ["/og-paylasim.jpg"] },
 };
 
-const fmt = (d: string) =>
-  new Date(d + "T12:00:00+03:00").toLocaleDateString("tr-TR", { day: "numeric", month: "long", year: "numeric" });
-
 export default function BlogIndex() {
   const posts = [...POSTS].sort((a, b) => b.date.localeCompare(a.date));
   return (
@@ -53,7 +50,7 @@ export default function BlogIndex() {
                 </div>
                 <div className="flex flex-1 flex-col p-6">
                   <div className="mb-3 text-[11px] font-semibold uppercase tracking-wider text-gold-400/80">
-                    {fmt(p.date)} · {p.readMin} dk okuma
+                    {p.category ? `${p.category} · ` : ""}{p.readMin} dk okuma
                   </div>
                   <h2 className="font-playfair text-xl font-bold leading-snug text-white group-hover:text-gold-200">{p.title}</h2>
                   <p className="mt-3 flex-1 text-sm leading-relaxed text-zinc-400">{p.excerpt}</p>
