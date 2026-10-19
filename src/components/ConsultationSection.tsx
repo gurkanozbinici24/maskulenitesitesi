@@ -308,7 +308,7 @@ export default function ConsultationSection() {
                     { t: "7/24 Canlı Mesaj Koçluğu", d: `Karşı tarafla yazışmanın ekran görüntüsünü at; ne cevap vereceğini, ne zaman susacağını birlikte belirleyelim. ${C.vip.supportNote}` },
                     { t: "Her seans sonrası yazılı aksiyon planı", d: "Konuştuklarımızın özeti ve atacağın adımlar elinde kalır." },
                     { t: "Ayda 1 acil kriz görüşmesi", d: "Plan dışı, 15 dakikalık hızlı bir arama hakkı." },
-                    { t: "Hoş geldin hediyesi", d: "İki kitap da isminize özel imzalı olarak kapınıza gelir." },
+                    { t: "Hoş geldin hediyesi", d: "İki kitap da ismine özel imzalı olarak kapına gelir." },
                     { t: "%100 gizlilik", d: "Konuşulan her şey aramızda kalır." },
                   ].map(({ t, d }) => (
                     <li key={t} className="flex items-start gap-3">
