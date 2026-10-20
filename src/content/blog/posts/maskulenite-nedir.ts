@@ -8,6 +8,7 @@ const post: BlogPost = {
   excerpt:
     "Maskülenite kas, sert ses ya da kadınlara tepeden bakmak değil. Kendi hayatının yönetimini eline almış, sözünün arkasında duran, sınırı olan ve sakin kalabilen adamın duruşu. Kelimenin anlamından gündelik hayattaki karşılığına kadar her şeyi anlattım.",
   date: "2026-10-20",
+  updated: "2026-10-20",
   readMin: 8,
   book: "vazgecilmez",
   category: "Maskülenlik",
@@ -35,6 +36,18 @@ const post: BlogPost = {
     {
       q: "Maskülenlik ile toksik erkeklik aynı şey mi?",
       a: "Hayır. Toksik erkeklik; öfkeyi güç sanmak, kontrol etmek, aşağılamak ve duyguları tamamen bastırmaktır. Maskülenlik ise kendini yönetebilmek, sorumluluk almak ve sınır koyabilmektir. Biri karşısındakini küçülterek büyümeye çalışır, diğeri kendini büyüterek ayakta durur.",
+    },
+    {
+      q: "Maskülenitenin karşıtı nedir?",
+      a: "Maskülenitenin karşıtı feminenliktir (feminite). Maskülen 'erkeksi, erkeğe özgü', feminen ise 'kadınsı, kadına özgü' anlamına gelir. İkisi birbirinin düşmanı değil, birbirini tamamlayan iki kutuptur; çekim de bu farktan doğar.",
+    },
+    {
+      q: "Maskülenlik ne demek?",
+      a: "Maskülenlik, maskülenite ile aynı anlamda kullanılır: erkeksilik, erkeklik hâli. Gündelik dilde kendi hayatını yöneten, sözünün arkasında duran, sınırı olan ve baskı altında sakin kalabilen erkeğin duruşunu anlatmak için kullanılır.",
+    },
+    {
+      q: "Maskülenite sitesi kimin?",
+      a: "Maskülenite (maskulenitesitesi.com.tr ve Instagram'da @maskulenitesitesi), yazar ve ilişki koçu Gürkan Özbinici'ye aittir. Gürkan Özbinici, erkekler için Vazgeçilmez Olma Sanatı ve kadınlar için Çekicilik Sanatı kitaplarının yazarıdır ve 2019'dan beri maskülenlik ve ilişkiler üzerine içerik üretmektedir.",
     },
     {
       q: "Maskülenite sonradan kazanılabilir mi?",
