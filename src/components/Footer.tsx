@@ -131,14 +131,20 @@ export default function Footer() {
               </h4>
               <ul className="space-y-2 text-sm">
                 <li>
-                  <button
-                    onClick={() =>
-                      openModal("İade ve İptal Koşulları", "iade")
-                    }
-                    className="hover:text-gold-400 transition-colors text-left"
+                  <a
+                    href="/teslimat-ve-iade"
+                    className="hover:text-gold-400 transition-colors"
                   >
-                    İade ve Cayma Koşulları
-                  </button>
+                    Teslimat ve İade Şartları
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/hizmet-iptal-ve-iade"
+                    className="hover:text-gold-400 transition-colors"
+                  >
+                    Danışmanlık İptal ve İade Koşulları
+                  </a>
                 </li>
                 <li>
                   <button

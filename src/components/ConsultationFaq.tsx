@@ -39,6 +39,10 @@ const FAQS = [
     a: "Evet. Birebir strateji seansı ve VIP Mentörlük yalnızca erkeklere veriliyor. Kadın okurlarım için ilişki dinamiklerini kadın tarafından anlattığım Çekicilik Sanatı kitabını yazdım; 5 Kasım'da çıkıyor.",
   },
   {
+    q: "Randevumu iptal edersem ücretim iade edilir mi?",
+    a: "Randevu saatinden en az 24 saat önce iptal edersen ücretin tamamı iade edilir; 24 saatten az kala yapılan iptallerde iade yapılmaz. 24 saat önceden haber vermek şartıyla seansını bir kez ücretsiz erteleyebilirsin. Tüm koşullar sitenin alt kısmındaki 'Danışmanlık İptal ve İade Koşulları' sayfasında (maskulenitesitesi.com.tr/hizmet-iptal-ve-iade) yer alıyor.",
+  },
+  {
     q: "Randevu saatini nasıl belirliyoruz?",
     a: "Başvuru formunda uygun olduğun gün ve saatleri yazıyorsun; dönüş yaparken sana uygun bir zaman dilimini birlikte netleştiriyoruz.",
   },
