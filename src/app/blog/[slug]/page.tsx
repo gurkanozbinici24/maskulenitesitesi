@@ -6,6 +6,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import BlogBody from "@/components/blog/BlogBody";
 import { BOOK_CTA, POSTS, getPost } from "@/content/blog";
+import { BOOK_BY_POST } from "@/content/bookSchema";
 
 const SITE = "https://www.maskulenitesitesi.com.tr";
 
@@ -67,7 +68,9 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
         author: { "@id": `${SITE}/#gurkan-ozbinici`, "@type": "Person", name: "Gürkan Özbinici", url: `${SITE}/gurkan-ozbinici` },
         publisher: { "@id": `${SITE}/#gurkan-ozbinici` },
         keywords: p.keywords.join(", "),
+        ...(BOOK_BY_POST[p.slug] ? { about: { "@id": BOOK_BY_POST[p.slug]["@id"] } } : {}),
       },
+      ...(BOOK_BY_POST[p.slug] ? [BOOK_BY_POST[p.slug]] : []),
       ...(p.faq?.length
         ? [
             {

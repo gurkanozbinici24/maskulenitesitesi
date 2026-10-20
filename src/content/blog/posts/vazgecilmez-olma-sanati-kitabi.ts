@@ -2,19 +2,32 @@ import type { BlogPost } from "../types";
 
 const post: BlogPost = {
   slug: "vazgecilmez-olma-sanati-kitabi",
-  title: "Vazgeçilmez Olma Sanatı: Kitap Ne Anlatıyor, Kimin İçin Yazıldı?",
+  title: "Vazgeçilmez Olma Sanatı Kitabı (Gürkan Özbinici): Konusu, Özeti ve Kimin İçin",
   description:
-    "Gürkan Özbinici'nin Vazgeçilmez Olma Sanatı kitabı ne anlatıyor? 100 kanun, 227 sayfa, bölümler, kimler okumalı, e-kitap ve imzalı fiziksel baskı seçenekleri.",
+    "Vazgeçilmez Olma Sanatı, Gürkan Özbinici'nin erkekler için yazdığı 100 kanunluk ilişki kitabı. Konusu, özeti, bölümleri, kimin için yazıldığı ve satın alma seçenekleri.",
   excerpt:
     "100 kanun, 227 sayfa ve tek bir hedef: ilişkide kuralları koyan taraf olmak. Kitabın ne anlattığını, hangi bölümlerden oluştuğunu, kimin için yazıldığını ve nasıl okunması gerektiğini anlattım.",
   date: "2026-10-19",
+  updated: "2026-10-20",
   readMin: 7,
   book: "vazgecilmez",
   category: "Kitaplar",
   cover: "/vazgecilmez-yeni-kapak.jpg",
-  keywords: ["vazgeçilmez olma sanatı", "vazgeçilmez olma sanatı kitabı", "gürkan özbinici kitap", "erkekler için ilişki kitabı", "maskülenlik kitabı"],
+  keywords: ["vazgeçilmez olma sanatı", "vazgeçilmez olma sanatı kitabı", "vazgeçilmez olma sanatı gürkan özbinici", "vazgeçilmez olma sanatı özet", "vazgeçilmez olma sanatı pdf", "gürkan özbinici kitap", "erkekler için ilişki kitabı", "maskülenlik kitabı"],
   related: ["cekicilik-sanati-kitabi", "hangi-kitap-sana-gore", "iyi-cocuk-sendromu"],
   faq: [
+    {
+      q: "Vazgeçilmez Olma Sanatı kimin kitabı?",
+      a: "Vazgeçilmez Olma Sanatı, yazar ve ilişki koçu Gürkan Özbinici'nin kitabıdır. Gürkan Özbinici, 1 milyonu aşkın kişiye ulaşan @maskulenitesitesi (Maskülenite) hesabının kurucusudur. Kitap yalnızca maskulenitesitesi.com.tr üzerinden satılır; benzer isimli başka kitaplarla karıştırılmamalıdır.",
+    },
+    {
+      q: "Vazgeçilmez Olma Sanatı ne anlatıyor?",
+      a: "Kitap, ilişkide sürekli taviz veren erkeğin neden saygı kaybettiğini ve bunun yerine ne yapması gerektiğini 100 kanunla anlatır: iyi çocuk masalından kurtulmak, kaybetme korkusunu yenmek, hayır diyebilmek, sınır koymak ve hayatının merkezine kendi misyonunu koymak.",
+    },
+    {
+      q: "Vazgeçilmez Olma Sanatı nereden alınır?",
+      a: "Kitap maskulenitesitesi.com.tr üzerinden satılır. E-kitap (PDF, EPUB, Kindle) hemen e-postayla gönderilir; fiziksel Yenilenmiş Edisyon isme özel imzalı ve ücretsiz kargoyla gönderilir.",
+    },
     {
       q: "Vazgeçilmez Olma Sanatı kimin için yazıldı?",
       a: "Öncelikle ilişkilerde sürekli taviz veren, saygı görmediğini hisseden, ayrılık yaşamış ya da ilişkiye sağlam bir temelle başlamak isteyen erkekler için. İlişkinin erkek tarafını anlamak isteyen kadınlar da okuyabilir.",
@@ -32,7 +45,9 @@ const post: BlogPost = {
       a: "Evet. Kitabın ilk sayfaları ve 100 kanundan üçü sitede ücretsiz olarak açık.",
     },
   ],
-  body: `"Bir ilişkide vazgeçilmez adam olmanın kuralı, köle gibi sürekli kendini kanıtlamakla uğraşman değil kardeşim. Aynaya baktığında kendine duyduğun o tavizsiz saygıyla başlar."
+  body: `**Vazgeçilmez Olma Sanatı**, yazar ve ilişki koçu **Gürkan Özbinici**'nin erkekler için yazdığı, 100 kanun ve 227 sayfadan oluşan ilişki ve maskülenlik kitabıdır. Kitap; ilişkide saygı kazanmayı, sınır koymayı, kaybetme korkusunu yenmeyi ve hayatının merkezine kendi misyonunu koymayı anlatır. E-kitap ve isme özel imzalı fiziksel baskı olarak yalnızca maskulenitesitesi.com.tr üzerinden satılır.
+
+"Bir ilişkide vazgeçilmez adam olmanın kuralı, köle gibi sürekli kendini kanıtlamakla uğraşman değil kardeşim. Aynaya baktığında kendine duyduğun o tavizsiz saygıyla başlar."
 
 Vazgeçilmez Olma Sanatı bu cümleyle başlıyor. Ve bu cümle, kitabın bütün felsefesini özetliyor.
 

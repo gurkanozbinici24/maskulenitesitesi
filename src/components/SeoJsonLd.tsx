@@ -1,4 +1,5 @@
 import { FACEBOOK_URL, INSTAGRAM_URL } from "@/config/cekicilikConfig";
+import { CEKICILIK_BOOK, VAZGECILMEZ_BOOK } from "@/content/bookSchema";
 
 const SITE = "https://www.maskulenitesitesi.com.tr";
 
@@ -34,6 +35,8 @@ export default function SeoJsonLd() {
         description:
           "Sosyoloji eğitimli yazar ve ilişki koçu; Vazgeçilmez Olma Sanatı ve Çekicilik Sanatı kitaplarının yazarı, @maskulenitesitesi hesabının kurucusu.",
         sameAs: [INSTAGRAM_URL, FACEBOOK_URL],
+        hasOccupation: { "@type": "Occupation", name: "Yazar" },
+        workExample: [{ "@id": `${SITE}/#vazgecilmez-olma-sanati` }, { "@id": `${SITE}/#cekicilik-sanati` }],
       },
       {
         "@type": "Service",
@@ -47,31 +50,8 @@ export default function SeoJsonLd() {
         url: `${SITE}/danismanlik`,
         offers: { "@type": "Offer", price: "10000", priceCurrency: "TRY", url: `${SITE}/danismanlik` },
       },
-      {
-        "@type": "Book",
-        "@id": `${SITE}/#vazgecilmez-olma-sanati`,
-        name: "Vazgeçilmez Olma Sanatı",
-        alternateName: "Vazgecilmez Olma Sanati",
-        author,
-        inLanguage: "tr",
-        numberOfPages: 227,
-        bookFormat: ["https://schema.org/Hardcover", "https://schema.org/EBook"],
-        image: `${SITE}/vazgecilmez-yeni-kapak.jpg`,
-        url: `${SITE}/#vazgecilmez`,
-        description: "Erkekler için ilişki psikolojisi ve çekim dinamikleri üzerine kitap.",
-      },
-      {
-        "@type": "Book",
-        "@id": `${SITE}/#cekicilik-sanati`,
-        name: "Çekicilik Sanatı",
-        alternateName: ["Cekicilik Sanati"],
-        author,
-        inLanguage: "tr",
-        bookFormat: ["https://schema.org/Hardcover", "https://schema.org/EBook"],
-        image: `${SITE}/cekicilik-sanati-kapak.jpg`,
-        url: `${SITE}/#cekicilik-sanati`,
-        description: "Kadınlar için ilişki psikolojisi ve çekim dinamikleri üzerine kitap.",
-      },
+      VAZGECILMEZ_BOOK,
+      CEKICILIK_BOOK,
     ],
   };
   return (

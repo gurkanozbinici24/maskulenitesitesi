@@ -2,19 +2,24 @@ import type { BlogPost } from "../types";
 
 const post: BlogPost = {
   slug: "cekicilik-sanati-kitabi",
-  title: "Çekicilik Sanatı: Kadınlar İçin Yazılan Kitap Hakkında Her Şey",
+  title: "Çekicilik Sanatı Kitabı (Gürkan Özbinici): Konusu, Özeti ve Çıkış Tarihi",
   description:
     "Gürkan Özbinici'nin kadınlar için yazdığı Çekicilik Sanatı ne anlatıyor? Bölümler, Erkeğin Karanlık Notu, 30 günlük program, çıkış tarihi ve fiyatlar.",
   excerpt:
     "Yıllarca erkeklere ilişkide gücü nasıl ellerinde tutacaklarını anlattım. Bu kitapta masanın diğer tarafına geçip bir erkeğin zihninin nasıl çalıştığını kadınlara anlatıyorum. Kitabın içeriğini, yapısını ve kimin için yazıldığını anlattım.",
   date: "2026-10-19",
+  updated: "2026-10-20",
   readMin: 6,
   book: "cekicilik",
   category: "Kitaplar",
   cover: "/blog/cekicilik-sanati-kitabi.jpg",
-  keywords: ["çekicilik sanatı", "çekicilik sanatı kitabı", "kadınlar için ilişki kitabı", "gürkan özbinici yeni kitap", "erkek psikolojisi kitabı"],
+  keywords: ["çekicilik sanatı", "çekicilik sanatı kitabı", "çekicilik sanatı gürkan özbinici", "çekicilik sanatı özet", "kadınlar için ilişki kitabı", "gürkan özbinici yeni kitap", "erkek psikolojisi kitabı"],
   related: ["vazgecilmez-olma-sanati-kitabi", "hangi-kitap-sana-gore", "ask-bombardimani-nedir"],
   faq: [
+    {
+      q: "Çekicilik Sanatı kimin kitabı?",
+      a: "Çekicilik Sanatı, Vazgeçilmez Olma Sanatı'nın da yazarı olan yazar ve ilişki koçu Gürkan Özbinici'nin kadınlar için yazdığı kitaptır. Kitap yalnızca maskulenitesitesi.com.tr üzerinden satılır.",
+    },
     {
       q: "Çekicilik Sanatı ne zaman çıkıyor?",
       a: "Çekicilik Sanatı 5 Kasım 2026, saat 18:00'de satışa çıkıyor. Sitedeki satın alma butonları o saatte otomatik olarak açılıyor.",
@@ -32,7 +37,9 @@ const post: BlogPost = {
       a: "E-kitap 600 TL, isme özel imzalı fiziksel kitap 1000 TL. İki fiziksel kitabı birlikte almak isteyenler için Koleksiyon Seti 1700 TL.",
     },
   ],
-  body: `"Seni öyle bir sarsarak uyandıracağım ki, yıllarca inandığın o pembe masallara lanet edeceksin."
+  body: `**Çekicilik Sanatı**, yazar ve ilişki koçu **Gürkan Özbinici**'nin kadınlar için yazdığı ilişki ve erkek psikolojisi kitabıdır. Kitap; bir erkeğin zihninin nasıl çalıştığını, kendi standartlarını kurmayı, doğru erkeği seçmeyi ve aşk bombardımanı ile narsist maskeler gibi tuzakları erkenden tanımayı anlatır. 5 Kasım 2026'da e-kitap ve isme özel imzalı fiziksel baskı olarak maskulenitesitesi.com.tr üzerinden satışa çıkıyor.
+
+"Seni öyle bir sarsarak uyandıracağım ki, yıllarca inandığın o pembe masallara lanet edeceksin."
 
 Çekicilik Sanatı bu cümleyle başlıyor.
 
