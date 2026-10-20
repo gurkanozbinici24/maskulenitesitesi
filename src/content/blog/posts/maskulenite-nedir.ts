@@ -63,7 +63,7 @@ Ama yıllardır gözlemlediğim ve kitaplarımda anlattığım şey şu: Hangi k
 
 > Maskülenite, kendi hayatının yönetimini eline almış, sözünün arkasında duran, sınırı olan ve baskı altında sakin kalabilen bir adamın duruşudur.
 
-Bu tanımda kas yok. Para yok. Sert ses yok. Kadınlara tepeden bakmak hiç yok. Çünkü bunların hiçbiri maskülenitenin kendisi değil. En fazla bazen sonucu, bazen de taklidi.
+Bu tanımda kas yok. Para yok. Sert ses yok. Kadınlara tepeden bakmak hiç yok. Çünkü bunların hiçbiri maskülenitenin kendisi değil. En fazla bazen sonucu, bazen de taklidi. İnternette çok konuşulan "alfa erkek" ve "sigma erkek" etiketlerinin bu tanımla ilişkisini de [alfa erkek nedir](/blog/alfa-erkek-nedir) ve [sigma erkek nedir](/blog/sigma-erkek-nedir) yazılarında anlattım.
 
 ## Maskülen erkeğin temel özellikleri
 

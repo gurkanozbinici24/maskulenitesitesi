@@ -17,7 +17,7 @@ const post: BlogPost = {
   faq: [
     {
       q: "Kıskançlık sevginin göstergesi değil mi?",
-      a: "Hafif bir kıskançlık duygusu insanidir. Ama telefon karıştırmak, konum istemek, arkadaşlarını sorgulamak gibi davranışlara dönüşen kıskançlık sevginin değil, kaybetme korkusunun göstergesidir. Çekicilik Sanatı'ndaki cümleyle: Kıskançlık sevgi değil, mülkiyet korkusudur.",
+      a: "Ölçülü kıskançlık sevginin ve sahiplenmenin doğal bir parçasıdır. Seven adam çizgisini baştan, açıkça söyler; uyulmazsa yoluna bakar. Ama ortada hiçbir şey yokken sorgulamaya, kriz çıkarmaya ve bağırmaya dönüşen kıskançlık sevginin değil, kaybetme korkusunun göstergesidir. Farkı 'Kıskançlık sevgiden mi gelir?' yazısında ayrıntılı anlattım.",
     },
     {
       q: "Güvensizlik nasıl yenilir?",
@@ -60,7 +60,7 @@ Vazgeçilmez Olma Sanatı'nın dijital dünya bölümünde bunu şöyle anlatıy
 
 Vazgeçilmez Olma Sanatı'nın "Ezikliğin Dışavurumu" bölümünde bunu anlatıyorum: Kıskançlık krizine girip olay çıkardığında karşı tarafa verdiğin mesaj şudur: "Ben kendime güvenmiyorum. Sıradan bir adamın benden daha iyi olma ihtimali beni dehşete düşürüyor."
 
-**Yerine:** Rakipsiz olduğuna inanan bir adam, etraftaki vızıltılara dönüp bakmaz. Gerçekten çizgiyi aşan bir saygısızlık varsa, bağırmadan sınırını koyarsın. Ama her gölgeye kılıç çekmezsin.
+**Yerine:** Rakipsiz olduğuna inanan bir adam, etraftaki vızıltılara dönüp bakmaz. Gerçekten çizgiyi aşan bir saygısızlık varsa, bağırmadan sınırını koyarsın. Ama her gölgeye kılıç çekmezsin. Sahiplenen kıskançlık ile hastalıklı kıskançlık arasındaki farkı [kıskançlık sevgiden mi gelir](/blog/kiskanclik-sevgiden-mi-gelir) yazısında anlattım.
 
 ## 4. Telefon karıştırmak ve sorgulamak
 
@@ -94,7 +94,7 @@ Omuzlar düşük, eller cepte, bakışlar yerde. Sürekli telefona bakmak, kıp�
 
 Vazgeçilmez Olma Sanatı'nın "Alan Küçültme" ve "İlk Gözü Kaçıranın İnfazı" bölümlerinde beden dilinin ne kadar çok şey anlattığını yazdım. Kadın, senin odaya nasıl girdiğini, masaya nasıl oturduğunu ilk saniyelerde fark eder.
 
-**Yerine:** Omuzlar dik, hareketler yavaş, göz teması sakin. Abartılı bir "alfa" pozu değil; sadece bulunduğun yerde rahat olmak.
+**Yerine:** Omuzlar dik, hareketler yavaş, göz teması sakin. Abartılı bir "[alfa](/blog/alfa-erkek-nedir)" pozu değil; sadece bulunduğun yerde rahat olmak.
 
 ## 8. Ona hayatının merkezini vermek
 

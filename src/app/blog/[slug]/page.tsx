@@ -6,7 +6,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import BlogBody from "@/components/blog/BlogBody";
 import { BOOK_CTA, POSTS, getPost } from "@/content/blog";
-import { BOOK_BY_POST } from "@/content/bookSchema";
+import { BOOK_BY_POST, VAZGECILMEZ_REVIEWS } from "@/content/bookSchema";
 
 const SITE = "https://www.maskulenitesitesi.com.tr";
 
@@ -126,6 +126,23 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
           </div>
 
           <BlogBody body={p.body} />
+
+          {p.slug === "vazgecilmez-olma-sanati-kitabi" ? (
+            <section className="mt-14" aria-labelledby="okur-yorumlari">
+              <h2 id="okur-yorumlari" className="mb-2 font-cinzel text-[clamp(1.35rem,3vw,1.8rem)] font-bold text-white">
+                {"Okurlar Ne Diyor?".toLocaleUpperCase("tr-TR")}
+              </h2>
+              <p className="mb-5 text-sm text-zinc-400">Okurlarımızın kitabı okuduktan sonra gönderdiği gerçek mesajlar (izinleriyle, kimlikleri gizlenerek).</p>
+              <div className="grid gap-3 sm:grid-cols-2">
+                {VAZGECILMEZ_REVIEWS.map((r) => (
+                  <figure key={r.who + r.date} className="rounded-2xl border border-white/10 bg-white/[0.03] p-5">
+                    <blockquote className="leading-relaxed text-zinc-200">“{r.text}”</blockquote>
+                    <figcaption className="mt-3 text-xs text-zinc-500">{r.who} · {r.label}</figcaption>
+                  </figure>
+                ))}
+              </div>
+            </section>
+          ) : null}
 
           {p.faq?.length ? (
             <section className="mt-14">

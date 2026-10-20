@@ -69,7 +69,7 @@ Motivasyon gelip geçer. Disiplin kalır. Maskülen erkek canı istediğinde de�
 > Motive olmayı bekleme; disiplin senin sadık ordundur.
 
 **3. Duygusal olarak sağlamdır.**
-Bu, duygusuz olmak demek değil. Maskülen erkek de öfkelenir, üzülür, kıskanır. Ama bu duygular onun direksiyonunu ele geçirmez. Kızgınken mesaj atmaz. Kırgınken karar vermez. Önce sakinleşir, sonra konuşur.
+Bu, duygusuz olmak demek değil. Maskülen erkek de öfkelenir, üzülür, [kıskanır](/blog/kiskanclik-sevgiden-mi-gelir). Ama bu duygular onun direksiyonunu ele geçirmez. Kızgınken mesaj atmaz. Kırgınken karar vermez. Önce sakinleşir, sonra konuşur.
 
 **4. Sorumluluk alır.**
 Hayatında ters giden şeyler için önce aynaya bakar. "Patronum yüzünden", "eski sevgilim yüzünden", "bu ülke yüzünden" cümleleri onun ağzından nadiren çıkar. Koşulları her zaman seçemez, ama koşullara verdiği tepkiyi her zaman seçer.

@@ -1,6 +1,9 @@
 // Bu dosya otomatik üretilir: yeni yazı için posts/ klasörüne dosya ekleyip listeye import edin.
 import type { BlogPost, BookKey } from "./types";
 import maskuleniteNedir from "./posts/maskulenite-nedir";
+import alfaErkekNedir from "./posts/alfa-erkek-nedir";
+import sigmaErkekNedir from "./posts/sigma-erkek-nedir";
+import kiskanclikSevgidenMiGelir from "./posts/kiskanclik-sevgiden-mi-gelir";
 import maskulenErkekOzellikleri from "./posts/maskulen-erkek-ozellikleri";
 import redPillNedir from "./posts/red-pill-nedir";
 import maskulenVeFeminenEnerji from "./posts/maskulen-ve-feminen-enerji";
@@ -34,6 +37,9 @@ export type { BlogPost, BookKey, BlogFaq } from "./types";
 
 export const POSTS: BlogPost[] = [
   maskuleniteNedir,
+  alfaErkekNedir,
+  sigmaErkekNedir,
+  kiskanclikSevgidenMiGelir,
   maskulenErkekOzellikleri,
   redPillNedir,
   maskulenVeFeminenEnerji,
