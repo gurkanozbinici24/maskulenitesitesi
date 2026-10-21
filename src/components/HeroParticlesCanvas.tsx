@@ -1,120 +1,11 @@
 "use client";
 
 import React, { useEffect, useMemo, useRef, useState } from "react";
-import { Canvas, useFrame } from "@react-three/fiber";
+import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import * as THREE from "three";
 
 interface HeroParticlesCanvasProps {
   activeBook: "kitap1" | "kitap2" | null;
-}
-
-/**
- * Yavaş hareket eden altın/kor toz parçacıkları (Mobilde azaltılmış yoğunluk)
- */
-function GoldenDustParticles({
-  activeBook,
-  count,
-}: {
-  activeBook: "kitap1" | "kitap2" | null;
-  count: number;
-}) {
-  const pointsRef = useRef<THREE.Points>(null);
-  const materialRef = useRef<THREE.PointsMaterial>(null);
-
-  const { positions, speeds, phases } = useMemo(() => {
-    const pos = new Float32Array(count * 3);
-    const spd = new Float32Array(count);
-    const phs = new Float32Array(count);
-
-    for (let i = 0; i < count; i++) {
-      pos[i * 3] = (Math.random() - 0.5) * 16; // X
-      pos[i * 3 + 1] = (Math.random() - 0.5) * 10; // Y
-      pos[i * 3 + 2] = (Math.random() - 0.5) * 6 - 1; // Z
-      spd[i] = 0.08 + Math.random() * 0.16;
-      phs[i] = Math.random() * Math.PI * 2;
-    }
-
-    return { positions: pos, speeds: spd, phases: phs };
-  }, [count]);
-
-  const particleTexture = useMemo(() => {
-    if (typeof document === "undefined") return null;
-    const canvas = document.createElement("canvas");
-    canvas.width = 64;
-    canvas.height = 64;
-    const ctx = canvas.getContext("2d");
-    if (ctx) {
-      const grad = ctx.createRadialGradient(32, 32, 0, 32, 32, 32);
-      grad.addColorStop(0, "rgba(255, 248, 220, 1)");
-      grad.addColorStop(0.35, "rgba(212, 175, 55, 0.8)");
-      grad.addColorStop(0.75, "rgba(212, 175, 55, 0.18)");
-      grad.addColorStop(1, "rgba(0, 0, 0, 0)");
-      ctx.fillStyle = grad;
-      ctx.fillRect(0, 0, 64, 64);
-    }
-    const tex = new THREE.CanvasTexture(canvas);
-    tex.needsUpdate = true;
-    return tex;
-  }, []);
-
-  const targetColor = useMemo(() => new THREE.Color(), []);
-
-  useFrame((state, delta) => {
-    const points = pointsRef.current;
-    if (!points) return;
-
-    const posAttr = points.geometry.attributes.position as THREE.BufferAttribute;
-    const elapsed = state.clock.elapsedTime;
-
-    for (let i = 0; i < count; i++) {
-      let y = posAttr.getY(i);
-      let x = posAttr.getX(i);
-
-      y += speeds[i] * delta;
-      x += Math.sin(elapsed * 0.35 + phases[i]) * 0.0025;
-
-      if (y > 5.2) {
-        y = -5.2;
-      }
-
-      posAttr.setXY(i, x, y);
-    }
-    posAttr.needsUpdate = true;
-
-    if (materialRef.current) {
-      if (activeBook === "kitap2") {
-        targetColor.set("#e5a96d");
-      } else if (activeBook === "kitap1") {
-        targetColor.set("#f5d76e");
-      } else {
-        targetColor.set("#d4af37");
-      }
-      materialRef.current.color.lerp(targetColor, delta * 2.5);
-    }
-  });
-
-  return (
-    <points ref={pointsRef} key={count}>
-      <bufferGeometry>
-        <bufferAttribute
-          attach="attributes-position"
-          count={count}
-          array={positions}
-          itemSize={3}
-        />
-      </bufferGeometry>
-      <pointsMaterial
-        ref={materialRef}
-        map={particleTexture ?? undefined}
-        size={0.16}
-        transparent
-        opacity={0.6}
-        depthWrite={false}
-        blending={THREE.AdditiveBlending}
-        color="#d4af37"
-      />
-    </points>
-  );
 }
 
 /**
@@ -206,6 +97,170 @@ function SubtleSmokePlumes({
   );
 }
 
+/**
+ * Kitabın ARKASINDAN yükselen yıldız tozları: Vazgeçilmez (sol) altın, Çekicilik (sağ) kırmızı.
+ * Parçacıklar kitapların arka katmanında doğar (canvas içeriğin altında), kitabın kenarlarından
+ * ve üstünden süzülerek çıkar; her biri yavaşça belirip parlar ve söner.
+ */
+function BookEmbers({
+  side,
+  count,
+  isMobile,
+}: {
+  side: "left" | "right";
+  count: number;
+  isMobile: boolean;
+}) {
+  const coreRef = useRef<THREE.Points>(null);
+  const glowRef = useRef<THREE.Points>(null);
+  const { viewport } = useThree();
+  const renk = useMemo(
+    () => (side === "left" ? new THREE.Color("#ffd86b") : new THREE.Color("#ff2a2a")),
+    [side]
+  );
+  const sicak = useMemo(
+    () => (side === "left" ? new THREE.Color("#fff4c2") : new THREE.Color("#ff9a7a")),
+    [side]
+  );
+
+  const doku = useMemo(() => {
+    if (typeof document === "undefined") return null;
+    const c = document.createElement("canvas");
+    c.width = c.height = 64;
+    const ctx = c.getContext("2d");
+    if (ctx) {
+      const g = ctx.createRadialGradient(32, 32, 0, 32, 32, 32);
+      g.addColorStop(0, "rgba(255,255,255,1)");
+      g.addColorStop(0.25, "rgba(255,255,255,0.85)");
+      g.addColorStop(0.6, "rgba(255,255,255,0.2)");
+      g.addColorStop(1, "rgba(255,255,255,0)");
+      ctx.fillStyle = g;
+      ctx.fillRect(0, 0, 64, 64);
+    }
+    const tex = new THREE.CanvasTexture(c);
+    tex.needsUpdate = true;
+    return tex;
+  }, []);
+
+  // Her parçacık: yatay ofset, hız, ömür, faz, sapma
+  const veri = useMemo(() => {
+    const d = Array.from({ length: count }, () => ({
+      ox: (Math.random() - 0.5) * 2,
+      hiz: 0.22 + Math.random() * 0.32,
+      omur: 5 + Math.random() * 5,
+      t: Math.random() * 10,
+      sapma: (Math.random() - 0.5) * 0.5,
+      faz: Math.random() * Math.PI * 2,
+      z: -0.6 - Math.random() * 1.4,
+    }));
+    return d;
+  }, [count]);
+
+  const { pos, col, pos2, col2 } = useMemo(
+    () => ({
+      pos: new Float32Array(count * 3),
+      col: new Float32Array(count * 3),
+      pos2: new Float32Array(count * 3),
+      col2: new Float32Array(count * 3),
+    }),
+    [count]
+  );
+  const tmp = useMemo(() => new THREE.Color(), []);
+
+  useFrame((state, delta) => {
+    const vw = viewport.width;
+    const vh = viewport.height;
+    const cx = (side === "left" ? -1 : 1) * vw * (isMobile ? 0.19 : 0.215);
+    const yariGen = vw * (isMobile ? 0.12 : 0.075); // kitabın yarı genişliği (yaklaşık)
+    const alt = -vh * 0.28; // kitabın alt kısmı
+    const ust = vh * 0.48;
+    const el = state.clock.elapsedTime;
+
+    for (let i = 0; i < count; i++) {
+      const p = veri[i];
+      p.t += delta;
+      if (p.t > p.omur) {
+        p.t = 0;
+        p.ox = (Math.random() - 0.5) * 2;
+        p.hiz = 0.22 + Math.random() * 0.32;
+        p.omur = 5 + Math.random() * 5;
+        p.sapma = (Math.random() - 0.5) * 0.5;
+      }
+      const ilerleme = p.t / p.omur; // 0 → 1
+      // Kitabın arkasında doğar, yükselirken kenarlara doğru hafifçe açılır
+      const x = cx + p.ox * yariGen * (1 + ilerleme * 0.9) + p.sapma * ilerleme + Math.sin(el * 0.6 + p.faz) * 0.06;
+      const y = alt + p.t * p.hiz * 1.1;
+      const yy = Math.min(y, ust);
+      // Belirip parla, sonra sön (+ hafif pırıltı)
+      const parlak =
+        Math.sin(Math.PI * ilerleme) * (0.75 + 0.25 * Math.sin(el * 3.2 + p.faz)) * (y > ust ? 0 : 1);
+
+      pos[i * 3] = x;
+      pos[i * 3 + 1] = yy;
+      pos[i * 3 + 2] = p.z;
+      pos2[i * 3] = x;
+      pos2[i * 3 + 1] = yy;
+      pos2[i * 3 + 2] = p.z - 0.01;
+
+      tmp.copy(sicak).lerp(renk, Math.min(1, ilerleme * 1.4)).multiplyScalar(parlak);
+      col[i * 3] = tmp.r;
+      col[i * 3 + 1] = tmp.g;
+      col[i * 3 + 2] = tmp.b;
+      tmp.copy(renk).multiplyScalar(parlak * 0.45);
+      col2[i * 3] = tmp.r;
+      col2[i * 3 + 1] = tmp.g;
+      col2[i * 3 + 2] = tmp.b;
+    }
+    for (const [ref, a, b] of [
+      [coreRef, pos, col],
+      [glowRef, pos2, col2],
+    ] as const) {
+      const g = ref.current?.geometry;
+      if (!g) continue;
+      (g.attributes.position as THREE.BufferAttribute).set(a);
+      (g.attributes.position as THREE.BufferAttribute).needsUpdate = true;
+      (g.attributes.color as THREE.BufferAttribute).set(b);
+      (g.attributes.color as THREE.BufferAttribute).needsUpdate = true;
+    }
+  });
+
+  if (!doku) return null;
+  return (
+    <group>
+      {/* Yumuşak hâle */}
+      <points ref={glowRef} key={`g${count}`}>
+        <bufferGeometry>
+          <bufferAttribute attach="attributes-position" count={count} array={pos2} itemSize={3} />
+          <bufferAttribute attach="attributes-color" count={count} array={col2} itemSize={3} />
+        </bufferGeometry>
+        <pointsMaterial
+          map={doku}
+          size={isMobile ? 0.42 : 0.5}
+          vertexColors
+          transparent
+          depthWrite={false}
+          blending={THREE.AdditiveBlending}
+        />
+      </points>
+      {/* Parlak çekirdek */}
+      <points ref={coreRef} key={`c${count}`}>
+        <bufferGeometry>
+          <bufferAttribute attach="attributes-position" count={count} array={pos} itemSize={3} />
+          <bufferAttribute attach="attributes-color" count={count} array={col} itemSize={3} />
+        </bufferGeometry>
+        <pointsMaterial
+          map={doku}
+          size={isMobile ? 0.13 : 0.15}
+          vertexColors
+          transparent
+          depthWrite={false}
+          blending={THREE.AdditiveBlending}
+        />
+      </points>
+    </group>
+  );
+}
+
 export default function HeroParticlesCanvas({
   activeBook,
 }: HeroParticlesCanvasProps) {
@@ -230,10 +285,9 @@ export default function HeroParticlesCanvas({
         gl={{ alpha: true, antialias: false, powerPreference: "low-power" }}
       >
         <SubtleSmokePlumes activeBook={activeBook} isMobile={isMobile} />
-        <GoldenDustParticles
-          activeBook={activeBook}
-          count={isMobile ? 24 : 34}
-        />
+        {/* Vazgeçilmez: altın · Çekicilik: kırmızı — kitapların arkasından yükselir (toplam ~%20 daha fazla) */}
+        <BookEmbers side="left" count={isMobile ? 15 : 21} isMobile={isMobile} />
+        <BookEmbers side="right" count={isMobile ? 15 : 21} isMobile={isMobile} />
       </Canvas>
     </div>
   );
