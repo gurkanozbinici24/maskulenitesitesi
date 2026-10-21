@@ -197,7 +197,9 @@ export default function BundleSection() {
             )}
             <p className="mt-3 flex items-center justify-center gap-1.5 text-xs text-zinc-500 lg:justify-start">
               <Truck className="h-3.5 w-3.5 text-gold-500" />
-              Siparişler WhatsApp üzerinden alınır.
+              {isOnSale && KART_ODEME_AKTIF
+                ? "Kredi kartına 6 taksite kadar · Kapıya kadar ücretsiz kargo"
+                : "Siparişler WhatsApp üzerinden alınır."}
             </p>
           </div>
         </div>

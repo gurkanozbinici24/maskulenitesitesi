@@ -65,6 +65,7 @@ export default function OdemeSayfasi({ searchParams }: { searchParams: { urun?: 
         kitap: e.kitap,
         ekFiyat: e.ekFiyat,
         hedefFiyat: e.hedefUrun.fiyat,
+        hedefTaksit: e.hedefUrun.maxTaksit ?? 3,
         asilSira: e.asilSira,
         ...(urun.tip === "physical" ? { normalFiyat: urun.fiyat } : {}),
       }

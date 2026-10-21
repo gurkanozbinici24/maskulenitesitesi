@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { iyzicoHazirMi, iyzicoIstek, type CheckoutBaslatCevap } from "@/lib/odeme/iyzico";
 import { SIPARIS_CEREZI, cerezYaz, kisaSiparis, siparisNoUret, siparisPaketle, type Siparis } from "@/lib/odeme/siparis";
-import { eklemeBul, satistaMi, urunBul } from "@/lib/odeme/urunler";
+import { eklemeBul, satistaMi, taksitler, urunBul } from "@/lib/odeme/urunler";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -98,7 +98,7 @@ export async function POST(req: Request) {
     paymentGroup: "PRODUCT",
     callbackUrl,
     // Taksit: müşteri seçer, vade farkını müşteri öder (oranlar iyzico panelinde "Taksit ve Komisyon Oranları").
-    enabledInstallments: [1, 2, 3],
+    enabledInstallments: taksitler(urun),
     buyer: {
       id: siparis.n,
       name: ad,
