@@ -40,7 +40,12 @@ export function siparisMetni(s: Siparis, urun: OdemeUrunu, o: OdemeOzeti): strin
     `Telefon: ${s.tel}`,
     `E-posta: ${s.eposta}`,
   ];
-  if (urun.tip === "physical") {
+  if (urun.tip === "physical" && s.eksik) {
+    satirlar.push(
+      "",
+      "⚠️ ADRES VE İMZA İSMİ ALINAMADI. Müşteriyi arayıp adresini ve imza için ismi sor.",
+    );
+  } else if (urun.tip === "physical") {
     satirlar.push(
       "",
       s.hediye ? `🎁 HEDİYE — Teslim alacak: ${s.alici || "-"}` : `Teslim alacak: ${s.alici || `${s.ad} ${s.soyad}`}`,

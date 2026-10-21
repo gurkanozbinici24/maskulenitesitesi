@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { iyzicoHazirMi, iyzicoIstek, type CheckoutBaslatCevap } from "@/lib/odeme/iyzico";
-import { siparisNoUret, siparisPaketle, type Siparis } from "@/lib/odeme/siparis";
+import { SIPARIS_CEREZI, cerezYaz, kisaSiparis, siparisNoUret, siparisPaketle, type Siparis } from "@/lib/odeme/siparis";
 import { satistaMi, urunBul } from "@/lib/odeme/urunler";
 
 export const runtime = "nodejs";
@@ -67,8 +67,13 @@ export async function POST(req: Request) {
   };
 
   const origin = new URL(req.url).origin;
-  const { d, s } = siparisPaketle(siparis);
-  const callbackUrl = `${origin}/api/odeme/sonuc?d=${d}&s=${s}`;
+  let p = siparisPaketle(kisaSiparis(siparis));
+  let callbackUrl = `${origin}/api/odeme/sonuc?d=${p.d}&s=${p.s}`;
+  if (callbackUrl.length > 500) {
+    // iyzico sınırı 512 karakter: çok uzun isimlerde isimsiz kısa özete düş (tam bilgi çerezde)
+    p = siparisPaketle({ ...kisaSiparis(siparis), ad: "", soyad: "" });
+    callbackUrl = `${origin}/api/odeme/sonuc?d=${p.d}&s=${p.s}`;
+  }
   const fiyat = urun.fiyat.toFixed(1);
   const ip = (req.headers.get("x-forwarded-for") || "").split(",")[0].trim() || "85.34.78.112";
   const sehir = il || "Türkiye";
@@ -125,7 +130,16 @@ export async function POST(req: Request) {
       console.error("[odeme] başlatılamadı", c.errorCode, c.errorMessage);
       return hata(c.errorMessage || "Ödeme başlatılamadı. Lütfen tekrar deneyin.", 502);
     }
-    return NextResponse.json({ url: c.paymentPageUrl });
+    const res = NextResponse.json({ url: c.paymentPageUrl });
+    // Tam sipariş bilgisi (adres, imza ismi, not) imzalı çerezde; iyzico'dan dönüşte okunur
+    res.cookies.set(SIPARIS_CEREZI, cerezYaz(siparis), {
+      httpOnly: true,
+      secure: true,
+      sameSite: "none",
+      path: "/api/odeme",
+      maxAge: 60 * 60 * 3,
+    });
+    return res;
   } catch (e) {
     console.error("[odeme] iyzico hatası", e);
     return hata("Ödeme sistemine ulaşılamadı. Lütfen biraz sonra tekrar deneyin.", 502);

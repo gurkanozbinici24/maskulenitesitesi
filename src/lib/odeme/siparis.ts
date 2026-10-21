@@ -3,9 +3,10 @@ import { env } from "./env";
 import type { UrunId } from "./urunler";
 
 /**
- * Sipariş bilgileri veritabanı olmadan taşınır: ödeme başlarken imzalanıp
- * iyzico'nun geri dönüş adresine eklenir, dönüşte imza doğrulanır.
- * Böylece kimse adresteki bilgiyi değiştiremez.
+ * Sipariş bilgileri veritabanı olmadan taşınır ve imzalanır (kimse değiştiremez):
+ *  - iyzico geri dönüş adresine yalnızca KISA bilgi (no, ürün, ad, e-posta, telefon) eklenir;
+ *    iyzico bu adresi 512 karakterle sınırlıyor.
+ *  - Adres, imza ismi, not gibi tam bilgi müşterinin tarayıcısında imzalı bir çerezde durur.
  */
 export interface Siparis {
   /** sipariş no */
@@ -24,7 +25,16 @@ export interface Siparis {
   imza?: string[];
   hediye?: boolean;
   not?: string;
+  /** Tam sipariş bilgisi (adres/imza) okunamadıysa true */
+  eksik?: boolean;
 }
+
+/** Geri dönüş adresine sığacak kısa sipariş özeti */
+export function kisaSiparis(s: Siparis): Siparis {
+  return { n: s.n, u: s.u, ad: s.ad.slice(0, 20), soyad: s.soyad.slice(0, 20), eposta: s.eposta, tel: s.tel };
+}
+
+export const SIPARIS_CEREZI = "msk_siparis";
 
 function anahtar() {
   const k = process.env.ODEME_IMZA_ANAHTARI || env("IYZICO_SECRET_KEY");
@@ -59,3 +69,14 @@ export function siparisNoUret() {
     .toString("hex")
     .toUpperCase()}`;
 }
+
+/** Çerez değeri: "d.s" (base64url veri + imza) */
+export const cerezYaz = (s: Siparis) => {
+  const p = siparisPaketle(s);
+  return `${p.d}.${p.s}`;
+};
+export const cerezOku = (v: string | undefined | null): Siparis | null => {
+  if (!v) return null;
+  const i = v.lastIndexOf(".");
+  return i > 0 ? siparisAc(v.slice(0, i), v.slice(i + 1)) : null;
+};

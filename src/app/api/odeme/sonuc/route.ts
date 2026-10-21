@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { iyzicoIstek, type CheckoutSonucCevap } from "@/lib/odeme/iyzico";
-import { siparisAc } from "@/lib/odeme/siparis";
+import { SIPARIS_CEREZI, cerezOku, siparisAc, type Siparis } from "@/lib/odeme/siparis";
+import { cookies } from "next/headers";
 import { siparisBildir } from "@/lib/odeme/bildirim";
 import { urunBul } from "@/lib/odeme/urunler";
 import { ekitapGonder } from "@/lib/odeme/ekitapTeslim";
@@ -26,8 +27,10 @@ async function isle(req: Request) {
     }
   }
 
-  const siparis = siparisAc(url.searchParams.get("d"), url.searchParams.get("s"));
-  if (!siparis) return git("/odeme/basarisiz?neden=dogrulama");
+  const kisa = siparisAc(url.searchParams.get("d"), url.searchParams.get("s"));
+  if (!kisa) return git("/odeme/basarisiz?neden=dogrulama");
+  const tam = cerezOku(cookies().get(SIPARIS_CEREZI)?.value);
+  const siparis: Siparis = tam && tam.n === kisa.n ? tam : { ...kisa, eksik: true };
 
   const urun = urunBul(siparis.u);
   if (!urun) return git("/odeme/basarisiz?neden=urun");
@@ -82,8 +85,10 @@ async function isle(req: Request) {
     kart: c.lastFourDigits ? `${c.cardAssociation || "Kart"} **** ${c.lastFourDigits}` : undefined,
   });
 
-  const q = new URLSearchParams({ no: siparis.n, tip: urun.tip, ad: siparis.ad, ...(ekitap ? { ek: ekitap } : {}) });
-  return git(`/odeme/basarili?${q.toString()}`);
+  const q0 = new URLSearchParams({ no: siparis.n, tip: urun.tip, ad: siparis.ad, ...(ekitap ? { ek: ekitap } : {}) });
+  const yanit = git(`/odeme/basarili?${q0.toString()}`);
+  yanit.cookies.set(SIPARIS_CEREZI, "", { path: "/api/odeme", maxAge: 0, secure: true, sameSite: "none" });
+  return yanit;
 }
 
 export const POST = isle;
