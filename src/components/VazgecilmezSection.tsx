@@ -141,19 +141,40 @@ export default function VazgecilmezSection() {
                 <p className="mt-1 mb-4 text-xs text-zinc-400">
                   PDF. Kartla ödemede saniyeler içinde e-postana otomatik teslim.
                 </p>
-                <ThemeButton
-                  theme="kitap1"
-                  variant="primary"
-                  size="md"
-                  fullWidth
-                  href={ebook.whatsappUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="mt-auto"
-                >
-                  <MessageCircle className="w-4 h-4 flex-shrink-0" />
-                  <span>Hemen Al</span>
-                </ThemeButton>
+                {KART_ODEME_AKTIF ? (
+                  <div className="mt-auto space-y-2">
+                    <ThemeButton theme="kitap1" variant="primary" size="md" fullWidth href={odemeLinki(ebook.id)}>
+                      <CreditCard className="w-4 h-4 flex-shrink-0" />
+                      <span>Kartla Hemen Al</span>
+                    </ThemeButton>
+                    <ThemeButton
+                      theme="kitap1"
+                      variant="secondary"
+                      size="md"
+                      fullWidth
+                      href={ebook.whatsappUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <MessageCircle className="w-4 h-4 text-gold-400 flex-shrink-0" />
+                      <span>WhatsApp&apos;tan Al</span>
+                    </ThemeButton>
+                  </div>
+                ) : (
+                  <ThemeButton
+                    theme="kitap1"
+                    variant="primary"
+                    size="md"
+                    fullWidth
+                    href={ebook.whatsappUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-auto"
+                  >
+                    <MessageCircle className="w-4 h-4 flex-shrink-0" />
+                    <span>Hemen Al</span>
+                  </ThemeButton>
+                )}
               </div>
 
               {/* Fiziksel Yenilenmiş Edisyon */}
@@ -180,30 +201,30 @@ export default function VazgecilmezSection() {
 
                 {isOnSale ? (
                   <div className="mt-auto space-y-2">
+                    {KART_ODEME_AKTIF && (
+                      <ThemeButton
+                        theme="kitap1"
+                        variant="primary"
+                        size="md"
+                        fullWidth
+                        href={odemeLinki(physicalRenovated.id)}
+                      >
+                        <CreditCard className="w-4 h-4 flex-shrink-0" />
+                        <span>Kartla Hemen Al</span>
+                      </ThemeButton>
+                    )}
                     <ThemeButton
                       theme="kitap1"
-                      variant="primary"
+                      variant={KART_ODEME_AKTIF ? "secondary" : "primary"}
                       size="md"
                       fullWidth
                       href={physicalRenovated.orderWhatsappUrl}
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      <MessageCircle className="w-4 h-4 flex-shrink-0" />
-                      <span>Sipariş Ver</span>
+                      <MessageCircle className={`w-4 h-4 flex-shrink-0 ${KART_ODEME_AKTIF ? "text-gold-400" : ""}`} />
+                      <span>{KART_ODEME_AKTIF ? "WhatsApp'tan Al" : "Sipariş Ver"}</span>
                     </ThemeButton>
-                    {KART_ODEME_AKTIF && (
-                      <ThemeButton
-                        theme="kitap1"
-                        variant="secondary"
-                        size="md"
-                        fullWidth
-                        href={odemeLinki(physicalRenovated.id)}
-                      >
-                        <CreditCard className="w-4 h-4 text-gold-400 flex-shrink-0" />
-                        <span>Kartla Öde</span>
-                      </ThemeButton>
-                    )}
                     <GiftLink href={physicalRenovated.giftWhatsappUrl} />
                   </div>
                 ) : (

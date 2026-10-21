@@ -390,9 +390,22 @@ export function CekicilikSalesOptions({
               {isPhysical && <PhysicalPerks theme="kitap2" size="sm" className="mt-2.5" />}
 
               <div className="flex flex-col gap-2 mt-2.5">
+                {kartOdemeAktif && (
+                  <ThemeButton
+                    theme="kitap2"
+                    variant="primary"
+                    size="sm"
+                    fullWidth
+                    href={odemeLinki(item.id)}
+                    className="min-h-[48px]"
+                  >
+                    <CreditCard className="w-4 h-4 flex-shrink-0" />
+                    <span>Kartla Hemen Al ({item.price} TL)</span>
+                  </ThemeButton>
+                )}
                 <ThemeButton
                   theme="kitap2"
-                  variant={isPhysical ? "primary" : "secondary"}
+                  variant={kartOdemeAktif ? "secondary" : isPhysical ? "primary" : "secondary"}
                   size="sm"
                   fullWidth
                   href={item.whatsappUrl}
@@ -405,19 +418,7 @@ export function CekicilikSalesOptions({
                 </ThemeButton>
                 {isPhysical && <GiftLink href={item.giftWhatsappUrl} />}
 
-                {kartOdemeAktif && (
-                  <ThemeButton
-                    theme="kitap2"
-                    variant="outline"
-                    size="sm"
-                    fullWidth
-                    href={odemeLinki(item.id)}
-                    className="min-h-[48px]"
-                  >
-                    <CreditCard className="w-4 h-4 text-gold-400 flex-shrink-0" />
-                    <span>Kartla Öde ({item.price} TL)</span>
-                  </ThemeButton>
-                )}
+
               </div>
             </div>
           );
@@ -492,31 +493,32 @@ export function CekicilikSalesOptions({
 
         {/* CTA Buttons */}
         <div className="pt-6 mt-4 space-y-3">
+          {kartOdemeAktif && (
+            <ThemeButton
+              theme="kitap2"
+              variant="primary"
+              size="lg"
+              fullWidth
+              href={odemeLinki(ebook.id)}
+            >
+              <CreditCard className="w-5 h-5 text-white flex-shrink-0" />
+              <span>Kartla Hemen Al ({ebook.price} TL)</span>
+            </ThemeButton>
+          )}
           <ThemeButton
             theme="kitap2"
-            variant="primary"
+            variant={kartOdemeAktif ? "secondary" : "primary"}
             size="lg"
             fullWidth
             href={ebook.whatsappUrl}
             target="_blank"
             rel="noopener noreferrer"
           >
-            <MessageCircle className="w-5 h-5 text-white flex-shrink-0" />
+            <MessageCircle className="w-5 h-5 text-emerald-400 flex-shrink-0" />
             <span>WhatsApp ile Sipariş Ver ({ebook.price} TL)</span>
           </ThemeButton>
 
-          {kartOdemeAktif && (
-            <ThemeButton
-              theme="kitap2"
-              variant="secondary"
-              size="lg"
-              fullWidth
-              href={odemeLinki(ebook.id)}
-            >
-              <CreditCard className="w-5 h-5 text-gold-400 flex-shrink-0" />
-              <span>Kartla Güvenli Öde</span>
-            </ThemeButton>
-          )}
+
 
           <div className="flex items-center justify-center gap-1.5 pt-1 text-xs text-zinc-400 font-medium">
             <Mail className="w-3.5 h-3.5 text-emerald-400" />
@@ -592,32 +594,33 @@ export function CekicilikSalesOptions({
 
         {/* CTA Buttons */}
         <div className="pt-6 mt-4 space-y-3">
+          {kartOdemeAktif && (
+            <ThemeButton
+              theme="kitap2"
+              variant="primary"
+              size="lg"
+              fullWidth
+              href={odemeLinki(physical.id)}
+            >
+              <CreditCard className="w-5 h-5 text-white flex-shrink-0" />
+              <span>Kartla Hemen Al ({physical.price} TL)</span>
+            </ThemeButton>
+          )}
           <ThemeButton
             theme="kitap2"
-            variant="primary"
+            variant={kartOdemeAktif ? "secondary" : "primary"}
             size="lg"
             fullWidth
             href={physical.whatsappUrl}
             target="_blank"
             rel="noopener noreferrer"
           >
-            <MessageCircle className="w-5 h-5 text-white flex-shrink-0" />
+            <MessageCircle className="w-5 h-5 text-emerald-400 flex-shrink-0" />
             <span>WhatsApp ile Sipariş Ver ({physical.price} TL)</span>
           </ThemeButton>
           <GiftLink href={physical.giftWhatsappUrl} />
 
-          {kartOdemeAktif && (
-            <ThemeButton
-              theme="kitap2"
-              variant="secondary"
-              size="lg"
-              fullWidth
-              href={odemeLinki(physical.id)}
-            >
-              <CreditCard className="w-5 h-5 text-gold-400 flex-shrink-0" />
-              <span>Kartla Güvenli Öde</span>
-            </ThemeButton>
-          )}
+
 
           <div className="flex items-center justify-center gap-1.5 pt-1 text-xs text-emerald-400 font-semibold">
             <Truck className="w-3.5 h-3.5" />

@@ -135,31 +135,31 @@ export default function BundleSection() {
           <PhysicalPerks theme="kitap1" className="mx-auto mt-4 max-w-md lg:mx-0" />
 
           <div className="mx-auto mt-7 max-w-md lg:mx-0" data-sticky-hide>
-            {isOnSale ? (
+            {isOnSale && KART_ODEME_AKTIF ? (
               <ThemeButton
                 theme="kitap1"
                 variant="primary"
+                size="lg"
+                fullWidth
+                href={odemeLinki("koleksiyon-seti")}
+                className="mb-2"
+              >
+                <CreditCard className="h-5 w-5" />
+                <span>Kartla Hemen Al – {SET.price} TL</span>
+              </ThemeButton>
+            ) : null}
+            {isOnSale ? (
+              <ThemeButton
+                theme="kitap1"
+                variant={KART_ODEME_AKTIF ? "secondary" : "primary"}
                 size="lg"
                 fullWidth
                 href={SET.orderWhatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <MessageCircle className="h-5 w-5" />
-                <span>Seti Sipariş Et – {SET.price} TL</span>
-              </ThemeButton>
-            ) : null}
-            {isOnSale && KART_ODEME_AKTIF ? (
-              <ThemeButton
-                theme="kitap1"
-                variant="secondary"
-                size="lg"
-                fullWidth
-                href={odemeLinki("koleksiyon-seti")}
-                className="mt-2"
-              >
-                <CreditCard className="h-5 w-5 text-gold-400" />
-                <span>Kartla Öde – {SET.price} TL</span>
+                <MessageCircle className={`h-5 w-5 ${KART_ODEME_AKTIF ? "text-gold-400" : ""}`} />
+                <span>{KART_ODEME_AKTIF ? `WhatsApp'tan Sipariş Et – ${SET.price} TL` : `Seti Sipariş Et – ${SET.price} TL`}</span>
               </ThemeButton>
             ) : null}
             {isOnSale ? (
