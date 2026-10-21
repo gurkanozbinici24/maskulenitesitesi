@@ -1,4 +1,5 @@
 import crypto from "crypto";
+import { env } from "./env";
 import type { UrunId } from "./urunler";
 
 /**
@@ -26,7 +27,7 @@ export interface Siparis {
 }
 
 function anahtar() {
-  const k = process.env.ODEME_IMZA_ANAHTARI || process.env.IYZICO_SECRET_KEY;
+  const k = process.env.ODEME_IMZA_ANAHTARI || env("IYZICO_SECRET_KEY");
   if (!k) throw new Error("İmza anahtarı yok");
   return k;
 }

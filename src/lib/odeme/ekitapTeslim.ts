@@ -1,4 +1,5 @@
 import crypto from "crypto";
+import { env } from "./env";
 import fs from "fs/promises";
 import path from "path";
 import type { Siparis } from "./siparis";
@@ -29,7 +30,7 @@ const DOSYALAR: Partial<Record<UrunId, { enc: string; ad: string; kitap: string 
 };
 
 async function pdfCoz(dosya: string): Promise<Buffer> {
-  const key = Buffer.from(process.env.EKITAP_SIFRE_ANAHTARI || "", "base64");
+  const key = Buffer.from(env("EKITAP_SIFRE_ANAHTARI") || "", "base64");
   if (key.length !== 32) throw new Error("EKITAP_SIFRE_ANAHTARI tanımlı değil");
   const veri = await fs.readFile(path.join(process.cwd(), "ekitaplar", dosya));
   const iv = veri.subarray(0, 12);
@@ -46,7 +47,7 @@ const kacis = (s: string) =>
 export async function ekitapGonder(s: Siparis, urun: OdemeUrunu): Promise<"gonderildi" | "atlandi"> {
   const bilgi = DOSYALAR[urun.id];
   if (urun.tip !== "ebook" || !bilgi) return "atlandi";
-  const apiKey = process.env.RESEND_API_KEY;
+  const apiKey = env("RESEND_API_KEY");
   const gonderen = process.env.EKITAP_GONDEREN;
   if (!apiKey || !gonderen) throw new Error("RESEND_API_KEY veya EKITAP_GONDEREN tanımlı değil");
 

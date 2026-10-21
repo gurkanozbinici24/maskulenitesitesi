@@ -1,4 +1,5 @@
 import type { Siparis } from "./siparis";
+import { env } from "./env";
 import type { OdemeUrunu } from "./urunler";
 
 /**
@@ -72,14 +73,14 @@ function zamanAsimi(ms: number) {
 }
 
 async function epostaGonder(konu: string, metin: string) {
-  const key = process.env.RESEND_API_KEY;
+  const key = env("RESEND_API_KEY");
   const kime = process.env.SIPARIS_BILDIRIM_EPOSTA;
   if (!key || !kime) return "atlandi";
   const res = await fetch("https://api.resend.com/emails", {
     method: "POST",
     headers: { Authorization: `Bearer ${key}`, "Content-Type": "application/json" },
     body: JSON.stringify({
-      from: process.env.SIPARIS_GONDEREN || "Maskülenite Sipariş <onboarding@resend.dev>",
+      from: process.env.SIPARIS_GONDEREN || (process.env.EKITAP_GONDEREN ? "Maskülenite Sipariş <siparis@maskulenitesitesi.com.tr>" : "Maskülenite Sipariş <onboarding@resend.dev>"),
       to: kime.split(",").map((x) => x.trim()),
       subject: konu,
       text: metin,

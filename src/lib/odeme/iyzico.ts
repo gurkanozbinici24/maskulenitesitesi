@@ -1,4 +1,5 @@
 import crypto from "crypto";
+import { env } from "./env";
 
 /**
  * iyzico REST istemcisi (IYZWSv2 imzası). Resmi npm paketi Vercel'de dosya
@@ -11,7 +12,7 @@ import crypto from "crypto";
  */
 
 export function iyzicoHazirMi(): boolean {
-  return Boolean(process.env.IYZICO_API_KEY && process.env.IYZICO_SECRET_KEY);
+  return Boolean(env("IYZICO_API_KEY") && env("IYZICO_SECRET_KEY"));
 }
 
 function baseUrl() {
@@ -22,8 +23,8 @@ export async function iyzicoIstek<T = Record<string, unknown>>(
   path: string,
   body: Record<string, unknown>,
 ): Promise<T> {
-  const apiKey = process.env.IYZICO_API_KEY;
-  const secretKey = process.env.IYZICO_SECRET_KEY;
+  const apiKey = env("IYZICO_API_KEY");
+  const secretKey = env("IYZICO_SECRET_KEY");
   if (!apiKey || !secretKey) throw new Error("iyzico anahtarları tanımlı değil");
 
   const json = JSON.stringify(body);
