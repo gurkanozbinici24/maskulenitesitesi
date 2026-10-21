@@ -89,7 +89,7 @@ export default function Navbar() {
                 className="text-xs lg:text-sm font-semibold text-crimson-300 hover:text-crimson-200 transition-colors flex items-center gap-1.5 whitespace-nowrap"
               >
                 Çekicilik Sanatı
-                <span className="text-[9px] font-black px-1.5 py-0.5 rounded bg-crimson-700 text-white">YAKINDA</span>
+                <span className="text-[9px] font-black px-1.5 py-0.5 rounded bg-crimson-700 text-white">{isOnSale ? "YENİ" : "YAKINDA"}</span>
               </a>
 
               <a
@@ -159,7 +159,7 @@ export default function Navbar() {
               className="min-h-[44px] flex items-center gap-2 px-3 py-2 text-sm font-semibold text-crimson-300 hover:bg-zinc-800/40 rounded-md"
             >
               Çekicilik Sanatı
-              <span className="text-[9px] font-black px-1.5 py-0.5 rounded bg-crimson-700 text-white">YAKINDA</span>
+              <span className="text-[9px] font-black px-1.5 py-0.5 rounded bg-crimson-700 text-white">{isOnSale ? "YENİ" : "YAKINDA"}</span>
             </a>
 
             <a
