@@ -10,7 +10,13 @@ import { CEKICILIK_PREVIEW_TEXT } from "./cekicilikPreviewText";
  */
 
 /** Satış başlangıç ve geri sayım hedef tarihi (Türkiye saati, UTC+3) */
-export const RELEASE_DATE = "2026-11-05T18:00:00+03:00";
+/**
+ * TEST: Vercel'de yalnızca Preview ortamına NEXT_PUBLIC_TEST_SATIS_TARIHI (örn. 2026-10-01T00:00:00+03:00)
+ * eklenirse önizleme sitesi lansman gelmiş gibi davranır. Production'da bu değişken OLMAMALI.
+ */
+export const RELEASE_DATE =
+  (process.env.NEXT_PUBLIC_VERCEL_ENV !== "production" && process.env.NEXT_PUBLIC_TEST_SATIS_TARIHI) ||
+  "2026-11-05T18:00:00+03:00";
 
 /** Tanıtım filmi linki (YouTube veya Instagram). Boş bırakılırsa buton gizlenir, doluysa açılır pencerede oynatılır. */
 export const TRAILER_URL = "";
