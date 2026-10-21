@@ -6,7 +6,7 @@ import OdemeForm from "@/components/odeme/OdemeForm";
 import FlashTeslim from "@/components/ui/FlashTeslim";
 import { KART_ODEME_AKTIF, WHATSAPP_PHONE } from "@/config/cekicilikConfig";
 import { eklemeBul, satistaMi, urunBul } from "@/lib/odeme/urunler";
-import { Lock, Package, BookOpen } from "lucide-react";
+import { Lock, Package, BookOpen, CreditCard } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Güvenli Ödeme",
@@ -101,6 +101,15 @@ export default function OdemeSayfasi({ searchParams }: { searchParams: { urun?: 
       </div>
 
       <FlashTeslim tip={urun.tip === "physical" ? "kargo" : "ekitap"} className="mt-3" />
+      {urun.tip === "physical" && (
+        <div className="mt-3 flex items-center gap-3 rounded-xl border border-white/10 bg-white/[0.03] px-4 py-3">
+          <CreditCard className="h-5 w-5 flex-shrink-0 text-gold-400" />
+          <p className="text-[13px] leading-snug text-zinc-300">
+            <strong className="text-white">Kredi kartına {urun.maxTaksit ?? 3} taksite kadar.</strong>{" "}
+            Taksit sayısını iyzico ödeme ekranında seçersin; vade farkı uygulanır.
+          </p>
+        </div>
+      )}
 
       <div className="mt-8">
         <OdemeForm urun={urun} ekleme={ekleme} />
