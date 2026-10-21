@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { Book3DModel } from "./HeroSection";
-import { Shield, Compass, Flame, MessageCircle, Truck, Zap, Clock, CreditCard, Check } from "lucide-react";
+import { MessageCircle, Truck, Zap, Clock, CreditCard, Check } from "lucide-react";
 import { useCekicilikLaunchStatus } from "./ui/BookCountdown";
 import { ThemeBadge, ThemeButton, ThemeSectionHeader } from "./ui/ThemeSystem";
 import { KART_ODEME_AKTIF, VAZGECILMEZ_CONFIG, VAZGECILMEZ_PREVIEW_PAGES } from "@/config/cekicilikConfig";
@@ -18,23 +18,6 @@ import FlashTeslim from "./ui/FlashTeslim";
  * Çekicilik Sanatı bölümünün altın/maun temalı eşi.
  * E-kitap şimdi satışta; Yenilenmiş Edisyon fiziksel kitap RELEASE_DATE'te otomatik satışa açılır.
  */
-const HIGHLIGHTS = [
-  {
-    icon: Flame,
-    title: "Yıkılan Doğrular",
-    text: "Sana dayatılan onay arayan yalanları bırak, oyunun gerçek kurallarını gör.",
-  },
-  {
-    icon: Shield,
-    title: "Sarsılmaz Çerçeve",
-    text: "Krizlerde eğilmeyen, manipülasyona kapalı bir karakter inşa et.",
-  },
-  {
-    icon: Compass,
-    title: "Oyunun Kuralları",
-    text: "Çekim ve güç dinamiklerini oku, ilişkiyi sen yönet.",
-  },
-];
 
 const pad = (n: number) => String(n).padStart(2, "0");
 
@@ -112,21 +95,6 @@ export default function VazgecilmezSection() {
 
           {/* Tanıtım + satın alma */}
           <div>
-            <div className="grid sm:grid-cols-3 gap-3 mb-4 lg:mb-4">
-              {HIGHLIGHTS.map(({ icon: Icon, title, text }) => (
-                <div
-                  key={title}
-                  className="rounded-xl border border-gold-500/20 bg-black/40 p-4"
-                >
-                  <Icon className="w-5 h-5 text-gold-400 mb-2" />
-                  <h3 className="font-cinzel text-sm font-bold text-white tracking-wide mb-1">
-                    {title}
-                  </h3>
-                  <p className="text-xs text-zinc-400 leading-relaxed">{text}</p>
-                </div>
-              ))}
-            </div>
-
             <div className="grid sm:grid-cols-2 gap-4 items-start" data-sticky-hide>
               {/* E-Kitap: şimdi satışta */}
               <div className="rounded-2xl border border-gold-500/50 bg-gradient-to-br from-mahogany-950/80 to-matte-950 p-5 flex flex-col shadow-gold-glow">
@@ -141,7 +109,7 @@ export default function VazgecilmezSection() {
                 <p className="mt-1 min-h-[32px] text-xs text-zinc-400">
                   PDF. Kartla ödemede e-postana otomatik teslim.
                 </p>
-                <AnindaTeslim size="sm" metin="E-kitap 7/24 saniyeler içinde e-postanda" className="mt-3 self-start" />
+                <AnindaTeslim size="sm" metin="E-kitap 7/24 anında e-postanda" className="mt-3 self-start" />
                 <div className="mt-4 space-y-2">
                   {KART_ODEME_AKTIF && (
                     <ThemeButton theme="kitap1" variant="primary" size="md" fullWidth href={odemeLinki(ebook.id)} className="whitespace-nowrap">
