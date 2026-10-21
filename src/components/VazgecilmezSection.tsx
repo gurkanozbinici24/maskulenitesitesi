@@ -175,6 +175,7 @@ export default function VazgecilmezSection() {
                 <p className="mt-1 mb-4 text-xs text-zinc-400">
                   Yeni kapak, büyük punto. Kapıya kadar ücretsiz kargo.
                 </p>
+                <AnindaTeslim tip="fiziksel" size="sm" className="mb-3 self-start" />
                 <PhysicalPerks theme="kitap1" size="sm" className="mb-4" />
 
                 {isOnSale ? (

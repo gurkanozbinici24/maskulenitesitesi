@@ -6,6 +6,7 @@ import { Book3DModel } from "./HeroSection";
 import { useCekicilikLaunchStatus } from "./ui/BookCountdown";
 import { ThemeButton } from "./ui/ThemeSystem";
 import PhysicalPerks from "./ui/PhysicalPerks";
+import AnindaTeslim from "./ui/AnindaTeslim";
 import GiftLink from "./ui/GiftLink";
 import { KART_ODEME_AKTIF, KOLEKSIYON_SETI_CONFIG as SET } from "@/config/cekicilikConfig";
 import { odemeLinki } from "@/lib/odeme/urunler";
@@ -130,7 +131,8 @@ export default function BundleSection() {
             ))}
           </ul>
 
-          <PhysicalPerks theme="kitap1" className="mx-auto mt-6 max-w-md lg:mx-0" />
+          <div className="mt-5 flex justify-center lg:justify-start"><AnindaTeslim tip="fiziksel" /></div>
+          <PhysicalPerks theme="kitap1" className="mx-auto mt-4 max-w-md lg:mx-0" />
 
           <div className="mx-auto mt-7 max-w-md lg:mx-0" data-sticky-hide>
             {isOnSale ? (

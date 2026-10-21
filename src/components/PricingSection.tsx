@@ -268,6 +268,8 @@ export default function PricingSection() {
                 </p>
               </div>
 
+              <AnindaTeslim tip="fiziksel" className="mt-1 mb-1" />
+
               {/* Fiyat ve Ücretsiz Kargo Bandı */}
               <div className="py-3 sm:py-4 lg:py-3 my-3 sm:my-4 lg:my-3 border-y border-mahogany-700/70 flex flex-wrap items-center justify-between gap-2 bg-mahogany-900/40 -mx-5 sm:-mx-8 px-5 sm:px-8">
                 <div className="flex items-baseline gap-2">

@@ -1,15 +1,20 @@
-import { Zap } from "lucide-react";
+import { Truck, Zap } from "lucide-react";
 import { KART_ODEME_AKTIF } from "@/config/cekicilikConfig";
 
 /** E-kitap için "7/24 saniyeler içinde otomatik teslimat" rozeti. Kartla ödeme kapalıysa gösterilmez. */
 export default function AnindaTeslim({
   size = "md",
+  tip = "ekitap",
   className = "",
 }: {
   size?: "sm" | "md";
+  /** "ekitap": 7/24 e-posta teslimatı (kartla ödemeye bağlı), "fiziksel": 2 günde kapında */
+  tip?: "ekitap" | "fiziksel";
   className?: string;
 }) {
-  if (!KART_ODEME_AKTIF) return null;
+  const fiziksel = tip === "fiziksel";
+  if (!fiziksel && !KART_ODEME_AKTIF) return null;
+  const Ikon = fiziksel ? Truck : Zap;
   const sm = size === "sm";
   return (
     <div
@@ -21,8 +26,8 @@ export default function AnindaTeslim({
         <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
         <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-emerald-400" />
       </span>
-      <Zap className={`${sm ? "h-3 w-3" : "h-3.5 w-3.5"} fill-emerald-300 text-emerald-300 flex-shrink-0`} />
-      <span>E-kitap 7/24 saniyeler içinde e-postanda</span>
+      <Ikon className={`${sm ? "h-3 w-3" : "h-3.5 w-3.5"} ${fiziksel ? "" : "fill-emerald-300"} text-emerald-300 flex-shrink-0`} />
+      <span>{fiziksel ? "İmzalı kitabın 2 gün içinde kapında" : "E-kitap 7/24 saniyeler içinde e-postanda"}</span>
     </div>
   );
 }

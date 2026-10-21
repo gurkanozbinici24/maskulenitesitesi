@@ -1,6 +1,7 @@
 "use client";
 
 import PhysicalPerks from "./PhysicalPerks";
+import AnindaTeslim from "./AnindaTeslim";
 import GiftLink from "./GiftLink";
 import React, { useEffect, useState } from "react";
 import {
@@ -385,6 +386,7 @@ export function CekicilikSalesOptions({
                 </div>
               </div>
 
+              {isPhysical && <AnindaTeslim tip="fiziksel" size="sm" className="mt-2.5" />}
               {isPhysical && <PhysicalPerks theme="kitap2" size="sm" className="mt-2.5" />}
 
               <div className="flex flex-col gap-2 mt-2.5">
@@ -572,6 +574,7 @@ export function CekicilikSalesOptions({
             </span>
           </div>
 
+          <AnindaTeslim tip="fiziksel" className="mt-4" />
           <PhysicalPerks theme="kitap2" className="my-5" />
 
           {/* Feature List */}
