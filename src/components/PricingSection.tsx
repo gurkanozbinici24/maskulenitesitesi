@@ -57,19 +57,15 @@ export default function PricingSection() {
             baslik="Vazgeçilmez Olma Sanatı"
             fiyat={
               <>
-                {vEbook.price} <Kucuk>/ {vFiz.price} TL</Kucuk>
+                {vFiz.price} <Kucuk>/ {vEbook.price} TL</Kucuk>
               </>
             }
-            altBilgi="E-kitap · Fiziksel (isme özel imzalı)"
+            altBilgi="Fiziksel: isme özel imzalı · 3 taksite kadar · E-kitap: anında"
           >
-            <ThemeButton theme="kitap1" variant="primary" size="md" fullWidth className="whitespace-nowrap" {...al(vEbook.id, vEbook.whatsappUrl)}>
-              <Zap className="h-4 w-4 flex-shrink-0" />
-              <span>E-Kitap · {vEbook.price} TL</span>
-            </ThemeButton>
             {vazgecilmez.isOnSale ? (
-              <ThemeButton theme="kitap1" variant="outline" size="md" fullWidth className="whitespace-nowrap" {...al(vFiz.id, vFiz.orderWhatsappUrl)}>
+              <ThemeButton theme="kitap1" variant="primary" size="md" fullWidth className="whitespace-nowrap" {...al(vFiz.id, vFiz.orderWhatsappUrl)}>
                 <Package className="h-4 w-4 flex-shrink-0" />
-                <span>Fiziksel · {vFiz.price} TL</span>
+                <span>Fiziksel İmzalı · {vFiz.price} TL</span>
               </ThemeButton>
             ) : (
               <ThemeButton theme="kitap1" variant="outline" size="md" fullWidth className="whitespace-nowrap" href={vFiz.notifyWhatsappUrl} target="_blank" rel="noopener noreferrer">
@@ -77,6 +73,10 @@ export default function PricingSection() {
                 <span>Fiziksel · 5 Kasım&apos;da</span>
               </ThemeButton>
             )}
+            <ThemeButton theme="kitap1" variant="outline" size="md" fullWidth className="whitespace-nowrap" {...al(vEbook.id, vEbook.whatsappUrl)}>
+              <Zap className="h-4 w-4 flex-shrink-0" />
+              <span>E-Kitap · {vEbook.price} TL</span>
+            </ThemeButton>
           </Kart>
 
           {/* 2 · ÇEKİCİLİK */}
@@ -86,20 +86,20 @@ export default function PricingSection() {
             baslik="Çekicilik Sanatı"
             fiyat={
               <>
-                {cEbook.price} <Kucuk>/ {cFiz.price} TL</Kucuk>
+                {cFiz.price} <Kucuk>/ {cEbook.price} TL</Kucuk>
               </>
             }
-            altBilgi="E-kitap · Fiziksel (isme özel imzalı)"
+            altBilgi="Fiziksel: isme özel imzalı · 3 taksite kadar · E-kitap: anında"
           >
             {cekicilik.isOnSale ? (
               <>
-                <ThemeButton theme="kitap2" variant="primary" size="md" fullWidth className="whitespace-nowrap" {...al(cEbook.id, cEbook.whatsappUrl)}>
+                <ThemeButton theme="kitap2" variant="primary" size="md" fullWidth className="whitespace-nowrap" {...al(cFiz.id, cFiz.whatsappUrl)}>
+                  <Package className="h-4 w-4 flex-shrink-0" />
+                  <span>Fiziksel İmzalı · {cFiz.price} TL</span>
+                </ThemeButton>
+                <ThemeButton theme="kitap2" variant="outline" size="md" fullWidth className="whitespace-nowrap" {...al(cEbook.id, cEbook.whatsappUrl)}>
                   <Zap className="h-4 w-4 flex-shrink-0" />
                   <span>E-Kitap · {cEbook.price} TL</span>
-                </ThemeButton>
-                <ThemeButton theme="kitap2" variant="outline" size="md" fullWidth className="whitespace-nowrap" {...al(cFiz.id, cFiz.whatsappUrl)}>
-                  <Package className="h-4 w-4 flex-shrink-0" />
-                  <span>Fiziksel · {cFiz.price} TL</span>
                 </ThemeButton>
               </>
             ) : (

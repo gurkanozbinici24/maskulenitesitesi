@@ -137,7 +137,7 @@ export default function CekicilikSection() {
                 </div>
 
                 {/* Fiziksel */}
-                <div className="rounded-2xl border border-emerald-500/40 bg-gradient-to-br from-crimson-950/60 to-matte-950 p-5 flex flex-col">
+                <div className="rounded-2xl border border-emerald-500/40 bg-gradient-to-br from-crimson-950/60 to-matte-950 order-first p-5 flex flex-col">
                   <ThemeBadge theme="kitap2" status="satista" className="self-start text-[10px]">
                     <Truck className="w-3 h-3" />
                     <span>FİZİKSEL KİTAP SATIŞTA</span>
@@ -147,7 +147,7 @@ export default function CekicilikSection() {
                     <span className="text-sm font-bold text-gold-400">TL</span>
                   </div>
                   <p className="mt-1 min-h-[32px] text-xs text-zinc-400">
-                    Özel koleksiyon baskısı. Kapıya kadar ücretsiz kargo.
+                    Özel koleksiyon baskısı. İsme özel imzalı, ücretsiz kargo, 3 taksite kadar.
                   </p>
                   <AnindaTeslim tip="fiziksel" size="sm" className="mt-3 self-start" />
                   <div className="mt-4 space-y-2">

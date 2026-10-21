@@ -147,7 +147,7 @@ export default function VazgecilmezSection() {
               </div>
 
               {/* Fiziksel Yenilenmiş Edisyon */}
-              <div className="rounded-2xl border border-mahogany-700/70 bg-gradient-to-br from-mahogany-950/60 to-matte-950 p-5 flex flex-col">
+              <div className="rounded-2xl border border-mahogany-700/70 bg-gradient-to-br from-mahogany-950/60 to-matte-950 order-first p-5 flex flex-col">
                 <ThemeBadge
                   theme="kitap1"
                   status={isOnSale ? "satista" : "yakinda"}
@@ -163,7 +163,7 @@ export default function VazgecilmezSection() {
                   <span className="text-sm font-bold text-gold-400">TL</span>
                 </div>
                 <p className="mt-1 min-h-[32px] text-xs text-zinc-400">
-                  Yeni kapak, büyük punto. Kapıya kadar ücretsiz kargo.
+                  Yeni kapak, büyük punto. İsme özel imzalı, ücretsiz kargo, 3 taksite kadar.
                 </p>
                 <AnindaTeslim tip="fiziksel" size="sm" className="mt-3 self-start" />
 
