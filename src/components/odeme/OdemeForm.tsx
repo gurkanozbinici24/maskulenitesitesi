@@ -250,7 +250,7 @@ export default function OdemeForm({ urun }: { urun: OdemeUrunu }) {
       </p>
 
       <p className="-mt-4 text-center text-xs text-zinc-500">
-        Kredi kartına <strong className="text-zinc-300">12 aya varan taksit</strong> seçeneği ödeme ekranında. Tek çekim
+        Kredi kartına <strong className="text-zinc-300">3 taksit</strong> seçeneği ödeme ekranında. Tek çekim
         fiyatı {urun.fiyat} TL; taksitli seçeneklerde vade farkı uygulanır.
       </p>
 
