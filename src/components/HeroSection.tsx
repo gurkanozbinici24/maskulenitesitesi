@@ -341,9 +341,8 @@ export default function HeroSection() {
         </div>
 
         {/* Lazy-Loaded react-three-fiber Altın Toz Parçacıkları & Hafif Duman */}
-        {!prefersReducedMotion && (
-          <HeroParticlesCanvas activeBook={effectiveAtmosphere} />
-        )}
+        {/* Yavaş, dekoratif parçacıklar: Windows'ta "animasyon efektleri" kapalı olan bilgisayarlarda da görünsün */}
+        <HeroParticlesCanvas activeBook={effectiveAtmosphere} />
 
         {/* =================================================================== */}
         {/* 2. ANA İÇERİK KAPSAYICISI (100svh İlk Ekrana Tam Sığan Yapı)         */}

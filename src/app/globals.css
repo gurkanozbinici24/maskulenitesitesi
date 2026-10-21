@@ -406,4 +406,4 @@ body {
   animation: kivilcim-yuksel var(--ks, 4s) ease-out var(--kd, 0s) infinite;
   will-change: transform, opacity;
 }
-@media (prefers-reduced-motion: reduce) { .kivilcim { animation: none; display: none; } }
+@media (prefers-reduced-motion: reduce) { .kivilcim { animation-duration: calc(var(--ks, 4s) * 1.6); } }
