@@ -1,4 +1,4 @@
-import { CreditCard, Landmark, Lock, MessageCircle, PenLine, ShieldCheck, Truck } from "lucide-react";
+import { CreditCard, Landmark, Lock, MessageCircle, PenLine, ShieldCheck, Truck, Zap } from "lucide-react";
 import { KART_ODEME_AKTIF } from "@/config/cekicilikConfig";
 
 /**
@@ -65,10 +65,20 @@ export default function OrderStepsSection() {
           </h2>
           <p className="mt-2 text-sm text-zinc-400 sm:text-base">
             {KART_ODEME_AKTIF
-              ? "İster WhatsApp'tan yaz, ister kartınla saniyeler içinde öde. İki yolda da kitabın ismine imzalanıp aynı gün kargoda."
+              ? "İster WhatsApp'tan yaz, ister kartınla saniyeler içinde öde. Fiziksel kitabın ismine imzalanıp aynı gün kargoda; e-kitap ise kartla ödediğin anda e-postanda."
               : "Dört adımda kitabın kapında. Siparişin ismine imzalanıp aynı gün kargoya verilir."}
           </p>
         </div>
+
+        {KART_ODEME_AKTIF && (
+          <div className="mx-auto mb-5 flex max-w-3xl items-start gap-3 rounded-2xl border border-emerald-500/40 bg-emerald-500/10 px-4 py-3.5 text-sm text-emerald-100 sm:items-center sm:px-5">
+            <Zap className="mt-0.5 h-5 w-5 flex-shrink-0 text-emerald-400 sm:mt-0" />
+            <span>
+              <strong className="text-white">E-kitapta anında teslimat:</strong> kartla ödediğin anda e-kitabın (PDF)
+              saniyeler içinde e-posta adresine otomatik gönderilir. 7/24, beklemeden.
+            </span>
+          </div>
+        )}
 
         <div className="grid gap-5">
           {KART_ODEME_AKTIF && (

@@ -104,9 +104,9 @@ export default function PricingSection() {
 
               <p className="hidden sm:block text-fluid-sm text-zinc-300 mt-2 mb-6 lg:mb-3 lg:text-sm leading-relaxed">
                 Kargo bekleme veya adres girme süreçleriyle vakit kaybetmeyin.
-                Ödemenizin ardından e-kitabınız (dijital formatta) doğrudan
-                e-posta adresinize gönderilir. Telefon, tablet veya
-                bilgisayarınızdan hemen okumaya başlayın.
+                Kartla ödediğin anda e-kitabın (PDF) saniyeler içinde
+                e-posta adresine otomatik gönderilir. Telefon, tablet veya
+                bilgisayarından hemen okumaya başla.
               </p>
 
               {/* Price Tag */}
@@ -158,8 +158,8 @@ export default function PricingSection() {
                     <Check className="w-3 h-3" />
                   </div>
                   <span className="text-[13px] sm:text-sm text-zinc-200 leading-snug">
-                    Fiziksel kargo beklemeden, e-posta adresinize dijital
-                    teslimat.
+                    <strong>Anında otomatik teslimat:</strong> kartla ödemede
+                    PDF saniyeler içinde e-postanda.
                   </span>
                 </div>
               </div>
@@ -198,7 +198,7 @@ export default function PricingSection() {
                 <Mail className="w-3.5 h-3.5 text-gold-400" />
                 <span>
                   {KART_ODEME_AKTIF
-                    ? "Kartla öde ya da WhatsApp'tan sipariş ver; e-kitabın e-postana gönderilsin."
+                    ? "Kartla öde, e-kitabın saniyeler içinde e-postana otomatik gelsin. 7/24, beklemeden."
                     : "WhatsApp'tan sipariş verin, ödemenin ardından e-kitabınız e-postanıza gönderilsin."}
                 </span>
               </div>

@@ -186,12 +186,12 @@ export const CEKICILIK_PRODUCTS: {
     price: 600,
     currency: "TL",
     description:
-      "Kargo bekleme veya adres girme süreçleriyle vakit kaybetmeyin. Ödemenizin ardından e-kitabınız (dijital formatta) doğrudan e-posta adresinize gönderilir. Telefon, tablet veya bilgisayarınızdan hemen okumaya başlayın.",
+      "Kargo bekleme veya adres girme süreçleriyle vakit kaybetmeyin. Kartla ödediğiniz anda e-kitabınız (PDF) saniyeler içinde e-posta adresinize otomatik gönderilir. Telefon, tablet veya bilgisayarınızdan hemen okumaya başlayın.",
     features: [
       "Tam Metin (Tüm bölümler ve karanlık çekim yasaları)",
       "PDF formatında (telefon, tablet, bilgisayar ve Kindle)",
       "Ömür boyu erişim ve dijital revizyon güncellemeleri",
-      "Fiziksel kargo beklemeden, e-posta ile dijital teslimat",
+      "Anında otomatik teslimat: kartla ödemede PDF saniyeler içinde e-postanda",
     ],
     whatsappMessage: EBOOK_WHATSAPP_MESSAGE,
     whatsappUrl: buildWhatsAppUrl(EBOOK_WHATSAPP_MESSAGE),

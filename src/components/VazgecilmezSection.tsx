@@ -137,7 +137,7 @@ export default function VazgecilmezSection() {
                   <span className="text-sm font-bold text-gold-400">TL</span>
                 </div>
                 <p className="mt-1 mb-4 text-xs text-zinc-400">
-                  PDF formatında. Ödemenin ardından e-postanıza gönderilir.
+                  PDF. Kartla ödemede saniyeler içinde e-postana otomatik teslim.
                 </p>
                 <ThemeButton
                   theme="kitap1"

@@ -518,7 +518,7 @@ export function CekicilikSalesOptions({
 
           <div className="flex items-center justify-center gap-1.5 pt-1 text-xs text-zinc-400 font-medium">
             <Mail className="w-3.5 h-3.5 text-emerald-400" />
-            <span>Ödemenin ardından e-posta ile dijital teslimat.</span>
+            <span>Kartla ödemede saniyeler içinde e-postana otomatik teslim.</span>
           </div>
         </div>
       </ThemeCard>

@@ -29,7 +29,7 @@ const faqs: FaqItem[] = [
     id: 3,
     question: "Dijital E-Kitap paketini satın aldığımda nasıl okuyacağım?",
     answer:
-      "Siparişinizi kartla ödeyerek ya da WhatsApp üzerinden verirsiniz. Ödemeniz onaylandıktan sonra e-kitap PDF olarak e-posta adresinize gönderilir. Kargo beklemeden telefon, tablet veya bilgisayarınızdan okumaya başlayabilirsiniz.",
+      "Siparişinizi kartla ödeyerek ya da WhatsApp üzerinden verirsiniz. Kartla ödediğinizde e-kitap (PDF) saniyeler içinde e-posta adresinize otomatik gönderilir; gece gündüz fark etmez. WhatsApp siparişlerinde ödeme onaylanınca gönderilir. Kargo beklemeden telefon, tablet veya bilgisayarınızdan okumaya başlayabilirsiniz.",
   },
   {
     id: 4,
