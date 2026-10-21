@@ -17,6 +17,8 @@ import type { OdemeUrunu } from "./urunler";
  */
 
 export interface OdemeOzeti {
+  /** e-kitap otomatik gönderim sonucu */
+  ekitap?: "gonderildi" | "hata";
   paymentId?: string;
   paidPrice?: number;
   installment?: number;
@@ -51,7 +53,12 @@ export function siparisMetni(s: Siparis, urun: OdemeUrunu, o: OdemeOzeti): strin
       ),
     );
   } else {
-    satirlar.push("", "📩 E-kitap bu e-posta adresine gönderilecek.");
+    satirlar.push(
+      "",
+      o.ekitap === "gonderildi"
+        ? "✅ E-kitap (PDF) müşterinin e-postasına OTOMATİK gönderildi."
+        : "⚠️ E-kitap otomatik GÖNDERİLEMEDİ — lütfen bu e-postaya elle gönder.",
+    );
   }
   if (s.not) satirlar.push("", `Not: ${s.not}`);
   if (o.paymentId) satirlar.push("", `iyzico ödeme no: ${o.paymentId}${o.kart ? ` · ${o.kart}` : ""}`);

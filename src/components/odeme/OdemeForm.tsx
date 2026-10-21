@@ -123,7 +123,7 @@ export default function OdemeForm({ urun }: { urun: OdemeUrunu }) {
         {!fiziksel && (
           <p className="flex items-start gap-2 text-xs text-zinc-400">
             <Mail className="mt-0.5 h-3.5 w-3.5 flex-shrink-0 text-gold-400" />
-            Ödemenin ardından e-kitabın (PDF, EPUB, Kindle) bu e-posta adresine gönderilir.
+            Ödeme onaylandığı anda e-kitabın (PDF) bu e-posta adresine otomatik gönderilir.
           </p>
         )}
       </fieldset>

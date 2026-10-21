@@ -3,6 +3,7 @@ import { iyzicoIstek, type CheckoutSonucCevap } from "@/lib/odeme/iyzico";
 import { siparisAc } from "@/lib/odeme/siparis";
 import { siparisBildir } from "@/lib/odeme/bildirim";
 import { urunBul } from "@/lib/odeme/urunler";
+import { ekitapGonder } from "@/lib/odeme/ekitapTeslim";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -55,14 +56,25 @@ async function isle(req: Request) {
     return git(`/odeme/basarisiz?no=${siparis.n}`);
   }
 
+  let ekitap: "gonderildi" | "hata" | undefined;
+  if (urun.tip === "ebook") {
+    try {
+      ekitap = (await ekitapGonder(siparis, urun)) === "gonderildi" ? "gonderildi" : "hata";
+    } catch (e) {
+      console.error("[odeme] e-kitap gönderilemedi", siparis.n, e);
+      ekitap = "hata";
+    }
+  }
+
   await siparisBildir(siparis, urun, {
+    ekitap,
     paymentId: c.paymentId,
     paidPrice: Number(c.paidPrice),
     installment: c.installment,
     kart: c.lastFourDigits ? `${c.cardAssociation || "Kart"} **** ${c.lastFourDigits}` : undefined,
   });
 
-  const q = new URLSearchParams({ no: siparis.n, tip: urun.tip, ad: siparis.ad });
+  const q = new URLSearchParams({ no: siparis.n, tip: urun.tip, ad: siparis.ad, ...(ekitap ? { ek: ekitap } : {}) });
   return git(`/odeme/basarili?${q.toString()}`);
 }
 

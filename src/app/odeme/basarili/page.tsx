@@ -8,7 +8,7 @@ import { WHATSAPP_PHONE } from "@/config/cekicilikConfig";
 export const metadata: Metadata = { title: "Siparişin Alındı", robots: { index: false, follow: false } };
 export const dynamic = "force-dynamic";
 
-export default function Basarili({ searchParams }: { searchParams: { no?: string; tip?: string; ad?: string } }) {
+export default function Basarili({ searchParams }: { searchParams: { no?: string; tip?: string; ad?: string; ek?: string } }) {
   const fiziksel = searchParams.tip === "physical";
   const ad = (searchParams.ad || "").slice(0, 40);
   const no = (searchParams.no || "").slice(0, 30);
@@ -44,8 +44,9 @@ export default function Basarili({ searchParams }: { searchParams: { no?: string
             ) : (
               <p className="flex gap-3">
                 <Mail className="h-5 w-5 flex-shrink-0 text-gold-400" />
-                E-kitabın, siparişte yazdığın e-posta adresine gönderilecek. Gelen kutunda göremezsen
-                spam/gereksiz klasörüne de bak.
+                {searchParams.ek === "gonderildi"
+                  ? "E-kitabın (PDF) şu an e-posta adresine gönderildi. Birkaç dakika içinde gelen kutunda göremezsen spam/gereksiz klasörüne de bak."
+                  : "E-kitabın kısa süre içinde siparişte yazdığın e-posta adresine gönderilecek. Gelen kutunda göremezsen spam/gereksiz klasörüne de bak."}
               </p>
             )}
           </div>

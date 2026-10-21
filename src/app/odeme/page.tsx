@@ -78,7 +78,7 @@ export default function OdemeSayfasi({ searchParams }: { searchParams: { urun?: 
             <div className="text-xs text-zinc-400">
               {urun.tip === "physical"
                 ? "İsme özel imzalı · Kapıya kadar ücretsiz kargo"
-                : "PDF, EPUB ve Kindle · E-posta ile teslim"}
+                : "PDF · Ödemeden hemen sonra e-postana"}
             </div>
           </div>
         </div>
