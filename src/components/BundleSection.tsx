@@ -1,13 +1,14 @@
 "use client";
 
 import { useState } from "react";
-import { Check, Heart, MessageCircle, Package, Sparkles, Truck } from "lucide-react";
+import { Check, CreditCard, Heart, MessageCircle, Package, Sparkles, Truck } from "lucide-react";
 import { Book3DModel } from "./HeroSection";
 import { useCekicilikLaunchStatus } from "./ui/BookCountdown";
 import { ThemeButton } from "./ui/ThemeSystem";
 import PhysicalPerks from "./ui/PhysicalPerks";
 import GiftLink from "./ui/GiftLink";
-import { KOLEKSIYON_SETI_CONFIG as SET } from "@/config/cekicilikConfig";
+import { KART_ODEME_AKTIF, KOLEKSIYON_SETI_CONFIG as SET } from "@/config/cekicilikConfig";
+import { odemeLinki } from "@/lib/odeme/urunler";
 
 const pad = (n: number) => String(n).padStart(2, "0");
 
@@ -144,6 +145,19 @@ export default function BundleSection() {
               >
                 <MessageCircle className="h-5 w-5" />
                 <span>Seti Sipariş Et – {SET.price} TL</span>
+              </ThemeButton>
+            ) : null}
+            {isOnSale && KART_ODEME_AKTIF ? (
+              <ThemeButton
+                theme="kitap1"
+                variant="secondary"
+                size="lg"
+                fullWidth
+                href={odemeLinki("koleksiyon-seti")}
+                className="mt-2"
+              >
+                <CreditCard className="h-5 w-5 text-gold-400" />
+                <span>Kartla Öde – {SET.price} TL</span>
               </ThemeButton>
             ) : null}
             {isOnSale ? (

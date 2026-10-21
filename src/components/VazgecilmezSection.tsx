@@ -2,10 +2,11 @@
 
 import { useState } from "react";
 import { Book3DModel } from "./HeroSection";
-import { Shield, Compass, Flame, MessageCircle, Truck, Zap, Clock } from "lucide-react";
+import { Shield, Compass, Flame, MessageCircle, Truck, Zap, Clock, CreditCard } from "lucide-react";
 import { useCekicilikLaunchStatus } from "./ui/BookCountdown";
 import { ThemeBadge, ThemeButton, ThemeSectionHeader } from "./ui/ThemeSystem";
-import { VAZGECILMEZ_CONFIG, VAZGECILMEZ_PREVIEW_PAGES } from "@/config/cekicilikConfig";
+import { KART_ODEME_AKTIF, VAZGECILMEZ_CONFIG, VAZGECILMEZ_PREVIEW_PAGES } from "@/config/cekicilikConfig";
+import { odemeLinki } from "@/lib/odeme/urunler";
 import BookPreview from "./BookPreview";
 import PhysicalPerks from "./ui/PhysicalPerks";
 import GiftLink from "./ui/GiftLink";
@@ -188,6 +189,18 @@ export default function VazgecilmezSection() {
                       <MessageCircle className="w-4 h-4 flex-shrink-0" />
                       <span>Sipariş Ver</span>
                     </ThemeButton>
+                    {KART_ODEME_AKTIF && (
+                      <ThemeButton
+                        theme="kitap1"
+                        variant="secondary"
+                        size="md"
+                        fullWidth
+                        href={odemeLinki(physicalRenovated.id)}
+                      >
+                        <CreditCard className="w-4 h-4 text-gold-400 flex-shrink-0" />
+                        <span>Kartla Öde</span>
+                      </ThemeButton>
+                    )}
                     <GiftLink href={physicalRenovated.giftWhatsappUrl} />
                   </div>
                 ) : (

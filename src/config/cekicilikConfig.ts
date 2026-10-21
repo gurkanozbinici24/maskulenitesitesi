@@ -15,8 +15,11 @@ export const RELEASE_DATE = "2026-11-05T18:00:00+03:00";
 /** Tanıtım filmi linki (YouTube veya Instagram). Boş bırakılırsa buton gizlenir, doluysa açılır pencerede oynatılır. */
 export const TRAILER_URL = "";
 
-/** iyzico kartla ödeme onayı geldiğinde true yapılacak bayrak */
-export const KART_ODEME_AKTIF = false;
+/**
+ * Kartla ödeme (iyzico) butonları. Vercel ortam değişkeniyle açılır/kapanır:
+ * NEXT_PUBLIC_KART_ODEME_AKTIF = "true" (Preview ve Production için ayrı ayrı ayarlanabilir).
+ */
+export const KART_ODEME_AKTIF = process.env.NEXT_PUBLIC_KART_ODEME_AKTIF === "true";
 
 /** Sipariş ve bilgilendirme için resmi WhatsApp hattı */
 export const WHATSAPP_PHONE = "905455207999";

@@ -13,7 +13,7 @@ import {
   MessageCircle,
   Package,
   PlayCircle,
-  ShoppingBag,
+  CreditCard,
   Sparkles,
   Truck,
   X,
@@ -28,6 +28,7 @@ import {
   type CekicilikProductOption,
 } from "@/config/cekicilikConfig";
 import { ThemeBadge, ThemeButton, ThemeCard } from "./ThemeSystem";
+import { odemeLinki } from "@/lib/odeme/urunler";
 
 export type CountdownSize = "sm" | "lg" | "kucuk" | "buyuk";
 
@@ -408,11 +409,11 @@ export function CekicilikSalesOptions({
                     variant="outline"
                     size="sm"
                     fullWidth
-                    onClick={() => onAddToCart?.(item)}
+                    href={odemeLinki(item.id)}
                     className="min-h-[48px]"
                   >
-                    <ShoppingBag className="w-4 h-4 text-gold-400 flex-shrink-0" />
-                    <span>Sepete Ekle ({item.price} TL)</span>
+                    <CreditCard className="w-4 h-4 text-gold-400 flex-shrink-0" />
+                    <span>Kartla Öde ({item.price} TL)</span>
                   </ThemeButton>
                 )}
               </div>
@@ -508,10 +509,10 @@ export function CekicilikSalesOptions({
               variant="secondary"
               size="lg"
               fullWidth
-              onClick={() => onAddToCart?.(ebook)}
+              href={odemeLinki(ebook.id)}
             >
-              <ShoppingBag className="w-5 h-5 text-gold-400 flex-shrink-0" />
-              <span>Sepete Ekle</span>
+              <CreditCard className="w-5 h-5 text-gold-400 flex-shrink-0" />
+              <span>Kartla Güvenli Öde</span>
             </ThemeButton>
           )}
 
@@ -608,10 +609,10 @@ export function CekicilikSalesOptions({
               variant="secondary"
               size="lg"
               fullWidth
-              onClick={() => onAddToCart?.(physical)}
+              href={odemeLinki(physical.id)}
             >
-              <ShoppingBag className="w-5 h-5 text-gold-400 flex-shrink-0" />
-              <span>Sepete Ekle</span>
+              <CreditCard className="w-5 h-5 text-gold-400 flex-shrink-0" />
+              <span>Kartla Güvenli Öde</span>
             </ThemeButton>
           )}
 

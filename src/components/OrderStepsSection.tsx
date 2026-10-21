@@ -16,7 +16,7 @@ const WHATSAPP_STEPS: Step[] = [
 ];
 
 const CARD_STEPS: Step[] = [
-  { icon: CreditCard, title: "Sepete ekle", text: "Kitabını seç, adres ve imza ismini gir." },
+  { icon: CreditCard, title: "Kartla Öde'ye dokun", text: "Kitabını seç, adresini ve imza ismini gir." },
   { icon: Lock, title: "Kartla güvenli öde", text: "Kredi veya banka kartıyla, iyzico 3D Secure güvencesiyle öde." },
   { icon: PenLine, title: "İsmine imzalanır", text: "Kitabın, adına özel imzalanıp gizli ve korumalı paketlenir." },
   { icon: Truck, title: "Aynı gün kargoda", text: "14:00'e kadar verilen siparişler aynı gün Yurtiçi Kargo'da, 2 günde elinde." },

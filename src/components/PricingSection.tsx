@@ -12,9 +12,10 @@ import {
   Mail,
   Clock,
   Truck,
-  ShoppingBag,
   Info,
+  CreditCard,
 } from "lucide-react";
+import { odemeLinki } from "@/lib/odeme/urunler";
 import PhysicalPerks from "./ui/PhysicalPerks";
 import GiftLink from "./ui/GiftLink";
 import {
@@ -180,11 +181,25 @@ export default function PricingSection() {
                 <span className="hidden sm:inline">E-KİTABI HEMEN OKU (600 TL)</span>
                 <ArrowRight className="w-4 h-4" />
               </ThemeButton>
+              {KART_ODEME_AKTIF && (
+                <ThemeButton
+                  theme="kitap1"
+                  variant="secondary"
+                  size="lg"
+                  fullWidth
+                  href={odemeLinki("vazgecilmez-ekitap")}
+                  className="mt-3"
+                >
+                  <CreditCard className="w-5 h-5 text-gold-400 flex-shrink-0" />
+                  <span>Kartla Öde (600 TL)</span>
+                </ThemeButton>
+              )}
               <div className="flex items-start justify-center gap-1.5 mt-3 text-[11px] sm:text-xs text-zinc-400 font-medium text-center">
                 <Mail className="w-3.5 h-3.5 text-gold-400" />
                 <span>
-                  WhatsApp'tan sipariş verin, ödemenin ardından e-kitabınız
-                  e-postanıza gönderilsin.
+                  {KART_ODEME_AKTIF
+                    ? "Kartla öde ya da WhatsApp'tan sipariş ver; e-kitabın e-postana gönderilsin."
+                    : "WhatsApp'tan sipariş verin, ödemenin ardından e-kitabınız e-postanıza gönderilsin."}
                 </span>
               </div>
             </div>
@@ -359,9 +374,10 @@ export default function PricingSection() {
                       variant="secondary"
                       size="lg"
                       fullWidth
+                      href={odemeLinki(physicalRenovated.id)}
                     >
-                      <ShoppingBag className="w-5 h-5 text-gold-400 flex-shrink-0" />
-                      <span>Sepete Ekle (1000 TL)</span>
+                      <CreditCard className="w-5 h-5 text-gold-400 flex-shrink-0" />
+                      <span>Kartla Öde ({physicalRenovated.price} TL)</span>
                     </ThemeButton>
                   )}
 
