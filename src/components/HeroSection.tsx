@@ -7,7 +7,7 @@ import { KART_ODEME_AKTIF } from "@/config/cekicilikConfig";
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import dynamic from "next/dynamic";
-import { ArrowRight, Bell, Clock, Flame, Package, Sparkles, Zap } from "lucide-react";
+import { ArrowRight, Bell, Clock, Package, Sparkles, Zap } from "lucide-react";
 import { ThemeBadge, ThemeButton } from "./ui/ThemeSystem";
 import { useCekicilikLaunchStatus } from "./ui/BookCountdown";
 import { scrollToSection } from "@/lib/scrollToSection";
@@ -745,7 +745,7 @@ export default function HeroSection() {
                       <p className="text-xs text-gold-300/90 mt-1">
                         Fiziksel Yenilenmiş Edisyon Şimdi Satışta
                       </p>
-                      <div className="mt-2.5 w-full flex justify-center"><SatinAlSatiri kitap="kitap1" /></div>
+                      <AnindaTeslim tip="fiziksel" size="sm" metin="Fiziksel · Flash kargo, 2 günde elinde" className="mt-2" />
                     </>
                   ) : (
                     <div className="mt-1">
@@ -819,7 +819,7 @@ export default function HeroSection() {
                       <p className="text-xs text-emerald-400 font-medium mt-1">
                         E-Kitap ve Fiziksel Kitap Şimdi Satışta
                       </p>
-                      <div className="mt-2.5 w-full flex justify-center"><SatinAlSatiri kitap="kitap2" /></div>
+                      <AnindaTeslim tip="fiziksel" size="sm" metin="Fiziksel · Flash kargo, 2 günde elinde" className="mt-2" />
                     </>
                   )}
                 </div>
@@ -838,7 +838,9 @@ export default function HeroSection() {
         aria-label="Hızlı satın alma çubuğu"
       >
         <div className="max-w-md mx-auto">
-          {(sectionBook ?? (pastHero ? "kitap1" : mobileSelectedBook)) === "kitap1" ? (
+          {isOnSale ? (
+            <MobilIkiliButon kitap={(sectionBook ?? (pastHero ? "kitap1" : mobileSelectedBook)) as "kitap1" | "kitap2"} />
+          ) : (sectionBook ?? (pastHero ? "kitap1" : mobileSelectedBook)) === "kitap1" ? (
 <>
             <ThemeButton
               theme="kitap1"
@@ -858,7 +860,7 @@ export default function HeroSection() {
               <AnindaTeslim size="sm" />
             </div>
             </>
-          ) : !isOnSale ? (
+          ) : (
             <ThemeButton
               theme="kitap2"
               variant="primary"
@@ -872,22 +874,6 @@ export default function HeroSection() {
             >
               <Bell className="w-4 h-4 text-gold-300 flex-shrink-0" />
               <span>Haber Al — Çekicilik Sanatı</span>
-              <ArrowRight className="w-4 h-4 ml-1" />
-            </ThemeButton>
-          ) : (
-            <ThemeButton
-              theme="kitap2"
-              variant="primary"
-              size="lg"
-              fullWidth
-              href="#cekicilik-sanati"
-              onClick={(e) =>
-                scrollToTarget(e, "cekicilik-sanati", "fiyat-kartlari")
-              }
-              className="min-h-[50px] py-3 text-sm font-black"
-            >
-              <Flame className="w-4 h-4 text-white flex-shrink-0" />
-              <span>Hemen Satın Al – 600 TL&apos;den başlayan</span>
               <ArrowRight className="w-4 h-4 ml-1" />
             </ThemeButton>
           )}
@@ -906,19 +892,41 @@ function SatinAlSatiri({ kitap }: { kitap: "kitap1" | "kitap2" }) {
   return (
     <div className="w-full max-w-[360px]">
       <div className="grid grid-cols-2 gap-2">
-        <ThemeButton theme={kitap} variant="primary" size="sm" fullWidth href={link(ebook)} className="h-[48px] whitespace-nowrap">
-          <Zap className="w-3.5 h-3.5 flex-shrink-0" />
-          <span>E-Kitap · 600 TL</span>
-        </ThemeButton>
-        <ThemeButton theme={kitap} variant="outline" size="sm" fullWidth href={link(fiziksel)} className="h-[48px] whitespace-nowrap">
+        <ThemeButton theme={kitap} variant="primary" size="sm" fullWidth href={link(fiziksel)} className="h-[48px] whitespace-nowrap">
           <Package className="w-3.5 h-3.5 flex-shrink-0" />
           <span>Fiziksel · 1000 TL</span>
         </ThemeButton>
+        <ThemeButton theme={kitap} variant="outline" size="sm" fullWidth href={link(ebook)} className="h-[48px] whitespace-nowrap">
+          <Zap className="w-3.5 h-3.5 flex-shrink-0" />
+          <span>E-Kitap · 600 TL</span>
+        </ThemeButton>
       </div>
       <div className="mt-2.5 grid grid-cols-2 gap-2 text-center">
-        <AnindaTeslim size="sm" metin="E-kitap 7/24 anında" className="w-full" />
         <AnindaTeslim tip="fiziksel" size="sm" metin="Kitap 2 günde kapında" className="w-full" />
+        <AnindaTeslim size="sm" metin="E-kitap 7/24 anında" className="w-full" />
       </div>
+    </div>
+  );
+}
+
+/** Mobil alt çubuk (satışta): üstte Fiziksel Kitabı Al, altta E-Kitap — seçili kitaba göre */
+function MobilIkiliButon({ kitap }: { kitap: "kitap1" | "kitap2" }) {
+  const k1 = kitap === "kitap1";
+  const ebook = k1 ? "vazgecilmez-ekitap" : "cekicilik-ekitap";
+  const fiziksel = k1 ? "vazgecilmez-fiziksel-yenilenmis" : "cekicilik-fiziksel";
+  const hedef = k1 ? "#vazgecilmez" : "#cekicilik-sanati";
+  const link = (id: Parameters<typeof odemeLinki>[0]) => (KART_ODEME_AKTIF ? odemeLinki(id) : hedef);
+  return (
+    <div className="space-y-1.5">
+      <ThemeButton theme={kitap} variant="primary" size="md" fullWidth href={link(fiziksel)} className="min-h-[46px] whitespace-nowrap text-[13px] font-black">
+        <Package className="h-4 w-4 flex-shrink-0" />
+        <span>Fiziksel Kitabı Al · 1000 TL</span>
+        <span className="ml-1 rounded-full bg-black/25 px-1.5 py-0.5 text-[9px] font-bold tracking-wider">2 GÜNDE ELİNDE</span>
+      </ThemeButton>
+      <ThemeButton theme={kitap} variant="outline" size="md" fullWidth href={link(ebook)} className="min-h-[40px] whitespace-nowrap text-[12px]">
+        <Zap className="h-3.5 w-3.5 flex-shrink-0" />
+        <span>E-Kitap · 600 TL · 7/24 anında e-postanda</span>
+      </ThemeButton>
     </div>
   );
 }
