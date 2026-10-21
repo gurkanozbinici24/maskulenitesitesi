@@ -1,412 +1,225 @@
 "use client";
 
 import React from "react";
-import {
-  Check,
-  Zap,
-  Sparkles,
-  ArrowRight,
-  Package,
-  BookOpen,
-  MessageCircle,
-  Mail,
-  Clock,
-  Truck,
-  Info,
-  CreditCard,
-} from "lucide-react";
+import { Bell, BookOpen, CreditCard, MessageCircle, Package, Sparkles, Truck, Zap } from "lucide-react";
 import { odemeLinki } from "@/lib/odeme/urunler";
-import PhysicalPerks from "./ui/PhysicalPerks";
-import GiftLink from "./ui/GiftLink";
+import { Book3DModel } from "./HeroSection";
+import { ThemeButton, ThemeSectionHeader } from "./ui/ThemeSystem";
+import { useCekicilikLaunchStatus } from "./ui/BookCountdown";
 import AnindaTeslim from "./ui/AnindaTeslim";
-import FlashTeslim from "./ui/FlashTeslim";
 import {
-  ThemeButton,
-  ThemeBadge,
-  ThemeCard,
-  ThemeSectionHeader,
-} from "./ui/ThemeSystem";
-import {
-  BookCountdown,
-  useCekicilikLaunchStatus,
-} from "./ui/BookCountdown";
-import {
+  CEKICILIK_SANATI_CONFIG,
   KART_ODEME_AKTIF,
+  KOLEKSIYON_SETI_CONFIG as SET,
   VAZGECILMEZ_CONFIG,
 } from "@/config/cekicilikConfig";
 
+/**
+ * Sayfa sonu "son çağrı" alanı (id="fiyat-kartlari"): tek sırada 3 sade kart.
+ * Vazgeçilmez · Çekicilik · Koleksiyon Seti — kapak, fiyat ve satın alma butonları.
+ * Ayrıntılar yukarıdaki bölümlerde; burası sadece hızlı karar ve ödeme için.
+ */
 export default function PricingSection() {
-  const { isOnSale } = useCekicilikLaunchStatus(VAZGECILMEZ_CONFIG.releaseDate);
-  const { physicalRenovated } = VAZGECILMEZ_CONFIG;
+  const vazgecilmez = useCekicilikLaunchStatus(VAZGECILMEZ_CONFIG.releaseDate);
+  const cekicilik = useCekicilikLaunchStatus();
+  const set = useCekicilikLaunchStatus(SET.releaseDate);
+  const lansman = useCekicilikLaunchStatus(SET.launchSpecialUntil);
+  const { ebook: vEbook, physicalRenovated: vFiz } = VAZGECILMEZ_CONFIG;
+  const { ebook: cEbook, physical: cFiz } = CEKICILIK_SANATI_CONFIG.products;
+
+  /** Kartla ödeme açıksa ödeme sayfası, değilse WhatsApp */
+  const al = (id: Parameters<typeof odemeLinki>[0], whatsapp: string) =>
+    KART_ODEME_AKTIF
+      ? { href: odemeLinki(id) }
+      : { href: whatsapp, target: "_blank", rel: "noopener noreferrer" };
 
   return (
-    <section
-      id="fiyatlandirma"
-      className="py-20 sm:py-24 relative overflow-hidden bg-matte-950"
-    >
-      {/* Background Ambience (Sıcak Altın & Maun Kütüphane Işığı) */}
-      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-full max-w-7xl h-96 bg-mahogany-600/10 blur-[130px] pointer-events-none" />
+    <section id="fiyatlandirma" className="relative overflow-hidden bg-matte-950 py-20 sm:py-24">
+      <div className="pointer-events-none absolute left-0 top-1/3 h-96 w-[45%] bg-gold-500/10 blur-[130px]" />
+      <div className="pointer-events-none absolute right-0 top-1/3 h-96 w-[45%] bg-crimson-700/10 blur-[130px]" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Section Header */}
+      <div className="relative z-10 mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <ThemeSectionHeader
           theme="kitap1"
-          badgeIcon={<Package className="w-3.5 h-3.5 text-gold-400" />}
-          badgeText="KÜTÜPHANENİ DONAT"
-          title="VAZGEÇİLMEZ OLMAYA"
-          highlightText={"İLK\u00a0ADIMI\u00a0AT"}
-          subtitle={"Kuralları koyan taraf olmak için E\u2011Kitap sürümünü hemen sipariş edebilir ya da yeni kapaklı, büyük puntolu Fiziksel Yenilenmiş Edisyon'u tercih edebilirsin."}
-          className="mb-14 sm:mb-16 lg:mb-10 lg:max-w-5xl"
-          titleClassName="text-fluid-3xl lg:whitespace-nowrap"
-          subtitleClassName="lg:max-w-4xl lg:text-base"
+          badgeIcon={<Package className="h-3.5 w-3.5 text-gold-400" />}
+          badgeText="SON ADIM"
+          title="KÜTÜPHANENİ"
+          highlightText="TAMAMLA"
+          subtitle="Kitabını seç, kartla öde. E-kitap saniyeler içinde e-postanda, imzalı kitap 2 günde kapında."
+          className="mb-10 sm:mb-12"
         />
 
-        {/* 2-Card Side-by-Side Pricing Grid */}
-        <div
-          id="fiyat-kartlari"
-          data-sticky-hide
-          className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-8 max-w-5xl mx-auto items-stretch scroll-mt-24"
-        >
-          {/* ========================================================================= */}
-          {/* SOL KART (AKTİF / YILDIZ ÜRÜN): E-KİTAP PAKETİ (HEMEN ALINABİLİR)         */}
-          {/* ========================================================================= */}
-          <ThemeCard
-            theme="kitap1"
-            variant="glow"
-            className="flex flex-col justify-start p-5 sm:p-8 lg:px-8 lg:py-7"
+        <div id="fiyat-kartlari" data-sticky-hide className="grid scroll-mt-24 gap-5 md:grid-cols-3">
+          {/* 1 · VAZGEÇİLMEZ */}
+          <Kart
+            tema="kitap1"
+            etiket="1. Kitap · Erkekler için"
+            baslik="Vazgeçilmez Olma Sanatı"
+            fiyat={
+              <>
+                {vEbook.price} <Kucuk>/ {vFiz.price} TL</Kucuk>
+              </>
+            }
+            altBilgi="E-kitap · Fiziksel (isme özel imzalı)"
           >
-            {/* ANINDA TESLİMAT BADGE */}
-            <div className="absolute -top-3.5 left-6 sm:left-8 z-20">
-              <ThemeBadge
-                theme="kitap1"
-                status="satista"
-                className="px-4 py-1.5 tracking-wider"
-              >
-                <Zap className="w-3.5 h-3.5 fill-black text-black" />
-                <span>E-KİTAP SATIŞTA</span>
-              </ThemeBadge>
-            </div>
+            <ThemeButton theme="kitap1" variant="primary" size="md" fullWidth className="whitespace-nowrap" {...al(vEbook.id, vEbook.whatsappUrl)}>
+              <Zap className="h-4 w-4 flex-shrink-0" />
+              <span>E-Kitap · {vEbook.price} TL</span>
+            </ThemeButton>
+            {vazgecilmez.isOnSale ? (
+              <ThemeButton theme="kitap1" variant="outline" size="md" fullWidth className="whitespace-nowrap" {...al(vFiz.id, vFiz.orderWhatsappUrl)}>
+                <Package className="h-4 w-4 flex-shrink-0" />
+                <span>Fiziksel · {vFiz.price} TL</span>
+              </ThemeButton>
+            ) : (
+              <ThemeButton theme="kitap1" variant="outline" size="md" fullWidth className="whitespace-nowrap" href={vFiz.notifyWhatsappUrl} target="_blank" rel="noopener noreferrer">
+                <Bell className="h-4 w-4 flex-shrink-0" />
+                <span>Fiziksel · 5 Kasım&apos;da</span>
+              </ThemeButton>
+            )}
+          </Kart>
 
-            <div>
-              {/* Header */}
-              <div className="hidden sm:flex lg:hidden items-center justify-between mb-4 pt-2">
-                <div className="inline-flex items-center gap-1.5 text-xs font-black uppercase tracking-widest text-gold-400 font-mono">
-                  <Sparkles className="w-4 h-4 text-gold-400" />
-                  <span>DİJİTAL SÜRÜM</span>
-                </div>
-                <div className="p-2 rounded-lg bg-gold-500/15 text-gold-400 border border-gold-500/30">
-                  <BookOpen className="w-5 h-5" />
-                </div>
-              </div>
-
-              <h3 className="pt-3 sm:pt-0 lg:pt-3 text-xl sm:text-fluid-2xl lg:text-[1.65rem] font-black text-white tracking-tight leading-snug">
-                Vazgeçilmez Olma Sanatı <br />
-                <span className="gold-text-gradient">E-Kitap Paketi</span>
-              </h3>
-
-              <p className="hidden sm:block text-fluid-sm text-zinc-300 mt-2 mb-6 lg:mb-3 lg:text-sm leading-relaxed">
-                Kargo bekleme veya adres girme süreçleriyle vakit kaybetmeyin.
-                Kartla ödediğin anda e-kitabın (PDF) saniyeler içinde
-                e-posta adresine otomatik gönderilir. Telefon, tablet veya
-                bilgisayarından hemen okumaya başla.
-              </p>
-
-              <AnindaTeslim className="mt-1 mb-1" />
-
-              {/* Price Tag */}
-              <div className="py-3 sm:py-4 lg:py-3 my-3 sm:my-4 lg:my-3 border-y border-gold-500/30 flex items-baseline gap-2 bg-gold-500/5 -mx-5 sm:-mx-8 px-5 sm:px-8">
-                <span className="text-4xl sm:text-5xl font-black text-white font-mono">
-                  600
-                </span>
-                <span className="text-xl font-bold text-gold-400 font-mono">
-                  TL
-                </span>
-                <span className="text-xs text-zinc-400 font-medium ml-2">
-                  / Tek Seferlik Ödeme
-                </span>
-              </div>
-
-              {/* Primary CTA Button */}
-              <div className="mt-1">
-                {KART_ODEME_AKTIF && (
-                  <ThemeButton
-                    theme="kitap1"
-                    variant="primary"
-                    size="lg"
-                    fullWidth
-                    href={odemeLinki("vazgecilmez-ekitap")}
-                    className="mb-3"
-                  >
-                    <CreditCard className="w-5 h-5 text-black flex-shrink-0" />
-                    <span className="sm:hidden">Kartla Hemen Al – 600 TL</span>
-                    <span className="hidden sm:inline">KARTLA HEMEN AL (600 TL)</span>
-                    <ArrowRight className="w-4 h-4" />
-                  </ThemeButton>
-                )}
-                <ThemeButton
-                  theme="kitap1"
-                  variant={KART_ODEME_AKTIF ? "secondary" : "primary"}
-                  size="lg"
-                  fullWidth
-                  href="https://wa.me/905455207999?text=Merhaba,%20Vazgeçilmez%20Olma%20Sanatı%20e-kitap%20paketini%20satın%20almak%20istiyorum."
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <MessageCircle className={`w-5 h-5 ${KART_ODEME_AKTIF ? "text-gold-400" : "fill-black/15 text-black"}`} />
-                  {KART_ODEME_AKTIF ? (
-                    <span>WhatsApp&apos;tan Al</span>
-                  ) : (
-                    <>
-                      <span className="sm:hidden">Hemen Al – 600 TL</span>
-                      <span className="hidden sm:inline">E-KİTABI HEMEN OKU (600 TL)</span>
-                    </>
-                  )}
-                  <ArrowRight className="w-4 h-4" />
+          {/* 2 · ÇEKİCİLİK */}
+          <Kart
+            tema="kitap2"
+            etiket="2. Kitap · Kadınlar için"
+            baslik="Çekicilik Sanatı"
+            fiyat={
+              <>
+                {cEbook.price} <Kucuk>/ {cFiz.price} TL</Kucuk>
+              </>
+            }
+            altBilgi="E-kitap · Fiziksel (isme özel imzalı)"
+          >
+            {cekicilik.isOnSale ? (
+              <>
+                <ThemeButton theme="kitap2" variant="primary" size="md" fullWidth className="whitespace-nowrap" {...al(cEbook.id, cEbook.whatsappUrl)}>
+                  <Zap className="h-4 w-4 flex-shrink-0" />
+                  <span>E-Kitap · {cEbook.price} TL</span>
                 </ThemeButton>
-                {KART_ODEME_AKTIF ? (
-                  <FlashTeslim className="mt-4" />
-                ) : (
-                  <div className="flex items-start justify-center gap-1.5 mt-3 text-[11px] sm:text-xs text-zinc-400 font-medium text-center">
-                    <Mail className="w-3.5 h-3.5 text-gold-400" />
-                    <span>WhatsApp&apos;tan sipariş verin, ödemenin ardından e-kitabınız e-postanıza gönderilsin.</span>
-                  </div>
-                )}
-              </div>
+                <ThemeButton theme="kitap2" variant="outline" size="md" fullWidth className="whitespace-nowrap" {...al(cFiz.id, cFiz.whatsappUrl)}>
+                  <Package className="h-4 w-4 flex-shrink-0" />
+                  <span>Fiziksel · {cFiz.price} TL</span>
+                </ThemeButton>
+              </>
+            ) : (
+              <>
+                <ThemeButton theme="kitap2" variant="primary" size="md" fullWidth className="whitespace-nowrap" href={CEKICILIK_SANATI_CONFIG.notifyWhatsappUrl} target="_blank" rel="noopener noreferrer">
+                  <Bell className="h-4 w-4 flex-shrink-0" />
+                  <span>5 Kasım&apos;da · Haber Al</span>
+                </ThemeButton>
+                <ThemeButton theme="kitap2" variant="outline" size="md" fullWidth className="whitespace-nowrap" href="#cekicilik-sanati">
+                  <BookOpen className="h-4 w-4 flex-shrink-0" />
+                  <span>Kitabı İncele</span>
+                </ThemeButton>
+              </>
+            )}
+          </Kart>
 
-              {/* Feature List */}
-              <div className="space-y-2.5 sm:space-y-3.5 lg:space-y-2.5 my-4 sm:my-6 lg:my-4">
-                <div className="flex items-start gap-3">
-                  <div className="mt-0.5 w-4 h-4 rounded-full bg-gold-500/20 flex items-center justify-center flex-shrink-0 text-gold-400 border border-gold-500/40">
-                    <Check className="w-3 h-3" />
-                  </div>
-                  <span className="text-[13px] sm:text-sm text-zinc-200 leading-snug">
-                    <strong>Tam Metin</strong> (Tüm bölümler ve ilişki
-                    psikolojisi protokolleri)
-                  </span>
-                </div>
-
-                <div className="flex items-start gap-3">
-                  <div className="mt-0.5 w-4 h-4 rounded-full bg-gold-500/20 flex items-center justify-center flex-shrink-0 text-gold-400 border border-gold-500/40">
-                    <Check className="w-3 h-3" />
-                  </div>
-                  <span className="text-[13px] sm:text-sm text-zinc-200 leading-snug">
-                    <strong>PDF formatında</strong> (telefon, tablet, bilgisayar ve Kindle)
-                  </span>
-                </div>
-
-                <div className="flex items-start gap-3">
-                  <div className="mt-0.5 w-4 h-4 rounded-full bg-gold-500/20 flex items-center justify-center flex-shrink-0 text-gold-400 border border-gold-500/40">
-                    <Check className="w-3 h-3" />
-                  </div>
-                  <span className="text-[13px] sm:text-sm text-zinc-200 leading-snug">
-                    <strong>Ömür boyu erişim</strong> ve dijital revizyon
-                    güncellemeleri
-                  </span>
-                </div>
-
-                <div className="flex items-start gap-3">
-                  <div className="mt-0.5 w-4 h-4 rounded-full bg-gold-500/20 flex items-center justify-center flex-shrink-0 text-gold-400 border border-gold-500/40">
-                    <Check className="w-3 h-3" />
-                  </div>
-                  <span className="text-[13px] sm:text-sm text-zinc-200 leading-snug">
-                    <strong>Anında otomatik teslimat:</strong> kartla ödemede
-                    PDF saniyeler içinde e-postanda.
-                  </span>
-                </div>
-              </div>
-            </div>
-
-          </ThemeCard>
-
-          {/* ========================================================================= */}
-          {/* SAĞ KART: FİZİKSEL KİTAP — YENİLENMİŞ EDİSYON (5 KASIM LANSMAN / SATIŞ)   */}
-          {/* ========================================================================= */}
-          <ThemeCard
-            theme="kitap1"
-            variant="elevated"
-            className="flex flex-col justify-start p-5 sm:p-8 lg:px-8 lg:py-7 border-mahogany-600/70"
+          {/* 3 · KOLEKSİYON SETİ */}
+          <Kart
+            tema="set"
+            etiket={!lansman.isOnSale ? "Lansmana Özel · 2 Kitap" : "2 Fiziksel Kitap"}
+            baslik="Koleksiyon Seti"
+            fiyat={
+              <>
+                <span className="mr-2 align-middle text-lg font-bold text-zinc-500 line-through decoration-crimson-500 decoration-2">
+                  {SET.oldPrice}
+                </span>
+                {SET.price} <Kucuk>TL</Kucuk>
+              </>
+            }
+            altBilgi="İkisi de imzalı · 6 taksite kadar"
           >
-            {/* ÜST ROZET: Satış Öncesi "Yenilenmiş Edisyon – 5 Kasım'da Satışta", Satışta "SATIŞTA" */}
-            <div className="absolute -top-3.5 left-6 sm:left-8 z-20">
-              {isOnSale ? (
-                <ThemeBadge
-                  theme="kitap1"
-                  status="satista"
-                  className="px-4 py-1.5 tracking-wider"
-                >
-                  <Truck className="w-3.5 h-3.5 text-black" />
-                  <span>SATIŞTA • ÜCRETSİZ KARGO</span>
-                </ThemeBadge>
-              ) : (
-                <ThemeBadge
-                  theme="kitap1"
-                  status="yakinda"
-                  className="px-4 py-1.5 tracking-wider"
-                >
-                  <Clock className="w-3.5 h-3.5 text-gold-300" />
-                  <span className="sm:hidden">5 KASIM&apos;DA SATIŞTA</span>
-                  <span className="hidden sm:inline">{physicalRenovated.preLaunchBadgeText}</span>
-                </ThemeBadge>
-              )}
-            </div>
+            {set.isOnSale ? (
+              <>
+                <ThemeButton theme="kitap1" variant="primary" size="md" fullWidth className="whitespace-nowrap" {...al("koleksiyon-seti", SET.orderWhatsappUrl)}>
+                  <CreditCard className="h-4 w-4 flex-shrink-0" />
+                  <span>{KART_ODEME_AKTIF ? "Kartla Hemen Al" : "Seti Sipariş Et"}</span>
+                </ThemeButton>
+                <ThemeButton theme="kitap1" variant="outline" size="md" fullWidth className="whitespace-nowrap" href={SET.orderWhatsappUrl} target="_blank" rel="noopener noreferrer">
+                  <MessageCircle className="h-4 w-4 flex-shrink-0" />
+                  <span>WhatsApp&apos;tan Al</span>
+                </ThemeButton>
+              </>
+            ) : (
+              <>
+                <ThemeButton theme="kitap1" variant="primary" size="md" fullWidth className="whitespace-nowrap" href={SET.notifyWhatsappUrl} target="_blank" rel="noopener noreferrer">
+                  <Bell className="h-4 w-4 flex-shrink-0" />
+                  <span>5 Kasım&apos;da · Haber Al</span>
+                </ThemeButton>
+                <ThemeButton theme="kitap1" variant="outline" size="md" fullWidth className="whitespace-nowrap" href="#koleksiyon-seti">
+                  <Sparkles className="h-4 w-4 flex-shrink-0" />
+                  <span>Seti İncele</span>
+                </ThemeButton>
+              </>
+            )}
+          </Kart>
+        </div>
 
-            <div>
-              {/* Header */}
-              <div className="hidden sm:flex lg:hidden items-center justify-between mb-4 pt-2">
-                <div className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-widest text-mahogany-200 font-mono">
-                  <Package className="w-4 h-4 text-gold-400" />
-                  <span>YENİLENMİŞ EDİSYON FİZİKSEL BASKI</span>
-                </div>
-                <div className="p-2 rounded-lg bg-mahogany-800/80 text-gold-400 border border-mahogany-600/60">
-                  <Package className="w-5 h-5" />
-                </div>
-              </div>
-
-              <h3 className="pt-3 sm:pt-0 lg:pt-3 text-xl sm:text-fluid-2xl lg:text-[1.65rem] font-black text-white tracking-tight leading-snug">
-                Vazgeçilmez Olma Sanatı <br />
-                <span className="gold-text-gradient">
-                  Fiziksel Kitap
-                  <span className="hidden sm:inline lg:hidden"> (Yenilenmiş Edisyon)</span>
-                </span>
-              </h3>
-
-              {/* Kısa Bilgilendirme Notu */}
-              <div className="hidden sm:flex mt-3 mb-5 lg:mb-2 p-3.5 lg:p-0 lg:mt-2 rounded-xl lg:rounded-none bg-mahogany-900/70 lg:bg-transparent border border-mahogany-700/70 lg:border-0 items-start gap-2.5 text-left">
-                <Info className="w-4 h-4 text-gold-400 flex-shrink-0 mt-0.5" />
-                <p className="text-xs sm:text-sm text-mahogany-200 leading-relaxed">
-                  {VAZGECILMEZ_CONFIG.editionNote}
-                </p>
-              </div>
-
-              <AnindaTeslim tip="fiziksel" className="mt-1 mb-1" />
-
-              {/* Fiyat ve Ücretsiz Kargo Bandı */}
-              <div className="py-3 sm:py-4 lg:py-3 my-3 sm:my-4 lg:my-3 border-y border-mahogany-700/70 flex flex-wrap items-center justify-between gap-2 bg-mahogany-900/40 -mx-5 sm:-mx-8 px-5 sm:px-8">
-                <div className="flex items-baseline gap-2">
-                  <span className="text-4xl sm:text-5xl font-black text-white font-mono">
-                    {physicalRenovated.price}
-                  </span>
-                  <span className="text-xl font-bold text-gold-400 font-mono">
-                    {physicalRenovated.currency}
-                  </span>
-                </div>
-                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-gold-500/15 border border-gold-500/40 text-[10px] sm:text-xs font-bold text-gold-300 uppercase tracking-wider">
-                  <Truck className="w-3.5 h-3.5 text-gold-400" />
-                  <span>{physicalRenovated.shippingNote}</span>
-                </span>
-              </div>
-
-              {/* Alt Aksiyon Alanı: Satış Öncesi Geri Sayım + Haber Al / Satışta Sipariş Ver */}
-              <div className="mt-1">
-                {!isOnSale ? (
-                  <div className="space-y-3 sm:space-y-4">
-                    <div>
-                      <div className="text-[11px] font-bold uppercase tracking-widest text-gold-300/90 mb-2 text-center">
-                        <span className="sm:hidden">Satışa kalan süre</span>
-                        <span className="hidden sm:inline">5 Kasım 18:00 Satış Başlangıcına Kalan Süre</span>
-                      </div>
-                      <BookCountdown
-                        theme="kitap1"
-                        size="sm"
-                        releaseDate={VAZGECILMEZ_CONFIG.releaseDate}
-                        showStatusBadge={false}
-                        showActionArea={false}
-                        className="mx-auto"
-                      />
-                    </div>
-
-                    <ThemeButton
-                      theme="kitap1"
-                      variant="secondary"
-                      size="md"
-                      fullWidth
-                      href={physicalRenovated.notifyWhatsappUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <MessageCircle className="w-5 h-5 text-gold-400 flex-shrink-0" />
-                      <span>WhatsApp&apos;tan Haber Al</span>
-                      <ArrowRight className="w-4 h-4" />
-                    </ThemeButton>
-                  </div>
-                ) : (
-                  <div className="space-y-3">
-                    {KART_ODEME_AKTIF && (
-                      <ThemeButton
-                        theme="kitap1"
-                        variant="primary"
-                        size="lg"
-                        fullWidth
-                        href={odemeLinki(physicalRenovated.id)}
-                      >
-                        <CreditCard className="w-5 h-5 text-black flex-shrink-0" />
-                        <span className="sm:hidden">Kartla Hemen Al – {physicalRenovated.price} TL</span>
-                        <span className="hidden sm:inline">KARTLA HEMEN AL ({physicalRenovated.price} TL)</span>
-                        <ArrowRight className="w-4 h-4" />
-                      </ThemeButton>
-                    )}
-                    <ThemeButton
-                      theme="kitap1"
-                      variant={KART_ODEME_AKTIF ? "secondary" : "primary"}
-                      size="lg"
-                      fullWidth
-                      href={physicalRenovated.orderWhatsappUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <MessageCircle className={`w-5 h-5 flex-shrink-0 ${KART_ODEME_AKTIF ? "text-gold-400" : "fill-black/15 text-black"}`} />
-                      <span>WhatsApp&apos;tan Al</span>
-                      <ArrowRight className="w-4 h-4" />
-                    </ThemeButton>
-                    <GiftLink href={physicalRenovated.giftWhatsappUrl} />
-
-                    <div className="flex items-center justify-center gap-1.5 pt-1 text-xs text-gold-300 font-medium">
-                      <Truck className="w-3.5 h-3.5 text-gold-400" />
-                      <span>Kapıya kadar ücretsiz kargo ile gönderim.</span>
-                    </div>
-                  </div>
-                )}
-              </div>
-
-              <PhysicalPerks theme="kitap1" className="my-4" />
-
-              {/* Özellik Listesi */}
-              <div className="space-y-2.5 sm:space-y-3 lg:space-y-2.5 my-4 sm:my-5 lg:my-4">
-                <div className="flex items-start gap-3">
-                  <div className="mt-0.5 w-4 h-4 rounded-full bg-gold-500/20 flex items-center justify-center flex-shrink-0 text-gold-400 border border-gold-500/40">
-                    <Check className="w-3 h-3" />
-                  </div>
-                  <span className="text-[13px] sm:text-sm text-zinc-200 leading-snug">
-                    <strong>Birebir aynı tavizsiz içerik</strong> (227 sayfa tam
-                    metin)
-                  </span>
-                </div>
-
-                <div className="flex items-start gap-3">
-                  <div className="mt-0.5 w-4 h-4 rounded-full bg-gold-500/20 flex items-center justify-center flex-shrink-0 text-gold-400 border border-gold-500/40">
-                    <Check className="w-3 h-3" />
-                  </div>
-                  <span className="text-[13px] sm:text-sm text-zinc-200 leading-snug">
-                    <strong>Yeni kapak tasarımı</strong> ve göz yormayan{" "}
-                    <strong>daha okunaklı büyük punto</strong>
-                  </span>
-                </div>
-
-                <div className="flex items-start gap-3">
-                  <div className="mt-0.5 w-4 h-4 rounded-full bg-gold-500/20 flex items-center justify-center flex-shrink-0 text-gold-400 border border-gold-500/40">
-                    <Check className="w-3 h-3" />
-                  </div>
-                  <span className="text-[13px] sm:text-sm text-zinc-200 leading-snug">
-                    <strong>Kapıya kadar ücretsiz kargo</strong> ve gizli/korumalı
-                    özel paketleme
-                  </span>
-                </div>
-              </div>
-            </div>
-
-          </ThemeCard>
+        <div className="mt-6 flex flex-wrap items-center justify-center gap-2">
+          <AnindaTeslim size="sm" />
+          <AnindaTeslim tip="fiziksel" size="sm" />
+          <span className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/[0.03] px-3 py-1 text-[11px] font-semibold text-zinc-300">
+            <Truck className="h-3.5 w-3.5 text-gold-400" />
+            Kapıya kadar ücretsiz kargo
+          </span>
         </div>
       </div>
     </section>
+  );
+}
+
+function Kucuk({ children }: { children: React.ReactNode }) {
+  return <span className="text-base font-bold text-gold-400">{children}</span>;
+}
+
+function Kart({
+  tema,
+  etiket,
+  baslik,
+  fiyat,
+  altBilgi,
+  children,
+}: {
+  tema: "kitap1" | "kitap2" | "set";
+  etiket: string;
+  baslik: string;
+  fiyat: React.ReactNode;
+  altBilgi: string;
+  children: React.ReactNode;
+}) {
+  const stil = {
+    kitap1: "border-gold-500/40 bg-gradient-to-b from-mahogany-950/70 to-matte-950",
+    kitap2: "border-crimson-600/50 bg-gradient-to-b from-crimson-950/70 to-matte-950",
+    set: "border-gold-400/70 bg-[linear-gradient(160deg,rgba(212,175,55,0.14),rgba(0,0,0,0)_45%),linear-gradient(180deg,#1a1008,#0b0606)] shadow-gold-glow",
+  }[tema];
+  const etiketRenk = tema === "kitap2" ? "text-crimson-300" : "text-gold-300";
+
+  return (
+    <div className={`relative flex flex-col rounded-2xl border p-5 ${stil}`}>
+      <div className="pointer-events-none absolute inset-x-6 top-0 h-px bg-gradient-to-r from-transparent via-white/25 to-transparent" />
+      <div className="flex items-center gap-4">
+        <div className="flex-shrink-0">
+          {tema === "set" ? (
+            <div className="relative flex w-[92px] items-end">
+              <Book3DModel book="kitap1" isFocused={false} isDimmed={false} sizeClassName="w-[56px] h-[84px]" imageSizes="60px" />
+              <div className="-ml-5">
+                <Book3DModel book="kitap2" isFocused={false} isDimmed={false} sizeClassName="w-[56px] h-[84px]" imageSizes="60px" />
+              </div>
+            </div>
+          ) : (
+            <Book3DModel book={tema} isFocused={false} isDimmed={false} sizeClassName="w-[56px] h-[84px]" imageSizes="60px" />
+          )}
+        </div>
+        <div className="min-w-0">
+          <div className={`text-[10px] font-bold uppercase tracking-[0.18em] ${etiketRenk}`}>{etiket}</div>
+          <h3 className="mt-1 font-cinzel text-lg font-bold leading-tight text-white">{baslik}</h3>
+          <div className="mt-1.5 whitespace-nowrap font-mono text-3xl font-black leading-none text-white">{fiyat}</div>
+        </div>
+      </div>
+      <p className="mt-3 text-xs text-zinc-400">{altBilgi}</p>
+      <div className="mt-4 space-y-2">{children}</div>
+    </div>
   );
 }

@@ -30,7 +30,7 @@ export default function BundleSection() {
   ];
 
   return (
-    <section id="koleksiyon-seti" className="relative overflow-hidden py-14 sm:py-24 scroll-mt-24">
+    <section id="koleksiyon-seti" className="relative overflow-hidden py-12 sm:py-16 scroll-mt-16">
       {/* İkiye bölünmüş arka plan: sol altın-maun, sağ kırmızı-siyah */}
       <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(90deg,#1a1008_0%,#120b06_38%,#0d0607_50%,#160406_62%,#1d0508_100%)]" />
       <div className="pointer-events-none absolute -left-40 top-1/2 h-[520px] w-[620px] -translate-y-1/2 rounded-full bg-gold-500/10 blur-[130px]" />
@@ -87,25 +87,25 @@ export default function BundleSection() {
               Sevgilinle Birlikte Oku
             </div>
           </div>
-          <h2 className="mt-4 font-cinzel text-[clamp(1.8rem,4.5vw,2.9rem)] font-bold leading-tight text-white">
+          <h2 className="mt-3 font-cinzel text-[clamp(1.7rem,3.4vw,2.5rem)] font-bold leading-tight text-white lg:whitespace-nowrap">
             Aynı Oyunun <span className="gold-text-gradient">İki</span>{" "}
             <span className="bg-gradient-to-r from-crimson-400 to-crimson-600 bg-clip-text text-transparent">Tarafı</span>
           </h2>
-          <p className="mt-3 text-sm text-zinc-400 sm:text-base">
+          <p className="mt-2 text-sm text-zinc-400 sm:text-base">
             O kendi kitabında güçlenecek, sen kendininkinde.{" "}
             <span className="text-zinc-200">Aynı masada, iki güçlü taraf.</span>
           </p>
 
           {/* Fiyat */}
           {showSpecial && (
-          <div className="mt-6 flex justify-center lg:justify-start">
+          <div className="mt-4 flex justify-center lg:justify-start">
             <span className="inline-flex items-center gap-1.5 rounded-md bg-gradient-to-r from-gold-300 via-gold-400 to-gold-600 px-3 py-1 text-[11px] font-black uppercase tracking-[0.2em] text-black shadow-gold-glow">
               <Sparkles className="h-3.5 w-3.5" />
               Lansmana Özel
             </span>
           </div>
           )}
-          <div className={`${showSpecial ? "mt-3" : "mt-6"} flex items-end justify-center gap-4 lg:justify-start`}>
+          <div className={`${showSpecial ? "mt-2" : "mt-4"} flex items-end justify-center gap-4 lg:justify-start`}>
             <span className="relative pb-1.5 font-mono text-2xl font-bold text-zinc-500">
               {SET.oldPrice} TL
               <span className="absolute left-[-4%] top-1/2 h-[2px] w-[108%] -rotate-6 bg-crimson-500" />
@@ -116,7 +116,7 @@ export default function BundleSection() {
             </span>
           </div>
 
-          <div className="mx-auto mt-6 max-w-md lg:mx-0" data-sticky-hide>
+          <div className="mx-auto mt-5 max-w-md lg:mx-0" data-sticky-hide>
             {isOnSale && KART_ODEME_AKTIF ? (
               <ThemeButton
                 theme="kitap1"
