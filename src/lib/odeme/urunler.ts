@@ -30,6 +30,8 @@ export interface OdemeUrunu {
   tip: "ebook" | "physical";
   /** Kaç kitap imzalanacak (fiziksel ürünlerde imza ismi alanı sayısı) */
   imzaSayisi: number;
+  /** En fazla taksit (vade farkını müşteri öder). Boşsa 3. */
+  maxTaksit?: 3 | 6;
   /** Bu tarihten önce satın alınamaz (ISO). Boşsa her zaman satışta. */
   satisBaslangic?: string;
 }
@@ -72,6 +74,7 @@ export const ODEME_URUNLERI: Record<UrunId, OdemeUrunu> = {
     fiyat: KOLEKSIYON_SETI_CONFIG.price,
     tip: "physical",
     imzaSayisi: 2,
+    maxTaksit: 6,
     satisBaslangic: RELEASE_DATE,
   },
   // Sitede ayrı kartı yok: sadece ödeme sayfasındaki "diğer kitabı da ekle" kutusuyla seçilir.
@@ -89,6 +92,7 @@ export const ODEME_URUNLERI: Record<UrunId, OdemeUrunu> = {
     fiyat: VAZGECILMEZ_CONFIG.physicalRenovated.price + IKINCI_FIZIKSEL_FIYAT,
     tip: "physical",
     imzaSayisi: 2,
+    maxTaksit: 6,
     satisBaslangic: RELEASE_DATE,
   },
 };
@@ -117,6 +121,9 @@ export function eklemeBul(urun: OdemeUrunu, simdi = Date.now()): (Ekleme & { hed
   const hedefUrun = ODEME_URUNLERI[e.hedef];
   return satistaMi(hedefUrun, simdi) ? { ...e, hedefUrun } : null;
 }
+
+/** iyzico'ya gönderilecek taksit seçenekleri */
+export const taksitler = (u: OdemeUrunu) => (u.maxTaksit === 6 ? [1, 2, 3, 6] : [1, 2, 3]);
 
 export function urunBul(id: string | null | undefined): OdemeUrunu | null {
   if (!id) return null;

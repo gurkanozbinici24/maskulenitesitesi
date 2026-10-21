@@ -31,6 +31,7 @@ export interface EklemeBilgisi {
   kitap: string;
   ekFiyat: number;
   hedefFiyat: number;
+  hedefTaksit: number;
   asilSira: 0 | 1;
   /** Fizikselde ikinci kitabın normal fiyatı (üstü çizili gösterilir) */
   normalFiyat?: number;
@@ -44,6 +45,7 @@ export default function OdemeForm({ urun, ekleme }: { urun: OdemeUrunu; ekleme?:
   const [imzaEk, setImzaEk] = useState("");
   const ekli = !!ekleme && ekle;
   const toplam = ekli ? ekleme!.hedefFiyat : urun.fiyat;
+  const maxTaksit = ekli ? ekleme!.hedefTaksit : (urun.maxTaksit ?? 3);
   const [f, setF] = useState({
     ad: "",
     soyad: "",
@@ -275,12 +277,12 @@ export default function OdemeForm({ urun, ekleme }: { urun: OdemeUrunu; ekleme?:
               </div>
               <p className="mt-1.5 text-[13px] leading-relaxed text-zinc-400">
                 {fiziksel
-                  ? `İkinci kitap ${ekleme.normalFiyat ?? ""} TL yerine ${ekleme.ekFiyat} TL. İkisi de isme özel imzalı, aynı pakette, kapına kadar ücretsiz kargo.`
+                  ? `İkinci kitap ${ekleme.normalFiyat ?? ""} TL yerine ${ekleme.ekFiyat} TL. İkisi de isme özel imzalı, aynı pakette, kapına kadar ücretsiz kargo.${ekleme.hedefTaksit > 3 ? ` Kredi kartına ${ekleme.hedefTaksit} taksite kadar.` : ""}`
                   : "İki kitap da saniyeler içinde aynı e-postada. Aynı oyunun diğer tarafı."}
               </p>
               {ekle && (
                 <p className="mt-2 text-xs font-bold uppercase tracking-wider text-gold-300">
-                  Eklendi · Toplam {toplam} TL
+                  Eklendi · Toplam {toplam} TL{maxTaksit > 3 ? ` · ${maxTaksit} taksite kadar` : ""}
                 </p>
               )}
             </div>
@@ -341,7 +343,7 @@ export default function OdemeForm({ urun, ekleme }: { urun: OdemeUrunu; ekleme?:
       </p>
 
       <p className="-mt-4 text-center text-xs text-zinc-500">
-        Kredi kartına <strong className="text-zinc-300">3 taksit</strong> seçeneği ödeme ekranında. Tek çekim
+        Kredi kartına <strong className="text-zinc-300">{maxTaksit} taksite kadar</strong> seçenek ödeme ekranında. Tek çekim
         fiyatı {toplam} TL; taksitli seçeneklerde vade farkı uygulanır.
       </p>
 
