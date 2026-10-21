@@ -1,5 +1,6 @@
 "use client";
 import CanliNokta from "./ui/CanliNokta";
+import Kivilcimlar from "./ui/Kivilcimlar";
 import AnindaTeslim from "./ui/AnindaTeslim";
 import { odemeLinki } from "@/lib/odeme/urunler";
 import { KART_ODEME_AKTIF } from "@/config/cekicilikConfig";
@@ -376,7 +377,7 @@ export default function HeroSection() {
           {/* A) MASAÜSTÜ DÜZENİ (lg:grid — İki Kitap Yan Yana, Aynı Hizada)    */}
           {/* ================================================================= */}
           <div
-            className="hidden lg:block hero-perspective-stage w-full my-auto transition-transform duration-300 ease-out"
+            className="hidden lg:block hero-perspective-stage w-full my-auto lg:pt-7 transition-transform duration-300 ease-out"
             style={{
               transform: prefersReducedMotion
                 ? undefined
@@ -411,11 +412,12 @@ export default function HeroSection() {
                     }`}
                   />
 
+                  <Kivilcimlar tema="kitap1" className="z-0" />
                   <Book3DModel
                     book="kitap1"
                     isFocused={desktopHoverBook === "kitap1"}
                     isDimmed={desktopHoverBook === "kitap2"}
-                    sizeClassName="h-[min(46svh,420px)] w-[calc(min(46svh,420px)*0.6667)]"
+                    sizeClassName="h-[min(42svh,400px)] w-[calc(min(42svh,400px)*0.6667)]"
                   />
 
                   {/* Zemin Yansıması & Gölge */}
@@ -518,11 +520,12 @@ export default function HeroSection() {
                     }`}
                   />
 
+                  <Kivilcimlar tema="kitap2" className="z-0" />
                   <Book3DModel
                     book="kitap2"
                     isFocused={desktopHoverBook === "kitap2"}
                     isDimmed={desktopHoverBook === "kitap1"}
-                    sizeClassName="h-[min(46svh,420px)] w-[calc(min(46svh,420px)*0.6667)]"
+                    sizeClassName="h-[min(42svh,400px)] w-[calc(min(42svh,400px)*0.6667)]"
                   />
 
                   {/* Zemin Yansıması & Gölge */}

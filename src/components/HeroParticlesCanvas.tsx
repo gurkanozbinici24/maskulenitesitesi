@@ -106,9 +106,9 @@ function GoldenDustParticles({
       <pointsMaterial
         ref={materialRef}
         map={particleTexture ?? undefined}
-        size={0.14}
+        size={0.17}
         transparent
-        opacity={0.55}
+        opacity={0.7}
         depthWrite={false}
         blending={THREE.AdditiveBlending}
         color="#d4af37"
@@ -232,7 +232,7 @@ export default function HeroParticlesCanvas({
         <SubtleSmokePlumes activeBook={activeBook} isMobile={isMobile} />
         <GoldenDustParticles
           activeBook={activeBook}
-          count={isMobile ? 28 : 95}
+          count={isMobile ? 28 : 150}
         />
       </Canvas>
     </div>
