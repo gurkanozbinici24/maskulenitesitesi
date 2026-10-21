@@ -1,4 +1,5 @@
 import { Zap } from "lucide-react";
+import { PHYSICAL_PERKS } from "@/config/cekicilikConfig";
 
 /**
  * E-kitap kartları için "7/24 FLASH HIZDA TESLİM" kutusu.
@@ -6,10 +7,13 @@ import { Zap } from "lucide-react";
  * theme: "kitap1" (altın) veya "kitap2" (bordo/zümrüt); size: "sm" dar kartlar için.
  */
 export default function FlashTeslim({
+  tip = "ekitap",
   theme = "kitap1",
   size = "lg",
   className = "",
 }: {
+  /** "ekitap": 7/24 Flash Hızda Teslim · "kargo": Flash Hızda Kargo, 2 günde elinde */
+  tip?: "ekitap" | "kargo";
   theme?: "kitap1" | "kitap2";
   size?: "sm" | "lg";
   className?: string;
@@ -23,6 +27,12 @@ export default function FlashTeslim({
     ? "bg-gold-400 text-black shadow-[0_0_18px_rgba(212,175,55,0.6)]"
     : "bg-emerald-400 text-black shadow-[0_0_18px_rgba(52,211,153,0.55)]";
   const compact = size === "sm";
+  const kargo = tip === "kargo";
+  const baslik = kargo ? PHYSICAL_PERKS.cargoTitle : "7/24 Flash Hızda Teslim";
+  const etiket = kargo ? PHYSICAL_PERKS.cargoDelivery : "Saniyeler içinde";
+  const detay = kargo
+    ? PHYSICAL_PERKS.cargoDetail
+    : "Kartla öde, PDF anında e-postana gelsin. Gece gündüz, bekleme yok.";
 
   return (
     <div className={`relative overflow-hidden rounded-xl border text-left ${ring} ${compact ? "px-3 py-2.5" : "px-4 py-3"} ${className}`}>
@@ -35,14 +45,14 @@ export default function FlashTeslim({
         <div className="min-w-0">
           <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
             <span className={`font-black uppercase tracking-[0.14em] text-white ${compact ? "text-xs" : "text-sm"}`}>
-              7/24 Flash Hızda Teslim
+              {baslik}
             </span>
             <span className={`rounded-full border border-white/15 bg-black/40 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider ${accent}`}>
-              Saniyeler içinde
+              {etiket}
             </span>
           </div>
           <p className={`mt-0.5 leading-snug text-zinc-400 ${compact ? "text-[11px]" : "text-xs"}`}>
-            Kartla öde, PDF anında e-postana gelsin. Gece gündüz, bekleme yok.
+            {detay}
           </p>
         </div>
       </div>
