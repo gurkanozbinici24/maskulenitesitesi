@@ -149,7 +149,8 @@ function BookEmbers({
       hiz: 0.22 + Math.random() * 0.32,
       omur: 5 + Math.random() * 5,
       t: Math.random() * 10,
-      sapma: (Math.random() - 0.5) * 0.5,
+      sapma: (Math.random() - 0.5) * 1.6,
+      yay: Math.random(),
       faz: Math.random() * Math.PI * 2,
       z: -0.6 - Math.random() * 1.4,
     }));
@@ -184,11 +185,15 @@ function BookEmbers({
         p.ox = (Math.random() - 0.5) * 2;
         p.hiz = 0.22 + Math.random() * 0.32;
         p.omur = 5 + Math.random() * 5;
-        p.sapma = (Math.random() - 0.5) * 0.5;
+        p.sapma = (Math.random() - 0.5) * 1.6;
+        p.yay = Math.random();
       }
       const ilerleme = p.t / p.omur; // 0 → 1
       // Kitabın arkasında doğar, yükselirken kenarlara doğru hafifçe açılır
-      const x = cx + p.ox * yariGen * (1 + ilerleme * 0.9) + p.sapma * ilerleme + Math.sin(el * 0.6 + p.faz) * 0.06;
+      // Yükseldikçe kitaptan uzaklaşıp köşelere (dış kenar + üst köşe) doğru yelpaze gibi açılır
+      const disa = (side === "left" ? -1 : 1) * p.yay * vw * 0.16 * ilerleme * ilerleme;
+      const x =
+        cx + p.ox * yariGen * (1 + ilerleme * 1.4) + p.sapma * ilerleme + disa + Math.sin(el * 0.6 + p.faz) * 0.06;
       const y = alt + p.t * p.hiz * 1.1;
       const yy = Math.min(y, ust);
       // Belirip parla, sonra sön (+ hafif pırıltı)
@@ -286,8 +291,8 @@ export default function HeroParticlesCanvas({
       >
         <SubtleSmokePlumes activeBook={activeBook} isMobile={isMobile} />
         {/* Vazgeçilmez: altın · Çekicilik: kırmızı — kitapların arkasından yükselir (toplam ~%20 daha fazla) */}
-        <BookEmbers side="left" count={isMobile ? 15 : 21} isMobile={isMobile} />
-        <BookEmbers side="right" count={isMobile ? 15 : 21} isMobile={isMobile} />
+        <BookEmbers side="left" count={isMobile ? 20 : 27} isMobile={isMobile} />
+        <BookEmbers side="right" count={isMobile ? 20 : 27} isMobile={isMobile} />
       </Canvas>
     </div>
   );
