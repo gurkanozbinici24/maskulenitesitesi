@@ -10,6 +10,7 @@ import { odemeLinki } from "@/lib/odeme/urunler";
 import BookPreview from "./BookPreview";
 import PhysicalPerks from "./ui/PhysicalPerks";
 import GiftLink from "./ui/GiftLink";
+import AnindaTeslim from "./ui/AnindaTeslim";
 
 /**
  * Vazgeçilmez Olma Sanatı tanıtım bölümü (id="vazgecilmez").
@@ -132,6 +133,7 @@ export default function VazgecilmezSection() {
                   <Zap className="w-3 h-3 fill-black text-black" />
                   <span>E-KİTAP SATIŞTA</span>
                 </ThemeBadge>
+                <AnindaTeslim size="sm" className="mt-2 self-start" />
                 <div className="mt-3 flex items-baseline gap-1.5">
                   <span className="font-mono text-4xl font-black text-white">{ebook.price}</span>
                   <span className="text-sm font-bold text-gold-400">TL</span>

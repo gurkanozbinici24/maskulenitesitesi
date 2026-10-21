@@ -5,11 +5,19 @@ import Image from "next/image";
 import { Menu, X, ArrowUpRight } from "lucide-react";
 import { ThemeButton } from "./ui/ThemeSystem";
 import { useCekicilikLaunchStatus } from "./ui/BookCountdown";
+import { KART_ODEME_AKTIF } from "@/config/cekicilikConfig";
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { isOnSale } = useCekicilikLaunchStatus();
+  // Duyuru şeridi iki mesaj arasında döner: lansman + e-kitapta anında teslimat
+  const [mesaj, setMesaj] = useState(0);
+  useEffect(() => {
+    if (!KART_ODEME_AKTIF) return;
+    const t = setInterval(() => setMesaj((m) => (m + 1) % 2), 4500);
+    return () => clearInterval(t);
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -31,9 +39,11 @@ export default function Navbar() {
           <span className="relative inline-flex rounded-full h-1.5 w-1.5 sm:h-2 sm:w-2 bg-gold-500"></span>
         </span>
         <span className="text-gold-300 font-extrabold text-[10px] sm:text-xs tracking-[0.08em] sm:tracking-[0.14em] uppercase whitespace-nowrap truncate">
-          {isOnSale
-            ? "YENİLENMİŞ EDİSYON VE YENİ KİTAP: ŞİMDİ SATIŞTA"
-            : "YENİLENMİŞ EDİSYON VE YENİ KİTAP: 5 KASIM'DA"}
+          {KART_ODEME_AKTIF && mesaj === 1
+            ? "⚡ E-KİTAP: KARTLA ÖDE, 7/24 SANİYELER İÇİNDE E-POSTANDA"
+            : isOnSale
+              ? "YENİLENMİŞ EDİSYON VE YENİ KİTAP: ŞİMDİ SATIŞTA"
+              : "YENİLENMİŞ EDİSYON VE YENİ KİTAP: 5 KASIM'DA"}
         </span>
       </a>
 

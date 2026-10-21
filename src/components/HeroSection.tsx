@@ -1,4 +1,5 @@
 "use client";
+import AnindaTeslim from "./ui/AnindaTeslim";
 
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import Image from "next/image";
@@ -482,6 +483,7 @@ export default function HeroSection() {
                     <span>E-Kitabı Hemen Al – 600 TL</span>
                     <ArrowRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
                   </ThemeButton>
+                  <AnindaTeslim className="mt-2.5" />
                 </div>
               </div>
 
@@ -832,6 +834,7 @@ export default function HeroSection() {
       >
         <div className="max-w-md mx-auto">
           {(sectionBook ?? (pastHero ? "kitap1" : mobileSelectedBook)) === "kitap1" ? (
+<>
             <ThemeButton
               theme="kitap1"
               variant="primary"
@@ -846,6 +849,10 @@ export default function HeroSection() {
               <span>E-Kitabı Hemen Al – 600 TL</span>
               <ArrowRight className="w-4 h-4 ml-1" />
             </ThemeButton>
+            <div className="mt-1.5 flex justify-center">
+              <AnindaTeslim size="sm" />
+            </div>
+            </>
           ) : !isOnSale ? (
             <ThemeButton
               theme="kitap2"

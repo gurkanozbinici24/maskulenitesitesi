@@ -18,6 +18,7 @@ import {
 import { odemeLinki } from "@/lib/odeme/urunler";
 import PhysicalPerks from "./ui/PhysicalPerks";
 import GiftLink from "./ui/GiftLink";
+import AnindaTeslim from "./ui/AnindaTeslim";
 import {
   ThemeButton,
   ThemeBadge,
@@ -108,6 +109,8 @@ export default function PricingSection() {
                 e-posta adresine otomatik gönderilir. Telefon, tablet veya
                 bilgisayarından hemen okumaya başla.
               </p>
+
+              <AnindaTeslim className="mt-1 mb-1" />
 
               {/* Price Tag */}
               <div className="py-3 sm:py-4 lg:py-3 my-3 sm:my-4 lg:my-3 border-y border-gold-500/30 flex items-baseline gap-2 bg-gold-500/5 -mx-5 sm:-mx-8 px-5 sm:px-8">
