@@ -27,18 +27,26 @@ async function isle(req: Request) {
   }
 
   const siparis = siparisAc(url.searchParams.get("d"), url.searchParams.get("s"));
-  if (!token || !siparis) return git("/odeme/basarisiz?neden=dogrulama");
+  if (!siparis) return git("/odeme/basarisiz?neden=dogrulama");
 
   const urun = urunBul(siparis.u);
   if (!urun) return git("/odeme/basarisiz?neden=urun");
 
   let c: CheckoutSonucCevap;
   try {
-    c = await iyzicoIstek<CheckoutSonucCevap>("/payment/iyzipos/checkoutform/auth/ecom/detail", {
-      locale: "tr",
-      conversationId: siparis.n,
-      token,
-    });
+    // iyzico bazen geri dönüşü token olmadan (GET ile) yapıyor; o durumda ödemeyi sipariş numarasıyla sorguluyoruz.
+    c = token
+      ? await iyzicoIstek<CheckoutSonucCevap>("/payment/iyzipos/checkoutform/auth/ecom/detail", {
+          locale: "tr",
+          conversationId: siparis.n,
+          token,
+        })
+      : await iyzicoIstek<CheckoutSonucCevap>("/payment/detail", {
+          locale: "tr",
+          conversationId: siparis.n,
+          paymentConversationId: siparis.n,
+        });
+    console.log("[odeme] sonuç", siparis.n, token ? "token" : "siparis-no", c.status, c.paymentStatus, c.errorMessage || "");
   } catch (e) {
     console.error("[odeme] sonuç sorgulanamadı", siparis.n, e);
     return git(`/odeme/basarisiz?neden=baglanti&no=${siparis.n}`);
