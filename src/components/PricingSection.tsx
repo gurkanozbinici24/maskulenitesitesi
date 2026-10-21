@@ -73,7 +73,7 @@ export default function PricingSection() {
           <ThemeCard
             theme="kitap1"
             variant="glow"
-            className="flex flex-col justify-between p-5 sm:p-8 lg:px-8 lg:py-7"
+            className="flex flex-col justify-start p-5 sm:p-8 lg:px-8 lg:py-7"
           >
             {/* ANINDA TESLİMAT BADGE */}
             <div className="absolute -top-3.5 left-6 sm:left-8 z-20">
@@ -111,7 +111,7 @@ export default function PricingSection() {
                 bilgisayarından hemen okumaya başla.
               </p>
 
-              {KART_ODEME_AKTIF ? <FlashTeslim className="mt-2 mb-1" /> : <AnindaTeslim className="mt-1 mb-1" />}
+              <AnindaTeslim className="mt-1 mb-1" />
 
               {/* Price Tag */}
               <div className="py-3 sm:py-4 lg:py-3 my-3 sm:my-4 lg:my-3 border-y border-gold-500/30 flex items-baseline gap-2 bg-gold-500/5 -mx-5 sm:-mx-8 px-5 sm:px-8">
@@ -124,6 +124,53 @@ export default function PricingSection() {
                 <span className="text-xs text-zinc-400 font-medium ml-2">
                   / Tek Seferlik Ödeme
                 </span>
+              </div>
+
+              {/* Primary CTA Button */}
+              <div className="mt-1">
+                {KART_ODEME_AKTIF && (
+                  <ThemeButton
+                    theme="kitap1"
+                    variant="primary"
+                    size="lg"
+                    fullWidth
+                    href={odemeLinki("vazgecilmez-ekitap")}
+                    className="mb-3"
+                  >
+                    <CreditCard className="w-5 h-5 text-black flex-shrink-0" />
+                    <span className="sm:hidden">Kartla Hemen Al – 600 TL</span>
+                    <span className="hidden sm:inline">KARTLA HEMEN AL (600 TL)</span>
+                    <ArrowRight className="w-4 h-4" />
+                  </ThemeButton>
+                )}
+                <ThemeButton
+                  theme="kitap1"
+                  variant={KART_ODEME_AKTIF ? "secondary" : "primary"}
+                  size="lg"
+                  fullWidth
+                  href="https://wa.me/905455207999?text=Merhaba,%20Vazgeçilmez%20Olma%20Sanatı%20e-kitap%20paketini%20satın%20almak%20istiyorum."
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <MessageCircle className={`w-5 h-5 ${KART_ODEME_AKTIF ? "text-gold-400" : "fill-black/15 text-black"}`} />
+                  {KART_ODEME_AKTIF ? (
+                    <span>WhatsApp&apos;tan Al</span>
+                  ) : (
+                    <>
+                      <span className="sm:hidden">Hemen Al – 600 TL</span>
+                      <span className="hidden sm:inline">E-KİTABI HEMEN OKU (600 TL)</span>
+                    </>
+                  )}
+                  <ArrowRight className="w-4 h-4" />
+                </ThemeButton>
+                {KART_ODEME_AKTIF ? (
+                  <FlashTeslim className="mt-4" />
+                ) : (
+                  <div className="flex items-start justify-center gap-1.5 mt-3 text-[11px] sm:text-xs text-zinc-400 font-medium text-center">
+                    <Mail className="w-3.5 h-3.5 text-gold-400" />
+                    <span>WhatsApp&apos;tan sipariş verin, ödemenin ardından e-kitabınız e-postanıza gönderilsin.</span>
+                  </div>
+                )}
               </div>
 
               {/* Feature List */}
@@ -169,52 +216,6 @@ export default function PricingSection() {
               </div>
             </div>
 
-            {/* Primary CTA Button */}
-            <div className="pt-2 sm:pt-6 lg:pt-2 mt-2 sm:mt-4 lg:mt-2">
-              {KART_ODEME_AKTIF && (
-                <ThemeButton
-                  theme="kitap1"
-                  variant="primary"
-                  size="lg"
-                  fullWidth
-                  href={odemeLinki("vazgecilmez-ekitap")}
-                  className="mb-3"
-                >
-                  <CreditCard className="w-5 h-5 text-black flex-shrink-0" />
-                  <span className="sm:hidden">Kartla Hemen Al – 600 TL</span>
-                  <span className="hidden sm:inline">KARTLA HEMEN AL (600 TL)</span>
-                  <ArrowRight className="w-4 h-4" />
-                </ThemeButton>
-              )}
-              <ThemeButton
-                theme="kitap1"
-                variant={KART_ODEME_AKTIF ? "secondary" : "primary"}
-                size="lg"
-                fullWidth
-                href="https://wa.me/905455207999?text=Merhaba,%20Vazgeçilmez%20Olma%20Sanatı%20e-kitap%20paketini%20satın%20almak%20istiyorum."
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <MessageCircle className={`w-5 h-5 ${KART_ODEME_AKTIF ? "text-gold-400" : "fill-black/15 text-black"}`} />
-                {KART_ODEME_AKTIF ? (
-                  <span>WhatsApp&apos;tan Al (600 TL)</span>
-                ) : (
-                  <>
-                    <span className="sm:hidden">Hemen Al – 600 TL</span>
-                    <span className="hidden sm:inline">E-KİTABI HEMEN OKU (600 TL)</span>
-                  </>
-                )}
-                <ArrowRight className="w-4 h-4" />
-              </ThemeButton>
-              <div className="flex items-start justify-center gap-1.5 mt-3 text-[11px] sm:text-xs text-zinc-400 font-medium text-center">
-                <Mail className="w-3.5 h-3.5 text-gold-400" />
-                <span>
-                  {KART_ODEME_AKTIF
-                    ? "Kartla öde, e-kitabın saniyeler içinde e-postana otomatik gelsin. 7/24, beklemeden."
-                    : "WhatsApp'tan sipariş verin, ödemenin ardından e-kitabınız e-postanıza gönderilsin."}
-                </span>
-              </div>
-            </div>
           </ThemeCard>
 
           {/* ========================================================================= */}
@@ -223,7 +224,7 @@ export default function PricingSection() {
           <ThemeCard
             theme="kitap1"
             variant="elevated"
-            className="flex flex-col justify-between p-5 sm:p-8 lg:px-8 lg:py-7 border-mahogany-600/70"
+            className="flex flex-col justify-start p-5 sm:p-8 lg:px-8 lg:py-7 border-mahogany-600/70"
           >
             {/* ÜST ROZET: Satış Öncesi "Yenilenmiş Edisyon – 5 Kasım'da Satışta", Satışta "SATIŞTA" */}
             <div className="absolute -top-3.5 left-6 sm:left-8 z-20">
@@ -295,6 +296,78 @@ export default function PricingSection() {
                 </span>
               </div>
 
+              {/* Alt Aksiyon Alanı: Satış Öncesi Geri Sayım + Haber Al / Satışta Sipariş Ver */}
+              <div className="mt-1">
+                {!isOnSale ? (
+                  <div className="space-y-3 sm:space-y-4">
+                    <div>
+                      <div className="text-[11px] font-bold uppercase tracking-widest text-gold-300/90 mb-2 text-center">
+                        <span className="sm:hidden">Satışa kalan süre</span>
+                        <span className="hidden sm:inline">5 Kasım 18:00 Satış Başlangıcına Kalan Süre</span>
+                      </div>
+                      <BookCountdown
+                        theme="kitap1"
+                        size="sm"
+                        releaseDate={VAZGECILMEZ_CONFIG.releaseDate}
+                        showStatusBadge={false}
+                        showActionArea={false}
+                        className="mx-auto"
+                      />
+                    </div>
+
+                    <ThemeButton
+                      theme="kitap1"
+                      variant="secondary"
+                      size="md"
+                      fullWidth
+                      href={physicalRenovated.notifyWhatsappUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <MessageCircle className="w-5 h-5 text-gold-400 flex-shrink-0" />
+                      <span>WhatsApp&apos;tan Haber Al</span>
+                      <ArrowRight className="w-4 h-4" />
+                    </ThemeButton>
+                  </div>
+                ) : (
+                  <div className="space-y-3">
+                    {KART_ODEME_AKTIF && (
+                      <ThemeButton
+                        theme="kitap1"
+                        variant="primary"
+                        size="lg"
+                        fullWidth
+                        href={odemeLinki(physicalRenovated.id)}
+                      >
+                        <CreditCard className="w-5 h-5 text-black flex-shrink-0" />
+                        <span className="sm:hidden">Kartla Hemen Al – {physicalRenovated.price} TL</span>
+                        <span className="hidden sm:inline">KARTLA HEMEN AL ({physicalRenovated.price} TL)</span>
+                        <ArrowRight className="w-4 h-4" />
+                      </ThemeButton>
+                    )}
+                    <ThemeButton
+                      theme="kitap1"
+                      variant={KART_ODEME_AKTIF ? "secondary" : "primary"}
+                      size="lg"
+                      fullWidth
+                      href={physicalRenovated.orderWhatsappUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <MessageCircle className={`w-5 h-5 flex-shrink-0 ${KART_ODEME_AKTIF ? "text-gold-400" : "fill-black/15 text-black"}`} />
+                      <span>WhatsApp&apos;tan Al</span>
+                      <ArrowRight className="w-4 h-4" />
+                    </ThemeButton>
+                    <GiftLink href={physicalRenovated.giftWhatsappUrl} />
+
+                    <div className="flex items-center justify-center gap-1.5 pt-1 text-xs text-gold-300 font-medium">
+                      <Truck className="w-3.5 h-3.5 text-gold-400" />
+                      <span>Kapıya kadar ücretsiz kargo ile gönderim.</span>
+                    </div>
+                  </div>
+                )}
+              </div>
+
               <PhysicalPerks theme="kitap1" className="my-4" />
 
               {/* Özellik Listesi */}
@@ -331,78 +404,6 @@ export default function PricingSection() {
               </div>
             </div>
 
-            {/* Alt Aksiyon Alanı: Satış Öncesi Geri Sayım + Haber Al / Satışta Sipariş Ver */}
-            <div className="pt-1 sm:pt-4 lg:pt-1 mt-1 sm:mt-2 lg:mt-1">
-              {!isOnSale ? (
-                <div className="space-y-3 sm:space-y-4">
-                  <div>
-                    <div className="text-[11px] font-bold uppercase tracking-widest text-gold-300/90 mb-2 text-center">
-                      <span className="sm:hidden">Satışa kalan süre</span>
-                      <span className="hidden sm:inline">5 Kasım 18:00 Satış Başlangıcına Kalan Süre</span>
-                    </div>
-                    <BookCountdown
-                      theme="kitap1"
-                      size="sm"
-                      releaseDate={VAZGECILMEZ_CONFIG.releaseDate}
-                      showStatusBadge={false}
-                      showActionArea={false}
-                      className="mx-auto"
-                    />
-                  </div>
-
-                  <ThemeButton
-                    theme="kitap1"
-                    variant="secondary"
-                    size="md"
-                    fullWidth
-                    href={physicalRenovated.notifyWhatsappUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <MessageCircle className="w-5 h-5 text-gold-400 flex-shrink-0" />
-                    <span>WhatsApp&apos;tan Haber Al</span>
-                    <ArrowRight className="w-4 h-4" />
-                  </ThemeButton>
-                </div>
-              ) : (
-                <div className="space-y-3">
-                  {KART_ODEME_AKTIF && (
-                    <ThemeButton
-                      theme="kitap1"
-                      variant="primary"
-                      size="lg"
-                      fullWidth
-                      href={odemeLinki(physicalRenovated.id)}
-                    >
-                      <CreditCard className="w-5 h-5 text-black flex-shrink-0" />
-                      <span className="sm:hidden">Kartla Hemen Al – {physicalRenovated.price} TL</span>
-                      <span className="hidden sm:inline">KARTLA HEMEN AL ({physicalRenovated.price} TL)</span>
-                      <ArrowRight className="w-4 h-4" />
-                    </ThemeButton>
-                  )}
-                  <ThemeButton
-                    theme="kitap1"
-                    variant={KART_ODEME_AKTIF ? "secondary" : "primary"}
-                    size="lg"
-                    fullWidth
-                    href={physicalRenovated.orderWhatsappUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <MessageCircle className={`w-5 h-5 flex-shrink-0 ${KART_ODEME_AKTIF ? "text-gold-400" : "fill-black/15 text-black"}`} />
-                    <span className="sm:hidden">WhatsApp ile Sipariş – 1000 TL</span>
-                    <span className="hidden sm:inline">WhatsApp ile Sipariş Ver (1000 TL)</span>
-                    <ArrowRight className="w-4 h-4" />
-                  </ThemeButton>
-                  <GiftLink href={physicalRenovated.giftWhatsappUrl} />
-
-                  <div className="flex items-center justify-center gap-1.5 pt-1 text-xs text-gold-300 font-medium">
-                    <Truck className="w-3.5 h-3.5 text-gold-400" />
-                    <span>Kapıya kadar ücretsiz kargo ile gönderim.</span>
-                  </div>
-                </div>
-              )}
-            </div>
           </ThemeCard>
         </div>
       </div>

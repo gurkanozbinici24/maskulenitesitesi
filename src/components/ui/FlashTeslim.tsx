@@ -28,7 +28,7 @@ export default function FlashTeslim({
     : "bg-emerald-400 text-black shadow-[0_0_18px_rgba(52,211,153,0.55)]";
   const compact = size === "sm";
   const kargo = tip === "kargo";
-  const baslik = kargo ? PHYSICAL_PERKS.cargoTitle : "7/24 Flash Hızda Teslim";
+  const baslik = kargo ? PHYSICAL_PERKS.cargoTitle : "7/24 Flash Hızda Otomatik Teslim";
   const etiket = kargo ? PHYSICAL_PERKS.cargoDelivery : "Saniyeler içinde";
   const detay = kargo
     ? PHYSICAL_PERKS.cargoDetail
