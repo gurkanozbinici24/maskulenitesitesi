@@ -43,12 +43,10 @@ export const VAZGECILMEZ_BOOK = {
   description:
     "Vazgeçilmez Olma Sanatı, yazar Gürkan Özbinici'nin erkekler için yazdığı, 100 kanun ve 227 sayfadan oluşan ilişki ve maskülenlik kitabıdır. İlişkide saygı kazanmayı, sınır koymayı, kaybetme korkusunu yenmeyi ve kendi hayatının merkezinde durmayı anlatır.",
   keywords: "vazgeçilmez olma sanatı, gürkan özbinici, erkekler için ilişki kitabı, maskülenlik kitabı",
-  review: VAZGECILMEZ_REVIEWS.map((r) => ({
-    "@type": "Review",
-    author: { "@type": "Person", name: `Okur ${r.who}` },
-    datePublished: r.date,
-    reviewBody: r.text,
-  })),
+  // Not: Okur yorumları sayfada görünür ama yapılandırılmış veriye "review" olarak EKLENMEZ.
+  // Yıldız puanı (reviewRating/aggregateRating) olmayan yorumlar Search Console'da
+  // "aggregateRating nesnesini içermeyen birden fazla yorum var" hatası veriyor;
+  // puan uydurmak da Google kurallarına aykırı.
   offers: [
     offer(VAZGECILMEZ_CONFIG.ebook.price, `${SITE}/#fiyat-kartlari`, "InStock", "E-Kitap (PDF)"),
     offer(VAZGECILMEZ_CONFIG.physicalRenovated.price, `${SITE}/#fiyat-kartlari`, "PreOrder", "Fiziksel Kitap, Yenilenmiş Edisyon (isme özel imzalı)"),
