@@ -436,7 +436,7 @@ export function CekicilikSalesOptions({
       <ThemeCard
         theme="kitap2"
         variant="elevated"
-        className="flex flex-col justify-between p-6 sm:p-8 lg:p-9 border-crimson-800/70"
+        className="flex flex-col p-6 sm:p-8 lg:p-9 border-crimson-800/70"
       >
         <div className="absolute -top-3.5 left-6 sm:left-8 z-20">
           <ThemeBadge theme="kitap2" status="satista" className="px-4 py-1.5 tracking-wider">
@@ -461,7 +461,7 @@ export function CekicilikSalesOptions({
             <span className="crimson-text-gradient">{ebook.subtitle}</span>
           </h3>
 
-          <p className="text-fluid-sm text-zinc-300 mt-2 mb-6 leading-relaxed">
+          <p className="text-fluid-sm text-zinc-300 mt-2 mb-4 leading-relaxed line-clamp-3">
             {ebook.description}
           </p>
 
@@ -478,8 +478,44 @@ export function CekicilikSalesOptions({
             </span>
           </div>
 
+            {/* CTA: fiyatın hemen altında, ilk bakışta görünür */}
+            <div className="mt-5 space-y-3">
+            {kartOdemeAktif && (
+              <ThemeButton
+                theme="kitap2"
+                variant="primary"
+                size="lg"
+                fullWidth
+                href={odemeLinki(ebook.id)}
+              >
+                <CreditCard className="w-5 h-5 text-white flex-shrink-0" />
+                <span>Kartla Hemen Al ({ebook.price} TL)</span>
+              </ThemeButton>
+            )}
+            <ThemeButton
+              theme="kitap2"
+              variant={kartOdemeAktif ? "secondary" : "primary"}
+              size="lg"
+              fullWidth
+              href={ebook.whatsappUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <MessageCircle className="w-5 h-5 text-emerald-400 flex-shrink-0" />
+              <span>WhatsApp ile Sipariş Ver</span>
+            </ThemeButton>
+
+
+
+            <div className="flex items-center justify-center gap-1.5 pt-1 text-xs text-zinc-400 font-medium">
+              <Mail className="w-3.5 h-3.5 text-emerald-400" />
+              <span>Kartla ödemede saniyeler içinde e-postana otomatik teslim.</span>
+            </div>
+          </div>
+
+
           {/* Feature List */}
-          <div className="space-y-3.5 my-6">
+          <div className="space-y-3 mt-6">
             {ebook.features.map((feature, idx) => (
               <div key={idx} className="flex items-start gap-3">
                 <div className="mt-0.5 w-4 h-4 rounded-full bg-emerald-500/20 flex items-center justify-center flex-shrink-0 text-emerald-400 border border-emerald-500/40">
@@ -491,47 +527,13 @@ export function CekicilikSalesOptions({
           </div>
         </div>
 
-        {/* CTA Buttons */}
-        <div className="pt-6 mt-4 space-y-3">
-          {kartOdemeAktif && (
-            <ThemeButton
-              theme="kitap2"
-              variant="primary"
-              size="lg"
-              fullWidth
-              href={odemeLinki(ebook.id)}
-            >
-              <CreditCard className="w-5 h-5 text-white flex-shrink-0" />
-              <span>Kartla Hemen Al ({ebook.price} TL)</span>
-            </ThemeButton>
-          )}
-          <ThemeButton
-            theme="kitap2"
-            variant={kartOdemeAktif ? "secondary" : "primary"}
-            size="lg"
-            fullWidth
-            href={ebook.whatsappUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <MessageCircle className="w-5 h-5 text-emerald-400 flex-shrink-0" />
-            <span>WhatsApp ile Sipariş Ver ({ebook.price} TL)</span>
-          </ThemeButton>
-
-
-
-          <div className="flex items-center justify-center gap-1.5 pt-1 text-xs text-zinc-400 font-medium">
-            <Mail className="w-3.5 h-3.5 text-emerald-400" />
-            <span>Kartla ödemede saniyeler içinde e-postana otomatik teslim.</span>
-          </div>
-        </div>
       </ThemeCard>
 
       {/* 2. KART: FİZİKSEL KİTAP (1000 TL — KAPIYA KADAR ÜCRETSİZ KARGO) */}
       <ThemeCard
         theme="kitap2"
         variant="glow"
-        className="flex flex-col justify-between p-6 sm:p-8 lg:p-9"
+        className="flex flex-col p-6 sm:p-8 lg:p-9"
       >
         <div className="absolute -top-3.5 left-6 sm:left-8 z-20">
           <ThemeBadge theme="kitap2" status="satista" className="px-4 py-1.5 tracking-wider">
@@ -556,7 +558,7 @@ export function CekicilikSalesOptions({
             <span className="emerald-text-gradient">{physical.subtitle}</span>
           </h3>
 
-          <p className="text-fluid-sm text-zinc-300 mt-2 mb-6 leading-relaxed">
+          <p className="text-fluid-sm text-zinc-300 mt-2 mb-4 leading-relaxed line-clamp-3">
             {physical.description}
           </p>
 
@@ -577,10 +579,47 @@ export function CekicilikSalesOptions({
           </div>
 
           <AnindaTeslim tip="fiziksel" className="mt-4" />
+
+            {/* CTA: fiyatın hemen altında, ilk bakışta görünür */}
+            <div className="mt-5 space-y-3">
+            {kartOdemeAktif && (
+              <ThemeButton
+                theme="kitap2"
+                variant="primary"
+                size="lg"
+                fullWidth
+                href={odemeLinki(physical.id)}
+              >
+                <CreditCard className="w-5 h-5 text-white flex-shrink-0" />
+                <span>Kartla Hemen Al ({physical.price} TL)</span>
+              </ThemeButton>
+            )}
+            <ThemeButton
+              theme="kitap2"
+              variant={kartOdemeAktif ? "secondary" : "primary"}
+              size="lg"
+              fullWidth
+              href={physical.whatsappUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <MessageCircle className="w-5 h-5 text-emerald-400 flex-shrink-0" />
+              <span>WhatsApp ile Sipariş Ver</span>
+            </ThemeButton>
+            <GiftLink href={physical.giftWhatsappUrl} />
+
+
+
+            <div className="flex items-center justify-center gap-1.5 pt-1 text-xs text-emerald-400 font-semibold">
+              <Truck className="w-3.5 h-3.5" />
+              <span>Kapıya kadar ücretsiz, gizli paketleme ile Yurtiçi Kargo.</span>
+            </div>
+          </div>
+
           <PhysicalPerks theme="kitap2" className="my-5" />
 
           {/* Feature List */}
-          <div className="space-y-3.5 my-6">
+          <div className="space-y-3 mt-6">
             {physical.features.map((feature, idx) => (
               <div key={idx} className="flex items-start gap-3">
                 <div className="mt-0.5 w-4 h-4 rounded-full bg-emerald-500/20 flex items-center justify-center flex-shrink-0 text-emerald-400 border border-emerald-500/40">
@@ -592,41 +631,6 @@ export function CekicilikSalesOptions({
           </div>
         </div>
 
-        {/* CTA Buttons */}
-        <div className="pt-6 mt-4 space-y-3">
-          {kartOdemeAktif && (
-            <ThemeButton
-              theme="kitap2"
-              variant="primary"
-              size="lg"
-              fullWidth
-              href={odemeLinki(physical.id)}
-            >
-              <CreditCard className="w-5 h-5 text-white flex-shrink-0" />
-              <span>Kartla Hemen Al ({physical.price} TL)</span>
-            </ThemeButton>
-          )}
-          <ThemeButton
-            theme="kitap2"
-            variant={kartOdemeAktif ? "secondary" : "primary"}
-            size="lg"
-            fullWidth
-            href={physical.whatsappUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <MessageCircle className="w-5 h-5 text-emerald-400 flex-shrink-0" />
-            <span>WhatsApp ile Sipariş Ver ({physical.price} TL)</span>
-          </ThemeButton>
-          <GiftLink href={physical.giftWhatsappUrl} />
-
-
-
-          <div className="flex items-center justify-center gap-1.5 pt-1 text-xs text-emerald-400 font-semibold">
-            <Truck className="w-3.5 h-3.5" />
-            <span>Kapıya kadar ücretsiz, gizli paketleme ile Yurtiçi Kargo.</span>
-          </div>
-        </div>
       </ThemeCard>
     </div>
   );

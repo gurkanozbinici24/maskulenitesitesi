@@ -1,6 +1,7 @@
 "use client";
 import AnindaTeslim from "./ui/AnindaTeslim";
 import { odemeLinki } from "@/lib/odeme/urunler";
+import { KART_ODEME_AKTIF } from "@/config/cekicilikConfig";
 
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import Image from "next/image";
@@ -436,8 +437,12 @@ export default function HeroSection() {
                       status="satista"
                       className="px-3.5 py-1 text-[11px]"
                     >
-                      <Zap className="w-3 h-3 fill-black text-black" />
-                      <span>E-KİTAP SATIŞTA</span>
+                      {isOnSale ? (
+                        <span className="w-2 h-2 rounded-full bg-black/70 animate-pulse" />
+                      ) : (
+                        <Zap className="w-3 h-3 fill-black text-black" />
+                      )}
+                      <span>{isOnSale ? "SATIŞTA" : "E-KİTAP SATIŞTA"}</span>
                     </ThemeBadge>
                   </div>
 
@@ -469,25 +474,10 @@ export default function HeroSection() {
                     )}
                   </div>
 
-                  {/* 4a. Satış açıldığında: Fiziksel kitap butonu + Flash kargo rozeti (e-kitabın üstünde) */}
-                  {isOnSale && (
+                  {isOnSale ? (
+                    <SatinAlSatiri kitap="kitap1" />
+                  ) : (
                     <>
-                      <ThemeButton
-                        theme="kitap1"
-                        variant="outline"
-                        size="md"
-                        fullWidth
-                        href={odemeLinki("vazgecilmez-fiziksel-yenilenmis")}
-                        className="w-full max-w-[320px] min-h-[48px] h-[48px]"
-                      >
-                        <Package className="w-4 h-4 flex-shrink-0" />
-                        <span>Fiziksel Kitabı Al – 1000 TL</span>
-                        <ArrowRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
-                      </ThemeButton>
-                      <AnindaTeslim tip="fiziksel" metin="Flash kargo · 2 günde elinde" className="mt-2 mb-3" />
-                    </>
-                  )}
-
                   {/* 4. Satın Alma Butonu (İki Kitapta Aynı Boyut ve Hiza) */}
                   <ThemeButton
                     theme="kitap1"
@@ -504,6 +494,8 @@ export default function HeroSection() {
                     <ArrowRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
                   </ThemeButton>
                   <AnindaTeslim className="mt-2.5" />
+                    </>
+                  )}
                 </div>
               </div>
 
@@ -621,27 +613,7 @@ export default function HeroSection() {
                       <ArrowRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
                     </ThemeButton>
                   ) : (
-                    <ThemeButton
-                      theme="kitap2"
-                      variant="primary"
-                      size="md"
-                      fullWidth
-                      href="#cekicilik-sanati"
-                      onClick={(e) =>
-                        scrollToTarget(e, "cekicilik-sanati", "fiyat-kartlari")
-                      }
-                      className="w-full max-w-[320px] min-h-[48px] h-[48px]"
-                    >
-                      <Flame className="w-4 h-4 text-white flex-shrink-0" />
-                      <span>Hemen Satın Al – 600 TL&apos;den başlayan</span>
-                      <ArrowRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
-                    </ThemeButton>
-                  )}
-                  {isOnSale && (
-                    <div className="mt-2.5 flex flex-col items-center gap-2">
-                      <AnindaTeslim />
-                      <AnindaTeslim tip="fiziksel" metin="Fiziksel kitap · Flash kargo, 2 günde elinde" />
-                    </div>
+                    <SatinAlSatiri kitap="kitap2" />
                   )}
                 </div>
               </div>
@@ -757,7 +729,7 @@ export default function HeroSection() {
                       className="px-2.5 py-0.5 text-[9px] whitespace-nowrap"
                     >
                       <Zap className="w-3 h-3 fill-black text-black" />
-                      <span>E-KİTAP SATIŞTA</span>
+                      <span>{isOnSale ? "SATIŞTA" : "E-KİTAP SATIŞTA"}</span>
                     </ThemeBadge>
                     <span className="text-[11px] font-semibold text-mahogany-200">
                       Erkekler için
@@ -921,5 +893,31 @@ export default function HeroSection() {
         </div>
       </div>
     </>
+  );
+}
+
+/** Satış açıldığında kitap altında simetrik, premium satın alma satırı: E-Kitap + Fiziksel */
+function SatinAlSatiri({ kitap }: { kitap: "kitap1" | "kitap2" }) {
+  const k1 = kitap === "kitap1";
+  const ebook = k1 ? "vazgecilmez-ekitap" : "cekicilik-ekitap";
+  const fiziksel = k1 ? "vazgecilmez-fiziksel-yenilenmis" : "cekicilik-fiziksel";
+  const link = (id: Parameters<typeof odemeLinki>[0]) => (KART_ODEME_AKTIF ? odemeLinki(id) : "#fiyat-kartlari");
+  return (
+    <div className="w-full max-w-[360px]">
+      <div className="grid grid-cols-2 gap-2">
+        <ThemeButton theme={kitap} variant="primary" size="sm" fullWidth href={link(ebook)} className="h-[48px] whitespace-nowrap">
+          <Zap className="w-3.5 h-3.5 flex-shrink-0" />
+          <span>E-Kitap · 600 TL</span>
+        </ThemeButton>
+        <ThemeButton theme={kitap} variant="outline" size="sm" fullWidth href={link(fiziksel)} className="h-[48px] whitespace-nowrap">
+          <Package className="w-3.5 h-3.5 flex-shrink-0" />
+          <span>Fiziksel · 1000 TL</span>
+        </ThemeButton>
+      </div>
+      <div className="mt-2.5 grid grid-cols-2 gap-2 text-center">
+        <AnindaTeslim size="sm" metin="E-kitap 7/24 anında" className="w-full" />
+        <AnindaTeslim tip="fiziksel" size="sm" metin="Kitap 2 günde kapında" className="w-full" />
+      </div>
+    </div>
   );
 }
