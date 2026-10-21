@@ -3,7 +3,7 @@
 import React from "react";
 import { Bell, BookOpen, CreditCard, MessageCircle, Package, Sparkles, Truck, Zap } from "lucide-react";
 import { odemeLinki } from "@/lib/odeme/urunler";
-import { Book3DModel } from "./HeroSection";
+import Image from "next/image";
 import { ThemeButton, ThemeSectionHeader } from "./ui/ThemeSystem";
 import { useCekicilikLaunchStatus } from "./ui/BookCountdown";
 import AnindaTeslim from "./ui/AnindaTeslim";
@@ -202,14 +202,12 @@ function Kart({
       <div className="flex items-center gap-4">
         <div className="flex-shrink-0">
           {tema === "set" ? (
-            <div className="relative flex w-[92px] items-end">
-              <Book3DModel book="kitap1" isFocused={false} isDimmed={false} sizeClassName="w-[56px] h-[84px]" imageSizes="60px" />
-              <div className="-ml-5">
-                <Book3DModel book="kitap2" isFocused={false} isDimmed={false} sizeClassName="w-[56px] h-[84px]" imageSizes="60px" />
-              </div>
+            <div className="relative h-[88px] w-[92px]">
+              <Kapak kitap="kitap1" className="absolute left-0 top-0 -rotate-6" />
+              <Kapak kitap="kitap2" className="absolute right-0 top-0 rotate-3" />
             </div>
           ) : (
-            <Book3DModel book={tema} isFocused={false} isDimmed={false} sizeClassName="w-[56px] h-[84px]" imageSizes="60px" />
+            <Kapak kitap={tema} />
           )}
         </div>
         <div className="min-w-0">
@@ -220,6 +218,24 @@ function Kart({
       </div>
       <p className="mt-3 text-xs text-zinc-400">{altBilgi}</p>
       <div className="mt-4 space-y-2">{children}</div>
+    </div>
+  );
+}
+
+/** Küçük düz kapak (3D model küçük boyutta sırt/kenar taşması yaptığı için) */
+function Kapak({ kitap, className = "" }: { kitap: "kitap1" | "kitap2"; className?: string }) {
+  return (
+    <div
+      className={`relative h-[84px] w-[56px] overflow-hidden rounded-[3px] shadow-[0_8px_20px_rgba(0,0,0,0.7)] ring-1 ring-white/15 ${className}`}
+    >
+      <Image
+        src={kitap === "kitap1" ? "/vazgecilmez-yeni-kapak.jpg" : "/cekicilik-sanati-kapak.jpg"}
+        alt={kitap === "kitap1" ? "Vazgeçilmez Olma Sanatı kapağı" : "Çekicilik Sanatı kapağı"}
+        fill
+        sizes="60px"
+        className="object-cover"
+      />
+      <div className="pointer-events-none absolute inset-y-0 left-0 w-[5px] bg-gradient-to-r from-black/50 to-transparent" />
     </div>
   );
 }
