@@ -2,6 +2,7 @@
 
 import PhysicalPerks from "./PhysicalPerks";
 import AnindaTeslim from "./AnindaTeslim";
+import FlashTeslim from "./FlashTeslim";
 import GiftLink from "./GiftLink";
 import React, { useEffect, useState } from "react";
 import {
@@ -10,7 +11,6 @@ import {
   Clock,
   Flame,
   Instagram,
-  Mail,
   MessageCircle,
   Package,
   PlayCircle,
@@ -386,6 +386,7 @@ export function CekicilikSalesOptions({
                 </div>
               </div>
 
+              {!isPhysical && kartOdemeAktif && <FlashTeslim theme="kitap2" size="sm" className="mt-2.5" />}
               {isPhysical && <AnindaTeslim tip="fiziksel" size="sm" className="mt-2.5" />}
               {isPhysical && <PhysicalPerks theme="kitap2" size="sm" className="mt-2.5" />}
 
@@ -504,14 +505,8 @@ export function CekicilikSalesOptions({
               <MessageCircle className="w-5 h-5 text-emerald-400 flex-shrink-0" />
               <span>WhatsApp ile Sipariş Ver</span>
             </ThemeButton>
-
-
-
-            <div className="flex items-center justify-center gap-1.5 pt-1 text-xs text-zinc-400 font-medium">
-              <Mail className="w-3.5 h-3.5 text-emerald-400" />
-              <span>Kartla ödemede saniyeler içinde e-postana otomatik teslim.</span>
-            </div>
           </div>
+          {kartOdemeAktif && <FlashTeslim theme="kitap2" className="mt-5" />}
 
 
           {/* Feature List */}

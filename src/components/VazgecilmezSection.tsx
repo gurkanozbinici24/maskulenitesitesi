@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { Book3DModel } from "./HeroSection";
-import { Shield, Compass, Flame, MessageCircle, Truck, Zap, Clock, CreditCard } from "lucide-react";
+import { Shield, Compass, Flame, MessageCircle, Truck, Zap, Clock, CreditCard, Check } from "lucide-react";
 import { useCekicilikLaunchStatus } from "./ui/BookCountdown";
 import { ThemeBadge, ThemeButton, ThemeSectionHeader } from "./ui/ThemeSystem";
 import { KART_ODEME_AKTIF, VAZGECILMEZ_CONFIG, VAZGECILMEZ_PREVIEW_PAGES } from "@/config/cekicilikConfig";
@@ -11,6 +11,7 @@ import BookPreview from "./BookPreview";
 import PhysicalPerks from "./ui/PhysicalPerks";
 import GiftLink from "./ui/GiftLink";
 import AnindaTeslim from "./ui/AnindaTeslim";
+import FlashTeslim from "./ui/FlashTeslim";
 
 /**
  * Vazgeçilmez Olma Sanatı tanıtım bölümü (id="vazgecilmez").
@@ -126,55 +127,55 @@ export default function VazgecilmezSection() {
               ))}
             </div>
 
-            <div className="grid sm:grid-cols-2 gap-4" data-sticky-hide>
+            <div className="grid sm:grid-cols-2 gap-4 items-start" data-sticky-hide>
               {/* E-Kitap: şimdi satışta */}
               <div className="rounded-2xl border border-gold-500/50 bg-gradient-to-br from-mahogany-950/80 to-matte-950 p-5 flex flex-col shadow-gold-glow">
                 <ThemeBadge theme="kitap1" status="satista" className="self-start text-[10px]">
                   <Zap className="w-3 h-3 fill-black text-black" />
                   <span>E-KİTAP SATIŞTA</span>
                 </ThemeBadge>
-                <AnindaTeslim size="sm" className="mt-2 self-start" />
                 <div className="mt-3 flex items-baseline gap-1.5">
                   <span className="font-mono text-4xl font-black text-white">{ebook.price}</span>
                   <span className="text-sm font-bold text-gold-400">TL</span>
                 </div>
-                <p className="mt-1 mb-4 text-xs text-zinc-400">
-                  PDF. Kartla ödemede saniyeler içinde e-postana otomatik teslim.
+                <p className="mt-1 min-h-[32px] text-xs text-zinc-400">
+                  PDF. Kartla ödemede e-postana otomatik teslim.
                 </p>
-                {KART_ODEME_AKTIF ? (
-                  <div className="mt-auto space-y-2">
-                    <ThemeButton theme="kitap1" variant="primary" size="md" fullWidth href={odemeLinki(ebook.id)}>
+                <AnindaTeslim size="sm" metin="E-kitap 7/24 saniyeler içinde e-postanda" className="mt-3 self-start" />
+                <div className="mt-4 space-y-2">
+                  {KART_ODEME_AKTIF && (
+                    <ThemeButton theme="kitap1" variant="primary" size="md" fullWidth href={odemeLinki(ebook.id)} className="whitespace-nowrap">
                       <CreditCard className="w-4 h-4 flex-shrink-0" />
                       <span>Kartla Hemen Al</span>
                     </ThemeButton>
-                    <ThemeButton
-                      theme="kitap1"
-                      variant="secondary"
-                      size="md"
-                      fullWidth
-                      href={ebook.whatsappUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <MessageCircle className="w-4 h-4 text-gold-400 flex-shrink-0" />
-                      <span>WhatsApp&apos;tan Al</span>
-                    </ThemeButton>
-                  </div>
-                ) : (
+                  )}
                   <ThemeButton
                     theme="kitap1"
-                    variant="primary"
+                    variant={KART_ODEME_AKTIF ? "secondary" : "primary"}
                     size="md"
                     fullWidth
                     href={ebook.whatsappUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="mt-auto"
+                    className="whitespace-nowrap"
                   >
-                    <MessageCircle className="w-4 h-4 flex-shrink-0" />
-                    <span>Hemen Al</span>
+                    <MessageCircle className={`w-4 h-4 flex-shrink-0 ${KART_ODEME_AKTIF ? "text-gold-400" : ""}`} />
+                    <span>{KART_ODEME_AKTIF ? "WhatsApp'tan Al" : "Hemen Al"}</span>
                   </ThemeButton>
-                )}
+                </div>
+                {KART_ODEME_AKTIF && <FlashTeslim size="sm" className="mt-5" />}
+                <ul className="mt-5 space-y-2 border-t border-gold-500/15 pt-4 text-xs text-zinc-300">
+                  {[
+                    "Tam metin, tüm bölümler",
+                    "Telefon, tablet, bilgisayar ve Kindle",
+                    "Ömür boyu erişim",
+                  ].map((t) => (
+                    <li key={t} className="flex items-center gap-2">
+                      <Check className="w-3.5 h-3.5 flex-shrink-0 text-gold-400" />
+                      {t}
+                    </li>
+                  ))}
+                </ul>
               </div>
 
               {/* Fiziksel Yenilenmiş Edisyon */}
@@ -193,14 +194,13 @@ export default function VazgecilmezSection() {
                   </span>
                   <span className="text-sm font-bold text-gold-400">TL</span>
                 </div>
-                <p className="mt-1 mb-4 text-xs text-zinc-400">
+                <p className="mt-1 min-h-[32px] text-xs text-zinc-400">
                   Yeni kapak, büyük punto. Kapıya kadar ücretsiz kargo.
                 </p>
-                <AnindaTeslim tip="fiziksel" size="sm" className="mb-3 self-start" />
-                <PhysicalPerks theme="kitap1" size="sm" className="mb-4" />
+                <AnindaTeslim tip="fiziksel" size="sm" className="mt-3 self-start" />
 
                 {isOnSale ? (
-                  <div className="mt-auto space-y-2">
+                  <div className="mt-4 space-y-2">
                     {KART_ODEME_AKTIF && (
                       <ThemeButton
                         theme="kitap1"
@@ -208,6 +208,7 @@ export default function VazgecilmezSection() {
                         size="md"
                         fullWidth
                         href={odemeLinki(physicalRenovated.id)}
+                        className="whitespace-nowrap"
                       >
                         <CreditCard className="w-4 h-4 flex-shrink-0" />
                         <span>Kartla Hemen Al</span>
@@ -221,6 +222,7 @@ export default function VazgecilmezSection() {
                       href={physicalRenovated.orderWhatsappUrl}
                       target="_blank"
                       rel="noopener noreferrer"
+                      className="whitespace-nowrap"
                     >
                       <MessageCircle className={`w-4 h-4 flex-shrink-0 ${KART_ODEME_AKTIF ? "text-gold-400" : ""}`} />
                       <span>{KART_ODEME_AKTIF ? "WhatsApp'tan Al" : "Sipariş Ver"}</span>
@@ -228,7 +230,7 @@ export default function VazgecilmezSection() {
                     <GiftLink href={physicalRenovated.giftWhatsappUrl} />
                   </div>
                 ) : (
-                  <div className="mt-auto">
+                  <div className="mt-4">
                     <div className="grid grid-cols-4 gap-1.5 mb-3">
                       {units.map((u) => (
                         <div
@@ -258,6 +260,7 @@ export default function VazgecilmezSection() {
                     </ThemeButton>
                   </div>
                 )}
+                <PhysicalPerks theme="kitap1" size="sm" className="mt-5" />
               </div>
             </div>
 
