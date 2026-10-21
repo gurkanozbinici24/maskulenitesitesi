@@ -131,7 +131,7 @@ export default function BundleSection() {
             ))}
           </ul>
 
-          <div className="mt-5 flex justify-center lg:justify-start"><AnindaTeslim tip="fiziksel" /></div>
+          <div className="mt-5 flex justify-center lg:justify-start"><AnindaTeslim tip="fiziksel" metin="İki imzalı kitabın 2 gün içinde kapında" /></div>
           <PhysicalPerks theme="kitap1" className="mx-auto mt-4 max-w-md lg:mx-0" />
 
           <div className="mx-auto mt-7 max-w-md lg:mx-0" data-sticky-hide>
