@@ -391,19 +391,3 @@ body {
 @font-face { font-family: "LoraBook"; font-weight: 600; font-style: italic; font-display: swap; src: url("/fonts/lora-latin-ext-600-italic.woff2") format("woff2"); unicode-range: U+0100-024F, U+1E00-1EFF; }
 @font-face { font-family: "LoraBook"; font-weight: 600; font-style: italic; font-display: swap; src: url("/fonts/lora-latin-600-italic.woff2") format("woff2"); }
 .font-book { font-family: "LoraBook", Georgia, serif; }
-
-/* Masaüstü giriş: kitapların arkasından yükselen altın/kor kıvılcımlar */
-@keyframes kivilcim-yuksel {
-  0% { transform: translate3d(0, 0, 0) scale(1); opacity: 0; }
-  12% { opacity: 1; }
-  70% { opacity: 0.85; }
-  100% { transform: translate3d(var(--kx, 0px), -260px, 0) scale(0.3); opacity: 0; }
-}
-.kivilcim {
-  position: absolute;
-  bottom: 18%;
-  border-radius: 9999px;
-  animation: kivilcim-yuksel var(--ks, 4s) ease-out var(--kd, 0s) infinite;
-  will-change: transform, opacity;
-}
-@media (prefers-reduced-motion: reduce) { .kivilcim { animation-duration: calc(var(--ks, 4s) * 1.6); } }

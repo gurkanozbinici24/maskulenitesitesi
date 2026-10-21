@@ -1,6 +1,5 @@
 "use client";
 import CanliNokta from "./ui/CanliNokta";
-import Kivilcimlar from "./ui/Kivilcimlar";
 import AnindaTeslim from "./ui/AnindaTeslim";
 import { odemeLinki } from "@/lib/odeme/urunler";
 import { KART_ODEME_AKTIF } from "@/config/cekicilikConfig";
@@ -411,7 +410,6 @@ export default function HeroSection() {
                     }`}
                   />
 
-                  <Kivilcimlar tema="kitap1" className="z-0" />
                   <Book3DModel
                     book="kitap1"
                     isFocused={desktopHoverBook === "kitap1"}
@@ -519,7 +517,6 @@ export default function HeroSection() {
                     }`}
                   />
 
-                  <Kivilcimlar tema="kitap2" className="z-0" />
                   <Book3DModel
                     book="kitap2"
                     isFocused={desktopHoverBook === "kitap2"}
