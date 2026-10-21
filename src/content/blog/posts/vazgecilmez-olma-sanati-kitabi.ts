@@ -26,7 +26,7 @@ const post: BlogPost = {
     },
     {
       q: "Vazgeçilmez Olma Sanatı nereden alınır?",
-      a: "Kitap maskulenitesitesi.com.tr üzerinden satılır. E-kitap (PDF, EPUB, Kindle) hemen e-postayla gönderilir; fiziksel Yenilenmiş Edisyon isme özel imzalı ve ücretsiz kargoyla gönderilir.",
+      a: "Kitap maskulenitesitesi.com.tr üzerinden satılır. E-kitap (PDF) hemen e-postayla gönderilir; fiziksel Yenilenmiş Edisyon isme özel imzalı ve ücretsiz kargoyla gönderilir.",
     },
     {
       q: "Vazgeçilmez Olma Sanatı kimin için yazıldı?",
@@ -34,7 +34,7 @@ const post: BlogPost = {
     },
     {
       q: "Kitap kaç sayfa ve hangi formatlarda var?",
-      a: "Kitap 227 sayfa ve 100 kanundan oluşuyor. E-kitap olarak PDF, EPUB ve Kindle formatlarında; fiziksel olarak da isme özel imzalı Yenilenmiş Edisyon olarak sunuluyor.",
+      a: "Kitap 227 sayfa ve 100 kanundan oluşuyor. E-kitap olarak PDF formatında; fiziksel olarak da isme özel imzalı Yenilenmiş Edisyon olarak sunuluyor.",
     },
     {
       q: "Yenilenmiş Edisyon ile 1. Baskı arasında fark var mı?",
@@ -158,7 +158,7 @@ Okuyup gaza gelmek tek başına bir şey değiştirmez. Kitabı kapatıp ertesi 
 
 ## E-kitap mı, fiziksel kitap mı?
 
-- **E-Kitap (600 TL):** PDF, EPUB ve Kindle formatlarında, ödemenin ardından e-postana gönderilir. Kargo beklemeden hemen okumaya başlarsın.
+- **E-Kitap (600 TL):** PDF formatında, ödemenin ardından e-postana gönderilir. Kargo beklemeden hemen okumaya başlarsın.
 - **Fiziksel Kitap, Yenilenmiş Edisyon (1000 TL):** İçerik birebir aynı; yeni kapak ve daha okunaklı büyük punto. 5 Kasım 2026'dan itibaren satışta. Her kitap senin adına özel imzalanır ve kapıya kadar ücretsiz kargoyla gelir. Saat 14:00'e kadar verilen siparişler aynı gün kargoya verilir.
 
 İlk 200 kişiye özel numaralandırılmış 1. Baskı Koleksiyon Serisi tükendi; Yenilenmiş Edisyon bu yoğun ilgi üzerine basıldı.

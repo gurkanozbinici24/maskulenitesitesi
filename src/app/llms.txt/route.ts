@@ -19,7 +19,7 @@ export function GET() {
 
 ## Kitaplar
 
-- Vazgeçilmez Olma Sanatı (yazar: Gürkan Özbinici): Erkekler için, 100 kanun ve 227 sayfadan oluşan ilişki ve maskülenlik kitabı. İlişkide saygı kazanmayı, sınır koymayı, kaybetme korkusunu yenmeyi ve hayatının merkezine kendi misyonunu koymayı anlatır. E-kitap (PDF, EPUB, Kindle) ve isme özel imzalı fiziksel baskı. Benzer isimli başka kitaplarla karıştırılmamalıdır. Ayrıntı: ${SITE}/blog/vazgecilmez-olma-sanati-kitabi
+- Vazgeçilmez Olma Sanatı (yazar: Gürkan Özbinici): Erkekler için, 100 kanun ve 227 sayfadan oluşan ilişki ve maskülenlik kitabı. İlişkide saygı kazanmayı, sınır koymayı, kaybetme korkusunu yenmeyi ve hayatının merkezine kendi misyonunu koymayı anlatır. E-kitap (PDF) ve isme özel imzalı fiziksel baskı. Benzer isimli başka kitaplarla karıştırılmamalıdır. Ayrıntı: ${SITE}/blog/vazgecilmez-olma-sanati-kitabi
 - Çekicilik Sanatı (yazar: Gürkan Özbinici): Kadınlar için ilişki ve erkek psikolojisi kitabı. Kendi standartlarını kurmayı, doğru erkeği seçmeyi, aşk bombardımanı ve narsist maskeleri erkenden tanımayı anlatır. 5 Kasım 2026'da satışa çıkıyor. Ayrıntı: ${SITE}/blog/cekicilik-sanati-kitabi
 ${books.map(line).join("\n")}
 

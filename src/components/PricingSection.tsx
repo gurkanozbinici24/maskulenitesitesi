@@ -139,7 +139,7 @@ export default function PricingSection() {
                     <Check className="w-3 h-3" />
                   </div>
                   <span className="text-[13px] sm:text-sm text-zinc-200 leading-snug">
-                    <strong>PDF, EPUB ve Kindle (.mobi)</strong> formatlarında
+                    <strong>PDF formatında</strong> (telefon, tablet, bilgisayar ve Kindle)
                   </span>
                 </div>
 

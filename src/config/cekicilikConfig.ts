@@ -189,7 +189,7 @@ export const CEKICILIK_PRODUCTS: {
       "Kargo bekleme veya adres girme süreçleriyle vakit kaybetmeyin. Ödemenizin ardından e-kitabınız (dijital formatta) doğrudan e-posta adresinize gönderilir. Telefon, tablet veya bilgisayarınızdan hemen okumaya başlayın.",
     features: [
       "Tam Metin (Tüm bölümler ve karanlık çekim yasaları)",
-      "PDF, EPUB ve Kindle (.mobi) formatlarında",
+      "PDF formatında (telefon, tablet, bilgisayar ve Kindle)",
       "Ömür boyu erişim ve dijital revizyon güncellemeleri",
       "Fiziksel kargo beklemeden, e-posta ile dijital teslimat",
     ],

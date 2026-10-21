@@ -50,7 +50,7 @@ export const VAZGECILMEZ_BOOK = {
     reviewBody: r.text,
   })),
   offers: [
-    offer(VAZGECILMEZ_CONFIG.ebook.price, `${SITE}/#fiyat-kartlari`, "InStock", "E-Kitap (PDF, EPUB, Kindle)"),
+    offer(VAZGECILMEZ_CONFIG.ebook.price, `${SITE}/#fiyat-kartlari`, "InStock", "E-Kitap (PDF)"),
     offer(VAZGECILMEZ_CONFIG.physicalRenovated.price, `${SITE}/#fiyat-kartlari`, "PreOrder", "Fiziksel Kitap, Yenilenmiş Edisyon (isme özel imzalı)"),
   ],
 };
@@ -73,7 +73,7 @@ export const CEKICILIK_BOOK = {
     "Çekicilik Sanatı, yazar Gürkan Özbinici'nin kadınlar için yazdığı ilişki ve erkek psikolojisi kitabıdır. Bir erkeğin zihninin nasıl çalıştığını, kendi standartlarını kurmayı, doğru erkeği seçmeyi ve aşk bombardımanı gibi tuzakları erkenden tanımayı anlatır.",
   keywords: "çekicilik sanatı, gürkan özbinici, kadınlar için ilişki kitabı, erkek psikolojisi kitabı",
   offers: [
-    offer(CEKICILIK_PRODUCTS.ebook.price, `${SITE}/#cekicilik-sanati`, "PreOrder", "E-Kitap (PDF, EPUB, Kindle)"),
+    offer(CEKICILIK_PRODUCTS.ebook.price, `${SITE}/#cekicilik-sanati`, "PreOrder", "E-Kitap (PDF)"),
     offer(CEKICILIK_PRODUCTS.physical.price, `${SITE}/#cekicilik-sanati`, "PreOrder", "Fiziksel Kitap (isme özel imzalı)"),
   ],
 };

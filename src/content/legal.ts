@@ -36,7 +36,7 @@ export const LEGAL: LegalDoc[] = [
 
 ## 1. Teslimat
 
-**E-kitap (PDF, EPUB, Kindle):** Ödemeniz onaylandıktan sonra e-kitap dosyaları sipariş sırasında verdiğiniz e-posta adresine gönderilir. Teslimat genellikle aynı gün içinde yapılır.
+**E-kitap (PDF):** Ödemeniz onaylandıktan sonra e-kitap dosyaları sipariş sırasında verdiğiniz e-posta adresine gönderilir. Teslimat genellikle aynı gün içinde yapılır.
 
 **Fiziksel kitap:** Kitaplar isme özel imzalanarak hazırlanır ve kargo ile gönderilir.
 

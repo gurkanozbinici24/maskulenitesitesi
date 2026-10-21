@@ -29,7 +29,7 @@ const faqs: FaqItem[] = [
     id: 3,
     question: "Dijital E-Kitap paketini satın aldığımda nasıl okuyacağım?",
     answer:
-      "Siparişinizi WhatsApp üzerinden verirsiniz. Ödemeniz onaylandıktan sonra e-kitap (PDF, EPUB ve Kindle formatlarında) e-posta adresinize gönderilir. Kargo beklemeden telefon, tablet veya bilgisayarınızdan okumaya başlayabilirsiniz.",
+      "Siparişinizi kartla ödeyerek ya da WhatsApp üzerinden verirsiniz. Ödemeniz onaylandıktan sonra e-kitap PDF olarak e-posta adresinize gönderilir. Kargo beklemeden telefon, tablet veya bilgisayarınızdan okumaya başlayabilirsiniz.",
   },
   {
     id: 4,
@@ -71,7 +71,7 @@ const faqs: FaqItem[] = [
     id: 10,
     question: "E-kitabı telefonda okuyabilir miyim?",
     answer:
-      "Evet. E-kitap PDF, EPUB ve Kindle formatlarında e-posta adresinize gönderilir. PDF dosyası telefon, tablet veya bilgisayarınızda doğrudan açılır; EPUB ve Kindle sürümlerini dilediğiniz okuma uygulamasıyla kullanabilirsiniz.",
+      "Evet. E-kitap PDF olarak e-posta adresinize gönderilir. PDF dosyası telefon, tablet veya bilgisayarınızda doğrudan açılır; Kindle kullanıyorsanız PDF'i Kindle e-posta adresinize göndererek orada da okuyabilirsiniz.",
   },
   {
     id: 11,

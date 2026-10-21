@@ -137,7 +137,7 @@ Kitapta güvenliğe dair net çizgiler de var. Şiddet, tehdit, zorlama ve aldat
 
 Çekicilik Sanatı **5 Kasım 2026, saat 18:00**'de satışa açılıyor.
 
-- **E-Kitap:** 600 TL. PDF, EPUB ve Kindle formatlarında e-postana gönderilir.
+- **E-Kitap:** 600 TL. PDF formatında e-postana gönderilir.
 - **Fiziksel Kitap:** 1000 TL. Senin adına özel imzalanır, kapıya kadar ücretsiz kargoyla gönderilir.
 - **Koleksiyon Seti:** İki fiziksel kitap birlikte 1700 TL (ayrı ayrı 2000 TL).
 
