@@ -249,6 +249,11 @@ export default function OdemeForm({ urun }: { urun: OdemeUrunu }) {
         Kart bilgilerin bu siteye değil, doğrudan iyzico&apos;nun 3D Secure ödeme ekranına girilir.
       </p>
 
+      <p className="-mt-4 text-center text-xs text-zinc-500">
+        Kredi kartına <strong className="text-zinc-300">12 aya varan taksit</strong> seçeneği ödeme ekranında. Tek çekim
+        fiyatı {urun.fiyat} TL; taksitli seçeneklerde vade farkı uygulanır.
+      </p>
+
       <LegalModal
         isOpen={!!modal}
         onClose={() => setModal(null)}

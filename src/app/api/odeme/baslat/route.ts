@@ -89,7 +89,8 @@ export async function POST(req: Request) {
     basketId: siparis.n,
     paymentGroup: "PRODUCT",
     callbackUrl,
-    enabledInstallments: [1],
+    // Taksit: müşteri seçer, vade farkını müşteri öder (oranlar iyzico panelinde "Taksit ve Komisyon Oranları").
+    enabledInstallments: [1, 2, 3, 6, 9, 12],
     buyer: {
       id: siparis.n,
       name: ad,
