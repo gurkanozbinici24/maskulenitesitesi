@@ -1,4 +1,5 @@
 "use client";
+import CanliNokta from "./ui/CanliNokta";
 import AnindaTeslim from "./ui/AnindaTeslim";
 import { odemeLinki } from "@/lib/odeme/urunler";
 import { KART_ODEME_AKTIF } from "@/config/cekicilikConfig";
@@ -438,7 +439,7 @@ export default function HeroSection() {
                       className="px-3.5 py-1 text-[11px]"
                     >
                       {isOnSale ? (
-                        <span className="w-2 h-2 rounded-full bg-black/70 animate-pulse" />
+                        <CanliNokta />
                       ) : (
                         <Zap className="w-3 h-3 fill-black text-black" />
                       )}
@@ -545,7 +546,7 @@ export default function HeroSection() {
                         status="satista"
                         className="px-3.5 py-1 text-[11px]"
                       >
-                        <span className="w-2 h-2 rounded-full bg-emerald-300 animate-pulse" />
+                        <CanliNokta />
                         <span>SATIŞTA</span>
                       </ThemeBadge>
                     ) : (
@@ -728,7 +729,7 @@ export default function HeroSection() {
                       status="satista"
                       className="px-2.5 py-0.5 text-[9px] whitespace-nowrap"
                     >
-                      <Zap className="w-3 h-3 fill-black text-black" />
+                      {isOnSale ? <CanliNokta size="sm" /> : <Zap className="w-3 h-3 fill-black text-black" />}
                       <span>{isOnSale ? "SATIŞTA" : "E-KİTAP SATIŞTA"}</span>
                     </ThemeBadge>
                     <span className="text-[11px] font-semibold text-mahogany-200">
@@ -773,7 +774,7 @@ export default function HeroSection() {
                         status="satista"
                         className="px-2.5 py-0.5 text-[9px] whitespace-nowrap"
                       >
-                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-300 animate-pulse" />
+                        <CanliNokta size="sm" />
                         <span>SATIŞTA</span>
                       </ThemeBadge>
                     ) : (

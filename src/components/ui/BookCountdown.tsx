@@ -3,6 +3,7 @@
 import PhysicalPerks from "./PhysicalPerks";
 import AnindaTeslim from "./AnindaTeslim";
 import FlashTeslim from "./FlashTeslim";
+import CanliNokta from "./CanliNokta";
 import GiftLink from "./GiftLink";
 import React, { useEffect, useState } from "react";
 import {
@@ -212,7 +213,7 @@ export function CekicilikStatusBadge({
     <ThemeBadge theme="kitap2" status={badgeStatus} className={className}>
       {isOnSale ? (
         <>
-          <span className="w-2 h-2 rounded-full bg-emerald-300 animate-pulse" />
+          <CanliNokta />
           <span>{badgeLabel}</span>
         </>
       ) : (
