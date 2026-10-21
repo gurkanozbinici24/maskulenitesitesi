@@ -3,6 +3,7 @@ import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import OdemeForm from "@/components/odeme/OdemeForm";
+import FlashTeslim from "@/components/ui/FlashTeslim";
 import { KART_ODEME_AKTIF, WHATSAPP_PHONE } from "@/config/cekicilikConfig";
 import { satistaMi, urunBul } from "@/lib/odeme/urunler";
 import { Lock, Package, BookOpen } from "lucide-react";
@@ -87,6 +88,8 @@ export default function OdemeSayfasi({ searchParams }: { searchParams: { urun?: 
           <span className="ml-1 text-sm text-gold-400">TL</span>
         </div>
       </div>
+
+      <FlashTeslim tip={urun.tip === "physical" ? "kargo" : "ekitap"} className="mt-3" />
 
       <div className="mt-8">
         <OdemeForm urun={urun} />
