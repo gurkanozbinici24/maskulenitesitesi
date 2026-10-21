@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Gift, Loader2, Lock, PenLine, ShieldCheck, Truck, Mail } from "lucide-react";
+import { BookPlus, Check, Gift, Loader2, Lock, PenLine, ShieldCheck, Truck, Mail } from "lucide-react";
 import LegalModal from "@/components/LegalModal";
 import type { OdemeUrunu } from "@/lib/odeme/urunler";
 
@@ -26,8 +26,24 @@ function Alan({
   );
 }
 
-export default function OdemeForm({ urun }: { urun: OdemeUrunu }) {
+/** Ödeme sayfasındaki "diğer kitabı da ekle" kutusunun bilgisi (sunucuda hesaplanır) */
+export interface EklemeBilgisi {
+  kitap: string;
+  ekFiyat: number;
+  hedefFiyat: number;
+  asilSira: 0 | 1;
+  /** Fizikselde ikinci kitabın normal fiyatı (üstü çizili gösterilir) */
+  normalFiyat?: number;
+}
+
+const KITAP_ADI = ["Vazgeçilmez Olma Sanatı", "Çekicilik Sanatı"] as const;
+
+export default function OdemeForm({ urun, ekleme }: { urun: OdemeUrunu; ekleme?: EklemeBilgisi | null }) {
   const fiziksel = urun.tip === "physical";
+  const [ekle, setEkle] = useState(false);
+  const [imzaEk, setImzaEk] = useState("");
+  const ekli = !!ekleme && ekle;
+  const toplam = ekli ? ekleme!.hedefFiyat : urun.fiyat;
   const [f, setF] = useState({
     ad: "",
     soyad: "",
@@ -61,7 +77,14 @@ export default function OdemeForm({ urun }: { urun: OdemeUrunu }) {
       const res = await fetch("/api/odeme/baslat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...f, urun: urun.id, imza, hediye, sozlesme }),
+        body: JSON.stringify({
+          ...f,
+          urun: urun.id,
+          ekle: ekli,
+          imza: ekli && fiziksel ? (ekleme!.asilSira === 0 ? [imza[0], imzaEk] : [imzaEk, imza[0]]) : imza,
+          hediye,
+          sozlesme,
+        }),
       });
       const j = await res.json();
       if (!res.ok || !j.url) throw new Error(j.hata || "Ödeme başlatılamadı.");
@@ -74,8 +97,10 @@ export default function OdemeForm({ urun }: { urun: OdemeUrunu }) {
 
   const imzaEtiketi = (i: number) =>
     urun.imzaSayisi > 1
-      ? `${i === 0 ? "Vazgeçilmez Olma Sanatı" : "Çekicilik Sanatı"} — imza için isim`
-      : "İmza için isim";
+      ? `${KITAP_ADI[i === 0 ? 0 : 1]} — imza için isim`
+      : ekli
+        ? `${KITAP_ADI[ekleme!.asilSira]} — imza için isim`
+        : "İmza için isim";
 
   return (
     <form onSubmit={gonder} className="space-y-8">
@@ -189,6 +214,17 @@ export default function OdemeForm({ urun }: { urun: OdemeUrunu }) {
                 />
               </Alan>
             ))}
+            {ekli && (
+              <Alan label={`${KITAP_ADI[ekleme!.asilSira === 0 ? 1 : 0]} — imza için isim`}>
+                <input
+                  required
+                  className={giris}
+                  value={imzaEk}
+                  onChange={(e) => setImzaEk(e.target.value)}
+                  placeholder={hediye ? "Hediye edeceğin kişinin adı" : "Kitaba yazılacak isim"}
+                />
+              </Alan>
+            )}
           </fieldset>
         </>
       )}
@@ -196,6 +232,61 @@ export default function OdemeForm({ urun }: { urun: OdemeUrunu }) {
       <Alan label="Sipariş notu (isteğe bağlı)">
         <input className={giris} value={f.not} onChange={set("not")} maxLength={200} />
       </Alan>
+
+      {/* Diğer kitabı da ekle (tek tık) */}
+      {ekleme && (
+        <label
+          className={`group relative block cursor-pointer overflow-hidden rounded-2xl border p-4 transition sm:p-5 ${
+            ekle
+              ? "border-gold-400/80 bg-gradient-to-br from-gold-500/15 via-gold-500/5 to-transparent shadow-gold-glow"
+              : "border-dashed border-gold-500/50 bg-white/[0.02] hover:border-gold-400/80 hover:bg-gold-500/5"
+          }`}
+        >
+          <div className="pointer-events-none absolute inset-x-6 top-0 h-px bg-gradient-to-r from-transparent via-gold-400/70 to-transparent" />
+          <div className="flex items-start gap-3.5">
+            <input
+              type="checkbox"
+              className="sr-only"
+              checked={ekle}
+              onChange={(e) => setEkle(e.target.checked)}
+            />
+            <span
+              aria-hidden
+              className={`mt-0.5 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-md border-2 transition ${
+                ekle ? "border-gold-400 bg-gold-400 text-black" : "border-gold-500/60 bg-black/40 text-transparent"
+              }`}
+            >
+              <Check className="h-4 w-4" strokeWidth={3} />
+            </span>
+            <div className="min-w-0 flex-1">
+              <div className="flex flex-wrap items-center justify-between gap-x-3 gap-y-1">
+                <span className="flex items-center gap-2 text-[15px] font-extrabold text-white">
+                  <BookPlus className="h-4 w-4 flex-shrink-0 text-gold-400" />
+                  {ekleme.kitap} {fiziksel ? "kitabını" : "e-kitabını"} da ekle
+                </span>
+                <span className="flex items-baseline gap-2 whitespace-nowrap font-mono">
+                  {ekleme.normalFiyat && (
+                    <span className="text-sm font-bold text-zinc-500 line-through decoration-crimson-500 decoration-2">
+                      {ekleme.normalFiyat} TL
+                    </span>
+                  )}
+                  <span className="text-lg font-black text-gold-300">+{ekleme.ekFiyat} TL</span>
+                </span>
+              </div>
+              <p className="mt-1.5 text-[13px] leading-relaxed text-zinc-400">
+                {fiziksel
+                  ? `İkinci kitap ${ekleme.normalFiyat ?? ""} TL yerine ${ekleme.ekFiyat} TL. İkisi de isme özel imzalı, aynı pakette, kapına kadar ücretsiz kargo.`
+                  : "İki kitap da saniyeler içinde aynı e-postada. Aynı oyunun diğer tarafı."}
+              </p>
+              {ekle && (
+                <p className="mt-2 text-xs font-bold uppercase tracking-wider text-gold-300">
+                  Eklendi · Toplam {toplam} TL
+                </p>
+              )}
+            </div>
+          </div>
+        </label>
+      )}
 
       {/* Sözleşme */}
       <label className="flex cursor-pointer items-start gap-3 text-sm leading-relaxed text-zinc-300">
@@ -241,7 +332,7 @@ export default function OdemeForm({ urun }: { urun: OdemeUrunu }) {
         className="flex min-h-[56px] w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-gold-300 via-gold-400 to-gold-600 px-6 text-base font-extrabold text-black shadow-gold-glow transition hover:brightness-110 active:scale-[0.99] disabled:cursor-wait disabled:opacity-70"
       >
         {yukleniyor ? <Loader2 className="h-5 w-5 animate-spin" /> : <Lock className="h-5 w-5" />}
-        {yukleniyor ? "Güvenli ödeme ekranı açılıyor..." : `Kartla Güvenli Öde – ${urun.fiyat} TL`}
+        {yukleniyor ? "Güvenli ödeme ekranı açılıyor..." : `Kartla Güvenli Öde – ${toplam} TL`}
       </button>
 
       <p className="flex items-center justify-center gap-2 text-center text-xs text-zinc-500">
@@ -251,7 +342,7 @@ export default function OdemeForm({ urun }: { urun: OdemeUrunu }) {
 
       <p className="-mt-4 text-center text-xs text-zinc-500">
         Kredi kartına <strong className="text-zinc-300">3 taksit</strong> seçeneği ödeme ekranında. Tek çekim
-        fiyatı {urun.fiyat} TL; taksitli seçeneklerde vade farkı uygulanır.
+        fiyatı {toplam} TL; taksitli seçeneklerde vade farkı uygulanır.
       </p>
 
       <LegalModal

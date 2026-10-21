@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { iyzicoHazirMi, iyzicoIstek, type CheckoutBaslatCevap } from "@/lib/odeme/iyzico";
 import { SIPARIS_CEREZI, cerezYaz, kisaSiparis, siparisNoUret, siparisPaketle, type Siparis } from "@/lib/odeme/siparis";
-import { satistaMi, urunBul } from "@/lib/odeme/urunler";
+import { eklemeBul, satistaMi, urunBul } from "@/lib/odeme/urunler";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -30,9 +30,12 @@ export async function POST(req: Request) {
     return hata("Geçersiz istek.");
   }
 
-  const urun = urunBul(temiz(g.urun, 60));
-  if (!urun) return hata("Ürün bulunamadı.");
-  if (!satistaMi(urun)) return hata("Bu ürün henüz satışta değil.");
+  const secilen = urunBul(temiz(g.urun, 60));
+  if (!secilen) return hata("Ürün bulunamadı.");
+  if (!satistaMi(secilen)) return hata("Bu ürün henüz satışta değil.");
+  // "Diğer kitabı da ekle" işaretliyse ikili ürüne geç (fiyat yine sunucuda belirlenir)
+  const ekleme = g.ekle === true ? eklemeBul(secilen) : null;
+  const urun = ekleme ? ekleme.hedefUrun : secilen;
 
   const ad = temiz(g.ad, 50);
   const soyad = temiz(g.soyad, 50);

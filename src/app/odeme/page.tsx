@@ -5,7 +5,7 @@ import Footer from "@/components/Footer";
 import OdemeForm from "@/components/odeme/OdemeForm";
 import FlashTeslim from "@/components/ui/FlashTeslim";
 import { KART_ODEME_AKTIF, WHATSAPP_PHONE } from "@/config/cekicilikConfig";
-import { satistaMi, urunBul } from "@/lib/odeme/urunler";
+import { eklemeBul, satistaMi, urunBul } from "@/lib/odeme/urunler";
 import { Lock, Package, BookOpen } from "lucide-react";
 
 export const metadata: Metadata = {
@@ -59,6 +59,16 @@ export default function OdemeSayfasi({ searchParams }: { searchParams: { urun?: 
   }
 
   const Ikon = urun.tip === "physical" ? Package : BookOpen;
+  const e = eklemeBul(urun);
+  const ekleme = e
+    ? {
+        kitap: e.kitap,
+        ekFiyat: e.ekFiyat,
+        hedefFiyat: e.hedefUrun.fiyat,
+        asilSira: e.asilSira,
+        ...(urun.tip === "physical" ? { normalFiyat: urun.fiyat } : {}),
+      }
+    : null;
 
   return (
     <Kabuk>
@@ -92,7 +102,7 @@ export default function OdemeSayfasi({ searchParams }: { searchParams: { urun?: 
       <FlashTeslim tip={urun.tip === "physical" ? "kargo" : "ekitap"} className="mt-3" />
 
       <div className="mt-8">
-        <OdemeForm urun={urun} />
+        <OdemeForm urun={urun} ekleme={ekleme} />
       </div>
     </Kabuk>
   );
