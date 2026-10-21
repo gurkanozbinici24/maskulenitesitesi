@@ -745,7 +745,7 @@ export default function HeroSection() {
                       <p className="text-xs text-gold-300/90 mt-1">
                         Fiziksel Yenilenmiş Edisyon Şimdi Satışta
                       </p>
-                      <AnindaTeslim tip="fiziksel" size="sm" metin="Fiziksel · Flash kargo, 2 günde elinde" className="mt-2" />
+                      <div className="mt-2.5 w-full flex justify-center"><SatinAlSatiri kitap="kitap1" /></div>
                     </>
                   ) : (
                     <div className="mt-1">
@@ -819,7 +819,7 @@ export default function HeroSection() {
                       <p className="text-xs text-emerald-400 font-medium mt-1">
                         E-Kitap ve Fiziksel Kitap Şimdi Satışta
                       </p>
-                      <AnindaTeslim size="sm" className="mt-2" />
+                      <div className="mt-2.5 w-full flex justify-center"><SatinAlSatiri kitap="kitap2" /></div>
                     </>
                   )}
                 </div>
