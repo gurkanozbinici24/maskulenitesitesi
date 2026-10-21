@@ -203,8 +203,12 @@ function Kart({
         <div className="flex-shrink-0">
           {tema === "set" ? (
             <div className="relative h-[88px] w-[92px]">
-              <Kapak kitap="kitap1" className="absolute left-0 top-0 -rotate-6" />
-              <Kapak kitap="kitap2" className="absolute right-0 top-0 rotate-3" />
+              <div className="absolute left-0 top-1 -rotate-6">
+                <Kapak kitap="kitap1" />
+              </div>
+              <div className="absolute right-0 top-0 rotate-3">
+                <Kapak kitap="kitap2" />
+              </div>
             </div>
           ) : (
             <Kapak kitap={tema} />
