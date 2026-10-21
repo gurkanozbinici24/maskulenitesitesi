@@ -1,10 +1,11 @@
 "use client";
 import AnindaTeslim from "./ui/AnindaTeslim";
+import { odemeLinki } from "@/lib/odeme/urunler";
 
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import dynamic from "next/dynamic";
-import { ArrowRight, Bell, Clock, Flame, Sparkles, Zap } from "lucide-react";
+import { ArrowRight, Bell, Clock, Flame, Package, Sparkles, Zap } from "lucide-react";
 import { ThemeBadge, ThemeButton } from "./ui/ThemeSystem";
 import { useCekicilikLaunchStatus } from "./ui/BookCountdown";
 import { scrollToSection } from "@/lib/scrollToSection";
@@ -468,6 +469,25 @@ export default function HeroSection() {
                     )}
                   </div>
 
+                  {/* 4a. Satış açıldığında: Fiziksel kitap butonu + Flash kargo rozeti (e-kitabın üstünde) */}
+                  {isOnSale && (
+                    <>
+                      <ThemeButton
+                        theme="kitap1"
+                        variant="outline"
+                        size="md"
+                        fullWidth
+                        href={odemeLinki("vazgecilmez-fiziksel-yenilenmis")}
+                        className="w-full max-w-[320px] min-h-[48px] h-[48px]"
+                      >
+                        <Package className="w-4 h-4 flex-shrink-0" />
+                        <span>Fiziksel Kitabı Al – 1000 TL</span>
+                        <ArrowRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
+                      </ThemeButton>
+                      <AnindaTeslim tip="fiziksel" metin="Flash kargo · 2 günde elinde" className="mt-2 mb-3" />
+                    </>
+                  )}
+
                   {/* 4. Satın Alma Butonu (İki Kitapta Aynı Boyut ve Hiza) */}
                   <ThemeButton
                     theme="kitap1"
@@ -617,6 +637,12 @@ export default function HeroSection() {
                       <ArrowRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
                     </ThemeButton>
                   )}
+                  {isOnSale && (
+                    <div className="mt-2.5 flex flex-col items-center gap-2">
+                      <AnindaTeslim />
+                      <AnindaTeslim tip="fiziksel" metin="Fiziksel kitap · Flash kargo, 2 günde elinde" />
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
@@ -742,9 +768,12 @@ export default function HeroSection() {
                     Vazgeçilmez Olma Sanatı
                   </h2>
                   {isOnSale ? (
-                    <p className="text-xs text-gold-300/90 mt-1">
-                      Fiziksel Yenilenmiş Edisyon Şimdi Satışta
-                    </p>
+                    <>
+                      <p className="text-xs text-gold-300/90 mt-1">
+                        Fiziksel Yenilenmiş Edisyon Şimdi Satışta
+                      </p>
+                      <AnindaTeslim tip="fiziksel" size="sm" metin="Fiziksel · Flash kargo, 2 günde elinde" className="mt-2" />
+                    </>
                   ) : (
                     <div className="mt-1">
                       <div className="inline-flex items-center gap-1.5 mt-0.5 px-2.5 py-0.5 rounded-md bg-mahogany-950/90 border border-gold-500/50 text-xs font-mono font-bold text-gold-200 shadow-[0_0_12px_rgba(212,175,55,0.25)]">
@@ -813,9 +842,12 @@ export default function HeroSection() {
                       </span>
                     </div>
                   ) : (
-                    <p className="text-xs text-emerald-400 font-medium mt-1">
-                      E-Kitap ve Fiziksel Kitap Şimdi Satışta
-                    </p>
+                    <>
+                      <p className="text-xs text-emerald-400 font-medium mt-1">
+                        E-Kitap ve Fiziksel Kitap Şimdi Satışta
+                      </p>
+                      <AnindaTeslim size="sm" className="mt-2" />
+                    </>
                   )}
                 </div>
               )}
