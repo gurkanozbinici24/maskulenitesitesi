@@ -116,25 +116,7 @@ export default function BundleSection() {
             </span>
           </div>
 
-          <ul className="mx-auto mt-6 max-w-md space-y-2.5 text-left text-sm text-zinc-300 lg:mx-0">
-            {[
-              "Vazgeçilmez Olma Sanatı (Yenilenmiş Edisyon) + Çekicilik Sanatı",
-              "Kapıya kadar ücretsiz kargo",
-              "İki kitap da isminize özel imzalı",
-            ].map((t) => (
-              <li key={t} className="flex items-start gap-3">
-                <span className="mt-0.5 flex h-4 w-4 flex-shrink-0 items-center justify-center rounded-full border border-gold-500/50 bg-gold-500/15 text-gold-400">
-                  <Check className="h-2.5 w-2.5" />
-                </span>
-                {t}
-              </li>
-            ))}
-          </ul>
-
-          <div className="mt-5 flex justify-center lg:justify-start"><AnindaTeslim tip="fiziksel" metin="İmzalı kitapların 2 gün içinde kapında" /></div>
-          <PhysicalPerks theme="kitap1" className="mx-auto mt-4 max-w-md lg:mx-0" />
-
-          <div className="mx-auto mt-7 max-w-md lg:mx-0" data-sticky-hide>
+          <div className="mx-auto mt-6 max-w-md lg:mx-0" data-sticky-hide>
             {isOnSale && KART_ODEME_AKTIF ? (
               <ThemeButton
                 theme="kitap1"
@@ -202,6 +184,23 @@ export default function BundleSection() {
                 : "Siparişler WhatsApp üzerinden alınır."}
             </p>
           </div>
+          <ul className="mx-auto mt-7 max-w-md space-y-2.5 text-left text-sm text-zinc-300 lg:mx-0">
+            {[
+              "Vazgeçilmez Olma Sanatı (Yenilenmiş Edisyon) + Çekicilik Sanatı",
+              "Kapıya kadar ücretsiz kargo",
+              "İki kitap da isminize özel imzalı",
+            ].map((t) => (
+              <li key={t} className="flex items-start gap-3">
+                <span className="mt-0.5 flex h-4 w-4 flex-shrink-0 items-center justify-center rounded-full border border-gold-500/50 bg-gold-500/15 text-gold-400">
+                  <Check className="h-2.5 w-2.5" />
+                </span>
+                {t}
+              </li>
+            ))}
+          </ul>
+
+          <div className="mt-5 flex justify-center lg:justify-start"><AnindaTeslim tip="fiziksel" metin="İmzalı kitapların 2 gün içinde kapında" /></div>
+          <PhysicalPerks theme="kitap1" className="mx-auto mt-4 max-w-md lg:mx-0" />
         </div>
       </div>
     </section>
