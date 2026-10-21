@@ -4,8 +4,9 @@ import { useState } from "react";
 import { Book3DModel } from "./HeroSection";
 import { Crown, Gem, HeartHandshake } from "lucide-react";
 import { BookCountdown } from "./ui/BookCountdown";
+import { odemeLinki } from "@/lib/odeme/urunler";
 import { ThemeSectionHeader } from "./ui/ThemeSystem";
-import { CEKICILIK_SANATI_CONFIG, CEKICILIK_PREVIEW_PAGES } from "@/config/cekicilikConfig";
+import { CEKICILIK_SANATI_CONFIG, CEKICILIK_PREVIEW_PAGES, KART_ODEME_AKTIF } from "@/config/cekicilikConfig";
 import BookPreview from "./BookPreview";
 import { useCekicilikLaunchStatus } from "./ui/BookCountdown";
 
@@ -98,10 +99,13 @@ export default function CekicilikSection() {
               ))}
             </div>
 
-            <div data-sticky-hide>
-              <BookCountdown theme="kitap2" size="lg" />
-            </div>
-            <div className="mt-6">
+            {/* Satış öncesi: geri sayım bu sütunda. Satışta: fiyat kartları aşağıda tam genişlikte. */}
+            {!isOnSale && (
+              <div data-sticky-hide>
+                <BookCountdown theme="kitap2" size="lg" />
+              </div>
+            )}
+            <div className={isOnSale ? "" : "mt-6"}>
             {CEKICILIK_PREVIEW_PAGES.length > 0 && (
               <BookPreview
                 variant="card"
@@ -112,8 +116,10 @@ export default function CekicilikSection() {
                   isOnSale
                     ? {
                         label: "Hemen Tamamına Eriş – 600 TL",
-                        href: CEKICILIK_SANATI_CONFIG.products.ebook.whatsappUrl,
-                        external: true,
+                        href: KART_ODEME_AKTIF
+                          ? odemeLinki("cekicilik-ekitap")
+                          : CEKICILIK_SANATI_CONFIG.products.ebook.whatsappUrl,
+                        external: !KART_ODEME_AKTIF,
                       }
                     : {
                         label: "5 Kasım'da Çıkıyor · Haber Al",
@@ -127,6 +133,11 @@ export default function CekicilikSection() {
           </div>
         </div>
 
+        {isOnSale && (
+          <div data-sticky-hide className="mt-12 lg:mt-14">
+            <BookCountdown theme="kitap2" size="lg" />
+          </div>
+        )}
       </div>
     </section>
   );

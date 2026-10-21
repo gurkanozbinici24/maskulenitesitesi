@@ -269,8 +269,8 @@ export default function VazgecilmezSection() {
                   pages={VAZGECILMEZ_PREVIEW_PAGES}
                   cta={{
                     label: "Hemen Tamamına Eriş – 600 TL",
-                    href: ebook.whatsappUrl,
-                    external: true,
+                    href: KART_ODEME_AKTIF ? odemeLinki(ebook.id) : ebook.whatsappUrl,
+                    external: !KART_ODEME_AKTIF,
                   }}
                 />
             </div>
