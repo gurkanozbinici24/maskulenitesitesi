@@ -109,8 +109,8 @@ Vazgeçilmez adam, kendine saygı duyan adamdır. Gerisi bunun sonucu.
 
 Vazgeçilmez Olma Sanatı **yalnızca maskulenitesitesi.com.tr üzerinden** satılıyor. Kitapçılarda ya da büyük pazar yerlerinde gördüğün "vazgeçilmez" kitapları benim kitabım değil.
 
-- **E-kitap (PDF):** Ödemeden sonra e-postana otomatik gelir.
-- **Fiziksel baskı:** İsme özel imzalı, ücretsiz kargoyla gelir.
+- [E-kitap (PDF)](/odeme?urun=vazgecilmez-ekitap): Ödemeden sonra e-postana otomatik gelir.
+- [Fiziksel baskı](/#vazgecilmez): İsme özel imzalı, ücretsiz kargoyla gelir.
 
 Almadan önce bakmak istersen kitabın ilk sayfaları sitede ücretsiz açık. Kitabın detaylı özetini ve bölümlerini [Vazgeçilmez Olma Sanatı kitabı](/blog/vazgecilmez-olma-sanati-kitabi) yazısında anlattım. İlişkide saygı konusuna kitaba başlamadan girmek istersen [ilişkide saygı nasıl kazanılır](/blog/iliskide-saygi-nasil-kazanilir) yazısıyla başla.
 
