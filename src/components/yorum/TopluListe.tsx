@@ -38,7 +38,7 @@ export default function TopluListe({ id, kitap, satirlar }: { id: string; kitap:
   };
 
   const mesaj = (link: string) =>
-    `Merhaba, ${kitap} kitabını okuduysan görüşün benim için çok değerli. Sadece sana özel bu linkten puan verip kısa bir yorum bırakabilirsin, 2 dakika sürer: ${link}\n\nGürkan Özbinici`;
+    `Merhaba, ${kitap} kitabını okuduysan görüşün benim için çok değerli. Sadece sana özel bu linkten puan verip kısa bir yorum bırakabilirsin, 30 saniye sürer: ${link}\n\nGürkan Özbinici`;
 
   const kopyala = async (link: string) => {
     try {
