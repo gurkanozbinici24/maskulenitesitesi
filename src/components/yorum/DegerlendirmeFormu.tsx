@@ -2,10 +2,17 @@
 
 import { useState } from "react";
 import { Star } from "lucide-react";
+import { gorunenAdUret } from "@/lib/yorum/isim";
 
 const ETIKETLER = ["", "Hiç beğenmedim", "Beğenmedim", "İdare eder", "Beğendim", "Çok beğendim"];
 
-export default function DegerlendirmeFormu({ bilet, kitap, ornekAd, ornekBasHarf }: { bilet: string; kitap: string; ornekAd: string; ornekBasHarf: string }) {
+export default function DegerlendirmeFormu({ bilet, kitap, sabitAd }: { bilet: string; kitap: string; sabitAd: { ad: string; soyad: string } | null }) {
+  const [ad, setAd] = useState("");
+  const [soyad, setSoyad] = useState("");
+  const kullanilanAd = sabitAd ? sabitAd.ad : ad;
+  const kullanilanSoyad = sabitAd ? sabitAd.soyad : soyad;
+  const ornekAd = gorunenAdUret(kullanilanAd, kullanilanSoyad, false);
+  const ornekBasHarf = gorunenAdUret(kullanilanAd, kullanilanSoyad, true);
   const [puan, setPuan] = useState(0);
   const [uzerinde, setUzerinde] = useState(0);
   const [metin, setMetin] = useState("");
@@ -17,6 +24,7 @@ export default function DegerlendirmeFormu({ bilet, kitap, ornekAd, ornekBasHarf
   async function gonder(e: React.FormEvent) {
     e.preventDefault();
     setHata("");
+    if (!sabitAd && ad.trim().length < 2) return setHata("Lütfen adını yaz.");
     if (!puan) return setHata("Lütfen yıldızlardan birini seç.");
     if (metin.trim().length < 20) return setHata("Yorumun en az 20 karakter olmalı.");
     if (!onay) return setHata("Yorumunun sitede yayınlanmasına onay vermelisin.");
@@ -25,7 +33,7 @@ export default function DegerlendirmeFormu({ bilet, kitap, ornekAd, ornekBasHarf
       const r = await fetch("/api/yorum", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ t: bilet, puan, metin, basHarf, onay }),
+        body: JSON.stringify({ t: bilet, puan, metin, basHarf, onay, ad, soyad }),
       });
       const j = await r.json();
       if (!r.ok) {
@@ -54,6 +62,20 @@ export default function DegerlendirmeFormu({ bilet, kitap, ornekAd, ornekBasHarf
   const gosterilen = uzerinde || puan;
   return (
     <form onSubmit={gonder} className="space-y-6">
+      {!sabitAd && (
+        <div className="grid gap-3 sm:grid-cols-2">
+          <div>
+            <label htmlFor="ad" className="mb-2 block text-sm font-semibold text-zinc-200">Adın</label>
+            <input id="ad" value={ad} onChange={(e) => setAd(e.target.value)} maxLength={30} autoComplete="given-name"
+              className="w-full rounded-xl border border-zinc-700 bg-black/40 px-4 py-3 text-zinc-100 focus:border-gold-500 focus:outline-none" />
+          </div>
+          <div>
+            <label htmlFor="soyad" className="mb-2 block text-sm font-semibold text-zinc-200">Soyadın <span className="font-normal text-zinc-500">(sadece baş harfi görünür)</span></label>
+            <input id="soyad" value={soyad} onChange={(e) => setSoyad(e.target.value)} maxLength={30} autoComplete="family-name"
+              className="w-full rounded-xl border border-zinc-700 bg-black/40 px-4 py-3 text-zinc-100 focus:border-gold-500 focus:outline-none" />
+          </div>
+        </div>
+      )}
       <div>
         <p className="mb-2 text-sm font-semibold text-zinc-200">Puanın</p>
         <div className="flex items-center gap-1" onMouseLeave={() => setUzerinde(0)}>

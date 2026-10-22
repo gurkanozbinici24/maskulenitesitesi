@@ -15,7 +15,8 @@ import {
   type RetGerekcesi,
   type Yorum,
 } from "@/lib/yorum/depo";
-import { veritabaniVarMi } from "@/lib/yorum/redis";
+import { komut, veritabaniVarMi } from "@/lib/yorum/redis";
+import TopluListe, { type TopluSatir } from "@/components/yorum/TopluListe";
 import { oturumAc, oturumKapat, oturumVarMi, sifreDogruMu, yonetimSifresiTanimliMi } from "@/lib/yorum/yonetimOturum";
 import { URUN_SAYFALARI } from "@/lib/merchant/urunSayfalari";
 
@@ -88,6 +89,43 @@ async function linkOlustur(form: FormData) {
   redirect(`/yonetim/yorumlar?link=${encodeURIComponent(link)}&ad=${encodeURIComponent(ad)}&kitap=${kitap}`);
 }
 
+/** Telefonu WhatsApp biçimine çevirir (90XXXXXXXXXX); numara yoksa null */
+function telefonCoz(satir: string): string | null {
+  const r = satir.replace(/[^\d+]/g, "");
+  let d = r.replace(/\D/g, "");
+  if (d.length < 10) return null;
+  if (!r.startsWith("+")) {
+    if (d.startsWith("0")) d = `9${d}`;
+    else if (d.length === 10 && d.startsWith("5")) d = `90${d}`;
+  }
+  return d;
+}
+
+async function topluOlustur(form: FormData) {
+  "use server";
+  yetkiKontrol();
+  const kitap = String(form.get("kitap")) as KitapKey;
+  if (!KITAPLAR.includes(kitap)) redirect("/yonetim/yorumlar?hata=link");
+  const satirlar = String(form.get("liste") || "")
+    .split(/\r?\n/)
+    .map((x) => x.split("|")[0].trim())
+    .filter((x) => x && !x.startsWith("#"));
+  const gorulen = new Set<string>();
+  const sonuc: TopluSatir[] = [];
+  for (const satir of satirlar.slice(0, 500)) {
+    const tel = telefonCoz(satir);
+    const anahtar = tel || satir.toLocaleLowerCase("tr-TR").replace(/[^\p{L}\p{N}._-]/gu, "");
+    if (!anahtar || gorulen.has(anahtar)) continue;
+    gorulen.add(anahtar);
+    // Aynı kişiye tekrar link üretilse bile sipariş no aynı kalır: kişi başı tek yorum
+    const link = degerlendirmeLinki({ n: `WA-${anahtar}`, k: kitap, ad: "", soyad: "", c: "elle", t: Date.now() });
+    sonuc.push({ etiket: satir, tel: tel || undefined, link });
+  }
+  const id = crypto.randomBytes(6).toString("hex");
+  await komut("SET", `toplu:${id}`, JSON.stringify({ kitap, satirlar: sonuc }), "EX", 60 * 60 * 24 * 14);
+  redirect(`/yonetim/yorumlar?toplu=${id}#toplu`);
+}
+
 const tarih = (t: number) => new Date(t).toLocaleString("tr-TR", { dateStyle: "medium", timeStyle: "short", timeZone: "Europe/Istanbul" });
 
 function Yildizlar({ puan }: { puan: number }) {
@@ -153,7 +191,7 @@ function YorumKarti({ y, bekleyen }: { y: Yorum; bekleyen: boolean }) {
 export default async function YonetimYorumlar({
   searchParams,
 }: {
-  searchParams: { hata?: string; ok?: string; link?: string; ad?: string; kitap?: string };
+  searchParams: { hata?: string; ok?: string; link?: string; ad?: string; kitap?: string; toplu?: string };
 }) {
   const kabuk = (icerik: React.ReactNode) => (
     <main className="min-h-screen bg-black px-4 py-10 text-zinc-100">
@@ -198,6 +236,12 @@ export default async function YonetimYorumlar({
       yayinda: await yorumlariGetir(k, "yayinda"),
     })),
   );
+
+  let toplu: { kitap: KitapKey; satirlar: TopluSatir[] } | null = null;
+  if (searchParams.toplu && /^[0-9a-f]{12}$/.test(searchParams.toplu)) {
+    const ham = await komut<string | null>("GET", `toplu:${searchParams.toplu}`);
+    if (ham) toplu = JSON.parse(ham);
+  }
 
   const whatsappMetni = searchParams.link
     ? `Merhaba ${searchParams.ad || ""}, ${KITAP_ADLARI[(searchParams.kitap as KitapKey) || "vazgecilmez"]} kitabını okuduysan görüşün benim için çok değerli. Sadece sana özel bu linkten puan verip kısa bir yorum bırakabilirsin: ${searchParams.link}`
@@ -248,6 +292,28 @@ export default async function YonetimYorumlar({
             </a>
           </div>
         )}
+      </section>
+
+      <section id="toplu" className="mt-8 rounded-xl border border-zinc-800 p-5">
+        <h2 className="text-lg font-bold">Toplu değerlendirme daveti</h2>
+        <p className="mt-1 text-sm text-zinc-400">
+          Her satıra bir alıcı: telefon numarası (ör. +90 532 123 45 67) ya da WhatsApp&apos;ta kayıtlı adı. &quot;|&quot; işaretinden sonrası
+          ve # ile başlayan satırlar yok sayılır. Sadece kitabı satın almış kişileri ekle.
+        </p>
+        <form action={topluOlustur} className="mt-4 space-y-3">
+          <textarea name="liste" rows={8} required placeholder={"+90 532 123 45 67\n@kayitli_isim"} className="w-full rounded-lg border border-zinc-700 bg-zinc-900 p-3 font-mono text-sm" />
+          <div className="flex flex-wrap gap-3">
+            <select name="kitap" className="rounded-lg border border-zinc-700 bg-zinc-900 px-3 py-2">
+              {KITAPLAR.map((k) => (
+                <option key={k} value={k}>
+                  {KITAP_ADLARI[k]}
+                </option>
+              ))}
+            </select>
+            <button className="flex-1 rounded-lg bg-amber-400 py-2 font-bold text-black">Linkleri oluştur</button>
+          </div>
+        </form>
+        {toplu && <TopluListe id={searchParams.toplu!} kitap={KITAP_ADLARI[toplu.kitap]} satirlar={toplu.satirlar} />}
       </section>
 
       {veriler.map(({ k, bekleyen, yayinda }) => {

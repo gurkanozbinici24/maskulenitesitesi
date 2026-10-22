@@ -5,7 +5,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import DegerlendirmeFormu from "@/components/yorum/DegerlendirmeFormu";
 import { KITAP_ADLARI, biletAc } from "@/lib/yorum/token";
-import { dahaOnceYorumYapildiMi, gorunenAdUret } from "@/lib/yorum/depo";
+import { dahaOnceYorumYapildiMi } from "@/lib/yorum/depo";
 import { veritabaniVarMi } from "@/lib/yorum/redis";
 
 export const metadata: Metadata = {
@@ -62,7 +62,7 @@ export default async function DegerlendirSayfasi({ searchParams }: { searchParam
       </div>
       <h1 className="font-cinzel text-[clamp(1.6rem,4vw,2.2rem)] font-bold leading-tight text-white">{kitap}&apos;nı değerlendir</h1>
       <p className="mt-3 text-zinc-300">
-        Merhaba {bilet.ad.split(" ")[0]}, kitabı okuduğun için teşekkürler. Dürüst görüşün diğer okurların karar vermesine yardım ediyor;
+        Merhaba{bilet.ad ? ` ${bilet.ad.split(" ")[0]}` : ""}, kitabı okuduğun için teşekkürler. Dürüst görüşün diğer okurların karar vermesine yardım ediyor;
         beğendiğin kadar beğenmediğin yanları da yazabilirsin.
       </p>
 
@@ -75,8 +75,7 @@ export default async function DegerlendirSayfasi({ searchParams }: { searchParam
           <DegerlendirmeFormu
             bilet={searchParams.t!}
             kitap={kitap}
-            ornekAd={gorunenAdUret(bilet.ad, bilet.soyad, false)}
-            ornekBasHarf={gorunenAdUret(bilet.ad, bilet.soyad, true)}
+            sabitAd={bilet.ad ? { ad: bilet.ad, soyad: bilet.soyad } : null}
           />
         )}
       </div>

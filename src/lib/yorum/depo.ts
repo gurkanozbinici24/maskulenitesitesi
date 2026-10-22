@@ -47,15 +47,8 @@ const k = {
   davetKuyrugu: "yorum-davet-kuyrugu",
 };
 
-export function gorunenAdUret(ad: string, soyad: string, sadeceBasHarf: boolean) {
-  const temiz = (x: string) => x.trim().split(/\s+/)[0] || "";
-  const a = temiz(ad);
-  const s = temiz(soyad);
-  const bas = (x: string) => (x ? `${x[0].toLocaleUpperCase("tr-TR")}.` : "");
-  if (sadeceBasHarf) return [bas(a), bas(s)].filter(Boolean).join(" ") || "Okur";
-  const ilk = a ? a[0].toLocaleUpperCase("tr-TR") + a.slice(1).toLocaleLowerCase("tr-TR") : "Okur";
-  return s ? `${ilk} ${bas(s)}` : ilk;
-}
+export { gorunenAdUret } from "./isim";
+import { gorunenAdUret } from "./isim";
 
 export async function dahaOnceYorumYapildiMi(b: DegerlendirmeBileti) {
   return (await komut<number>("EXISTS", k.kullanildi(b.n, b.k))) === 1;
@@ -63,7 +56,7 @@ export async function dahaOnceYorumYapildiMi(b: DegerlendirmeBileti) {
 
 export async function yorumEkle(
   b: DegerlendirmeBileti,
-  veri: { puan: number; metin: string; sadeceBasHarf: boolean },
+  veri: { puan: number; metin: string; sadeceBasHarf: boolean; ad?: string; soyad?: string },
 ): Promise<"eklendi" | "zaten-var"> {
   const id = crypto.randomBytes(8).toString("hex");
   // Tek sipariş tek yorum: kilit atomik olarak alınır
@@ -76,7 +69,7 @@ export async function yorumEkle(
     kanal: b.c,
     puan: Math.min(5, Math.max(1, Math.round(veri.puan))),
     metin: veri.metin.trim().slice(0, 2000),
-    gorunenAd: gorunenAdUret(b.ad, b.soyad, veri.sadeceBasHarf),
+    gorunenAd: gorunenAdUret(b.ad || veri.ad || "", b.ad ? b.soyad : veri.soyad || "", veri.sadeceBasHarf),
     tarih: Date.now(),
     durum: "beklemede",
   };
