@@ -13,8 +13,8 @@ const post: BlogPost = {
   book: "vazgecilmez",
   category: "Kitaplar",
   cover: "/vazgecilmez-yeni-kapak.jpg",
-  keywords: ["vazgeçilmez olma sanatı", "vazgeçilmez olma sanatı kitabı", "vazgeçilmez olma sanatı gürkan özbinici", "vazgeçilmez olma sanatı özet", "vazgeçilmez olma sanatı pdf", "gürkan özbinici kitap", "erkekler için ilişki kitabı", "maskülenlik kitabı"],
-  related: ["cekicilik-sanati-kitabi", "hangi-kitap-sana-gore", "iyi-cocuk-sendromu"],
+  keywords: ["vazgeçilmez olma sanatı", "vazgeçilmez olma sanatı kitabı", "vazgeçilmez olma kitabı", "vazgeçilmez olma sanatı gürkan özbinici", "vazgeçilmez olma sanatı özet", "vazgeçilmez olma sanatı pdf", "gürkan özbinici kitap", "erkekler için ilişki kitabı", "maskülenlik kitabı"],
+  related: ["vazgecilmez-olma-kitabi", "cekicilik-sanati-kitabi", "hangi-kitap-sana-gore"],
   faq: [
     {
       q: "Vazgeçilmez Olma Sanatı kimin kitabı?",

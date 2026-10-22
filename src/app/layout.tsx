@@ -58,6 +58,7 @@ export const metadata: Metadata = {
     "gurkan ozbinici",
     "vazgeçilmez olma sanatı",
     "vazgecilmez olma sanati",
+    "vazgeçilmez olma kitabı",
     "çekicilik sanatı",
     "cekicilik sanati",
     "maskülenlik",

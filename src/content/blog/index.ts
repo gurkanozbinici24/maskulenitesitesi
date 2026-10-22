@@ -32,6 +32,7 @@ import iyiCocukSendromu from "./posts/iyi-cocuk-sendromu";
 import hangiKitapSanaGore from "./posts/hangi-kitap-sana-gore";
 import vazgecilmezOlmaSanatiKitabi from "./posts/vazgecilmez-olma-sanati-kitabi";
 import cekicilikSanatiKitabi from "./posts/cekicilik-sanati-kitabi";
+import vazgecilmezOlmaKitabi from "./posts/vazgecilmez-olma-kitabi";
 
 export type { BlogPost, BookKey, BlogFaq } from "./types";
 
@@ -68,6 +69,7 @@ export const POSTS: BlogPost[] = [
   hangiKitapSanaGore,
   vazgecilmezOlmaSanatiKitabi,
   cekicilikSanatiKitabi,
+  vazgecilmezOlmaKitabi,
 ].sort((a, b) => b.date.localeCompare(a.date));
 
 export const getPost = (slug: string) => POSTS.find((p) => p.slug === slug);
