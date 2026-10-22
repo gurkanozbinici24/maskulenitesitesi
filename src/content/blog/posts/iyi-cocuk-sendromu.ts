@@ -137,7 +137,7 @@ Bu hafta, gerçekten istemediğin bir şeye "hayır" de. Sadece bir kere. Açık
 
 ## Daha fazlası
 
-"İyi Çocuk Masalının Sonu", [Vazgeçilmez Olma Sanatı](/blog/vazgecilmez-olma-sanati-kitabi) kitabımın ilk bölümü. Bölümün başını [sitede ücretsiz okuyabilirsin](/#vazgecilmez). Kitapta bu döngüden çıkmanın adımlarını 100 kanunla tek tek anlattım. Saygının nasıl inşa edildiğini merak ediyorsan [ilişkide saygı nasıl kazanılır](/blog/iliskide-saygi-nasil-kazanilir) yazısı da bu yazının devamı gibi. İyi çocuk modelinin yerine ne konulması gerektiğini ise [maskülenite nedir](/blog/maskulenite-nedir) yazısında anlattım.
+"İyi Çocuk Masalının Sonu", [Vazgeçilmez Olma Sanatı](/blog/vazgecilmez-olma-sanati-kitabi) kitabımın ilk bölümü. Bölümün başını [sitede ücretsiz okuyabilirsin](/#vazgecilmez). Kitapta bu döngüden çıkmanın adımlarını 100 kanunla tek tek anlattım. Saygının nasıl inşa edildiğini merak ediyorsan [ilişkide saygı nasıl kazanılır](/blog/iliskide-saygi-nasil-kazanilir) yazısı da bu yazının devamı gibi. İyi çocuk modelinin yerine ne konulması gerektiğini ise [maskülenite nedir](/blog/maskulenite-nedir) ve [vazgeçilmez erkek olmak](/blog/vazgecilmez-erkek-olmak) yazılarında anlattım.
 
 Durumunu birebir konuşmak istersen [birebir strateji seansı](/danismanlik) için de başvurabilirsin.`,
 };

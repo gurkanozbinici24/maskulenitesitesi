@@ -26,7 +26,7 @@ export interface BlogPost {
   faq?: BlogFaq[];
   /**
    * Basit markdown:
-   *   boş satır = yeni paragraf, "## " ara başlık, "> " vurgulu alıntı,
+   *   boş satır = yeni paragraf, "## " ara başlık, "### " alt başlık, "> " vurgulu alıntı,
    *   "- " liste maddesi, **kalın**, [metin](/link)
    */
   body: string;

@@ -122,6 +122,8 @@ Sınırını koydun, karşı taraf bunu anladı ve davranışını değiştirdi.
 
 Burada çok insanın yaptığı bir hata var: Eski defterleri açmaya devam etmek. "Ama geçen ay da öyle yapmıştın", "Sana nasıl güveneceğim?" Çekicilik Sanatı'nın "Asaletle Affetmek" bölümünde bunu anlatıyorum: Bedel ödendiyse, konu kapanır. Sınırına saygı gösterildiğinde yeniden yakınlaşırsın. Saygının dili budur: Sınır aşıldığında geri çekil, saygı gösterildiğinde yeniden yaklaş.
 
+Saygının bir adım ötesi vazgeçilmez olmaktır. Bunu [ilişkide vazgeçilmez olmanın 10 kuralı](/blog/vazgecilmez-olmak) yazısında anlattım.
+
 ## Bugün yap
 
 Son bir haftada istemediğin hâlde "evet" dediğin üç durumu yaz. Her birinin yanına, aslında ne söylemek istediğini tek cümleyle yaz. Bir dahaki benzer durumda o cümleyi kur ve sus. İlk seferinde zor gelecek. Üçüncü seferinde, karşındaki insanın sana bakışının değiştiğini fark edeceksin.

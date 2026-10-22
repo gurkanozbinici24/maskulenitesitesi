@@ -22,7 +22,7 @@ const post: BlogPost = {
     "ilişkide vazgeçilmez olmak",
     "gürkan özbinici kitap",
   ],
-  related: ["vazgecilmez-olma-sanati-kitabi", "hangi-kitap-sana-gore", "iliskide-saygi-nasil-kazanilir"],
+  related: ["vazgecilmez-olma-sanati-kitabi", "vazgecilmez-erkek-olmak", "vazgecilmez-olmak"],
   faq: [
     {
       q: "Vazgeçilmez olma kitabı hangisi?",
@@ -104,6 +104,8 @@ Kitabın adını yanlış anlayanlar var. O yüzden şunu netleştireyim:
 - **Vazgeçilmez olmak, her şeye katlanmak hiç değildir.** Çizgisine uyulmayan adam yalvarmaz. Yoluna bakar.
 
 Vazgeçilmez adam, kendine saygı duyan adamdır. Gerisi bunun sonucu.
+
+Bu konunun kısa ve uygulamalı hâlini [ilişkide vazgeçilmez olmanın 10 kuralı](/blog/vazgecilmez-olmak) ve [vazgeçilmez erkek olmak](/blog/vazgecilmez-erkek-olmak) yazılarında anlattım.
 
 ## Kitabı nereden alabilirsin?
 

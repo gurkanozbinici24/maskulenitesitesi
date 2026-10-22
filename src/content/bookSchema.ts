@@ -42,7 +42,7 @@ export const VAZGECILMEZ_BOOK = {
   mainEntityOfPage: `${SITE}/blog/vazgecilmez-olma-sanati-kitabi`,
   description:
     "Vazgeçilmez Olma Sanatı, yazar Gürkan Özbinici'nin erkekler için yazdığı, 100 kanun ve 227 sayfadan oluşan ilişki ve maskülenlik kitabıdır. İlişkide saygı kazanmayı, sınır koymayı, kaybetme korkusunu yenmeyi ve kendi hayatının merkezinde durmayı anlatır.",
-  keywords: "vazgeçilmez olma sanatı, gürkan özbinici, erkekler için ilişki kitabı, maskülenlik kitabı",
+  keywords: "vazgeçilmez olma sanatı, vazgeçilmez olma kitabı, vazgeçilmez olmak, vazgeçilmez erkek olmak, gürkan özbinici, erkekler için ilişki kitabı, maskülenlik kitabı",
   // Not: Okur yorumları sayfada görünür ama yapılandırılmış veriye "review" olarak EKLENMEZ.
   // Yıldız puanı (reviewRating/aggregateRating) olmayan yorumlar Search Console'da
   // "aggregateRating nesnesini içermeyen birden fazla yorum var" hatası veriyor;
@@ -69,7 +69,7 @@ export const CEKICILIK_BOOK = {
   datePublished: "2026-11-05",
   description:
     "Çekicilik Sanatı, yazar Gürkan Özbinici'nin kadınlar için yazdığı ilişki ve erkek psikolojisi kitabıdır. Bir erkeğin zihninin nasıl çalıştığını, kendi standartlarını kurmayı, doğru erkeği seçmeyi ve aşk bombardımanı gibi tuzakları erkenden tanımayı anlatır.",
-  keywords: "çekicilik sanatı, gürkan özbinici, kadınlar için ilişki kitabı, erkek psikolojisi kitabı",
+  keywords: "çekicilik sanatı, bir erkek için vazgeçilmez olmak, gürkan özbinici, kadınlar için ilişki kitabı, erkek psikolojisi kitabı",
   offers: [
     offer(CEKICILIK_PRODUCTS.ebook.price, `${SITE}/#cekicilik-sanati`, "PreOrder", "E-Kitap (PDF)"),
     offer(CEKICILIK_PRODUCTS.physical.price, `${SITE}/#cekicilik-sanati`, "PreOrder", "Fiziksel Kitap (isme özel imzalı)"),

@@ -67,6 +67,13 @@ export default function BlogBody({ body }: { body: string }) {
         return (
           <Fragment key={bi}>
             {lines.map((l, li) => {
+              if (l.startsWith("### ")) {
+                return (
+                  <h3 key={li} className="!mt-8 font-playfair text-[clamp(1.15rem,2.4vw,1.4rem)] font-bold leading-snug text-gold-200">
+                    {l.slice(4)}
+                  </h3>
+                );
+              }
               if (l.startsWith("## ")) {
                 return (
                   <h2 key={li} className="!mt-12 font-cinzel text-[clamp(1.35rem,3vw,1.8rem)] font-bold leading-snug text-white">

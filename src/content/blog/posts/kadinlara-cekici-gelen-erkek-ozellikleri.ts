@@ -126,7 +126,7 @@ Vazgeçilmez Olma Sanatı'nın ilk buluşma bölümünde bu iki adamı anlatıyo
 
 ## Bunlar nasıl inşa edilir?
 
-Bu dokuz özelliği bir günde kazanamazsın. Ama her biri küçük, günlük adımlarla inşa edilir:
+Bu dokuz özelliği bir günde kazanamazsın. Ama her biri küçük, günlük adımlarla inşa edilir. Bu özelliklerin bir ilişkide seni nasıl [vazgeçilmez erkek](/blog/vazgecilmez-erkek-olmak) yaptığını ayrıca anlattım.
 
 - Bu hafta takvimine kendi hayatın için üç sabit randevu yaz.
 - Bir plan yapacağın zaman, "Ne yapalım?" yerine net bir teklif yap.
