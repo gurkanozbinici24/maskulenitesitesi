@@ -5,6 +5,8 @@ import { cookies } from "next/headers";
 import { siparisBildir } from "@/lib/odeme/bildirim";
 import { urunBul } from "@/lib/odeme/urunler";
 import { ekitapGonder } from "@/lib/odeme/ekitapTeslim";
+import { degerlendirmeLinki, urundekiKitaplar } from "@/lib/yorum/token";
+import { davetKuyrugunaEkle } from "@/lib/yorum/depo";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -67,13 +69,29 @@ async function isle(req: Request) {
     return git(`/odeme/basarisiz?no=${siparis.n}`);
   }
 
+  const kitaplar = urundekiKitaplar(urun.id);
   let ekitap: "gonderildi" | "hata" | undefined;
   if (urun.tip === "ebook") {
+    let link: string | undefined;
     try {
-      ekitap = (await ekitapGonder(siparis, urun)) === "gonderildi" ? "gonderildi" : "hata";
+      link = degerlendirmeLinki({ n: siparis.n, k: kitaplar[0], ad: siparis.ad, soyad: siparis.soyad, c: "kart", t: Date.now() });
+    } catch (e) {
+      console.error("[yorum] link oluşturulamadı", e);
+    }
+    try {
+      ekitap = (await ekitapGonder(siparis, urun, link)) === "gonderildi" ? "gonderildi" : "hata";
     } catch (e) {
       console.error("[odeme] e-kitap gönderilemedi", siparis.n, e);
       ekitap = "hata";
+    }
+  }
+
+  if (urun.tip === "physical") {
+    // Kitap eline ulaştıktan birkaç gün sonra değerlendirme daveti gitsin (günlük görev gönderir)
+    try {
+      await davetKuyrugunaEkle({ n: siparis.n, ad: siparis.ad, soyad: siparis.soyad, eposta: siparis.eposta, kitaplar, t: Date.now() });
+    } catch (e) {
+      console.error("[yorum] davet kuyruğuna eklenemedi", siparis.n, e);
     }
   }
 

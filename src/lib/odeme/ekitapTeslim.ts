@@ -44,7 +44,7 @@ const kacis = (s: string) =>
   s.replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]!);
 
 /** Sonuç: "gonderildi" | "atlandi" (bu üründe e-kitap yok) — hata olursa fırlatır */
-export async function ekitapGonder(s: Siparis, urun: OdemeUrunu): Promise<"gonderildi" | "atlandi"> {
+export async function ekitapGonder(s: Siparis, urun: OdemeUrunu, degerlendirmeLinki?: string): Promise<"gonderildi" | "atlandi"> {
   const bilgi = DOSYALAR[urun.id];
   if (urun.tip !== "ebook" || !bilgi) return "atlandi";
   const apiKey = env("RESEND_API_KEY");
@@ -63,7 +63,15 @@ export async function ekitapGonder(s: Siparis, urun: OdemeUrunu): Promise<"gonde
     bilgi.kitap,
   )}</strong> e-kitabın bu e-postanın <strong>ekinde (PDF)</strong>.</p>
   <p style="font-size:16px;line-height:1.6">Dosyayı telefonuna, tabletine veya bilgisayarına kaydedip hemen okumaya başlayabilirsin. Kindle kullanıyorsan PDF'i Kindle e-posta adresine göndermen yeterli.</p>
-  <p style="font-size:16px;line-height:1.6">Bu kopya sana özeldir; lütfen paylaşma.</p>
+  <p style="font-size:16px;line-height:1.6">Bu kopya sana özeldir; lütfen paylaşma.</p>${
+    degerlendirmeLinki
+      ? `
+  <div style="margin-top:28px;padding:20px;border:1px solid #3f3f46;border-radius:12px">
+    <p style="font-size:15px;line-height:1.6;margin:0 0 14px">Kitabı bitirdiğinde dürüst görüşünü yazarsan diğer okurlara çok yardımcı olur. Bu link sadece sana özel:</p>
+    <a href="${kacis(degerlendirmeLinki)}" style="display:inline-block;background:#d4af37;color:#000;font-weight:bold;text-decoration:none;padding:12px 20px;border-radius:8px;font-family:Arial,sans-serif">Kitabı değerlendir ★</a>
+  </div>`
+      : ""
+  }
   <p style="font-size:16px;line-height:1.6;margin-top:28px">Kuralları koyan taraf ol.<br><strong style="color:#fff">Gürkan Özbinici</strong></p>
   <hr style="border:none;border-top:1px solid #27272a;margin:28px 0">
   <p style="font-size:12px;color:#71717a;line-height:1.5">Bir sorun yaşarsan bu e-postayı yanıtlayabilir ya da WhatsApp'tan (+90 545 520 79 99) yazabilirsin. maskulenitesitesi.com.tr</p>
@@ -75,7 +83,7 @@ export async function ekitapGonder(s: Siparis, urun: OdemeUrunu): Promise<"gonde
 Sipariş no: ${s.n}
 
 Bu kopya sana özeldir; lütfen paylaşma.
-
+${degerlendirmeLinki ? `\nKitabı bitirdiğinde görüşünü yazmak istersen (sana özel link):\n${degerlendirmeLinki}\n` : ""}
 Gürkan Özbinici
 maskulenitesitesi.com.tr · WhatsApp: +90 545 520 79 99`;
 

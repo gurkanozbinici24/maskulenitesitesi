@@ -7,6 +7,9 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { KART_ODEME_AKTIF, WHATSAPP_PHONE } from "@/config/cekicilikConfig";
 import { odemeLinki } from "@/lib/odeme/urunler";
+import YorumlarBolumu from "@/components/yorum/YorumlarBolumu";
+import { GOSTERIM_ESIGI, ozetCikar, yayindakiYorumlar } from "@/lib/yorum/depo";
+import { urundekiKitaplar } from "@/lib/yorum/token";
 import { SITE, URUN_SAYFALARI, stokDurumu, urunLinki, urunSayfasiBul, urunVerisi } from "@/lib/merchant/urunSayfalari";
 
 /** Satış tarihi geldiğinde sayfa ve stok bilgisi yeniden yayın gerekmeden güncellensin */
@@ -39,12 +42,32 @@ const tarihYaz = (iso?: string) =>
       })
     : "";
 
-export default function UrunSayfasi({ params }: { params: { slug: string } }) {
+export default async function UrunSayfasi({ params }: { params: { slug: string } }) {
   const s = urunSayfasiBul(params.slug);
   if (!s) notFound();
   const u = urunVerisi(s);
   const stok = stokDurumu(s);
   const kartlaAlinabilir = stok.satista && KART_ODEME_AKTIF;
+  const kitaplar = urundekiKitaplar(u.id);
+  const yorumlar = (await Promise.all(kitaplar.map(yayindakiYorumlar))).flat();
+  const ozet = ozetCikar(yorumlar);
+  // Google yıldızları yalnızca tek kitaplı ürün sayfasında ve yeterli değerlendirme varsa
+  const yildizVerisi =
+    kitaplar.length === 1 && ozet.sayi >= GOSTERIM_ESIGI
+      ? {
+          aggregateRating: { "@type": "AggregateRating", ratingValue: String(ozet.ortalama), reviewCount: ozet.sayi, bestRating: "5", worstRating: "1" },
+          review: [...yorumlar]
+            .sort((a, b) => b.tarih - a.tarih)
+            .slice(0, 5)
+            .map((y) => ({
+              "@type": "Review",
+              author: { "@type": "Person", name: y.gorunenAd },
+              datePublished: new Date(y.tarih).toISOString().slice(0, 10),
+              reviewBody: y.metin,
+              reviewRating: { "@type": "Rating", ratingValue: String(y.puan), bestRating: "5", worstRating: "1" },
+            })),
+        }
+      : {};
   const whatsappMetni = encodeURIComponent(`Merhaba, "${u.ad}" için sipariş vermek istiyorum.`);
 
   const jsonLd = {
@@ -57,6 +80,7 @@ export default function UrunSayfasi({ params }: { params: { slug: string } }) {
     sku: u.id,
     brand: { "@type": "Brand", name: "Maskülenite" },
     category: "Kitaplar",
+    ...yildizVerisi,
     offers: {
       "@type": "Offer",
       url: urunLinki(s),
@@ -107,6 +131,13 @@ export default function UrunSayfasi({ params }: { params: { slug: string } }) {
             <p className="text-xs font-bold uppercase tracking-[0.2em] text-gold-400">Gürkan Özbinici</p>
             <h1 className="mt-2 font-cinzel text-[clamp(1.6rem,3.6vw,2.3rem)] font-bold leading-tight text-white">{s.baslik}</h1>
             <p className="mt-2 text-sm text-zinc-400">{s.altBaslik}</p>
+            {ozet.sayi >= GOSTERIM_ESIGI && (
+              <a href="#degerlendirmeler" className="mt-3 inline-flex items-center gap-2 text-sm text-zinc-300 hover:text-gold-300">
+                <span className="text-gold-400">{"★".repeat(Math.round(ozet.ortalama))}{"☆".repeat(5 - Math.round(ozet.ortalama))}</span>
+                <span className="font-semibold">{ozet.ortalama.toLocaleString("tr-TR")}</span>
+                <span className="text-zinc-500">({ozet.sayi} değerlendirme)</span>
+              </a>
+            )}
 
             <div className="mt-6 flex flex-wrap items-end gap-3">
               <div className="font-mono text-4xl font-black text-white">
@@ -202,6 +233,7 @@ export default function UrunSayfasi({ params }: { params: { slug: string } }) {
             </div>
           </div>
         </div>
+        <YorumlarBolumu yorumlar={yorumlar} kitaplar={kitaplar} />
       </section>
       <Footer />
     </main>
