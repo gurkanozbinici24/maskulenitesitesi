@@ -99,6 +99,30 @@ export default function Footer() {
                 </li>
                 <li>
                   <a
+                    href="/urun/vazgecilmez-olma-sanati-fiziksel-kitap"
+                    className="hover:text-gold-400 transition-colors"
+                  >
+                    İmzalı Kitap: Vazgeçilmez Olma Sanatı
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/urun/cekicilik-sanati-fiziksel-kitap"
+                    className="hover:text-gold-400 transition-colors"
+                  >
+                    İmzalı Kitap: Çekicilik Sanatı
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/urun/koleksiyon-seti-iki-kitap"
+                    className="hover:text-gold-400 transition-colors"
+                  >
+                    Koleksiyon Seti (2 İmzalı Kitap)
+                  </a>
+                </li>
+                <li>
+                  <a
                     href="/blog"
                     className="hover:text-gold-400 transition-colors"
                   >

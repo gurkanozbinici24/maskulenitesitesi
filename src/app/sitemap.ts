@@ -1,5 +1,6 @@
 import { MetadataRoute } from "next";
 import { POSTS } from "@/content/blog";
+import { URUN_SAYFALARI } from "@/lib/merchant/urunSayfalari";
 
 const SITE = "https://www.maskulenitesitesi.com.tr";
 
@@ -11,6 +12,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${SITE}/blog`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.7 },
     { url: `${SITE}/teslimat-ve-iade`, lastModified: new Date("2026-10-20"), changeFrequency: "yearly", priority: 0.3 },
     { url: `${SITE}/hizmet-iptal-ve-iade`, lastModified: new Date("2026-10-20"), changeFrequency: "yearly", priority: 0.3 },
+    ...URUN_SAYFALARI.map((u) => ({
+      url: `${SITE}/urun/${u.slug}`,
+      lastModified: new Date(),
+      changeFrequency: "weekly" as const,
+      priority: 0.9,
+    })),
     ...POSTS.map((p) => ({
       url: `${SITE}/blog/${p.slug}`,
       lastModified: new Date(p.updated ?? p.date),
