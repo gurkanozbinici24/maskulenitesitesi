@@ -157,7 +157,7 @@ Partnerinle ya da hayatındaki kişiyle son bir haftanı düşün. Kararları ki
 
 ## Daha fazlası
 
-Bu dengeyi erkek tarafından [Vazgeçilmez Olma Sanatı](/blog/vazgecilmez-olma-sanati-kitabi), kadın tarafından [Çekicilik Sanatı](/blog/cekicilik-sanati-kitabi) kitaplarımda anlattım. İki kitabın farkını ve hangisinin sana uygun olduğunu [hangi kitap sana göre](/blog/hangi-kitap-sana-gore) yazısında bulabilirsin.`,
+Bu dengeyi erkek tarafından [Vazgeçilmez Olma Sanatı](/blog/vazgecilmez-olma-sanati-kitabi), kadın tarafından [Çekicilik Sanatı](/blog/cekicilik-sanati-kitabi) kitaplarımda anlattım. Kadın tarafında çekimin nasıl oluştuğunu [çekici kadın nasıl olunur](/blog/cekici-kadin-nasil-olunur) yazısında anlattım. İki kitabın farkını ve hangisinin sana uygun olduğunu [hangi kitap sana göre](/blog/hangi-kitap-sana-gore) yazısında bulabilirsin.`,
 };
 
 export default post;

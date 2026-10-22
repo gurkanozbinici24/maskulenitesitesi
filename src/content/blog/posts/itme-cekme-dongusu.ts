@@ -127,7 +127,7 @@ Bu döngüden çıkan insanların sık yaşadığı bir şey var: Sonunda tutarl
 
 Bir hafta boyunca her gün, akşam yatmadan önce tek bir satır yaz: "Bugün nasıl hissettim ve bu onun davranışına ne kadar bağlıydı?" Hafta sonunda listeye bak. Eğer iyi ve kötü günlerin tamamen onun sıcak ve soğuk dönemlerine denk geliyorsa, hayatının direksiyonu sende değil demektir. Ve onu geri almanın vakti gelmiştir.
 
-Sıcak-soğuk dinamiğini kadınlar için Çekicilik Sanatı'nın "Sıcak-Soğuk Adam ve Kaybolan Adam" bölümünde, erkekler için Vazgeçilmez Olma Sanatı'nın "Köpek Gibi Çabalama Zavallılığı" ve "İlgiyi Kısmak" bölümlerinde anlattım.`,
+Geri çekilen birine nasıl davranman gerektiğini [erkek neden ilgisini kaybeder](/blog/erkek-neden-ilgisini-kaybeder) yazısında anlattım. Sıcak-soğuk dinamiğini kadınlar için Çekicilik Sanatı'nın "Sıcak-Soğuk Adam ve Kaybolan Adam" bölümünde, erkekler için Vazgeçilmez Olma Sanatı'nın "Köpek Gibi Çabalama Zavallılığı" ve "İlgiyi Kısmak" bölümlerinde anlattım.`,
 };
 
 export default post;

@@ -137,7 +137,7 @@ Gerçek ilgi kırıntı bırakmaz, sofra kurar. Plan yapar, söz verir, sözün�
 
 Son iki ayda bu insanla olan iletişimine bak ve bir kâğıda iki sütun aç. Birincisine "söyledikleri" (planlar, sözler, iltifatlar), ikincisine "yaptıkları" (gerçekleşen buluşmalar, tutulan sözler) yaz. İkinci sütun birinciden çok kısaysa, cevabın orada.
 
-Belirsizlik tuzağını kadınlar için Çekicilik Sanatı'nın "Biz Şimdi Neyiz? Rezaleti" ve "Sıcak-Soğuk Adam ve Kaybolan Adam" bölümlerinde, erkekler için Vazgeçilmez Olma Sanatı'nın "Oltayı Yutmamak" bölümünde anlattım.`,
+Ciddi düşünen erkeği oyalayan erkekten nasıl ayıracağını [erkek ciddi mi, oyalıyor mu](/blog/erkek-ciddi-mi-nasil-anlasilir) yazısında ayrıca anlattım. Belirsizlik tuzağını kadınlar için Çekicilik Sanatı'nın "Biz Şimdi Neyiz? Rezaleti" ve "Sıcak-Soğuk Adam ve Kaybolan Adam" bölümlerinde, erkekler için Vazgeçilmez Olma Sanatı'nın "Oltayı Yutmamak" bölümünde anlattım.`,
 };
 
 export default post;

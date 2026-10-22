@@ -22,7 +22,7 @@ const post: BlogPost = {
     "bir erkeğin aklında nasıl kalınır",
     "vazgeçilmez kadın olmak",
   ],
-  related: ["cekicilik-sanati-kitabi", "vazgecilmez-olmak", "ask-bombardimani-nedir"],
+  related: ["cekicilik-sanati-kitabi", "erkegi-kendine-baglamak", "degerli-kadin-ozellikleri"],
   faq: [
     {
       q: "Bir erkek için nasıl vazgeçilmez olunur?",
@@ -116,6 +116,8 @@ Bu konuda internette çok yanlış tavsiye var. Netleştireyim:
 - **Soğuk ve mesafeli olmak değildir.** Sevgini göster. Sadece kendini kaybetme.
 - **Onu değiştirmeye çalışmak değildir.** Vazgeçilmez olmak, yanlış erkeği doğru erkeğe çevirmek değil, doğru erkeği seçebilmektir.
 - **Her şeye katlanmak hiç değildir.** Her şeye katlanan kadın vazgeçilmez değil, vazgeçilmesi kolay kadındır.
+
+Bu konunun devamını [bir erkeği kendine bağlamak](/blog/erkegi-kendine-baglamak) ve [değerli kadın olmak](/blog/degerli-kadin-ozellikleri) yazılarında anlattım.
 
 Bu arada, ilişkinin başında aşırı yoğun ilgi görüyorsan dikkat et. Bu her zaman sevgi değildir. [Aşk bombardımanı](/blog/ask-bombardimani-nedir) yazısında bunu nasıl ayırt edeceğini anlattım.
 

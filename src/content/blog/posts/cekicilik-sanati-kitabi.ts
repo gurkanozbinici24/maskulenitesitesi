@@ -14,7 +14,7 @@ const post: BlogPost = {
   category: "Kitaplar",
   cover: "/blog/cekicilik-sanati-kitabi.jpg",
   keywords: ["çekicilik sanatı", "çekicilik sanatı kitabı", "çekicilik sanatı gürkan özbinici", "çekicilik sanatı özet", "kadınlar için ilişki kitabı", "gürkan özbinici yeni kitap", "erkek psikolojisi kitabı"],
-  related: ["bir-erkek-icin-vazgecilmez-olmak", "vazgecilmez-olma-sanati-kitabi", "hangi-kitap-sana-gore"],
+  related: ["cekici-kadin-nasil-olunur", "erkek-neden-ilgisini-kaybeder", "bir-erkek-icin-vazgecilmez-olmak"],
   faq: [
     {
       q: "Çekicilik Sanatı kimin kitabı?",

@@ -69,7 +69,7 @@ export const CEKICILIK_BOOK = {
   datePublished: "2026-11-05",
   description:
     "Çekicilik Sanatı, yazar Gürkan Özbinici'nin kadınlar için yazdığı ilişki ve erkek psikolojisi kitabıdır. Bir erkeğin zihninin nasıl çalıştığını, kendi standartlarını kurmayı, doğru erkeği seçmeyi ve aşk bombardımanı gibi tuzakları erkenden tanımayı anlatır.",
-  keywords: "çekicilik sanatı, bir erkek için vazgeçilmez olmak, gürkan özbinici, kadınlar için ilişki kitabı, erkek psikolojisi kitabı",
+  keywords: "çekicilik sanatı, çekici kadın nasıl olunur, değerli kadın olmak, erkek neden ilgisini kaybeder, erkeği kendine bağlamak, bir erkek için vazgeçilmez olmak, gürkan özbinici, kadınlar için ilişki kitabı, erkek psikolojisi kitabı",
   offers: [
     offer(CEKICILIK_PRODUCTS.ebook.price, `${SITE}/#cekicilik-sanati`, "PreOrder", "E-Kitap (PDF)"),
     offer(CEKICILIK_PRODUCTS.physical.price, `${SITE}/#cekicilik-sanati`, "PreOrder", "Fiziksel Kitap (isme özel imzalı)"),

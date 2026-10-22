@@ -148,7 +148,7 @@ Eğer bu yazıyı okurken "Bu benim ilişkim" dediysen, birkaç adım:
 
 Telefonunu aç ve son üç haftada bu insanla olan mesajlaşmalarına bak. Kaç kez "ruh eşi", "hayatımın aşkı", "daha önce hiç böyle hissetmedim" gibi ifadeler geçmiş? Sonra kendine sor: "Bu insan benim hakkında gerçekten ne biliyor?" Cevap azsa, hızı yavaşlat ve tepkisini izle.
 
-Aşk bombardımanını ve diğer maskeleri Çekicilik Sanatı'nın "Erkeğin Maskesi" bölümünde ayrıntılı anlattım.`,
+Gerçek ilgiyi maskeden ayırmak için [erkek ciddi mi, oyalıyor mu](/blog/erkek-ciddi-mi-nasil-anlasilir) yazısına da bak. Aşk bombardımanını ve diğer maskeleri Çekicilik Sanatı'nın "Erkeğin Maskesi" bölümünde ayrıntılı anlattım.`,
 };
 
 export default post;

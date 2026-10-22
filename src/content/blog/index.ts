@@ -37,6 +37,11 @@ import vazgecilmezOlmak from "./posts/vazgecilmez-olmak";
 import vazgecilmezErkekOlmak from "./posts/vazgecilmez-erkek-olmak";
 import birErkekIcinVazgecilmezOlmak from "./posts/bir-erkek-icin-vazgecilmez-olmak";
 import vazgecilmezOlmakSozleri from "./posts/vazgecilmez-olmak-sozleri";
+import cekiciKadinNasilOlunur from "./posts/cekici-kadin-nasil-olunur";
+import erkekNedenIlgisiniKaybeder from "./posts/erkek-neden-ilgisini-kaybeder";
+import erkekCiddiMiNasilAnlasilir from "./posts/erkek-ciddi-mi-nasil-anlasilir";
+import erkegiKendineBaglamak from "./posts/erkegi-kendine-baglamak";
+import degerliKadinOzellikleri from "./posts/degerli-kadin-ozellikleri";
 
 export type { BlogPost, BookKey, BlogFaq } from "./types";
 
@@ -78,6 +83,11 @@ export const POSTS: BlogPost[] = [
   vazgecilmezErkekOlmak,
   birErkekIcinVazgecilmezOlmak,
   vazgecilmezOlmakSozleri,
+  cekiciKadinNasilOlunur,
+  erkekNedenIlgisiniKaybeder,
+  erkekCiddiMiNasilAnlasilir,
+  erkegiKendineBaglamak,
+  degerliKadinOzellikleri,
 ].sort((a, b) => b.date.localeCompare(a.date));
 
 export const getPost = (slug: string) => POSTS.find((p) => p.slug === slug);
