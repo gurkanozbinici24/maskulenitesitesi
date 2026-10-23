@@ -13,7 +13,12 @@ const post: BlogPost = {
   book: "vazgecilmez",
   category: "Manipülasyon",
   cover: "/blog/guilt-trip-nedir.jpg",
-  keywords: ["guilt trip nedir", "suçluluk hissettirme", "duygusal şantaj", "ilişkide manipülasyon", "vicdan yaptırmak"],
+  keywords: [
+    "guilt trip nedir",
+    "suçluluk hissettirme",
+    "duygusal şantaj",
+    "vicdan yaptırmak",
+  ],
   related: ["gaslighting-nedir", "iliskide-saygi-nasil-kazanilir", "narsist-sevgili-belirtileri"],
   faq: [
     {

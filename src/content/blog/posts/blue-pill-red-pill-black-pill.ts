@@ -15,10 +15,8 @@ const post: BlogPost = {
   cover: "/blog/blue-pill-red-pill-black-pill.jpg",
   keywords: [
     "blue pill",
-    "red pill",
     "black pill",
     "mavi hap",
-    "kırmızı hap",
     "siyah hap",
     "blackpill nedir",
     "bluepill nedir",

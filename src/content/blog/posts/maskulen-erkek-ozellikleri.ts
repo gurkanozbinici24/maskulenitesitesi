@@ -2,7 +2,7 @@ import type { BlogPost } from "../types";
 
 const post: BlogPost = {
   slug: "maskulen-erkek-ozellikleri",
-  title: "Maskülenlik Nedir? Maskülen Erkeğin 12 Özelliği",
+  title: "Maskülen Erkek Özellikleri: Maskülen Erkeğin 12 Özelliği",
   description:
     "Maskülen erkek nasıl olur? Zihin, beden ve ilişki olmak üzere üç temelde maskülen erkeğin 12 özelliği ve kendini test etmen için 12 soru.",
   excerpt:
@@ -13,8 +13,7 @@ const post: BlogPost = {
   category: "Maskülenlik",
   cover: "/blog/maskulen-erkek-ozellikleri.jpg",
   keywords: [
-    "maskülenlik",
-    "maskülenlik nedir",
+    "maskülen erkeğin özellikleri",
     "maskülen erkek",
     "maskülen erkek özellikleri",
     "maskülen erkek nasıl olur",
@@ -24,8 +23,8 @@ const post: BlogPost = {
   related: ["maskulenite-nedir", "kadinlara-cekici-gelen-erkek-ozellikleri", "ozdeger-nedir", "red-pill-nedir"],
   faq: [
     {
-      q: "Maskülenlik nedir?",
-      a: "Maskülenlik, erkeksilik hâlidir. Bu blogda maskülenlik; amacı olan, disiplinli, duygusal olarak sağlam, sorumluluk alan, bedenine yatırım yapan, sınır koyabilen, sözünü tutan ve koruyucu olan bir erkeğin duruşu olarak ele alınır.",
+      q: "Maskülen erkek özellikleri nelerdir?",
+      a: "Maskülen erkek; amacı olan, disiplinli, duygusal olarak sağlam, sorumluluk alan, bedenine yatırım yapan, sınır koyabilen, sözünü tutan ve koruyucu olan bir erkektir. Bu özellikler zihin, beden ve ilişki olmak üzere üç temelde toplanır.",
     },
     {
       q: "Maskülen erkek nasıl olunur?",
@@ -48,9 +47,9 @@ Bu yazıda maskülenliği bir yapı olarak ele alacağım. Üç temel üzerine k
 
 Maskülenitenin ne olduğunu ve ne olmadığını ayrıntılı olarak [maskülenite nedir](/blog/maskulenite-nedir) yazısında anlattım. Bu yazı onun pratik devamı.
 
-## Maskülenlik nedir? Kısa bir tanım
+## Önce kısa bir tanım
 
-Maskülenlik, Fransızca "masculin" kökünden gelen "maskülen" kelimesinden türetilmiştir ve "erkeksilik" anlamına gelir.
+Kelimenin anlamını, kökenini ve maskülenlik hakkında yanlış bilinenleri [maskülenite nedir](/blog/maskulenite-nedir) yazısında ayrıntılı anlattım. Burada sadece özelliklere odaklanıyorum.
 
 Benim tanımım şu: **Maskülenlik, kendi hayatının yönetimini eline almış, sözünün arkasında duran, sınırı olan ve baskı altında sakin kalabilen bir adamın duruşudur.**
 

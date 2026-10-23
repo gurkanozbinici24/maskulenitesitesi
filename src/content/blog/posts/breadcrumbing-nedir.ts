@@ -13,7 +13,12 @@ const post: BlogPost = {
   book: "ikisi",
   category: "Manipülasyon",
   cover: "/blog/breadcrumbing-nedir.jpg",
-  keywords: ["breadcrumbing nedir", "ekmek kırıntısı atmak", "situationship nedir", "biz şimdi neyiz", "belirsiz ilişki"],
+  keywords: [
+    "breadcrumbing nedir",
+    "ekmek kırıntısı atmak",
+    "situationship nedir",
+    "belirsiz ilişki",
+  ],
   related: ["itme-cekme-dongusu", "eski-sevgili-yazinca-ne-yapmali", "mesajlasma-hatalari"],
   faq: [
     {

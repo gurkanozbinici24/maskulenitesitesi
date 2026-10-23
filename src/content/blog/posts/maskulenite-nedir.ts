@@ -18,7 +18,6 @@ const post: BlogPost = {
     "maskülenite nedir",
     "maskülen",
     "maskülen ne demek",
-    "maskülen erkek",
     "maskülenlik",
     "maskulenite",
     "erkeklik nedir",
@@ -80,7 +79,7 @@ Bu tanımda kas yok. Para yok. Sert ses yok. Kadınlara tepeden bakmak hiç yok.
 
 ## Maskülen erkeğin temel özellikleri
 
-Maskülen erkeği tek cümleyle anlatmak zor. Ama gündelik hayatta onu ele veren birkaç işaret var:
+Maskülen erkeği tek cümleyle anlatmak zor. Ama gündelik hayatta onu ele veren birkaç işaret var. (Zihin, beden ve ilişki başlıklarında ayrıntılı listeyi ve kendini test edeceğin 12 soruyu [maskülen erkek özellikleri](/blog/maskulen-erkek-ozellikleri) yazısında bulabilirsin.)
 
 - **Yönü var.** Hayatının merkezinde bir hedef, bir misyon var. Günü başkalarının planlarına göre şekillenmiyor.
 - **Sözü senettir.** "Yaparım" dediğini yapar. Yapamayacaksa baştan söyler.

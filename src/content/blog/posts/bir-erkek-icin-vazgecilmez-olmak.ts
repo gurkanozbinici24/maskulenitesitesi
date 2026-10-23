@@ -21,7 +21,6 @@ const post: BlogPost = {
     "erkekler hangi kadından vazgeçmez",
     "erkeğin vazgeçemeyeceği kadın davranışları",
     "bir erkeğin aklında nasıl kalınır",
-    "vazgeçilmez kadın olmak",
   ],
   related: ["cekicilik-sanati-kitabi", "erkegi-kendine-baglamak", "degerli-kadin-ozellikleri"],
   faq: [

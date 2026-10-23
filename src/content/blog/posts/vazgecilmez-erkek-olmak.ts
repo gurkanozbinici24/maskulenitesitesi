@@ -21,7 +21,6 @@ const post: BlogPost = {
     "kadın neden erkekten vazgeçer",
     "vazgeçilmez erkek özellikleri",
     "ilişkide vazgeçilmez erkek",
-    "vazgeçilmez olma sanatı",
   ],
   related: ["vazgecilmez-olma-sanati-kitabi", "iyi-cocuk-sendromu", "iliskide-saygi-nasil-kazanilir"],
   faq: [

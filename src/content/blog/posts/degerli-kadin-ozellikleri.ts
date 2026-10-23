@@ -20,7 +20,6 @@ const post: BlogPost = {
     "kendi değerini bilen kadın",
     "kadın kendi değerini nasıl bilir",
     "standartları olan kadın",
-    "çekicilik sanatı",
   ],
   related: ["cekicilik-sanati-kitabi", "cekici-kadin-nasil-olunur", "ozdeger-nedir"],
   faq: [

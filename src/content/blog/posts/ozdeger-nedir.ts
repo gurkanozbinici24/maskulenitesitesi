@@ -13,7 +13,12 @@ const post: BlogPost = {
   book: "ikisi",
   category: "Değer ve Saygı",
   cover: "/blog/ozdeger-nedir.jpg",
-  keywords: ["özdeğer nedir", "öz değer nasıl kazanılır", "kendine değer vermek", "özgüven ve özdeğer farkı", "ilişkide değer görmemek"],
+  keywords: [
+    "özdeğer nedir",
+    "öz değer nasıl kazanılır",
+    "kendine değer vermek",
+    "özgüven ve özdeğer farkı",
+  ],
   related: ["iliskide-saygi-nasil-kazanilir", "simp-ne-demek", "guvensizlik-isaretleri"],
   faq: [
     {

@@ -21,7 +21,6 @@ const post: BlogPost = {
     "erkeklerin çekici bulduğu kadın",
     "çekicilik nedir",
     "çekici kadın özellikleri",
-    "çekicilik sanatı",
   ],
   related: ["cekicilik-sanati-kitabi", "degerli-kadin-ozellikleri", "maskulen-ve-feminen-enerji"],
   faq: [

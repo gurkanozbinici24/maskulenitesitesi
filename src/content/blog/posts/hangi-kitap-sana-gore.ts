@@ -13,7 +13,13 @@ const post: BlogPost = {
   book: "ikisi",
   category: "Kitaplar",
   cover: "/og-paylasim.jpg",
-  keywords: ["vazgeçilmez olma sanatı", "çekicilik sanatı", "gürkan özbinici kitapları", "ilişki kitapları", "hangi kitabı okumalıyım", "koleksiyon seti"],
+  keywords: [
+    "vazgeçilmez olma sanatı mı çekicilik sanatı mı",
+    "vazgeçilmez olma sanatı ile çekicilik sanatı farkı",
+    "gürkan özbinici kitapları",
+    "hangi kitabı okumalıyım",
+    "koleksiyon seti",
+  ],
   related: ["vazgecilmez-olma-sanati-kitabi", "cekicilik-sanati-kitabi", "iyi-cocuk-sendromu"],
   faq: [
     {
@@ -37,7 +43,7 @@ const post: BlogPost = {
 
 Kısa cevap şu: **Vazgeçilmez Olma Sanatı erkekler için, Çekicilik Sanatı kadınlar için yazıldı.**
 
-Ama işin aslı biraz daha ilginç. Çünkü iki kitap aynı masanın iki tarafını anlatıyor. Bu yazıda iki kitabın farkını, durumuna göre hangisiyle başlaman gerektiğini ve ikisini birlikte okumanın sana ne kazandırdığını anlatacağım.
+Ama işin aslı biraz daha ilginç. Çünkü iki kitap aynı masanın iki tarafını anlatıyor. Bu yazıda iki kitabın farkını, durumuna göre hangisiyle başlaman gerektiğini ve ikisini birlikte okumanın sana ne kazandırdığını anlatacağım. Her kitabın kendi konusu ve özeti için [Vazgeçilmez Olma Sanatı kitabı](/blog/vazgecilmez-olma-sanati-kitabi) ve [Çekicilik Sanatı kitabı](/blog/cekicilik-sanati-kitabi) yazılarına bakabilirsin.
 
 ## İki kitabın ortak noktası
 

@@ -21,7 +21,6 @@ const post: BlogPost = {
     "erkek bir kadına ne zaman bağlanır",
     "erkekler kadına nasıl bağlanır",
     "erkeği elde tutmak",
-    "çekicilik sanatı",
   ],
   related: ["cekicilik-sanati-kitabi", "bir-erkek-icin-vazgecilmez-olmak", "baglanma-stilleri"],
   faq: [

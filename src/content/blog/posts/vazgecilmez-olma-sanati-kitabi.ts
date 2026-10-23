@@ -14,7 +14,16 @@ const post: BlogPost = {
   book: "vazgecilmez",
   category: "Kitaplar",
   cover: "/vazgecilmez-yeni-kapak.jpg",
-  keywords: ["vazgeçilmez olma sanatı", "vazgeçilmez olma sanatı kitabı", "vazgeçilmez olma kitabı", "vazgeçilmez olma sanatı gürkan özbinici", "vazgeçilmez olma sanatı özet", "vazgeçilmez olma sanatı pdf", "gürkan özbinici kitap", "erkekler için ilişki kitabı", "maskülenlik kitabı"],
+  keywords: [
+    "vazgeçilmez olma sanatı",
+    "vazgeçilmez olma sanatı kitabı",
+    "vazgeçilmez olma sanatı gürkan özbinici",
+    "vazgeçilmez olma sanatı özet",
+    "vazgeçilmez olma sanatı pdf",
+    "gürkan özbinici kitap",
+    "erkekler için ilişki kitabı",
+    "maskülenlik kitabı",
+  ],
   related: ["vazgecilmez-erkek-olmak", "vazgecilmez-olmak", "vazgecilmez-olma-kitabi"],
   faq: [
     {
@@ -130,6 +139,8 @@ Ama asıl değişim sonra geliyor. Mesajına anında cevap verme zorunluluğu az
 Ve en önemlisi: Karşındaki insanın sana davranışı değişiyor. Çünkü sen kendine farklı davranmaya başlıyorsun.
 
 ## Kimin için yazıldı?
+
+Not: Kitapçılarda adı benzeyen başka bir kitap daha var. İkisinin farkını [vazgeçilmez olma kitabı](/blog/vazgecilmez-olma-kitabi) yazısında anlattım.
 
 Bu kitap özellikle şu durumlardan birini yaşayan erkekler için:
 

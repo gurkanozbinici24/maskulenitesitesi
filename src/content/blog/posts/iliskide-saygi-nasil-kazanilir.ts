@@ -12,7 +12,12 @@ const post: BlogPost = {
   book: "vazgecilmez",
   category: "Değer ve Saygı",
   cover: "/blog/iliskide-saygi-nasil-kazanilir.jpg",
-  keywords: ["ilişkide saygı nasıl kazanılır", "ilişkide saygı", "sevgilim bana saygı duymuyor", "ilişkide sınır koymak", "hayır diyebilmek"],
+  keywords: [
+    "ilişkide saygı nasıl kazanılır",
+    "ilişkide saygı",
+    "sevgilim bana saygı duymuyor",
+    "hayır diyebilmek",
+  ],
   related: ["ozdeger-nedir", "simp-ne-demek", "iyi-cocuk-sendromu"],
   faq: [
     {

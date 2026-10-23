@@ -12,7 +12,11 @@ const post: BlogPost = {
   book: "vazgecilmez",
   category: "Maskülenlik",
   cover: "/blog/iyi-cocuk-sendromu.jpg",
-  keywords: ["iyi çocuk sendromu", "nice guy sendromu", "ilişkide değer görmemek", "ilişkide sınır koymak", "fazla fedakârlık", "maskülenlik"],
+  keywords: [
+    "iyi çocuk sendromu",
+    "nice guy sendromu",
+    "fazla fedakârlık",
+  ],
   related: ["simp-ne-demek", "iliskide-saygi-nasil-kazanilir", "ozdeger-nedir", "vazgecilmez-olma-sanati-kitabi"],
   faq: [
     {

@@ -17,10 +17,8 @@ const post: BlogPost = {
     "ilişkide vazgeçilmez olmak",
     "ilişkilerde vazgeçilmez olmak",
     "vazgeçilmez olmanın yolları",
-    "vazgeçilmez sevgili olmak",
     "bir insanı vazgeçilmez yapan şey",
     "vazgeçilmez nasıl olunur",
-    "vazgeçilmez olma sanatı",
   ],
   related: ["vazgecilmez-erkek-olmak", "bir-erkek-icin-vazgecilmez-olmak", "vazgecilmez-olma-kitabi"],
   faq: [
@@ -115,6 +113,8 @@ Bu konuda çok yanlış tavsiye dolaşıyor. Netleştireyim:
 - **Vazgeçilmez olmak, her şeye katlanmak hiç değildir.** Her şeye katlanan insan vazgeçilmez değil, vazgeçilmesi kolay insandır.
 
 ## Erkeksen ve kadınsan: aynı kural, farklı tuzaklar
+
+Bu yazı herkes için genel kuralları anlatıyor. Kendi tarafına özel rehber için: erkeksen [vazgeçilmez erkek olmak](/blog/vazgecilmez-erkek-olmak), kadınsan [bir erkek için vazgeçilmez olmak](/blog/bir-erkek-icin-vazgecilmez-olmak).
 
 Kurallar aynı ama insanların düştüğü tuzaklar farklı.
 

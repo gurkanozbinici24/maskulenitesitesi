@@ -13,7 +13,12 @@ const post: BlogPost = {
   book: "vazgecilmez",
   category: "Çekim",
   cover: "/blog/kadinlara-cekici-gelen-erkek-ozellikleri.jpg",
-  keywords: ["kadınlara çekici gelen erkek özellikleri", "kadınları etkileyen erkek", "çekici erkek nasıl olunur", "kadınlar nasıl erkekten hoşlanır", "maskülenlik"],
+  keywords: [
+    "kadınlara çekici gelen erkek özellikleri",
+    "kadınları etkileyen erkek",
+    "çekici erkek nasıl olunur",
+    "kadınlar nasıl erkekten hoşlanır",
+  ],
   related: ["guvensizlik-isaretleri", "iliskide-saygi-nasil-kazanilir", "ozdeger-nedir"],
   faq: [
     {
