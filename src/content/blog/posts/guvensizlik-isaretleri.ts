@@ -4,7 +4,7 @@ const post: BlogPost = {
   slug: "guvensizlik-isaretleri",
   title: "Kadınların İtici Bulduğu 9 Güvensizlik İşareti",
   description:
-    "Kadınların erkeklerde itici bulduğu güvensizlik işaretleri: onay dilenmek, kıskançlık krizleri, açıklama yapmak, hızlı cevap hastalığı ve dahası. Farkında olmadan verdiğin sinyaller.",
+    "Kadınların erkeklerde itici bulduğu güvensizlik işaretleri: onay dilenmek, kıskançlık krizleri, sürekli açıklama yapmak ve farkında olmadan verilen sinyaller.",
   excerpt:
     "Güvensizlik çoğu zaman sözle değil, küçük davranışlarla belli olur. Telefon karıştırmak, sürekli onay istemek, her şeyi açıklamak. Farkında olmadan verdiğin 9 sinyali ve yerine ne yapacağını anlattım.",
   date: "2026-10-19",

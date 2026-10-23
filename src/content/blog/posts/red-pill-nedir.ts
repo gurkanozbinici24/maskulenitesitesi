@@ -3,8 +3,9 @@ import type { BlogPost } from "../types";
 const post: BlogPost = {
   slug: "red-pill-nedir",
   title: "Red Pill (Kırmızı Hap) Nedir? İlişkilerde Red Pill Ne Anlatır?",
+  seoTitle: "Red Pill (Kırmızı Hap) Nedir? İlişkilerde Anlamı",
   description:
-    "Red pill nedir, kırmızı hap ne demek? Kavramın Matrix'ten gelen kökeni, ilişkiler dünyasındaki anlamı, doğru gözlemleri, yanlış yorumları ve maskülenite ile red pill arasındaki fark.",
+    "Red pill nedir, kırmızı hap ne demek? Matrix'ten gelen kökeni, ilişkilerdeki anlamı, doğru ve yanlış yorumları ve maskülenite ile red pill farkı.",
   excerpt:
     "Kırmızı hap, ilişkilerdeki pembe masalların yerine gerçeği görmek demek. Ama bu kavram bazen öfkeye ve kadın düşmanlığına dönüşüyor. Red pill'in ne olduğunu, nerede haklı olduğunu ve nerede yoldan çıktığını anlattım.",
   date: "2026-10-20",

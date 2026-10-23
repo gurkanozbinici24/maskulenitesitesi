@@ -4,7 +4,7 @@ const post: BlogPost = {
   slug: "maskulen-erkek-ozellikleri",
   title: "Maskülenlik Nedir? Maskülen Erkeğin 12 Özelliği",
   description:
-    "Maskülenlik nedir, maskülen erkek nasıl olur? Zihin, beden ve ilişkiler olmak üzere üç temelde maskülen erkeğin 12 özelliği, kendini test etmen için 12 soru ve her özelliği geliştirmenin yolu.",
+    "Maskülen erkek nasıl olur? Zihin, beden ve ilişki olmak üzere üç temelde maskülen erkeğin 12 özelliği ve kendini test etmen için 12 soru.",
   excerpt:
     "Maskülenlik bir kostüm değil, üç temel üzerine kurulan bir yapı: zihin, beden ve ilişkiler. Maskülen erkeğin 12 özelliğini, her birinin gündelik hayattaki karşılığını ve kendini dürüstçe ölçebileceğin 12 soruluk bir test hazırladım.",
   date: "2026-10-20",

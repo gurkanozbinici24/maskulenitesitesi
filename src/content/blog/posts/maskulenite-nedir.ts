@@ -4,7 +4,7 @@ const post: BlogPost = {
   slug: "maskulenite-nedir",
   title: "Maskülenite Nedir? Maskülen Ne Demek, Maskülen Erkek Kimdir?",
   description:
-    "Maskülenite nedir, maskülen ne demek? Kelimenin anlamı ve kökeni, maskülen erkeğin özellikleri, maskülenlik hakkında yanlış bilinenler ve gerçek maskülenitenin nasıl inşa edildiği.",
+    "Maskülenite nedir, maskülen ne demek? Kelimenin anlamı ve kökeni, maskülen erkeğin özellikleri ve maskülenlik hakkında yanlış bilinenler.",
   excerpt:
     "Maskülenite kas, sert ses ya da kadınlara tepeden bakmak değil. Kendi hayatının yönetimini eline almış, sözünün arkasında duran, sınırı olan ve sakin kalabilen adamın duruşu. Kelimenin anlamından gündelik hayattaki karşılığına kadar her şeyi anlattım.",
   date: "2026-10-20",

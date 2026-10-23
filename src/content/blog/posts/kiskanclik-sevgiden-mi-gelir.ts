@@ -4,7 +4,7 @@ const post: BlogPost = {
   slug: "kiskanclik-sevgiden-mi-gelir",
   title: "Kıskançlık Sevgiden mi Gelir? Seven Erkek Kıskanır mı?",
   description:
-    "Kıskançlık sevgiden mi gelir, seven erkek kıskanır mı? Sahiplenen kıskançlık ile hastalıklı kıskançlık arasındaki fark, erkek neden kıskanır ve kıskançlık nasıl yönetilir.",
+    "Kıskançlık sevgiden mi gelir, seven erkek kıskanır mı? Sahiplenen kıskançlık ile hastalıklı kıskançlığın farkı ve kıskançlığın nasıl yönetileceği.",
   excerpt:
     "Bana göre seven adam kıskanır. Ama her kıskançlık sevgi değildir. Sahiplenen adamın kıskançlığı ile güvensiz adamın kıskançlığı arasındaki farkı ve çizginin nerede olduğunu anlattım.",
   date: "2026-10-20",

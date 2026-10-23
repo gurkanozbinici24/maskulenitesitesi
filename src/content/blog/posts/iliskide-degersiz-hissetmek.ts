@@ -3,6 +3,7 @@ import type { BlogPost } from "../types";
 const post: BlogPost = {
   slug: "iliskide-degersiz-hissetmek",
   title: "İlişkide Değersiz Hissetmek: Ne Zaman Kalmalı, Ne Zaman Gitmeli?",
+  seoTitle: "İlişkide Değersiz Hissetmek: Kalmalı mı, Gitmeli mi?",
   description:
     "İlişkide değersiz hissetmek seni içten yıpratır. Değersizliğin 6 işaretini ve kalmak ile gitmek arasında karar vermenin yolunu anlatıyorum.",
   excerpt:

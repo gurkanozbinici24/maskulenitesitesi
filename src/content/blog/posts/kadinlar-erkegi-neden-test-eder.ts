@@ -3,6 +3,7 @@ import type { BlogPost } from "../types";
 const post: BlogPost = {
   slug: "kadinlar-erkegi-neden-test-eder",
   title: "Kadınlar Erkeği Neden Test Eder? Sık Görülen 5 Test ve Doğru Tepki",
+  seoTitle: "Kadınlar Erkeği Neden Test Eder? 5 Test ve Cevabı",
   description:
     "Kadınlar erkeği neden test eder? Çoğu zaman bilinçli bir oyun değil, bir güven arayışıdır. Sık görülen 5 testi ve her birine doğru tepkiyi anlatıyorum.",
   excerpt:

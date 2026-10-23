@@ -3,8 +3,9 @@ import type { BlogPost } from "../types";
 const post: BlogPost = {
   slug: "blue-pill-red-pill-black-pill",
   title: "Blue Pill, Red Pill, Black Pill: Farkları Ne? Mavi Hap ve Kırmızı Hap",
+  seoTitle: "Blue Pill, Red Pill, Black Pill: Farkları Ne?",
   description:
-    "Blue pill, red pill, black pill ve purple pill ne demek? Mavi hap, kırmızı hap ve siyah hap bakış açılarının farkları, aynı olaya nasıl baktıkları ve sağlıklı bir erkeğin hangi yolu seçmesi gerektiği.",
+    "Blue pill, red pill, black pill ne demek? Mavi, kırmızı ve siyah hap bakış açılarının farkları ve sağlıklı bir erkeğin hangi yolu seçmesi gerektiği.",
   excerpt:
     "Aynı ayrılığı yaşayan dört erkek, dört farklı sonuca varıyor. Biri hâlâ masala inanıyor, biri uyanıyor, biri umudunu kaybediyor, biri dengeyi buluyor. Mavi, kırmızı, siyah ve mor hap arasındaki farkları anlattım.",
   date: "2026-10-20",

@@ -3,6 +3,7 @@ import type { BlogPost } from "../types";
 const post: BlogPost = {
   slug: "erkegi-kendine-baglamak",
   title: "Bir Erkeği Kendine Bağlamak: Erkek Bir Kadına Ne Zaman Bağlanır?",
+  seoTitle: "Bir Erkeği Kendine Bağlamak: Erkek Ne Zaman Bağlanır?",
   description:
     "Bir erkeği kendine bağlamak için ne yapmalı? Erkek bir kadına ne zaman ve neden bağlanır? Taktik değil, standart: bir erkeğin gerçekten bağlandığı kadın.",
   excerpt:

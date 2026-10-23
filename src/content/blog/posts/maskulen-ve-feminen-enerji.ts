@@ -4,7 +4,7 @@ const post: BlogPost = {
   slug: "maskulen-ve-feminen-enerji",
   title: "Maskülen ve Feminen Enerji Nedir? İlişkide Çekimin Dengesi",
   description:
-    "Maskülen enerji nedir, feminen enerji nedir? İki enerjinin özellikleri, ilişkide çekimi nasıl etkilediği, dengesizlik işaretleri ve erkekler ile kadınlar için dengeyi kurmanın yolları.",
+    "Maskülen ve feminen enerji nedir? İki enerjinin özellikleri, ilişkide çekimi nasıl etkilediği, dengesizlik işaretleri ve dengeyi kurmanın yolları.",
   excerpt:
     "İki insan arasındaki çekimin büyük kısmı, ikisinin aynı anda aynı rolü oynamamasından gelir. Maskülen ve feminen enerjinin ne olduğunu, ne olmadığını ve ilişkide dengenin neden bozulduğunu anlattım.",
   date: "2026-10-20",

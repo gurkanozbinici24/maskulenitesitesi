@@ -3,8 +3,9 @@ import type { BlogPost } from "../types";
 const post: BlogPost = {
   slug: "breadcrumbing-nedir",
   title: "Ekmek Kırıntısı Atmak (Breadcrumbing) Nedir? Seni Yarı Yolda Tutanlar",
+  seoTitle: "Breadcrumbing (Ekmek Kırıntısı Atmak) Nedir?",
   description:
-    "Breadcrumbing (ekmek kırıntısı atmak) nedir? Seni ne bırakan ne de sahiplenen insanları tanımanın yolları, situationship tuzağı ve net bir cevap için hazır cümleler.",
+    "Breadcrumbing (ekmek kırıntısı atmak) nedir? Seni ne bırakan ne sahiplenen insanı tanımanın yolları ve net bir cevap almak için hazır cümleler.",
   excerpt:
     "Ara sıra bir story beğenisi, gece yarısı bir \"uyudun mu\", ayda bir \"bir ara görüşelim.\" Seni ne bırakan ne de sahiplenen insanların taktiğine ekmek kırıntısı atmak deniyor. Nasıl tanınır, nasıl bitirilir, anlattım.",
   date: "2026-10-19",

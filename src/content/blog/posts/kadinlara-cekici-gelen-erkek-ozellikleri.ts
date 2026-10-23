@@ -3,8 +3,9 @@ import type { BlogPost } from "../types";
 const post: BlogPost = {
   slug: "kadinlara-cekici-gelen-erkek-ozellikleri",
   title: "Kadınlara Çekici Gelen Erkek Özellikleri: Taktik Değil, Karakter",
+  seoTitle: "Kadınlara Çekici Gelen Erkek Özellikleri",
   description:
-    "Kadınlara çekici gelen erkek özellikleri neler? Kendi hayatı olan, net, sözünün eri, sakin ve sınırları olan erkek. Ezber taktikler yerine karakterle çekim yaratmanın yolu.",
+    "Kadınlara çekici gelen erkek özellikleri neler? Kendi hayatı olan, net, sözünün eri ve sakin erkek. Ezber taktik yerine karakterle çekim yaratmanın yolu.",
   excerpt:
     "Ezberlenmiş açılış cümleleri, pahalı hediyeler, \"alfa\" pozları. Hiçbiri kalıcı bir çekim yaratmaz. Kadınları gerçekten etkileyen erkek özelliklerini ve bunların nasıl inşa edildiğini anlattım.",
   date: "2026-10-19",

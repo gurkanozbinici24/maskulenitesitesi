@@ -3,6 +3,7 @@ import type { BlogPost } from "../types";
 const post: BlogPost = {
   slug: "vazgecilmez-olmak-sozleri",
   title: "Vazgeçilmez Olmak Sözleri: Kendine Saygı ve İlişki Üzerine 30 Söz",
+  seoTitle: "Vazgeçilmez Olmak Sözleri: Kendine Saygı Üzerine 30 Söz",
   description:
     "Vazgeçilmez olmak sözleri: kendine saygı, sınır koymak ve değerini bilmek üzerine Gürkan Özbinici'den paylaşılabilir 30 kısa söz. Kopyala, paylaş.",
   excerpt:

@@ -3,6 +3,7 @@ import type { BlogPost } from "../types";
 const post: BlogPost = {
   slug: "cekici-kadin-nasil-olunur",
   title: "Çekici Kadın Nasıl Olunur? Cazibenin Güzellikle İlgisi Olmayan 7 Sırrı",
+  seoTitle: "Çekici Kadın Nasıl Olunur? Güzellikten Öte 7 Sır",
   description:
     "Çekici kadın nasıl olunur? Cazibe yüzle değil duruşla başlar. Bir erkeğin gözünde çekici kadını ayıran 7 özellik ve kadınların en sık düştüğü tuzaklar.",
   excerpt:

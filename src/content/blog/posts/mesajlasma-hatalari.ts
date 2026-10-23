@@ -4,7 +4,7 @@ const post: BlogPost = {
   slug: "mesajlasma-hatalari",
   title: "Mesajlaşmada En Sık Yapılan 8 Hata ve Yerine Ne Yapmalı?",
   description:
-    "Mesajlaşmada en sık yapılan hatalar: hızlı cevap hastalığı, paragraf paragraf mesajlar, mesajla kavga, ikinci mesaj, son görülme takibi. Her birinin yerine ne yapmalı?",
+    "Mesajlaşmada en sık yapılan 8 hata: hızlı cevap hastalığı, paragraf mesajlar, mesajla kavga, ikinci mesaj, son görülme takibi ve yerine ne yapmalı.",
   excerpt:
     "Gerçek hayatta sakin ve kendinden emin olan birçok insan, klavyenin başına geçince bambaşka birine dönüşür. Mesajlaşmada yapılan 8 yaygın hatayı ve her birinin yerine ne yapacağını anlattım.",
   date: "2026-10-19",

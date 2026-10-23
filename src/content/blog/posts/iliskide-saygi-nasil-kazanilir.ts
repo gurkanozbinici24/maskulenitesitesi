@@ -4,7 +4,7 @@ const post: BlogPost = {
   slug: "iliskide-saygi-nasil-kazanilir",
   title: "İlişkide Saygı Nasıl Kazanılır? Saygı Dilenmez, İnşa Edilir",
   description:
-    "İlişkide saygı nasıl kazanılır? Sınır koymak, hayır diyebilmek, kendi hayatını korumak ve gidebilme gücü. Saygının neden lafla değil davranışla kurulduğunu anlattım.",
+    "İlişkide saygı nasıl kazanılır? Sınır koymak, hayır diyebilmek, kendi hayatını korumak ve gidebilme gücü: saygı lafla değil davranışla kurulur.",
   excerpt:
     "Saygı istenerek, bağırarak ya da uzun konuşmalarla kazanılmaz. Sınır çizilerek ve o sınır korunarak kazanılır. İlişkide saygıyı inşa eden davranışları ve saygıyı yerle bir eden hataları anlattım.",
   date: "2026-10-19",

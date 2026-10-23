@@ -4,7 +4,7 @@ const post: BlogPost = {
   slug: "iyi-cocuk-sendromu",
   title: "İyi Çocuk Sendromu: Fazla Fedakârlık Neden Saygı Getirmez?",
   description:
-    "Her dediğini yapıp alttan aldığın hâlde neden değer görmüyorsun? İyi çocuk sendromunun işaretleri, gerçek senaryolar ve ilişkide sınır koyarak döngüden çıkmanın yolları.",
+    "Her dediğini yapıp alttan aldığın hâlde neden değer görmüyorsun? İyi çocuk sendromunun işaretleri ve sınır koyarak bu döngüden çıkmanın yolları.",
   excerpt:
     "Her mesajına saniyesinde cevap verdin, her isteğini yaptın, yine de o başkasını seçti. Bunun bir tesadüf olmadığını, iyi çocuk sendromunun nereden geldiğini ve döngüden nasıl çıkılacağını anlattım.",
   date: "2026-10-19",

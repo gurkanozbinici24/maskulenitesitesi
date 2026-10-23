@@ -4,7 +4,7 @@ const post: BlogPost = {
   slug: "itme-cekme-dongusu",
   title: "İtme-Çekme Döngüsü: Bir Yakın Bir Uzak Davranan Partner",
   description:
-    "İtme-çekme (push-pull) döngüsü nedir? Bir sıcak bir soğuk davranan partner neden bu kadar bağımlılık yapar, sağlıklı mesafeden farkı ne ve döngüden nasıl çıkılır?",
+    "İtme-çekme döngüsü nedir? Bir sıcak bir soğuk davranan partner neden bağımlılık yapar, sağlıklı mesafeden farkı ne ve döngüden nasıl çıkılır?",
   excerpt:
     "Bir hafta göklere çıkarıyor, bir hafta yok oluyor. Sen her seferinde o sıcak günleri geri getirmek için çabalıyorsun. Bu döngünün neden bu kadar bağlayıcı olduğunu ve nasıl kırılacağını anlattım.",
   date: "2026-10-19",

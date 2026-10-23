@@ -3,6 +3,7 @@ import type { BlogPost } from "../types";
 const post: BlogPost = {
   slug: "no-contact-kurali",
   title: "İletişimi Kesme Kuralı (No Contact): Neden İşe Yarar, Nasıl Uygulanır?",
+  seoTitle: "No Contact (İletişimi Kesme) Kuralı Nasıl Uygulanır?",
   description:
     "No Contact (iletişimi kesme) kuralı nedir, neden işe yarar, kaç gün sürmeli? Ayrılık sonrası temas kesmenin adım adım uygulaması ve en sık yapılan hatalar.",
   excerpt:

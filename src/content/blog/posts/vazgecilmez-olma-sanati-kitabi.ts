@@ -3,8 +3,9 @@ import type { BlogPost } from "../types";
 const post: BlogPost = {
   slug: "vazgecilmez-olma-sanati-kitabi",
   title: "Vazgeçilmez Olma Sanatı Kitabı (Gürkan Özbinici): Konusu, Özeti ve Kimin İçin",
+  seoTitle: "Vazgeçilmez Olma Sanatı Kitabı: Konusu ve Özeti",
   description:
-    "Vazgeçilmez Olma Sanatı, Gürkan Özbinici'nin erkekler için yazdığı 100 kanunluk ilişki kitabı. Konusu, özeti, bölümleri, kimin için yazıldığı ve satın alma seçenekleri.",
+    "Vazgeçilmez Olma Sanatı, Gürkan Özbinici'nin erkekler için yazdığı 100 kanunluk ilişki kitabı. Konusu, özeti, bölümleri ve kimin için yazıldığı.",
   excerpt:
     "100 kanun, 227 sayfa ve tek bir hedef: ilişkide kuralları koyan taraf olmak. Kitabın ne anlattığını, hangi bölümlerden oluştuğunu, kimin için yazıldığını ve nasıl okunması gerektiğini anlattım.",
   date: "2026-10-19",

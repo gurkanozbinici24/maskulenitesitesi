@@ -3,6 +3,7 @@ import type { BlogPost } from "../types";
 const post: BlogPost = {
   slug: "vazgecilmez-olma-kitabi",
   title: "Vazgeçilmez Olma Kitabı: Vazgeçilmez Olma Sanatı mı, Vazgeçilmez Olmanın Sırrı mı?",
+  seoTitle: "Vazgeçilmez Olma Kitabı: Hangi Kitap, Farkı Ne?",
   description:
     "Vazgeçilmez olma kitabı arıyorsan iki farklı kitapla karşılaşırsın. Gürkan Özbinici'nin Vazgeçilmez Olma Sanatı ile diğerinin farkı ne, hangisi sana göre?",
   excerpt:

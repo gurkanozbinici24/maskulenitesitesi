@@ -3,6 +3,7 @@ import type { BlogPost } from "../types";
 const post: BlogPost = {
   slug: "ozdeger-nedir",
   title: "Özdeğer Nedir? Kendine Değer Vermeden Kimse Sana Değer Vermez",
+  seoTitle: "Özdeğer Nedir? Kendine Değer Vermenin Yolu",
   description:
     "Özdeğer nedir, özgüvenden farkı ne? Düşük özdeğerin ilişkilerdeki 7 işareti ve kendine değer vermeyi öğrenmenin somut yolları. Gürkan Özbinici yazdı.",
   excerpt:

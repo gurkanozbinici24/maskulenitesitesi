@@ -4,7 +4,7 @@ const post: BlogPost = {
   slug: "toksik-iliskiden-sonra-toparlanmak",
   title: "Toksik Bir İlişkiden Sonra Kendine Gelmenin Yolları",
   description:
-    "Toksik ilişkiden sonra neden hâlâ onu özlüyorsun, kendine nasıl gelirsin ve aynı insanı başka bir isimle seçmekten nasıl kaçınırsın? Adım adım toparlanma rehberi.",
+    "Toksik ilişkiden sonra neden hâlâ onu özlüyorsun, nasıl kendine gelirsin ve aynı insanı başka bir isimle seçmekten nasıl kaçınırsın?",
   excerpt:
     "Toksik bir ilişki bittiğinde rahatlamak yerine onu özlemek çok yaygındır. Bunun neden olduğunu, enkazdan nasıl çıkacağını ve aynı hikâyeyi başka bir isimle tekrar yaşamamanın yolunu anlattım.",
   date: "2026-10-19",

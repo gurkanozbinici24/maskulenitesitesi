@@ -3,6 +3,7 @@ import type { BlogPost } from "../types";
 const post: BlogPost = {
   slug: "limerans-saplantili-ask",
   title: "Saplantılı Aşk (Limerans): Neden Onu Aklından Çıkaramıyorsun?",
+  seoTitle: "Saplantılı Aşk (Limerans): Onu Neden Unutamıyorsun?",
   description:
     "Limerans nedir, aşktan farkı ne? Birini saplantılı şekilde düşünmenin işaretleri, neden bu kadar güçlü olduğu ve limeranstan çıkmanın yolları.",
   excerpt:

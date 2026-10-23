@@ -3,6 +3,7 @@ import type { BlogPost } from "../types";
 const post: BlogPost = {
   slug: "ask-bombardimani-nedir",
   title: "Aşk Bombardımanı Nedir? Başında Çok Güzel Olan İlişkinin Tuzağı",
+  seoTitle: "Aşk Bombardımanı Nedir? Güzel Başlangıcın Tuzağı",
   description:
     "Aşk bombardımanı (love bombing) nedir, nasıl anlaşılır, gerçek ilgiden farkı ne? Üç aşamalı döngü, tanıma işaretleri ve hızı kontrol etmenin yolu.",
   excerpt:

@@ -3,6 +3,7 @@ import type { BlogPost } from "../types";
 const post: BlogPost = {
   slug: "eski-sevgili-geri-doner-mi",
   title: "Eski Sevgili Geri Döner mi? Dönecekse Hangi İşaretleri Verir?",
+  seoTitle: "Eski Sevgili Geri Döner mi? Dönüşün İşaretleri",
   description:
     "Eski sevgili geri döner mi? Geri dönüşün gerçek işaretleri, sahte dönüşün oltaları ve kapıyı aralamadan önce sorman gereken 5 soru. Gürkan Özbinici yazdı.",
   excerpt:

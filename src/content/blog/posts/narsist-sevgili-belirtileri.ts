@@ -3,6 +3,7 @@ import type { BlogPost } from "../types";
 const post: BlogPost = {
   slug: "narsist-sevgili-belirtileri",
   title: "Narsist Sevgilinin Belirtileri ve Bu İlişkiden Nasıl Çıkılır?",
+  seoTitle: "Narsist Sevgili Belirtileri ve İlişkiden Çıkış",
   description:
     "Narsist sevgili nasıl anlaşılır? Aynaya âşık partnerin 7 belirtisi, garson testi, ilişkinin aşamaları ve narsist bir ilişkiden çıkıp toparlanmanın yolları.",
   excerpt:

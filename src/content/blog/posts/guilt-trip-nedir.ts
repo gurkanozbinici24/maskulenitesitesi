@@ -3,8 +3,9 @@ import type { BlogPost } from "../types";
 const post: BlogPost = {
   slug: "guilt-trip-nedir",
   title: "Suçluluk Hissettirme (Guilt Trip) Nedir? Duygusal Şantajı Tanımak",
+  seoTitle: "Guilt Trip (Suçluluk Hissettirme) Nedir?",
   description:
-    "Guilt trip (suçluluk hissettirme) nedir, ilişkide nasıl görülür? 'Sen çok değiştin', 'Ben senin için neler yaptım' cümlelerinin arkasındaki duygusal şantaj ve cevap yolları.",
+    "Guilt trip (suçluluk hissettirme) nedir? 'Sen çok değiştin' gibi cümlelerin arkasındaki duygusal şantaj ve ona sakin şekilde cevap vermenin yolları.",
   excerpt:
     "\"Sen çok değiştin.\" \"Ben senin için her şeyi yaptım.\" \"Arkadaşların benden daha mı önemli?\" Bu cümlelerden sonra kendini hep suçlu hissediyorsan, karşında bir duygusal şantaj olabilir. Nasıl tanınacağını ve nasıl cevap verileceğini anlattım.",
   date: "2026-10-19",

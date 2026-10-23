@@ -4,7 +4,7 @@ const post: BlogPost = {
   slug: "baglanma-stilleri",
   title: "Bağlanma Stilleri: Kaygılı, Kaçıngan ve Güvenli Bağlanma",
   description:
-    "Bağlanma stilleri nedir? Güvenli, kaygılı, kaçıngan ve korkulu-kaçıngan bağlanmanın ilişkilerdeki işaretleri, kaygılı-kaçıngan tuzağı ve güvenli bağlanmaya doğru adımlar.",
+    "Bağlanma stilleri nedir? Güvenli, kaygılı ve kaçıngan bağlanmanın ilişkideki işaretleri, kaygılı-kaçıngan tuzağı ve güvenli bağlanmaya giden adımlar.",
   excerpt:
     "Neden hep aynı tip insana bağlanıyorsun? Neden biri uzaklaştıkça sen daha çok yaklaşıyorsun? Bağlanma stillerini, ilişkilerdeki karşılıklarını ve daha güvenli bağlanmanın yollarını anlattım.",
   date: "2026-10-19",

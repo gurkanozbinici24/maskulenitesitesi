@@ -3,6 +3,7 @@ import type { BlogPost } from "../types";
 const post: BlogPost = {
   slug: "cekicilik-sanati-kitabi",
   title: "Çekicilik Sanatı Kitabı (Gürkan Özbinici): Konusu, Özeti ve Çıkış Tarihi",
+  seoTitle: "Çekicilik Sanatı Kitabı: Konusu, Özeti, Çıkış Tarihi",
   description:
     "Gürkan Özbinici'nin kadınlar için yazdığı Çekicilik Sanatı ne anlatıyor? Bölümler, Erkeğin Karanlık Notu, 30 günlük program, çıkış tarihi ve fiyatlar.",
   excerpt:

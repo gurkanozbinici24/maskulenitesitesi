@@ -8,6 +8,8 @@ export interface BlogFaq {
 export interface BlogPost {
   slug: string;
   title: string;
+  /** Google'da görünen kısa başlık (60 karakter altı). Boşsa title kullanılır. Sayfadaki H1 her zaman title. */
+  seoTitle?: string;
   /** Google'da başlığın altında görünen açıklama (150-160 karakter ideal) */
   description: string;
   /** Liste kartında görünen kısa özet */

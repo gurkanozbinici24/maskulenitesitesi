@@ -3,6 +3,7 @@ import type { BlogPost } from "../types";
 const post: BlogPost = {
   slug: "vazgecilmez-erkek-olmak",
   title: "Vazgeçilmez Erkek Olmak: Bir Kadın İçin Vazgeçilmez Olmanın Yolu",
+  seoTitle: "Vazgeçilmez Erkek Olmak: Bir Kadın İçin Vazgeçilmez Ol",
   description:
     "Vazgeçilmez erkek olmak daha çok taviz vermek değil. Bir kadın neden erkekten vazgeçer, vazgeçilmez erkeğin özellikleri neler? Erkekler için net bir rehber.",
   excerpt:

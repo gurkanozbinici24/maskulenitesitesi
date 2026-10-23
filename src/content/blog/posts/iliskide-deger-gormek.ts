@@ -3,6 +3,7 @@ import type { BlogPost } from "../types";
 const post: BlogPost = {
   slug: "iliskide-deger-gormek",
   title: "İlişkide Değer Görmek İçin Ne Yapmalı? Değer Görmenin 7 Kuralı",
+  seoTitle: "İlişkide Değer Görmek İçin Ne Yapmalı? 7 Kural",
   description:
     "İlişkide değer görmek için daha fazla vermek gerekmez. Verdiğinin sınırını doğru çizmek gerekir. Değer görmenin 7 kuralını anlatıyorum.",
   excerpt:

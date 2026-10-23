@@ -3,6 +3,7 @@ import type { BlogPost } from "../types";
 const post: BlogPost = {
   slug: "erkekler-neden-baglanmaktan-kacar",
   title: "Erkekler Neden Bağlanmaktan Kaçar? Bağlanma Korkusunun 6 Sebebi",
+  seoTitle: "Erkekler Neden Bağlanmaktan Kaçar? 6 Sebep",
   description:
     "Erkekler neden bağlanmaktan kaçar? Bağlanma korkusunun 6 sebebini, kaçan erkeği nasıl tanıyacağını ve bu durumda ne yapman gerektiğini anlatıyorum.",
   excerpt:

@@ -4,7 +4,7 @@ const post: BlogPost = {
   slug: "alfa-erkek-nedir",
   title: "Alfa Erkek Nedir? Gerçek Alfa Erkeğin 10 Özelliği",
   description:
-    "Alfa erkek nedir, alfa erkek özellikleri nelerdir? Kavramın kurtlardan gelen kökeni, sahte alfa ile gerçek alfa arasındaki fark ve ilişkide alfa erkek olmanın yolu.",
+    "Alfa erkek nedir, özellikleri nelerdir? Kavramın kurtlardan gelen kökeni, sahte alfa ile gerçek alfanın farkı ve ilişkide alfa erkek olmanın yolu.",
   excerpt:
     "Bağıran, kavga çıkaran, herkesi ezmeye çalışan adam alfa değil. Alfa kavramının nereden geldiğini, sahte alfanın nasıl ele verdiğini ve gerçek alfa erkeğin 10 özelliğini anlattım.",
   date: "2026-10-20",

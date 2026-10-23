@@ -4,7 +4,7 @@ const post: BlogPost = {
   slug: "sigma-erkek-nedir",
   title: "Sigma Erkek Nedir? Sigma Erkeğin Özellikleri ve Gerçekleri",
   description:
-    "Sigma erkek nedir, sigma erkek özellikleri nelerdir? Sigma ile alfa arasındaki fark, sosyal medyadaki sigma efsanesinin doğru ve yanlış tarafları ve gerçek bağımsızlık.",
+    "Sigma erkek nedir, özellikleri nelerdir? Sigma ile alfa arasındaki fark, sosyal medyadaki sigma efsanesinin doğru ve yanlış tarafları.",
   excerpt:
     "Yalnız kurt, kimseye ihtiyacı olmayan adam, sessiz güç. Sigma erkek kavramının nereden geldiğini, sosyal medyada nasıl çarpıtıldığını ve içindeki doğru fikri anlattım.",
   date: "2026-10-20",

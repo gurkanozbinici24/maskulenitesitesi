@@ -4,7 +4,7 @@ const post: BlogPost = {
   slug: "simp-ne-demek",
   title: "Simp Ne Demek? Birine Gereğinden Fazla Değer Vermenin Bedeli",
   description:
-    "Simp ne demek, nereden çıktı? Bir kadına gereğinden fazla değer vermenin işaretleri, neden saygı getirmediği ve bu döngüden çıkmanın yolları. Gürkan Özbinici yazdı.",
+    "Simp ne demek, nereden çıktı? Bir kadına gereğinden fazla değer vermenin işaretleri, neden saygı getirmediği ve bu döngüden çıkmanın yolları.",
   excerpt:
     "Her mesaja saniyesinde cevap, her isteğe evet, her hesabı ödemek ve karşılığında hiçbir şey. \"Simp\" kelimesi bir hakaret gibi kullanılıyor ama altında ciddi bir mesele var. Fazla vermenin bedelini ve dengeyi kurmanın yolunu anlattım.",
   date: "2026-10-19",

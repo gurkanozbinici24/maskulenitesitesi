@@ -3,6 +3,7 @@ import type { BlogPost } from "../types";
 const post: BlogPost = {
   slug: "erkek-ciddi-mi-nasil-anlasilir",
   title: "Erkek Ciddi mi, Oyalıyor mu? Gerçekten Seven Erkeğin 8 İşareti",
+  seoTitle: "Erkek Ciddi mi, Oyalıyor mu? Seven Erkeğin 8 İşareti",
   description:
     "Erkek ciddi mi yoksa seni oyalıyor mu? 'Biz şimdi neyiz' sorusunun cevabı. Gerçekten seven, ciddi düşünen erkeğin 8 işareti ve oyalayan erkeğin belirtileri.",
   excerpt:

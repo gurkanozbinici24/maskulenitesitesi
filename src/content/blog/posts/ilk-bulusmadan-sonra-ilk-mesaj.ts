@@ -3,6 +3,7 @@ import type { BlogPost } from "../types";
 const post: BlogPost = {
   slug: "ilk-bulusmadan-sonra-ilk-mesaj",
   title: "İlk Buluşmadan Sonra İlk Mesajı Kim Atmalı? Ne Zaman, Ne Yazmalı?",
+  seoTitle: "İlk Buluşmadan Sonra İlk Mesajı Kim Atmalı?",
   description:
     "İlk buluşmadan sonra ilk mesajı kim atmalı, ne zaman atmalı, ne yazmalı? 'Eve vardın mı' mesajı neden hata? Kadınlar ve erkekler için net bir rehber.",
   excerpt:

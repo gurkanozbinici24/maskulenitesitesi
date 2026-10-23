@@ -17,8 +17,9 @@ export function generateStaticParams() {
 export function generateMetadata({ params }: { params: { slug: string } }): Metadata {
   const p = getPost(params.slug);
   if (!p) return {};
+  const seoTitle = p.seoTitle ?? p.title;
   return {
-    title: p.title,
+    title: { absolute: seoTitle },
     description: p.description,
     keywords: p.keywords,
     alternates: { canonical: `/blog/${p.slug}` },
@@ -26,14 +27,14 @@ export function generateMetadata({ params }: { params: { slug: string } }): Meta
     openGraph: {
       type: "article",
       url: `/blog/${p.slug}`,
-      title: p.title,
+      title: seoTitle,
       description: p.description,
       publishedTime: p.date,
       modifiedTime: p.updated ?? p.date,
       authors: ["Gürkan Özbinici"],
       images: [p.cover],
     },
-    twitter: { card: "summary_large_image", title: p.title, description: p.description, images: [p.cover] },
+    twitter: { card: "summary_large_image", title: seoTitle, description: p.description, images: [p.cover] },
   };
 }
 

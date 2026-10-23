@@ -3,8 +3,9 @@ import type { BlogPost } from "../types";
 const post: BlogPost = {
   slug: "hangi-kitap-sana-gore",
   title: "Vazgeçilmez Olma Sanatı mı, Çekicilik Sanatı mı? Hangi Kitap Sana Göre",
+  seoTitle: "Vazgeçilmez Olma Sanatı mı, Çekicilik Sanatı mı?",
   description:
-    "Vazgeçilmez Olma Sanatı ile Çekicilik Sanatı arasındaki fark ne? Hangi kitapla başlamalısın, ikisini birlikte okumak ne kazandırır? Durumuna göre net bir rehber.",
+    "Vazgeçilmez Olma Sanatı ile Çekicilik Sanatı arasındaki fark ne? Hangi kitapla başlamalısın, ikisini birlikte okumak ne kazandırır? Net bir rehber.",
   excerpt:
     "Biri erkekler, biri kadınlar için; ama ikisi aynı masanın iki tarafını anlatıyor. Durumuna göre hangi kitapla başlaman gerektiğini ve ikisini birlikte okumanın ne kazandırdığını anlattım.",
   date: "2026-10-19",
