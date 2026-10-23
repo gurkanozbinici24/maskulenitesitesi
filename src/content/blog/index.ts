@@ -42,6 +42,16 @@ import erkekNedenIlgisiniKaybeder from "./posts/erkek-neden-ilgisini-kaybeder";
 import erkekCiddiMiNasilAnlasilir from "./posts/erkek-ciddi-mi-nasil-anlasilir";
 import erkegiKendineBaglamak from "./posts/erkegi-kendine-baglamak";
 import degerliKadinOzellikleri from "./posts/degerli-kadin-ozellikleri";
+import kadiniEtkileme from "./posts/kadini-etkilemenin-yollari";
+import kadinNedenSogur from "./posts/kadin-neden-sogur";
+import iliskideDegerGormek from "./posts/iliskide-deger-gormek";
+import iliskideSinirKoymak from "./posts/iliskide-sinir-koymak";
+import birErkegiKendineAsikEtmek from "./posts/bir-erkegi-kendine-asik-etmek";
+import ozguvenliErkek from "./posts/ozguvenli-erkek-nasil-olunur";
+import iliskiKitaplari from "./posts/iliski-kitaplari-onerileri";
+import iliskideDegersiz from "./posts/iliskide-degersiz-hissetmek";
+import erkeklerBaglanmaktanKacar from "./posts/erkekler-neden-baglanmaktan-kacar";
+import kadinlarErkegiTestEder from "./posts/kadinlar-erkegi-neden-test-eder";
 
 export type { BlogPost, BookKey, BlogFaq } from "./types";
 
@@ -88,6 +98,16 @@ export const POSTS: BlogPost[] = [
   erkekCiddiMiNasilAnlasilir,
   erkegiKendineBaglamak,
   degerliKadinOzellikleri,
+  kadiniEtkileme,
+  kadinNedenSogur,
+  iliskideDegerGormek,
+  iliskideSinirKoymak,
+  birErkegiKendineAsikEtmek,
+  ozguvenliErkek,
+  iliskiKitaplari,
+  iliskideDegersiz,
+  erkeklerBaglanmaktanKacar,
+  kadinlarErkegiTestEder,
 ].sort((a, b) => b.date.localeCompare(a.date));
 
 export const getPost = (slug: string) => POSTS.find((p) => p.slug === slug);
