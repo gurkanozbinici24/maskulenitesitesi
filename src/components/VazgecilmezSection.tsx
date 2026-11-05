@@ -178,7 +178,7 @@ export default function VazgecilmezSection() {
               </div>
 
               {/* Fiziksel Yenilenmiş Edisyon */}
-              <div className="rounded-2xl border border-mahogany-700/70 bg-gradient-to-br from-mahogany-950/60 to-matte-950 p-5 flex flex-col">
+              <div className={`rounded-2xl border bg-gradient-to-br from-mahogany-950/60 to-matte-950 p-5 flex flex-col ${isOnSale ? "order-first border-gold-500/50 shadow-gold-glow" : "border-mahogany-700/70"}`}>
                 <ThemeBadge
                   theme="kitap1"
                   status={isOnSale ? "satista" : "yakinda"}

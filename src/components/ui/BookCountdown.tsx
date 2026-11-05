@@ -357,7 +357,7 @@ export function CekicilikSalesOptions({
   if (isCompact) {
     return (
       <div className={`w-full space-y-3 ${className}`}>
-        {[ebook, physical].map((item) => {
+        {[physical, ebook].map((item) => {
           const isPhysical = item.type === "physical";
           return (
             <div
@@ -527,11 +527,11 @@ export function CekicilikSalesOptions({
         </div>
       </ThemeCard>
 
-      {/* 2. KART: FİZİKSEL KİTAP (1000 TL — KAPIYA KADAR ÜCRETSİZ KARGO) */}
+      {/* 2. KART: FİZİKSEL KİTAP (1000 TL — KAPIYA KADAR ÜCRETSİZ KARGO) — önerilen ürün, ilk sırada */}
       <ThemeCard
         theme="kitap2"
         variant="glow"
-        className="flex flex-col justify-between p-6 sm:p-8 lg:p-9"
+        className="order-first flex flex-col justify-between p-6 sm:p-8 lg:p-9"
       >
         <div className="absolute -top-3.5 left-6 sm:left-8 z-20">
           <ThemeBadge theme="kitap2" status="satista" className="px-4 py-1.5 tracking-wider">

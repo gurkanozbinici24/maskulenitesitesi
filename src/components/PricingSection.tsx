@@ -71,7 +71,7 @@ export default function PricingSection() {
           {/* ========================================================================= */}
           <ThemeCard
             theme="kitap1"
-            variant="glow"
+            variant={isOnSale ? "elevated" : "glow"}
             className="flex flex-col justify-between p-5 sm:p-8 lg:px-8 lg:py-7"
           >
             {/* ANINDA TESLİMAT BADGE */}
@@ -221,8 +221,8 @@ export default function PricingSection() {
           {/* ========================================================================= */}
           <ThemeCard
             theme="kitap1"
-            variant="elevated"
-            className="flex flex-col justify-between p-5 sm:p-8 lg:px-8 lg:py-7 border-mahogany-600/70"
+            variant={isOnSale ? "glow" : "elevated"}
+            className={`flex flex-col justify-between p-5 sm:p-8 lg:px-8 lg:py-7 ${isOnSale ? "order-first" : "border-mahogany-600/70"}`}
           >
             {/* ÜST ROZET: Satış Öncesi "Yenilenmiş Edisyon – 5 Kasım'da Satışta", Satışta "SATIŞTA" */}
             <div className="absolute -top-3.5 left-6 sm:left-8 z-20">

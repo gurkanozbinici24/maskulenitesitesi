@@ -5,7 +5,8 @@ import { Book3DModel } from "./HeroSection";
 import { Crown, Gem, HeartHandshake } from "lucide-react";
 import { BookCountdown } from "./ui/BookCountdown";
 import { ThemeSectionHeader } from "./ui/ThemeSystem";
-import { CEKICILIK_SANATI_CONFIG, CEKICILIK_PREVIEW_PAGES } from "@/config/cekicilikConfig";
+import { CEKICILIK_SANATI_CONFIG, CEKICILIK_PREVIEW_PAGES, KART_ODEME_AKTIF } from "@/config/cekicilikConfig";
+import { odemeLinki } from "@/lib/odeme/urunler";
 import BookPreview from "./BookPreview";
 import { useCekicilikLaunchStatus } from "./ui/BookCountdown";
 
@@ -111,9 +112,13 @@ export default function CekicilikSection() {
                 cta={
                   isOnSale
                     ? {
-                        label: "Hemen Tamamına Eriş – 600 TL",
-                        href: CEKICILIK_SANATI_CONFIG.products.ebook.whatsappUrl,
-                        external: true,
+                        label: KART_ODEME_AKTIF
+                          ? `Fiziksel Kitabı Hemen Al – ${CEKICILIK_SANATI_CONFIG.products.physical.price} TL`
+                          : "Hemen Tamamına Eriş – 600 TL",
+                        href: KART_ODEME_AKTIF
+                          ? odemeLinki(CEKICILIK_SANATI_CONFIG.products.physical.id)
+                          : CEKICILIK_SANATI_CONFIG.products.ebook.whatsappUrl,
+                        external: !KART_ODEME_AKTIF,
                       }
                     : {
                         label: "5 Kasım'da Çıkıyor · Haber Al",

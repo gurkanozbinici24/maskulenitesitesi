@@ -8,6 +8,8 @@ import { ArrowRight, Bell, Clock, Flame, Sparkles, Zap } from "lucide-react";
 import { ThemeBadge, ThemeButton } from "./ui/ThemeSystem";
 import { useCekicilikLaunchStatus } from "./ui/BookCountdown";
 import { scrollToSection } from "@/lib/scrollToSection";
+import { KART_ODEME_AKTIF, VAZGECILMEZ_CONFIG, CEKICILIK_PRODUCTS } from "@/config/cekicilikConfig";
+import { odemeLinki } from "@/lib/odeme/urunler";
 
 // Lazy-load react-three-fiber sahnesi (SSR kapalı, açılış hızını etkilemez)
 const HeroParticlesCanvas = dynamic(() => import("./HeroParticlesCanvas"), {
@@ -147,6 +149,19 @@ export default function HeroSection() {
   const touchStartXRef = useRef<number | null>(null);
 
   const { mounted, isOnSale, timeLeft } = useCekicilikLaunchStatus();
+
+  // Satış başladıysa ve kartla ödeme açıksa: üstteki butonlar doğrudan FİZİKSEL kitabın ödeme sayfasını açar
+  const kartliSatis = KART_ODEME_AKTIF && isOnSale;
+  const vazHeroHref = kartliSatis
+    ? odemeLinki(VAZGECILMEZ_CONFIG.physicalRenovated.id)
+    : KART_ODEME_AKTIF ? odemeLinki(VAZGECILMEZ_CONFIG.ebook.id) : "#fiyat-kartlari";
+  const vazHeroLabel = kartliSatis
+    ? `Fiziksel Kitabı Hemen Al – ${VAZGECILMEZ_CONFIG.physicalRenovated.price} TL`
+    : `E-Kitabı Hemen Al – ${VAZGECILMEZ_CONFIG.ebook.price} TL`;
+  const cekHeroHref = KART_ODEME_AKTIF ? odemeLinki(CEKICILIK_PRODUCTS.physical.id) : "#cekicilik-sanati";
+  const cekHeroLabel = KART_ODEME_AKTIF
+    ? `Fiziksel Kitabı Hemen Al – ${CEKICILIK_PRODUCTS.physical.price} TL`
+    : `Hemen Satın Al – ${CEKICILIK_PRODUCTS.ebook.price} TL'den başlayan`;
 
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -474,13 +489,13 @@ export default function HeroSection() {
                     variant="primary"
                     size="md"
                     fullWidth
-                    href="#fiyat-kartlari"
-                    onClick={(e) =>
-                      scrollToTarget(e, "fiyat-kartlari", "fiyatlandirma")
-                    }
+                    href={vazHeroHref}
+                    onClick={(e) => {
+                      if (!KART_ODEME_AKTIF) scrollToTarget(e, "fiyat-kartlari", "fiyatlandirma");
+                    }}
                     className="w-full max-w-[320px] min-h-[48px] h-[48px]"
                   >
-                    <span>E-Kitabı Hemen Al – 600 TL</span>
+                    <span>{vazHeroLabel}</span>
                     <ArrowRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
                   </ThemeButton>
                   <AnindaTeslim className="mt-2.5" />
@@ -606,14 +621,14 @@ export default function HeroSection() {
                       variant="primary"
                       size="md"
                       fullWidth
-                      href="#cekicilik-sanati"
-                      onClick={(e) =>
-                        scrollToTarget(e, "cekicilik-sanati", "fiyat-kartlari")
-                      }
+                      href={cekHeroHref}
+                      onClick={(e) => {
+                        if (!KART_ODEME_AKTIF) scrollToTarget(e, "cekicilik-sanati", "fiyat-kartlari");
+                      }}
                       className="w-full max-w-[320px] min-h-[48px] h-[48px]"
                     >
                       <Flame className="w-4 h-4 text-white flex-shrink-0" />
-                      <span>Hemen Satın Al – 600 TL&apos;den başlayan</span>
+                      <span>{cekHeroLabel}</span>
                       <ArrowRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
                     </ThemeButton>
                   )}
@@ -840,13 +855,13 @@ export default function HeroSection() {
               variant="primary"
               size="lg"
               fullWidth
-              href="#fiyat-kartlari"
-              onClick={(e) =>
-                scrollToTarget(e, "fiyat-kartlari", "fiyatlandirma")
-              }
+              href={vazHeroHref}
+              onClick={(e) => {
+                if (!KART_ODEME_AKTIF) scrollToTarget(e, "fiyat-kartlari", "fiyatlandirma");
+              }}
               className="min-h-[50px] py-3 text-sm font-black"
             >
-              <span>E-Kitabı Hemen Al – 600 TL</span>
+              <span>{vazHeroLabel}</span>
               <ArrowRight className="w-4 h-4 ml-1" />
             </ThemeButton>
             <div className="mt-1.5 flex justify-center">
@@ -875,14 +890,14 @@ export default function HeroSection() {
               variant="primary"
               size="lg"
               fullWidth
-              href="#cekicilik-sanati"
-              onClick={(e) =>
-                scrollToTarget(e, "cekicilik-sanati", "fiyat-kartlari")
-              }
+              href={cekHeroHref}
+              onClick={(e) => {
+                if (!KART_ODEME_AKTIF) scrollToTarget(e, "cekicilik-sanati", "fiyat-kartlari");
+              }}
               className="min-h-[50px] py-3 text-sm font-black"
             >
               <Flame className="w-4 h-4 text-white flex-shrink-0" />
-              <span>Hemen Satın Al – 600 TL&apos;den başlayan</span>
+              <span>{cekHeroLabel}</span>
               <ArrowRight className="w-4 h-4 ml-1" />
             </ThemeButton>
           )}
