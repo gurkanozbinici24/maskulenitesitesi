@@ -99,9 +99,11 @@ export default function CekicilikSection() {
               ))}
             </div>
 
-            <div data-sticky-hide>
-              <BookCountdown theme="kitap2" size="lg" />
-            </div>
+            {!isOnSale && (
+              <div data-sticky-hide>
+                <BookCountdown theme="kitap2" size="lg" />
+              </div>
+            )}
             <div className="mt-6">
             {CEKICILIK_PREVIEW_PAGES.length > 0 && (
               <BookPreview
@@ -132,6 +134,11 @@ export default function CekicilikSection() {
           </div>
         </div>
 
+        {isOnSale && (
+          <div className="mt-12 sm:mt-16" data-sticky-hide>
+            <BookCountdown theme="kitap2" size="lg" />
+          </div>
+        )}
       </div>
     </section>
   );
