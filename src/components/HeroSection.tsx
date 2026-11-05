@@ -8,7 +8,7 @@ import { ArrowRight, Bell, Clock, Flame, Sparkles, Zap } from "lucide-react";
 import { ThemeBadge, ThemeButton } from "./ui/ThemeSystem";
 import { useCekicilikLaunchStatus } from "./ui/BookCountdown";
 import { scrollToSection } from "@/lib/scrollToSection";
-import { KART_ODEME_AKTIF, VAZGECILMEZ_CONFIG, CEKICILIK_PRODUCTS } from "@/config/cekicilikConfig";
+import { KART_ODEME_AKTIF, VAZGECILMEZ_CONFIG, CEKICILIK_PRODUCTS, KOLEKSIYON_SETI_CONFIG } from "@/config/cekicilikConfig";
 import { odemeLinki } from "@/lib/odeme/urunler";
 
 // Lazy-load react-three-fiber sahnesi (SSR kapalı, açılış hızını etkilemez)
@@ -192,6 +192,7 @@ export default function HeroSection() {
   // Alt bar: kullanıcı bir kitabın bölümündeyken o kitabın butonunu göstersin
   const [sectionBook, setSectionBook] = useState<MobileBookSelection | null>(null);
   const [pastHero, setPastHero] = useState(false);
+  const [inSet, setInSet] = useState(false);
   useEffect(() => {
     const inRange = (startId: string, endId: string, y: number) => {
       const a = document.getElementById(startId);
@@ -204,6 +205,7 @@ export default function HeroSection() {
     const onScroll = () => {
       setPastHero(window.scrollY > window.innerHeight * 0.9);
       const y = window.scrollY + window.innerHeight / 2;
+      setInSet(inRange("koleksiyon-seti", "koleksiyon-seti", y));
       if (inRange("cekicilik-sanati", "cekicilik-sanati", y)) setSectionBook("kitap2");
       else if (inRange("vazgecilmez", "fiyatlandirma", y)) setSectionBook("kitap1");
       else setSectionBook(null);
@@ -865,6 +867,20 @@ export default function HeroSection() {
         aria-label="Hızlı satın alma çubuğu"
       >
         <div className="max-w-md mx-auto">
+          {inSet && kartliSatis ? (
+            <ThemeButton
+              theme="kitap1"
+              variant="primary"
+              size="lg"
+              fullWidth
+              href={odemeLinki("koleksiyon-seti")}
+              className="min-h-[50px] py-3 text-sm font-black"
+            >
+              <span>Seti Hemen Al – {KOLEKSIYON_SETI_CONFIG.price} TL</span>
+              <ArrowRight className="w-4 h-4 ml-1" />
+            </ThemeButton>
+          ) : (
+          <>
           {(sectionBook ?? (pastHero ? "kitap1" : mobileSelectedBook)) === "kitap1" ? (
 <>
             <ThemeButton
@@ -928,6 +944,8 @@ export default function HeroSection() {
                 <AnindaTeslim size="sm" />
               </div>
             </>
+          )}
+          </>
           )}
         </div>
       </div>
