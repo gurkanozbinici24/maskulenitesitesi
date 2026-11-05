@@ -12,6 +12,16 @@ import { KART_ODEME_AKTIF, VAZGECILMEZ_CONFIG, CEKICILIK_PRODUCTS } from "@/conf
 import { odemeLinki } from "@/lib/odeme/urunler";
 
 // Lazy-load react-three-fiber sahnesi (SSR kapalı, açılış hızını etkilemez)
+/** Fiziksel kitap butonunun hemen altindaki ikinci buton: e-kitabi dogrudan kartla odeme sayfasinda acar */
+function EbookHeroButton({ theme, href, price, className = "" }: { theme: "kitap1" | "kitap2"; href: string; price: number; className?: string }) {
+  return (
+    <ThemeButton theme={theme} variant="secondary" size="md" fullWidth href={href} className={`min-h-[44px] h-[44px] ${className}`}>
+      <Zap className="w-4 h-4 flex-shrink-0" />
+      <span>E-Kitabı Hemen Al – {price} TL</span>
+    </ThemeButton>
+  );
+}
+
 const HeroParticlesCanvas = dynamic(() => import("./HeroParticlesCanvas"), {
   ssr: false,
 });
@@ -451,7 +461,7 @@ export default function HeroSection() {
                       className="px-3.5 py-1 text-[11px]"
                     >
                       <Zap className="w-3 h-3 fill-black text-black" />
-                      <span>E-KİTAP SATIŞTA</span>
+                      <span>{isOnSale ? "SATIŞTA" : "E-KİTAP SATIŞTA"}</span>
                     </ThemeBadge>
                   </div>
 
@@ -498,6 +508,9 @@ export default function HeroSection() {
                     <span>{vazHeroLabel}</span>
                     <ArrowRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
                   </ThemeButton>
+                  {kartliSatis && (
+                    <EbookHeroButton theme="kitap1" href={odemeLinki(VAZGECILMEZ_CONFIG.ebook.id)} price={VAZGECILMEZ_CONFIG.ebook.price} className="w-full max-w-[320px] mt-2" />
+                  )}
                   <AnindaTeslim className="mt-2.5" />
                 </div>
               </div>
@@ -632,6 +645,10 @@ export default function HeroSection() {
                       <ArrowRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
                     </ThemeButton>
                   )}
+                  {kartliSatis && (
+                    <EbookHeroButton theme="kitap2" href={odemeLinki(CEKICILIK_PRODUCTS.ebook.id)} price={CEKICILIK_PRODUCTS.ebook.price} className="w-full max-w-[320px] mt-2" />
+                  )}
+                  {isOnSale && <AnindaTeslim className="mt-2.5" />}
                 </div>
               </div>
             </div>
@@ -746,7 +763,7 @@ export default function HeroSection() {
                       className="px-2.5 py-0.5 text-[9px] whitespace-nowrap"
                     >
                       <Zap className="w-3 h-3 fill-black text-black" />
-                      <span>E-KİTAP SATIŞTA</span>
+                      <span>{isOnSale ? "SATIŞTA" : "E-KİTAP SATIŞTA"}</span>
                     </ThemeBadge>
                     <span className="text-[11px] font-semibold text-mahogany-200">
                       Erkekler için
@@ -864,6 +881,9 @@ export default function HeroSection() {
               <span>{vazHeroLabel}</span>
               <ArrowRight className="w-4 h-4 ml-1" />
             </ThemeButton>
+            {kartliSatis && (
+              <EbookHeroButton theme="kitap1" href={odemeLinki(VAZGECILMEZ_CONFIG.ebook.id)} price={VAZGECILMEZ_CONFIG.ebook.price} className="mt-2" />
+            )}
             <div className="mt-1.5 flex justify-center">
               <AnindaTeslim size="sm" />
             </div>
@@ -900,6 +920,14 @@ export default function HeroSection() {
               <span>{cekHeroLabel}</span>
               <ArrowRight className="w-4 h-4 ml-1" />
             </ThemeButton>
+          )}
+          {kartliSatis && (sectionBook ?? (pastHero ? "kitap1" : mobileSelectedBook)) !== "kitap1" && (
+            <>
+              <EbookHeroButton theme="kitap2" href={odemeLinki(CEKICILIK_PRODUCTS.ebook.id)} price={CEKICILIK_PRODUCTS.ebook.price} className="mt-2" />
+              <div className="mt-1.5 flex justify-center">
+                <AnindaTeslim size="sm" />
+              </div>
+            </>
           )}
         </div>
       </div>
