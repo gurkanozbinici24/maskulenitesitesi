@@ -27,10 +27,13 @@ export default function LegalPage({ doc }: { doc: LegalDoc }) {
           </div>
           <div className="mt-14 border-t border-white/10 pt-6 text-sm text-zinc-400">
             Diğer koşullar:{" "}
-            {LEGAL.filter((d) => d.slug !== doc.slug).map((d) => (
-              <Link key={d.slug} href={`/${d.slug}`} className="text-gold-300 hover:text-gold-200">
-                {d.title}
-              </Link>
+            {LEGAL.filter((d) => d.slug !== doc.slug).map((d, i) => (
+              <span key={d.slug}>
+                {i > 0 && <span className="mx-2 text-zinc-600">·</span>}
+                <Link href={`/${d.slug}`} className="text-gold-300 hover:text-gold-200">
+                  {d.title}
+                </Link>
+              </span>
             ))}
           </div>
         </div>

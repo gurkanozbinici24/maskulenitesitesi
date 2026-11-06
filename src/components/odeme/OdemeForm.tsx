@@ -576,6 +576,19 @@ export default function OdemeForm({
         Kart bilgilerin bu siteye değil, doğrudan iyzico&apos;nun 3D Secure ödeme ekranına girilir.
       </p>
 
+      <div className="-mt-2 flex justify-center">
+        <div className="rounded-lg bg-white px-3 py-2">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/iyzico/logo_band_colored.svg"
+            alt="iyzico ile Öde, Mastercard, Visa, American Express, Troy"
+            width={858}
+            height={64}
+            className="h-5 sm:h-6 w-auto max-w-full"
+          />
+        </div>
+      </div>
+
       <p className="-mt-4 text-center text-xs text-zinc-500">
         Kredi kartına <strong className="text-zinc-300">{maxTaksit} taksite kadar</strong> seçenek ödeme ekranında. Tek çekim
         fiyatı {toplam} TL; taksitli seçeneklerde vade farkı uygulanır.

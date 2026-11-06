@@ -12,6 +12,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${SITE}/blog`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.7 },
     { url: `${SITE}/teslimat-ve-iade`, lastModified: new Date("2026-10-20"), changeFrequency: "yearly", priority: 0.3 },
     { url: `${SITE}/hizmet-iptal-ve-iade`, lastModified: new Date("2026-10-20"), changeFrequency: "yearly", priority: 0.3 },
+    { url: `${SITE}/mesafeli-satis-sozlesmesi`, lastModified: new Date("2026-11-07"), changeFrequency: "yearly", priority: 0.3 },
+    { url: `${SITE}/gizlilik-politikasi`, lastModified: new Date("2026-11-07"), changeFrequency: "yearly", priority: 0.3 },
     ...URUN_SAYFALARI.map((u) => ({
       url: `${SITE}/urun/${u.slug}`,
       lastModified: new Date(),

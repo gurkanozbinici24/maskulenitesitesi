@@ -2,6 +2,8 @@
 
 import { X, ShieldCheck } from "lucide-react";
 import { ThemeButton } from "./ui/ThemeSystem";
+import BlogBody from "./blog/BlogBody";
+import { getLegal } from "@/content/legal";
 
 interface LegalModalProps {
   isOpen: boolean;
@@ -58,38 +60,23 @@ export default function LegalModal({
             </>
           )}
 
-          {type === "sozlesme" && (
-            <>
-              <h4 className="font-bold text-zinc-100 text-sm">1. Taraflar ve Amaç</h4>
-              <p>
-                İşbu sözleşme, alıcı (tüketici) ile satıcı arasındaki &quot;Vazgeçilmez Olma Sanatı&quot; adlı kitabın (fiziksel baskı ve/veya dijital e-kitap) satışı ve teslimi hususundaki hak ve yükümlülükleri düzenler.
-              </p>
-              <h4 className="font-bold text-zinc-100 text-sm">2. Ürün ve Ödeme</h4>
-              <p>
-                Ürünün cinsi, miktarı, satış bedeli ve ödeme koşulları sipariş formunda belirtildiği gibidir. Tüm ödemeler 256-bit SSL güvenlik sertifikalı sanal POS altyapısı üzerinden tahsil edilir.
-              </p>
-              <h4 className="font-bold text-zinc-100 text-sm">3. Teslimat Koşulları</h4>
-              <p>
-                E-Kitap siparişleri ödeme onayını müteakip anında alıcının e-posta adresine ve indirme paneline iletilir. Fiziksel kitaplar isme özel imzalanarak hazırlanır; saat 14:00'e kadar onaylanan siparişler aynı iş günü, sonrasında verilen siparişler ertesi iş günü Yurtiçi Kargo'ya teslim edilir.
-              </p>
-              <h4 className="font-bold text-zinc-100 text-sm">4. Telif ve Fikri Mülkiyet</h4>
-              <p>
-                Kitabın tüm metin, grafik ve içerik hakları saklıdır. Dijital veya basılı kopyaların izinsiz çoğaltılması, internet ortamında izinsiz olarak dağıtılması veya ticari amaçla kullanımı 5846 sayılı Fikir ve Sanat Eserleri Kanunu gereğince cezai yaptırıma tabidir.
-              </p>
-            </>
-          )}
-
-          {type === "gizlilik" && (
-            <>
-              <h4 className="font-bold text-zinc-100 text-sm">Gizlilik ve Kişisel Verilerin Korunması (KVKK)</h4>
-              <p>
-                Sitemiz üzerinden gerçekleştirdiğiniz alışverişlerde paylaştığınız ad, soyad, e-posta, telefon ve adres bilgileri yalnızca siparişin temini ve yasal faturalandırma amacıyla işlenir.
-              </p>
-              <p>
-                Kredi kartı ve ödeme bilgileriniz kesinlikle sunucularımızda saklanmaz, doğrudan banka ve BDDK onaylı ödeme kuruluşuna şifreli olarak iletilir.
-              </p>
-            </>
-          )}
+          {(type === "sozlesme" || type === "gizlilik") && (() => {
+            const doc = getLegal(type === "sozlesme" ? "mesafeli-satis-sozlesmesi" : "gizlilik-politikasi");
+            if (!doc) return null;
+            return (
+              <>
+                <a
+                  href={`/${doc.slug}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block text-gold-300 underline underline-offset-2 hover:text-gold-200"
+                >
+                  Tam sayfada aç
+                </a>
+                <BlogBody body={doc.body} />
+              </>
+            );
+          })()}
 
           {type === "iletisim" && (
             <>

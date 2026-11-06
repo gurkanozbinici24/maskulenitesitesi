@@ -1,31 +1,8 @@
 "use client";
 
-import { useState } from "react";
 import { Mail, MessageSquare, ArrowUp } from "lucide-react";
-import LegalModal from "./LegalModal";
 
 export default function Footer() {
-  const [modalState, setModalState] = useState<{
-    isOpen: boolean;
-    title: string;
-    type: "iade" | "sozlesme" | "gizlilik" | "iletisim";
-  }>({
-    isOpen: false,
-    title: "",
-    type: "iade",
-  });
-
-  const openModal = (
-    title: string,
-    type: "iade" | "sozlesme" | "gizlilik" | "iletisim"
-  ) => {
-    setModalState({ isOpen: true, title, type });
-  };
-
-  const closeModal = () => {
-    setModalState((prev) => ({ ...prev, isOpen: false }));
-  };
-
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
@@ -171,30 +148,20 @@ export default function Footer() {
                   </a>
                 </li>
                 <li>
-                  <button
-                    onClick={() =>
-                      openModal(
-                        "Mesafeli Satış Sözleşmesi ve Ön Bilgilendirme",
-                        "sozlesme"
-                      )
-                    }
-                    className="hover:text-gold-400 transition-colors text-left"
+                  <a
+                    href="/mesafeli-satis-sozlesmesi"
+                    className="hover:text-gold-400 transition-colors"
                   >
                     Mesafeli Satış Sözleşmesi
-                  </button>
+                  </a>
                 </li>
                 <li>
-                  <button
-                    onClick={() =>
-                      openModal(
-                        "Gizlilik Politikası ve KVKK Aydınlatma Metni",
-                        "gizlilik"
-                      )
-                    }
-                    className="hover:text-gold-400 transition-colors text-left"
+                  <a
+                    href="/gizlilik-politikasi"
+                    className="hover:text-gold-400 transition-colors"
                   >
-                    Gizlilik ve KVKK Politikası
-                  </button>
+                    Gizlilik Politikası ve KVKK
+                  </a>
                 </li>
               </ul>
             </div>
@@ -251,24 +218,22 @@ export default function Footer() {
 
             {/* Güvenli Ödeme ve Kurum Logoları */}
             <div className="w-full pt-4 border-t border-zinc-900/80 flex justify-center">
-              <img
-                src="/payment-logos.png"
-                alt="Güvenli Ödeme ve Kurum Logoları"
-                className="h-7 sm:h-9 w-auto max-w-full object-contain opacity-80 hover:opacity-100 transition-opacity"
-              />
+              <div className="rounded-xl bg-white px-4 py-3 sm:px-6">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="/iyzico/logo_band_colored.svg"
+                  alt="iyzico ile Öde, Mastercard, Visa, American Express, Troy"
+                  width={858}
+                  height={64}
+                  className="h-6 sm:h-8 w-auto max-w-full object-contain"
+                />
+              </div>
             </div>
           </div>
 
         </div>
       </footer>
 
-      {/* Interactive Legal Modal */}
-      <LegalModal
-        isOpen={modalState.isOpen}
-        onClose={closeModal}
-        title={modalState.title}
-        type={modalState.type}
-      />
     </>
   );
 }
