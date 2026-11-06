@@ -37,7 +37,7 @@ export function siparisMetni(s: Siparis, urun: OdemeUrunu, o: OdemeOzeti): strin
     `Sipariş no: ${s.n}`,
     `Ürün: ${urun.ad}`,
     o.havale
-      ? `Ödenecek: ${tl(urun.fiyat)} — para hesabına gelince kargola (açıklamada sipariş no yazmalı)`
+      ? `Ödenecek: ${tl(urun.fiyat)} — müşteri dekontu WhatsApp'tan gönderecek. Dekont gelmeden ve para hesaba geçmeden kargolama.`
       : `Ödenen: ${tl(o.paidPrice ?? urun.fiyat)}${o.installment && o.installment > 1 ? ` (${o.installment} taksit)` : ""}`,
     "",
     `Müşteri: ${s.ad} ${s.soyad}`,

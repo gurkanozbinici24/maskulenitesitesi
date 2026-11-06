@@ -74,7 +74,7 @@ function HavaleEkrani({ h }: { h: HavaleSonuc }) {
     <div className="flex items-center justify-between gap-3 border-b border-white/5 py-3 last:border-0">
       <div className="min-w-0">
         <div className="text-[11px] font-bold uppercase tracking-wider text-zinc-500">{etiketi}</div>
-        <div className="break-all font-mono text-[15px] font-bold text-white">{deger}</div>
+        <div className="break-words font-mono text-[15px] font-bold text-white">{deger}</div>
       </div>
       {kopya && <Kopyala deger={deger} etiketi={etiketi} />}
     </div>
@@ -87,14 +87,18 @@ function HavaleEkrani({ h }: { h: HavaleSonuc }) {
         </p>
         <p className="mt-2 text-sm leading-relaxed text-zinc-300">
           Aşağıdaki hesaba <strong className="text-white">{h.tutar} TL</strong> gönder. Açıklama kısmına sipariş
-          numaranı yazmayı unutma. Ödemen hesabımıza geçince kitabın isme özel imzalanıp ücretsiz kargoyla yola çıkar.
+          numaranı ya da adını soyadını yaz. Ödemen hesabımıza geçince kitabın isme özel imzalanıp ücretsiz kargoyla yola çıkar.
+        </p>
+        <p className="mt-3 rounded-lg border border-crimson-600/50 bg-crimson-950/40 px-3 py-2 text-[13px] font-semibold text-crimson-100">
+          Son adım (zorunlu): Ödemeyi yaptıktan sonra dekontu aşağıdaki butonla WhatsApp&apos;tan gönder. Dekont
+          ulaşmadan siparişin kargoya verilmez.
         </p>
       </div>
       <div className="rounded-2xl border border-gold-500/40 bg-white/[0.03] px-5 py-2">
-        {satir("Sipariş no (açıklamaya yaz)", h.n)}
+        {satir("Sipariş no", h.n)}
         {satir("IBAN", h.iban)}
         {satir("Alıcı adı", h.aliciAdi)}
-        {satir("Banka", h.banka, false)}
+        {satir("Banka", h.banka)}
         {satir("Tutar", `${h.tutar} TL`, false)}
       </div>
       <a
@@ -103,10 +107,11 @@ function HavaleEkrani({ h }: { h: HavaleSonuc }) {
         rel="noopener noreferrer"
         className="flex min-h-[56px] w-full items-center justify-center gap-2 rounded-xl bg-[#25D366] px-6 text-base font-extrabold text-black transition hover:brightness-110"
       >
-        <MessageCircle className="h-5 w-5" /> Dekontu WhatsApp&apos;tan gönder
+        <MessageCircle className="h-5 w-5" /> Dekontu WhatsApp&apos;tan Gönder (Zorunlu)
       </a>
       <p className="text-center text-xs text-zinc-500">
-        Dekontu göndermen siparişini hızlandırır. Bu bilgilerin ekran görüntüsünü alabilirsin.
+        Butona dokununca sipariş numaranla hazır bir mesaj açılır; dekontun ekran görüntüsünü ekleyip gönder. Bu
+        sayfanın ekran görüntüsünü almanı öneririz.
       </p>
     </div>
   );
@@ -116,13 +121,15 @@ export default function OdemeForm({
   urun,
   ekleme,
   havaleAktif = false,
+  havaleBilgi,
 }: {
   urun: OdemeUrunu;
   ekleme?: EklemeBilgisi | null;
   havaleAktif?: boolean;
+  havaleBilgi?: { iban: string; aliciAdi: string; banka: string };
 }) {
   const fiziksel = urun.tip === "physical";
-  const havaleVar = fiziksel && havaleAktif;
+  const havaleVar = fiziksel && havaleAktif && !!havaleBilgi;
   const [yontem, setYontem] = useState<"kart" | "havale">("kart");
   const havale = havaleVar && yontem === "havale";
   const [farkliImza, setFarkliImza] = useState(false);
@@ -214,6 +221,87 @@ export default function OdemeForm({
         aria-hidden
         className="absolute left-[-9999px] h-0 w-0 opacity-0"
       />
+
+      {/* Ödeme yöntemi (havale yalnızca fizikselde) */}
+      {havaleVar && (
+        <fieldset className="space-y-3">
+          <legend className="mb-1 font-cinzel text-lg font-bold text-white">Nasıl ödemek istersin?</legend>
+          <div className="grid gap-3 sm:grid-cols-2">
+            {([
+              ["kart", CreditCard, "Kredi / banka kartı", `${maxTaksit} taksite kadar · anında onay`],
+              ["havale", Landmark, "Havale / EFT", "IBAN'a gönder · tek çekim"],
+            ] as const).map(([k, Ikon, baslik, alt]) => (
+              <label
+                key={k}
+                className={`flex cursor-pointer items-start gap-3 rounded-xl border p-4 transition ${
+                  yontem === k ? "border-gold-400/80 bg-gold-500/10" : "border-zinc-700 hover:border-gold-500/50"
+                }`}
+              >
+                <input
+                  type="radio"
+                  name="yontem"
+                  className="mt-1 h-4 w-4 accent-gold-500"
+                  checked={yontem === k}
+                  onChange={() => setYontem(k)}
+                />
+                <span>
+                  <span className="flex items-center gap-2 text-[15px] font-bold text-white">
+                    <Ikon className="h-4 w-4 text-gold-400" /> {baslik}
+                  </span>
+                  <span className="mt-0.5 block text-xs text-zinc-400">{alt}</span>
+                </span>
+              </label>
+            ))}
+          </div>
+        </fieldset>
+      )}
+
+      {havale && (
+        <div className="space-y-4 rounded-2xl border border-gold-500/40 bg-gradient-to-b from-gold-500/10 to-transparent p-4 sm:p-5">
+          <p className="flex items-center gap-2 font-cinzel text-base font-bold text-white">
+            <Landmark className="h-4 w-4 text-gold-400" /> Ödeme bilgileri
+          </p>
+          <div className="rounded-xl border border-white/10 bg-black/30 px-4 py-1">
+            {([
+              ["IBAN", havaleBilgi!.iban],
+              ["Alıcı adı", havaleBilgi!.aliciAdi],
+              ["Banka", havaleBilgi!.banka],
+            ] as const).map(([k, v]) => (
+              <div key={k} className="flex items-center justify-between gap-3 border-b border-white/5 py-3 last:border-0">
+                <div className="min-w-0">
+                  <div className="text-[11px] font-bold uppercase tracking-wider text-zinc-500">{k}</div>
+                  <div className="break-words font-mono text-[15px] font-bold text-white">{v}</div>
+                </div>
+                <Kopyala deger={v} etiketi={k} />
+              </div>
+            ))}
+            <div className="flex items-center justify-between gap-3 py-3">
+              <div>
+                <div className="text-[11px] font-bold uppercase tracking-wider text-zinc-500">Tutar</div>
+                <div className="font-mono text-[15px] font-bold text-gold-200">{toplam} TL</div>
+              </div>
+            </div>
+          </div>
+          <p className="text-[13px] leading-relaxed text-zinc-300">
+            Açıklama kısmına <strong className="text-white">adını soyadını</strong> yaz. Aşağıdaki bilgileri doldurup
+            siparişini oluştur; ödemen hesabımıza geçince kitabın isme özel imzalanıp ücretsiz kargoyla yola çıkar.
+          </p>
+          <p className="rounded-lg border border-crimson-600/50 bg-crimson-950/40 px-3 py-2 text-[13px] leading-relaxed text-crimson-100">
+            <strong>Önemli:</strong> Ödemeyi yaptıktan sonra dekontu WhatsApp&apos;tan göndermen zorunludur. Dekont
+            ulaşmadan sipariş işleme alınmaz.
+          </p>
+          <a
+            href={`https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent("Merhaba, havale ile sipariş vermek istiyorum, yardımcı olur musunuz?")}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 rounded-lg border border-[#25D366]/50 px-3 py-2 text-xs font-bold text-[#7ee2a8] transition hover:bg-[#25D366]/10"
+          >
+            <MessageCircle className="h-3.5 w-3.5" /> Sorun mu var? WhatsApp destek
+          </a>
+        </div>
+      )}
+
+
       {/* İletişim */}
       <fieldset className="space-y-4">
         <legend className="mb-1 font-cinzel text-lg font-bold text-white">
@@ -422,40 +510,6 @@ export default function OdemeForm({
             </div>
           </div>
         </label>
-      )}
-
-      {/* Ödeme yöntemi (havale yalnızca fizikselde) */}
-      {havaleVar && (
-        <fieldset className="space-y-3">
-          <legend className="mb-1 font-cinzel text-lg font-bold text-white">Ödeme yöntemi</legend>
-          <div className="grid gap-3 sm:grid-cols-2">
-            {([
-              ["kart", CreditCard, "Kredi / banka kartı", `${maxTaksit} taksite kadar · anında onay`],
-              ["havale", Landmark, "Havale / EFT", "IBAN'a gönder · tek çekim"],
-            ] as const).map(([k, Ikon, baslik, alt]) => (
-              <label
-                key={k}
-                className={`flex cursor-pointer items-start gap-3 rounded-xl border p-4 transition ${
-                  yontem === k ? "border-gold-400/80 bg-gold-500/10" : "border-zinc-700 hover:border-gold-500/50"
-                }`}
-              >
-                <input
-                  type="radio"
-                  name="yontem"
-                  className="mt-1 h-4 w-4 accent-gold-500"
-                  checked={yontem === k}
-                  onChange={() => setYontem(k)}
-                />
-                <span>
-                  <span className="flex items-center gap-2 text-[15px] font-bold text-white">
-                    <Ikon className="h-4 w-4 text-gold-400" /> {baslik}
-                  </span>
-                  <span className="mt-0.5 block text-xs text-zinc-400">{alt}</span>
-                </span>
-              </label>
-            ))}
-          </div>
-        </fieldset>
       )}
 
       {/* Sözleşme */}
