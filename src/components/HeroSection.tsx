@@ -13,6 +13,20 @@ import { odemeLinki } from "@/lib/odeme/urunler";
 
 // Lazy-load react-three-fiber sahnesi (SSR kapalı, açılış hızını etkilemez)
 /** Fiziksel kitap butonunun hemen altindaki ikinci buton: e-kitabi dogrudan kartla odeme sayfasinda acar */
+/** Fiziksel kitap butonu yazısı: fiyat tek satırda kalır, altında ücretsiz kargo satırı */
+function FizikselEtiket({ fiyat }: { fiyat: number }) {
+  return (
+    <span className="flex min-w-0 flex-col items-center leading-tight">
+      <span className="tracking-normal min-[400px]:tracking-wide">
+        Fiziksel Kitabı Al – <span className="whitespace-nowrap">{fiyat} TL</span>
+      </span>
+      <span className="mt-0.5 text-[10px] font-bold normal-case tracking-normal opacity-90 sm:text-[11px]">
+        Ücretsiz kargo · İsme özel imzalı
+      </span>
+    </span>
+  );
+}
+
 function EbookHeroButton({ theme, href, price, className = "" }: { theme: "kitap1" | "kitap2"; href: string; price: number; className?: string }) {
   return (
     <ThemeButton theme={theme} variant="secondary" size="md" fullWidth href={href} className={`min-h-[44px] h-[44px] ${className}`}>
@@ -166,12 +180,12 @@ export default function HeroSection() {
     ? odemeLinki(VAZGECILMEZ_CONFIG.physicalRenovated.id)
     : KART_ODEME_AKTIF ? odemeLinki(VAZGECILMEZ_CONFIG.ebook.id) : "#fiyat-kartlari";
   const vazHeroLabel = kartliSatis
-    ? `Fiziksel Kitabı Hemen Al – ${VAZGECILMEZ_CONFIG.physicalRenovated.price} TL`
-    : `E-Kitabı Hemen Al – ${VAZGECILMEZ_CONFIG.ebook.price} TL`;
+    ? <FizikselEtiket fiyat={VAZGECILMEZ_CONFIG.physicalRenovated.price} />
+    : <span>{`E-Kitabı Hemen Al – ${VAZGECILMEZ_CONFIG.ebook.price} TL`}</span>;
   const cekHeroHref = KART_ODEME_AKTIF ? odemeLinki(CEKICILIK_PRODUCTS.physical.id) : "#cekicilik-sanati";
   const cekHeroLabel = KART_ODEME_AKTIF
-    ? `Fiziksel Kitabı Hemen Al – ${CEKICILIK_PRODUCTS.physical.price} TL`
-    : `Hemen Satın Al – ${CEKICILIK_PRODUCTS.ebook.price} TL'den başlayan`;
+    ? <FizikselEtiket fiyat={CEKICILIK_PRODUCTS.physical.price} />
+    : <span>{`Hemen Satın Al – ${CEKICILIK_PRODUCTS.ebook.price} TL'den başlayan`}</span>;
 
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -505,9 +519,9 @@ export default function HeroSection() {
                     onClick={(e) => {
                       if (!KART_ODEME_AKTIF) scrollToTarget(e, "fiyat-kartlari", "fiyatlandirma");
                     }}
-                    className="w-full max-w-[320px] min-h-[48px] h-[48px]"
+                    className="w-full max-w-[320px] min-h-[56px] py-2.5 !px-4"
                   >
-                    <span>{vazHeroLabel}</span>
+                    {vazHeroLabel}
                     <ArrowRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
                   </ThemeButton>
                   {kartliSatis && (
@@ -624,7 +638,7 @@ export default function HeroSection() {
                       onClick={(e) =>
                         scrollToTarget(e, "cekicilik-sanati", "fiyat-kartlari")
                       }
-                      className="w-full max-w-[320px] min-h-[48px] h-[48px]"
+                      className="w-full max-w-[320px] min-h-[56px] py-2.5 !px-4"
                     >
                       <Bell className="w-4 h-4 text-gold-300 flex-shrink-0" />
                       <span>Haber Al</span>
@@ -640,10 +654,10 @@ export default function HeroSection() {
                       onClick={(e) => {
                         if (!KART_ODEME_AKTIF) scrollToTarget(e, "cekicilik-sanati", "fiyat-kartlari");
                       }}
-                      className="w-full max-w-[320px] min-h-[48px] h-[48px]"
+                      className="w-full max-w-[320px] min-h-[56px] py-2.5 !px-4"
                     >
                       <Flame className="w-4 h-4 text-white flex-shrink-0" />
-                      <span>{cekHeroLabel}</span>
+                      {cekHeroLabel}
                       <ArrowRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
                     </ThemeButton>
                   )}
@@ -874,7 +888,7 @@ export default function HeroSection() {
               size="lg"
               fullWidth
               href={odemeLinki("koleksiyon-seti")}
-              className="min-h-[50px] py-3 text-sm font-black"
+              className="min-h-[56px] py-2.5 !px-4 text-sm font-black"
             >
               <span>Seti Hemen Al – {KOLEKSIYON_SETI_CONFIG.price} TL</span>
               <ArrowRight className="w-4 h-4 ml-1" />
@@ -892,9 +906,9 @@ export default function HeroSection() {
               onClick={(e) => {
                 if (!KART_ODEME_AKTIF) scrollToTarget(e, "fiyat-kartlari", "fiyatlandirma");
               }}
-              className="min-h-[50px] py-3 text-sm font-black"
+              className="min-h-[56px] py-2.5 !px-4 text-sm font-black"
             >
-              <span>{vazHeroLabel}</span>
+              {vazHeroLabel}
               <ArrowRight className="w-4 h-4 ml-1" />
             </ThemeButton>
             {kartliSatis && (
@@ -914,7 +928,7 @@ export default function HeroSection() {
               onClick={(e) =>
                 scrollToTarget(e, "cekicilik-sanati", "fiyat-kartlari")
               }
-              className="min-h-[50px] py-3 text-sm font-black"
+              className="min-h-[56px] py-2.5 !px-4 text-sm font-black"
             >
               <Bell className="w-4 h-4 text-gold-300 flex-shrink-0" />
               <span>Haber Al — Çekicilik Sanatı</span>
@@ -930,10 +944,10 @@ export default function HeroSection() {
               onClick={(e) => {
                 if (!KART_ODEME_AKTIF) scrollToTarget(e, "cekicilik-sanati", "fiyat-kartlari");
               }}
-              className="min-h-[50px] py-3 text-sm font-black"
+              className="min-h-[56px] py-2.5 !px-4 text-sm font-black"
             >
               <Flame className="w-4 h-4 text-white flex-shrink-0" />
-              <span>{cekHeroLabel}</span>
+              {cekHeroLabel}
               <ArrowRight className="w-4 h-4 ml-1" />
             </ThemeButton>
           )}
