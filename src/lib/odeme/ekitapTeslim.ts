@@ -50,7 +50,13 @@ const kacis = (s: string) =>
   s.replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]!);
 
 /** Sonuç: "gonderildi" | "atlandi" (bu üründe e-kitap yok) — hata olursa fırlatır */
-export async function ekitapGonder(s: Siparis, urun: OdemeUrunu, degerlendirmeLinki?: string): Promise<"gonderildi" | "atlandi"> {
+/** hediye=true: fiziksel kitap alana kampanya hediyesi olarak gönderilir (metin ona göre değişir) */
+export async function ekitapGonder(
+  s: Siparis,
+  urun: OdemeUrunu,
+  degerlendirmeLinki?: string,
+  hediye = false,
+): Promise<"gonderildi" | "atlandi"> {
   const dosyalar = DOSYALAR[urun.id];
   if (urun.tip !== "ebook" || !dosyalar?.length) return "atlandi";
   const apiKey = env("RESEND_API_KEY");
@@ -68,9 +74,11 @@ export async function ekitapGonder(s: Siparis, urun: OdemeUrunu, degerlendirmeLi
   <h1 style="font-size:24px;color:#fff;margin:12px 0 4px">${kacis(bilgi.kitap)}</h1>
   <p style="color:#a1a1aa;margin:0 0 24px;font-size:14px">Sipariş no: ${kacis(s.n)}</p>
   <p style="font-size:16px;line-height:1.6">Merhaba ${ad},</p>
-  <p style="font-size:16px;line-height:1.6">Ödemen başarıyla alındı. <strong style="color:#d4af37">${kacis(
-    bilgi.kitap,
-  )}</strong> ${cift ? "e-kitapların" : "e-kitabın"} bu e-postanın <strong>ekinde (PDF)</strong>.</p>
+  <p style="font-size:16px;line-height:1.6">${
+    hediye
+      ? `Siparişin alındı; isme özel imzalı ${cift ? "kitapların" : "kitabın"} ücretsiz kargoyla yola çıkıyor. Beklerken hemen başlayabilmen için <strong style="color:#d4af37">${kacis(bilgi.kitap)}</strong> ${cift ? "e-kitaplarını" : "e-kitabını"} <strong>hediye</strong> ediyoruz. PDF bu e-postanın <strong>ekinde</strong>.`
+      : `Ödemen başarıyla alındı. <strong style="color:#d4af37">${kacis(bilgi.kitap)}</strong> ${cift ? "e-kitapların" : "e-kitabın"} bu e-postanın <strong>ekinde (PDF)</strong>.`
+  }</p>
   <p style="font-size:16px;line-height:1.6">Dosyayı telefonuna, tabletine veya bilgisayarına kaydedip hemen okumaya başlayabilirsin. Kindle kullanıyorsan PDF'i Kindle e-posta adresine göndermen yeterli.</p>
   <p style="font-size:16px;line-height:1.6">${cift ? "Bu kopyalar" : "Bu kopya"} sana özeldir; lütfen paylaşma.</p>${
     degerlendirmeLinki
@@ -88,7 +96,11 @@ export async function ekitapGonder(s: Siparis, urun: OdemeUrunu, degerlendirmeLi
 
   const text = `Merhaba ${s.ad},
 
-Ödemen başarıyla alındı. ${bilgi.kitap} ${cift ? "e-kitapların" : "e-kitabın"} bu e-postanın ekinde (PDF).
+${
+    hediye
+      ? `Siparişin alındı; isme özel imzalı ${cift ? "kitapların" : "kitabın"} ücretsiz kargoyla yola çıkıyor. Beklerken başlaman için ${bilgi.kitap} ${cift ? "e-kitaplarını" : "e-kitabını"} hediye ediyoruz, PDF ekte.`
+      : `Ödemen başarıyla alındı. ${bilgi.kitap} ${cift ? "e-kitapların" : "e-kitabın"} bu e-postanın ekinde (PDF).`
+  }
 Sipariş no: ${s.n}
 
 ${cift ? "Bu kopyalar" : "Bu kopya"} sana özeldir; lütfen paylaşma.
@@ -103,7 +115,9 @@ maskulenitesitesi.com.tr · WhatsApp: +90 545 520 79 99`;
       from: gonderen,
       to: [s.eposta],
       reply_to: process.env.EKITAP_YANIT_ADRESI || "maskulenitesitesi@gmail.com",
-      subject: `${bilgi.kitap} — ${cift ? "E-kitapların" : "E-kitabın"} hazır 📖`,
+      subject: hediye
+        ? `🎁 Hediye ${cift ? "e-kitapların" : "e-kitabın"}: ${bilgi.kitap} — imzalı kitabın yolda`
+        : `${bilgi.kitap} — ${cift ? "E-kitapların" : "E-kitabın"} hazır 📖`,
       html,
       text,
       attachments: dosyalar.map((d, i) => ({ filename: d.ad, content: pdfler[i].toString("base64") })),

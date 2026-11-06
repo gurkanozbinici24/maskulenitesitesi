@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { BookPlus, Check, Copy, CreditCard, Gift, Landmark, Loader2, Lock, MessageCircle, PenLine, ShieldCheck, Truck, Mail } from "lucide-react";
 import { WHATSAPP_PHONE } from "@/config/cekicilikConfig";
+import { useKampanya } from "@/components/ui/KampanyaGeriSayim";
 import LegalModal from "@/components/LegalModal";
 import type { OdemeUrunu } from "@/lib/odeme/urunler";
 
@@ -122,13 +123,16 @@ export default function OdemeForm({
   ekleme,
   havaleAktif = false,
   havaleBilgi,
+  hediyeVar = false,
 }: {
   urun: OdemeUrunu;
   ekleme?: EklemeBilgisi | null;
   havaleAktif?: boolean;
   havaleBilgi?: { iban: string; aliciAdi: string; banka: string };
+  hediyeVar?: boolean;
 }) {
   const fiziksel = urun.tip === "physical";
+  const kampanya = useKampanya() && !!hediyeVar;
   const havaleVar = fiziksel && havaleAktif && !!havaleBilgi;
   const [yontem, setYontem] = useState<"kart" | "havale">("kart");
   const havale = havaleVar && yontem === "havale";
@@ -314,7 +318,7 @@ export default function OdemeForm({
           <Alan label="Soyad">
             <input required autoComplete="family-name" className={giris} value={f.soyad} onChange={set("soyad")} />
           </Alan>
-          <Alan label={fiziksel ? "E-posta (isteğe bağlı)" : "E-posta"}>
+          <Alan label={fiziksel ? (kampanya ? "E-posta (hediye e-kitap için)" : "E-posta (isteğe bağlı)") : "E-posta"}>
             <input
               required={!fiziksel}
               type="email"
@@ -322,7 +326,7 @@ export default function OdemeForm({
               className={giris}
               value={f.eposta}
               onChange={set("eposta")}
-              placeholder={fiziksel ? "Sipariş onayı için" : "E-kitap bu adrese gönderilecek"}
+              placeholder={fiziksel ? (kampanya ? "Hediye PDF bu adrese gelir" : "Sipariş onayı için") : "E-kitap bu adrese gönderilecek"}
             />
           </Alan>
           <Alan label="Cep telefonu">

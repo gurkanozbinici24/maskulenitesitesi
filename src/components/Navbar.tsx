@@ -6,9 +6,11 @@ import { Menu, X, ArrowUpRight } from "lucide-react";
 import { ThemeButton } from "./ui/ThemeSystem";
 import { useCekicilikLaunchStatus } from "./ui/BookCountdown";
 import { KART_ODEME_AKTIF } from "@/config/cekicilikConfig";
+import { useKampanya } from "./ui/KampanyaGeriSayim";
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
+  const kampanya = useKampanya();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { isOnSale } = useCekicilikLaunchStatus();
   // Duyuru şeridi iki mesaj arasında döner: lansman + e-kitapta anında teslimat
@@ -39,7 +41,9 @@ export default function Navbar() {
           <span className="relative inline-flex rounded-full h-1.5 w-1.5 sm:h-2 sm:w-2 bg-gold-500"></span>
         </span>
         <span className="text-gold-300 font-extrabold text-[10px] sm:text-xs tracking-[0.08em] sm:tracking-[0.14em] uppercase whitespace-nowrap truncate">
-          {KART_ODEME_AKTIF && mesaj === 1
+          {kampanya && KART_ODEME_AKTIF
+            ? `🎁 FİZİKSEL KİTABA E-KİTAP HEDİYE · ${kampanya.kalan}`
+            : KART_ODEME_AKTIF && mesaj === 1
             ? "⚡ E-KİTAP: KARTLA ÖDE, 7/24 SANİYELER İÇİNDE E-POSTANDA"
             : isOnSale
               ? "YENİLENMİŞ EDİSYON VE YENİ KİTAP: ŞİMDİ SATIŞTA"

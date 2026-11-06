@@ -5,6 +5,8 @@ import { cookies } from "next/headers";
 import { siparisBildir } from "@/lib/odeme/bildirim";
 import { urunBul } from "@/lib/odeme/urunler";
 import { ekitapGonder } from "@/lib/odeme/ekitapTeslim";
+import { HEDIYE_EKITAP, kampanyaAktif } from "@/lib/odeme/kampanya";
+import type { OdemeOzeti } from "@/lib/odeme/bildirim";
 import { degerlendirmeLinki, urundekiKitaplar } from "@/lib/yorum/token";
 import { davetKuyrugunaEkle } from "@/lib/yorum/depo";
 
@@ -95,7 +97,23 @@ async function isle(req: Request) {
     }
   }
 
+  // 48 saat kampanyası: fiziksel kitap alana hediye e-kitap (PDF) hemen e-postasına
+  let hediye: OdemeOzeti["hediye"];
+  const hediyeUrun = urun.tip === "physical" && kampanyaAktif() ? urunBul(HEDIYE_EKITAP[urun.id]) : null;
+  if (hediyeUrun) {
+    if (!siparis.eposta) hediye = "eposta-yok";
+    else {
+      try {
+        hediye = (await ekitapGonder(siparis, hediyeUrun, undefined, true)) === "gonderildi" ? "gonderildi" : "hata";
+      } catch (e) {
+        console.error("[kampanya] hediye e-kitap gönderilemedi", siparis.n, e);
+        hediye = "hata";
+      }
+    }
+  }
+
   await siparisBildir(siparis, urun, {
+    hediye,
     ekitap,
     paymentId: c.paymentId,
     paidPrice: Number(c.paidPrice),

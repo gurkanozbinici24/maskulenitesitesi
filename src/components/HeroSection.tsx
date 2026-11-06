@@ -4,7 +4,8 @@ import AnindaTeslim from "./ui/AnindaTeslim";
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import dynamic from "next/dynamic";
-import { ArrowRight, Bell, Clock, Flame, Sparkles, Zap } from "lucide-react";
+import { ArrowRight, Bell, Clock, Flame, Gift, Sparkles, Truck, Zap } from "lucide-react";
+import { KampanyaRozet, useKampanya } from "./ui/KampanyaGeriSayim";
 import { ThemeBadge, ThemeButton } from "./ui/ThemeSystem";
 import { useCekicilikLaunchStatus } from "./ui/BookCountdown";
 import { scrollToSection } from "@/lib/scrollToSection";
@@ -13,15 +14,26 @@ import { odemeLinki } from "@/lib/odeme/urunler";
 
 // Lazy-load react-three-fiber sahnesi (SSR kapalı, açılış hızını etkilemez)
 /** Fiziksel kitap butonunun hemen altindaki ikinci buton: e-kitabi dogrudan kartla odeme sayfasinda acar */
-/** Fiziksel kitap butonu yazısı: fiyat tek satırda kalır, altında ücretsiz kargo satırı */
+/** Fiziksel kitap butonu yazısı: fiyat tek satırda kalır, altında kargo (+ kampanyada hediye) satırı */
 function FizikselEtiket({ fiyat }: { fiyat: number }) {
+  const kampanya = useKampanya();
   return (
     <span className="flex min-w-0 flex-col items-center leading-tight">
       <span className="tracking-normal min-[400px]:tracking-wide">
         Fiziksel Kitabı Al – <span className="whitespace-nowrap">{fiyat} TL</span>
       </span>
-      <span className="mt-0.5 text-[10px] font-bold normal-case tracking-normal opacity-90 sm:text-[11px]">
-        Ücretsiz kargo · İsme özel imzalı
+      <span className="mt-1 flex items-center gap-1 whitespace-nowrap text-[10px] font-bold normal-case tracking-normal opacity-95 sm:text-[11px]">
+        <Truck className="h-3.5 w-3.5 flex-shrink-0" strokeWidth={2.4} />
+        Ücretsiz kargo
+        <span className="opacity-60">·</span>
+        {kampanya ? (
+          <>
+            <Gift className="h-3.5 w-3.5 flex-shrink-0" strokeWidth={2.4} />
+            E-kitap hediye
+          </>
+        ) : (
+          "İsme özel imzalı"
+        )}
       </span>
     </span>
   );
@@ -510,6 +522,7 @@ export default function HeroSection() {
                   </div>
 
                   {/* 4. Satın Alma Butonu (İki Kitapta Aynı Boyut ve Hiza) */}
+                  {kartliSatis && <KampanyaRozet deger={VAZGECILMEZ_CONFIG.physicalRenovated.price + VAZGECILMEZ_CONFIG.ebook.price} fiyat={VAZGECILMEZ_CONFIG.physicalRenovated.price} className="mb-2 max-w-[320px]" />}
                   <ThemeButton
                     theme="kitap1"
                     variant="primary"
@@ -645,6 +658,8 @@ export default function HeroSection() {
                       <ArrowRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
                     </ThemeButton>
                   ) : (
+                    <>
+                    {kartliSatis && <KampanyaRozet deger={CEKICILIK_PRODUCTS.physical.price + CEKICILIK_PRODUCTS.ebook.price} fiyat={CEKICILIK_PRODUCTS.physical.price} className="mb-2 max-w-[320px]" />}
                     <ThemeButton
                       theme="kitap2"
                       variant="primary"
@@ -660,6 +675,7 @@ export default function HeroSection() {
                       {cekHeroLabel}
                       <ArrowRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
                     </ThemeButton>
+                    </>
                   )}
                   {kartliSatis && (
                     <EbookHeroButton theme="kitap2" href={odemeLinki(CEKICILIK_PRODUCTS.ebook.id)} price={CEKICILIK_PRODUCTS.ebook.price} className="w-full max-w-[320px] mt-2" />
@@ -897,6 +913,7 @@ export default function HeroSection() {
           <>
           {(sectionBook ?? (pastHero ? "kitap1" : mobileSelectedBook)) === "kitap1" ? (
 <>
+            {kartliSatis && <KampanyaRozet deger={VAZGECILMEZ_CONFIG.physicalRenovated.price + VAZGECILMEZ_CONFIG.ebook.price} fiyat={VAZGECILMEZ_CONFIG.physicalRenovated.price} className="mb-2" />}
             <ThemeButton
               theme="kitap1"
               variant="primary"
@@ -935,6 +952,8 @@ export default function HeroSection() {
               <ArrowRight className="w-4 h-4 ml-1" />
             </ThemeButton>
           ) : (
+            <>
+            {kartliSatis && <KampanyaRozet deger={CEKICILIK_PRODUCTS.physical.price + CEKICILIK_PRODUCTS.ebook.price} fiyat={CEKICILIK_PRODUCTS.physical.price} className="mb-2" />}
             <ThemeButton
               theme="kitap2"
               variant="primary"
@@ -950,6 +969,7 @@ export default function HeroSection() {
               {cekHeroLabel}
               <ArrowRight className="w-4 h-4 ml-1" />
             </ThemeButton>
+            </>
           )}
           {kartliSatis && (sectionBook ?? (pastHero ? "kitap1" : mobileSelectedBook)) !== "kitap1" && (
             <>

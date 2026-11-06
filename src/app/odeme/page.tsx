@@ -7,6 +7,8 @@ import FlashTeslim from "@/components/ui/FlashTeslim";
 import { KART_ODEME_AKTIF, WHATSAPP_PHONE } from "@/config/cekicilikConfig";
 import { eklemeBul, satistaMi, urunBul } from "@/lib/odeme/urunler";
 import { HAVALE, havaleHazirMi } from "@/lib/odeme/havale";
+import { HEDIYE_EKITAP } from "@/lib/odeme/kampanya";
+import { KampanyaKutusu } from "@/components/ui/KampanyaGeriSayim";
 import { Lock, Package, BookOpen, CreditCard } from "lucide-react";
 
 export const metadata: Metadata = {
@@ -60,6 +62,7 @@ export default function OdemeSayfasi({ searchParams }: { searchParams: { urun?: 
   }
 
   const Ikon = urun.tip === "physical" ? Package : BookOpen;
+  const hediyeUrun = urun.tip === "physical" ? urunBul(HEDIYE_EKITAP[urun.id]) : null;
   const e = eklemeBul(urun);
   const ekleme = e
     ? {
@@ -101,6 +104,13 @@ export default function OdemeSayfasi({ searchParams }: { searchParams: { urun?: 
         </div>
       </div>
 
+      {hediyeUrun && (
+        <KampanyaKutusu
+          fizikselFiyat={urun.fiyat}
+          ekitapFiyat={hediyeUrun.fiyat}
+          ekitapAdi={hediyeUrun.ad.replace(/\s*[–-]\s*(2\s*)?E-?Kitap.*$/i, "")}
+        />
+      )}
       <FlashTeslim tip={urun.tip === "physical" ? "kargo" : "ekitap"} className="mt-3" />
       {urun.tip === "physical" && (
         <div className="mt-3 flex items-center gap-3 rounded-xl border border-white/10 bg-white/[0.03] px-4 py-3">
@@ -119,6 +129,7 @@ export default function OdemeSayfasi({ searchParams }: { searchParams: { urun?: 
           ekleme={ekleme}
           havaleAktif={havaleHazirMi()}
           havaleBilgi={{ iban: HAVALE.iban, aliciAdi: HAVALE.aliciAdi, banka: HAVALE.banka }}
+          hediyeVar={!!hediyeUrun}
         />
       </div>
     </Kabuk>

@@ -26,6 +26,10 @@ export interface OdemeOzeti {
   kart?: string;
   /** Havale / EFT siparişi: ödeme henüz gelmedi */
   havale?: boolean;
+  /** 48 saat kampanyası: fiziksel kitaba hediye e-kitap durumu */
+  hediye?: "gonderildi" | "hata" | "eposta-yok" | "bekliyor";
+  /** Havalede ödeme gelince hediye PDF'i tek tıkla göndermek için link */
+  hediyeLink?: string;
 }
 
 const tl = (n?: number) =>
@@ -68,6 +72,18 @@ export function siparisMetni(s: Siparis, urun: OdemeUrunu, o: OdemeOzeti): strin
       o.ekitap === "gonderildi"
         ? "✅ E-kitap (PDF) müşterinin e-postasına OTOMATİK gönderildi."
         : "⚠️ E-kitap otomatik GÖNDERİLEMEDİ — lütfen bu e-postaya elle gönder.",
+    );
+  }
+  if (o.hediye) {
+    satirlar.push(
+      "",
+      o.hediye === "gonderildi"
+        ? "🎁 Kampanya: hediye e-kitap (PDF) müşterinin e-postasına OTOMATİK gönderildi."
+        : o.hediye === "hata"
+          ? "🎁 Kampanya: hediye e-kitap GÖNDERİLEMEDİ — lütfen elle gönder."
+          : o.hediye === "eposta-yok"
+            ? "🎁 Kampanya: müşteri e-posta yazmadı, hediye e-kitap gönderilmedi."
+            : `🎁 Kampanya: ödeme gelince hediye e-kitabı tek tıkla gönder:\n${o.hediyeLink}`,
     );
   }
   if (s.not) satirlar.push("", `Not: ${s.not}`);

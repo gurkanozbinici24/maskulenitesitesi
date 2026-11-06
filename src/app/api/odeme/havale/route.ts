@@ -1,7 +1,9 @@
 import { NextResponse } from "next/server";
 import { siparisOlustur } from "@/lib/odeme/dogrula";
 import { HAVALE, havaleHazirMi } from "@/lib/odeme/havale";
-import { siparisBildir } from "@/lib/odeme/bildirim";
+import { siparisBildir, type OdemeOzeti } from "@/lib/odeme/bildirim";
+import { HEDIYE_EKITAP, kampanyaAktif } from "@/lib/odeme/kampanya";
+import { kisaSiparis, siparisPaketle } from "@/lib/odeme/siparis";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -23,7 +25,21 @@ export async function POST(req: Request) {
   const { urun, siparis } = r;
   if (urun.tip !== "physical") return hata("Havale ile ödeme yalnızca fiziksel kitaplarda geçerlidir.");
 
-  await siparisBildir(siparis, urun, { havale: true });
+  const ozet: OdemeOzeti = { havale: true };
+  if (kampanyaAktif() && HEDIYE_EKITAP[urun.id]) {
+    if (!siparis.eposta) ozet.hediye = "eposta-yok";
+    else {
+      try {
+        const p = siparisPaketle(kisaSiparis(siparis));
+        ozet.hediye = "bekliyor";
+        ozet.hediyeLink = `${new URL(req.url).origin}/api/odeme/hediye?d=${p.d}&s=${p.s}`;
+      } catch (e) {
+        console.error("[kampanya] hediye linki oluşturulamadı", e);
+        ozet.hediye = "hata";
+      }
+    }
+  }
+  await siparisBildir(siparis, urun, ozet);
   return NextResponse.json({
     n: siparis.n,
     tutar: urun.fiyat,
