@@ -24,6 +24,8 @@ export interface OdemeOzeti {
   paidPrice?: number;
   installment?: number;
   kart?: string;
+  /** Havale / EFT siparişi: ödeme henüz gelmedi */
+  havale?: boolean;
 }
 
 const tl = (n?: number) =>
@@ -31,14 +33,16 @@ const tl = (n?: number) =>
 
 export function siparisMetni(s: Siparis, urun: OdemeUrunu, o: OdemeOzeti): string {
   const satirlar = [
-    `🛒 YENİ SİPARİŞ (Kartla ödendi)`,
+    o.havale ? `🏦 YENİ SİPARİŞ — HAVALE/EFT BEKLENİYOR` : `🛒 YENİ SİPARİŞ (Kartla ödendi)`,
     `Sipariş no: ${s.n}`,
     `Ürün: ${urun.ad}`,
-    `Ödenen: ${tl(o.paidPrice ?? urun.fiyat)}${o.installment && o.installment > 1 ? ` (${o.installment} taksit)` : ""}`,
+    o.havale
+      ? `Ödenecek: ${tl(urun.fiyat)} — para hesabına gelince kargola (açıklamada sipariş no yazmalı)`
+      : `Ödenen: ${tl(o.paidPrice ?? urun.fiyat)}${o.installment && o.installment > 1 ? ` (${o.installment} taksit)` : ""}`,
     "",
     `Müşteri: ${s.ad} ${s.soyad}`,
     `Telefon: ${s.tel}`,
-    `E-posta: ${s.eposta}`,
+    `E-posta: ${s.eposta || "-"}`,
   ];
   if (urun.tip === "physical" && s.eksik) {
     satirlar.push(
@@ -110,10 +114,10 @@ async function whatsappGonder(metin: string) {
 
 export async function siparisBildir(s: Siparis, urun: OdemeUrunu, o: OdemeOzeti) {
   const metin = siparisMetni(s, urun, o);
-  const konu = `Yeni sipariş: ${urun.ad} — ${s.ad} ${s.soyad} (${s.n})`;
+  const konu = `${o.havale ? "Havale bekleniyor" : "Yeni sipariş"}: ${urun.ad} — ${s.ad} ${s.soyad} (${s.n})`;
   const [eposta, whatsapp] = await Promise.allSettled([epostaGonder(konu, metin), whatsappGonder(metin)]);
   if (eposta.status === "rejected") console.error("[siparis] e-posta bildirimi başarısız", eposta.reason);
   if (whatsapp.status === "rejected") console.error("[siparis] whatsapp bildirimi başarısız", whatsapp.reason);
   // Bildirim kanalları çökse bile sipariş Vercel kayıtlarında kalsın
-  console.log("[siparis] BAŞARILI ÖDEME\n" + metin);
+  console.log((o.havale ? "[siparis] HAVALE SİPARİŞİ\n" : "[siparis] BAŞARILI ÖDEME\n") + metin);
 }

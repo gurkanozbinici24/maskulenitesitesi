@@ -1,7 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { BookPlus, Check, Gift, Loader2, Lock, PenLine, ShieldCheck, Truck, Mail } from "lucide-react";
+import { BookPlus, Check, Copy, CreditCard, Gift, Landmark, Loader2, Lock, MessageCircle, PenLine, ShieldCheck, Truck, Mail } from "lucide-react";
+import { WHATSAPP_PHONE } from "@/config/cekicilikConfig";
 import LegalModal from "@/components/LegalModal";
 import type { OdemeUrunu } from "@/lib/odeme/urunler";
 
@@ -39,8 +40,94 @@ export interface EklemeBilgisi {
 
 const KITAP_ADI = ["Vazgeçilmez Olma Sanatı", "Çekicilik Sanatı"] as const;
 
-export default function OdemeForm({ urun, ekleme }: { urun: OdemeUrunu; ekleme?: EklemeBilgisi | null }) {
+interface HavaleSonuc {
+  n: string;
+  tutar: number;
+  urun: string;
+  iban: string;
+  aliciAdi: string;
+  banka: string;
+}
+
+function Kopyala({ deger, etiketi }: { deger: string; etiketi: string }) {
+  const [ok, setOk] = useState(false);
+  return (
+    <button
+      type="button"
+      onClick={() => {
+        navigator.clipboard?.writeText(deger.replace(/\s/g, etiketi === "IBAN" ? "" : " ")).then(() => {
+          setOk(true);
+          setTimeout(() => setOk(false), 1800);
+        });
+      }}
+      className="flex flex-shrink-0 items-center gap-1.5 rounded-lg border border-gold-500/50 px-3 py-2 text-xs font-bold text-gold-200 transition hover:bg-gold-500/10"
+    >
+      {ok ? <Check className="h-3.5 w-3.5" /> : <Copy className="h-3.5 w-3.5" />}
+      {ok ? "Kopyalandı" : "Kopyala"}
+    </button>
+  );
+}
+
+function HavaleEkrani({ h }: { h: HavaleSonuc }) {
+  const mesaj = `Merhaba, ${h.n} numaralı siparişimin (${h.urun}, ${h.tutar} TL) havale dekontunu gönderiyorum.`;
+  const satir = (etiketi: string, deger: string, kopya = true) => (
+    <div className="flex items-center justify-between gap-3 border-b border-white/5 py-3 last:border-0">
+      <div className="min-w-0">
+        <div className="text-[11px] font-bold uppercase tracking-wider text-zinc-500">{etiketi}</div>
+        <div className="break-all font-mono text-[15px] font-bold text-white">{deger}</div>
+      </div>
+      {kopya && <Kopyala deger={deger} etiketi={etiketi} />}
+    </div>
+  );
+  return (
+    <div className="space-y-6">
+      <div className="rounded-2xl border border-emerald-500/40 bg-emerald-500/10 p-5">
+        <p className="flex items-center gap-2 font-cinzel text-lg font-bold text-white">
+          <Check className="h-5 w-5 text-emerald-400" /> Siparişin alındı
+        </p>
+        <p className="mt-2 text-sm leading-relaxed text-zinc-300">
+          Aşağıdaki hesaba <strong className="text-white">{h.tutar} TL</strong> gönder. Açıklama kısmına sipariş
+          numaranı yazmayı unutma. Ödemen hesabımıza geçince kitabın isme özel imzalanıp ücretsiz kargoyla yola çıkar.
+        </p>
+      </div>
+      <div className="rounded-2xl border border-gold-500/40 bg-white/[0.03] px-5 py-2">
+        {satir("Sipariş no (açıklamaya yaz)", h.n)}
+        {satir("IBAN", h.iban)}
+        {satir("Alıcı adı", h.aliciAdi)}
+        {satir("Banka", h.banka, false)}
+        {satir("Tutar", `${h.tutar} TL`, false)}
+      </div>
+      <a
+        href={`https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(mesaj)}`}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="flex min-h-[56px] w-full items-center justify-center gap-2 rounded-xl bg-[#25D366] px-6 text-base font-extrabold text-black transition hover:brightness-110"
+      >
+        <MessageCircle className="h-5 w-5" /> Dekontu WhatsApp&apos;tan gönder
+      </a>
+      <p className="text-center text-xs text-zinc-500">
+        Dekontu göndermen siparişini hızlandırır. Bu bilgilerin ekran görüntüsünü alabilirsin.
+      </p>
+    </div>
+  );
+}
+
+export default function OdemeForm({
+  urun,
+  ekleme,
+  havaleAktif = false,
+}: {
+  urun: OdemeUrunu;
+  ekleme?: EklemeBilgisi | null;
+  havaleAktif?: boolean;
+}) {
   const fiziksel = urun.tip === "physical";
+  const havaleVar = fiziksel && havaleAktif;
+  const [yontem, setYontem] = useState<"kart" | "havale">("kart");
+  const havale = havaleVar && yontem === "havale";
+  const [farkliImza, setFarkliImza] = useState(false);
+  const [havaleSonuc, setHavaleSonuc] = useState<HavaleSonuc | null>(null);
+  const [web, setWeb] = useState("");
   const [ekle, setEkle] = useState(false);
   const [imzaEk, setImzaEk] = useState("");
   const ekli = !!ekleme && ekle;
@@ -76,19 +163,24 @@ export default function OdemeForm({ urun, ekleme }: { urun: OdemeUrunu; ekleme?:
     }
     setYukleniyor(true);
     try {
-      const res = await fetch("/api/odeme/baslat", {
+      const imzaGonder = !fiziksel || !farkliImza
+        ? []
+        : ekli
+          ? ekleme!.asilSira === 0 ? [imza[0], imzaEk] : [imzaEk, imza[0]]
+          : imza;
+      const res = await fetch(havale ? "/api/odeme/havale" : "/api/odeme/baslat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          ...f,
-          urun: urun.id,
-          ekle: ekli,
-          imza: ekli && fiziksel ? (ekleme!.asilSira === 0 ? [imza[0], imzaEk] : [imzaEk, imza[0]]) : imza,
-          hediye,
-          sozlesme,
-        }),
+        body: JSON.stringify({ ...f, urun: urun.id, ekle: ekli, imza: imzaGonder, hediye, sozlesme, web }),
       });
       const j = await res.json();
+      if (havale) {
+        if (!res.ok || !j.n) throw new Error(j.hata || "Sipariş oluşturulamadı.");
+        setHavaleSonuc(j);
+        setYukleniyor(false);
+        window.scrollTo({ top: 0, behavior: "smooth" });
+        return;
+      }
       if (!res.ok || !j.url) throw new Error(j.hata || "Ödeme başlatılamadı.");
       window.location.href = j.url;
     } catch (err) {
@@ -104,8 +196,24 @@ export default function OdemeForm({ urun, ekleme }: { urun: OdemeUrunu; ekleme?:
         ? `${KITAP_ADI[ekleme!.asilSira]} — imza için isim`
         : "İmza için isim";
 
+  if (havaleSonuc) return <HavaleEkrani h={havaleSonuc} />;
+
+  const ilk = (x: string) => x.trim().split(" ")[0];
+  const imzaIsmi = hediye ? ilk(f.alici) : ilk(f.ad);
+  const kitapSayisi = urun.imzaSayisi + (ekli ? 1 : 0);
+
   return (
     <form onSubmit={gonder} className="space-y-8">
+      <input
+        type="text"
+        name="web"
+        value={web}
+        onChange={(e) => setWeb(e.target.value)}
+        tabIndex={-1}
+        autoComplete="off"
+        aria-hidden
+        className="absolute left-[-9999px] h-0 w-0 opacity-0"
+      />
       {/* İletişim */}
       <fieldset className="space-y-4">
         <legend className="mb-1 font-cinzel text-lg font-bold text-white">
@@ -118,15 +226,15 @@ export default function OdemeForm({ urun, ekleme }: { urun: OdemeUrunu; ekleme?:
           <Alan label="Soyad">
             <input required autoComplete="family-name" className={giris} value={f.soyad} onChange={set("soyad")} />
           </Alan>
-          <Alan label="E-posta">
+          <Alan label={fiziksel ? "E-posta (isteğe bağlı)" : "E-posta"}>
             <input
-              required
+              required={!fiziksel}
               type="email"
               autoComplete="email"
               className={giris}
               value={f.eposta}
               onChange={set("eposta")}
-              placeholder={fiziksel ? "ornek@mail.com" : "E-kitap bu adrese gönderilecek"}
+              placeholder={fiziksel ? "Sipariş onayı için" : "E-kitap bu adrese gönderilecek"}
             />
           </Alan>
           <Alan label="Cep telefonu">
@@ -200,32 +308,58 @@ export default function OdemeForm({ urun, ekleme }: { urun: OdemeUrunu; ekleme?:
             </Alan>
           </fieldset>
 
-          {/* İmza */}
-          <fieldset className="space-y-4">
+          {/* İmza: varsayılan olarak sipariş verenin (hediyede alıcının) adına */}
+          <fieldset className="space-y-3">
             <legend className="mb-1 flex items-center gap-2 font-cinzel text-lg font-bold text-white">
               <PenLine className="h-4 w-4 text-gold-400" /> İsme özel imza
             </legend>
-            {imza.map((v, i) => (
-              <Alan key={i} label={imzaEtiketi(i)}>
-                <input
-                  required
-                  className={giris}
-                  value={v}
-                  onChange={(e) => setImza((p) => p.map((x, j) => (j === i ? e.target.value : x)))}
-                  placeholder={hediye ? "Hediye edeceğin kişinin adı" : "Kitaba yazılacak isim"}
-                />
-              </Alan>
-            ))}
-            {ekli && (
-              <Alan label={`${KITAP_ADI[ekleme!.asilSira === 0 ? 1 : 0]} — imza için isim`}>
-                <input
-                  required
-                  className={giris}
-                  value={imzaEk}
-                  onChange={(e) => setImzaEk(e.target.value)}
-                  placeholder={hediye ? "Hediye edeceğin kişinin adı" : "Kitaba yazılacak isim"}
-                />
-              </Alan>
+            {!farkliImza && (
+              <p className="text-sm leading-relaxed text-zinc-300">
+                {kitapSayisi > 1 ? "Kitaplar" : "Kitap"}{" "}
+                {imzaIsmi ? (
+                  <strong className="text-gold-200">&quot;{imzaIsmi}&quot;</strong>
+                ) : hediye ? (
+                  "alıcının"
+                ) : (
+                  "senin"
+                )}{" "}
+                adına imzalanacak.
+              </p>
+            )}
+            <label className="flex cursor-pointer items-center gap-3 text-sm text-zinc-300">
+              <input
+                type="checkbox"
+                className="h-5 w-5 accent-gold-500"
+                checked={farkliImza}
+                onChange={(e) => setFarkliImza(e.target.checked)}
+              />
+              Farklı bir isme imzalansın
+            </label>
+            {farkliImza && (
+              <>
+                {imza.map((v, i) => (
+                  <Alan key={i} label={imzaEtiketi(i)}>
+                    <input
+                      required
+                      className={giris}
+                      value={v}
+                      onChange={(e) => setImza((p) => p.map((x, j) => (j === i ? e.target.value : x)))}
+                      placeholder="Kitaba yazılacak isim"
+                    />
+                  </Alan>
+                ))}
+                {ekli && (
+                  <Alan label={`${KITAP_ADI[ekleme!.asilSira === 0 ? 1 : 0]} — imza için isim`}>
+                    <input
+                      required
+                      className={giris}
+                      value={imzaEk}
+                      onChange={(e) => setImzaEk(e.target.value)}
+                      placeholder="Kitaba yazılacak isim"
+                    />
+                  </Alan>
+                )}
+              </>
             )}
           </fieldset>
         </>
@@ -290,6 +424,40 @@ export default function OdemeForm({ urun, ekleme }: { urun: OdemeUrunu; ekleme?:
         </label>
       )}
 
+      {/* Ödeme yöntemi (havale yalnızca fizikselde) */}
+      {havaleVar && (
+        <fieldset className="space-y-3">
+          <legend className="mb-1 font-cinzel text-lg font-bold text-white">Ödeme yöntemi</legend>
+          <div className="grid gap-3 sm:grid-cols-2">
+            {([
+              ["kart", CreditCard, "Kredi / banka kartı", `${maxTaksit} taksite kadar · anında onay`],
+              ["havale", Landmark, "Havale / EFT", "IBAN'a gönder · tek çekim"],
+            ] as const).map(([k, Ikon, baslik, alt]) => (
+              <label
+                key={k}
+                className={`flex cursor-pointer items-start gap-3 rounded-xl border p-4 transition ${
+                  yontem === k ? "border-gold-400/80 bg-gold-500/10" : "border-zinc-700 hover:border-gold-500/50"
+                }`}
+              >
+                <input
+                  type="radio"
+                  name="yontem"
+                  className="mt-1 h-4 w-4 accent-gold-500"
+                  checked={yontem === k}
+                  onChange={() => setYontem(k)}
+                />
+                <span>
+                  <span className="flex items-center gap-2 text-[15px] font-bold text-white">
+                    <Ikon className="h-4 w-4 text-gold-400" /> {baslik}
+                  </span>
+                  <span className="mt-0.5 block text-xs text-zinc-400">{alt}</span>
+                </span>
+              </label>
+            ))}
+          </div>
+        </fieldset>
+      )}
+
       {/* Sözleşme */}
       <label className="flex cursor-pointer items-start gap-3 text-sm leading-relaxed text-zinc-300">
         <input
@@ -333,10 +501,18 @@ export default function OdemeForm({ urun, ekleme }: { urun: OdemeUrunu; ekleme?:
         disabled={yukleniyor}
         className="flex min-h-[56px] w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-gold-300 via-gold-400 to-gold-600 px-6 text-base font-extrabold text-black shadow-gold-glow transition hover:brightness-110 active:scale-[0.99] disabled:cursor-wait disabled:opacity-70"
       >
-        {yukleniyor ? <Loader2 className="h-5 w-5 animate-spin" /> : <Lock className="h-5 w-5" />}
-        {yukleniyor ? "Güvenli ödeme ekranı açılıyor..." : `Kartla Güvenli Öde – ${toplam} TL`}
+        {yukleniyor ? <Loader2 className="h-5 w-5 animate-spin" /> : havale ? <Landmark className="h-5 w-5" /> : <Lock className="h-5 w-5" />}
+        {yukleniyor
+          ? havale ? "Sipariş oluşturuluyor..." : "Güvenli ödeme ekranı açılıyor..."
+          : havale ? `Siparişi Oluştur – Havale ile ${toplam} TL` : `Kartla Güvenli Öde – ${toplam} TL`}
       </button>
 
+      {havale ? (
+        <p className="text-center text-xs text-zinc-500">
+          Siparişi oluşturunca IBAN bilgileri ekranda görünür. Ödemen hesabımıza geçince kitabın kargoya verilir.
+        </p>
+      ) : (
+      <>
       <p className="flex items-center justify-center gap-2 text-center text-xs text-zinc-500">
         <ShieldCheck className="h-4 w-4 text-emerald-400" />
         Kart bilgilerin bu siteye değil, doğrudan iyzico&apos;nun 3D Secure ödeme ekranına girilir.
@@ -346,6 +522,8 @@ export default function OdemeForm({ urun, ekleme }: { urun: OdemeUrunu; ekleme?:
         Kredi kartına <strong className="text-zinc-300">{maxTaksit} taksite kadar</strong> seçenek ödeme ekranında. Tek çekim
         fiyatı {toplam} TL; taksitli seçeneklerde vade farkı uygulanır.
       </p>
+      </>
+      )}
 
       <LegalModal
         isOpen={!!modal}

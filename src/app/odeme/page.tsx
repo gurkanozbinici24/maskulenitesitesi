@@ -6,6 +6,7 @@ import OdemeForm from "@/components/odeme/OdemeForm";
 import FlashTeslim from "@/components/ui/FlashTeslim";
 import { KART_ODEME_AKTIF, WHATSAPP_PHONE } from "@/config/cekicilikConfig";
 import { eklemeBul, satistaMi, urunBul } from "@/lib/odeme/urunler";
+import { havaleHazirMi } from "@/lib/odeme/havale";
 import { Lock, Package, BookOpen, CreditCard } from "lucide-react";
 
 export const metadata: Metadata = {
@@ -107,12 +108,13 @@ export default function OdemeSayfasi({ searchParams }: { searchParams: { urun?: 
           <p className="text-[13px] leading-snug text-zinc-300">
             <strong className="text-white">Kredi kartına {urun.maxTaksit ?? 3} taksite kadar.</strong>{" "}
             Taksit sayısını iyzico ödeme ekranında seçersin; vade farkı uygulanır.
+            {havaleHazirMi() && " Kart kullanmak istemiyorsan aşağıdan Havale / EFT'yi seçebilirsin."}
           </p>
         </div>
       )}
 
       <div className="mt-8">
-        <OdemeForm urun={urun} ekleme={ekleme} />
+        <OdemeForm urun={urun} ekleme={ekleme} havaleAktif={havaleHazirMi()} />
       </div>
     </Kabuk>
   );

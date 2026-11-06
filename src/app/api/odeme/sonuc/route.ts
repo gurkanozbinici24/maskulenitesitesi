@@ -86,7 +86,7 @@ async function isle(req: Request) {
     }
   }
 
-  if (urun.tip === "physical") {
+  if (urun.tip === "physical" && siparis.eposta) {
     // Kitap eline ulaştıktan birkaç gün sonra değerlendirme daveti gitsin (günlük görev gönderir)
     try {
       await davetKuyrugunaEkle({ n: siparis.n, ad: siparis.ad, soyad: siparis.soyad, eposta: siparis.eposta, kitaplar, t: Date.now() });

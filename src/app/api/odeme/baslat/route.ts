@@ -1,24 +1,13 @@
 import { NextResponse } from "next/server";
 import { iyzicoHazirMi, iyzicoIstek, type CheckoutBaslatCevap } from "@/lib/odeme/iyzico";
-import { SIPARIS_CEREZI, cerezYaz, kisaSiparis, siparisNoUret, siparisPaketle, type Siparis } from "@/lib/odeme/siparis";
-import { eklemeBul, satistaMi, taksitler, urunBul } from "@/lib/odeme/urunler";
+import { SIPARIS_CEREZI, cerezYaz, kisaSiparis, siparisPaketle } from "@/lib/odeme/siparis";
+import { taksitler } from "@/lib/odeme/urunler";
+import { siparisOlustur } from "@/lib/odeme/dogrula";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
-const temiz = (v: unknown, max = 120) =>
-  typeof v === "string" ? v.replace(/\s+/g, " ").trim().slice(0, max) : "";
-
 const hata = (mesaj: string, status = 400) => NextResponse.json({ hata: mesaj }, { status });
-
-/** Telefonu iyzico'nun istediği +90XXXXXXXXXX biçimine çevirir */
-function telefonDuzelt(t: string) {
-  const d = t.replace(/\D/g, "");
-  if (d.length === 10 && d.startsWith("5")) return `+90${d}`;
-  if (d.length === 11 && d.startsWith("05")) return `+9${d}`;
-  if (d.length === 12 && d.startsWith("90")) return `+${d}`;
-  return null;
-}
 
 export async function POST(req: Request) {
   if (!iyzicoHazirMi()) return hata("Kartla ödeme şu an aktif değil. Lütfen WhatsApp'tan sipariş verin.", 503);
@@ -30,44 +19,14 @@ export async function POST(req: Request) {
     return hata("Geçersiz istek.");
   }
 
-  const secilen = urunBul(temiz(g.urun, 60));
-  if (!secilen) return hata("Ürün bulunamadı.");
-  if (!satistaMi(secilen)) return hata("Bu ürün henüz satışta değil.");
-  // "Diğer kitabı da ekle" işaretliyse ikili ürüne geç (fiyat yine sunucuda belirlenir)
-  const ekleme = g.ekle === true ? eklemeBul(secilen) : null;
-  const urun = ekleme ? ekleme.hedefUrun : secilen;
-
-  const ad = temiz(g.ad, 50);
-  const soyad = temiz(g.soyad, 50);
-  const eposta = temiz(g.eposta, 100).toLowerCase();
-  const tel = telefonDuzelt(temiz(g.tel, 20));
-  const il = temiz(g.il, 40);
-  const ilce = temiz(g.ilce, 40);
-  const adres = temiz(g.adres, 250);
-  const alici = temiz(g.alici, 80);
-  const hediye = g.hediye === true;
-  const not = temiz(g.not, 200);
-  const imza = Array.isArray(g.imza) ? g.imza.slice(0, urun.imzaSayisi).map((x) => temiz(x, 60)) : [];
-
-  if (!ad || !soyad) return hata("Ad ve soyad gerekli.");
-  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(eposta)) return hata("Geçerli bir e-posta adresi girin.");
-  if (!tel) return hata("Geçerli bir cep telefonu girin (5XX XXX XX XX).");
-  if (g.sozlesme !== true) return hata("Devam etmek için sözleşmeyi onaylamanız gerekiyor.");
-  if (urun.tip === "physical") {
-    if (!il || !ilce || adres.length < 10) return hata("Kargo için il, ilçe ve açık adres gerekli.");
-    if (imza.length < urun.imzaSayisi || imza.some((x) => !x)) return hata("İmza için isim gerekli.");
-  }
-
-  const siparis: Siparis = {
-    n: siparisNoUret(),
-    u: urun.id,
-    ad,
-    soyad,
-    eposta,
-    tel,
-    ...(urun.tip === "physical" ? { il, ilce, adres, alici: alici || `${ad} ${soyad}`, imza, hediye } : { il }),
-    ...(not ? { not } : {}),
-  };
+  const r = siparisOlustur(g);
+  if ("hata" in r) return hata(r.hata);
+  const { urun, siparis } = r;
+  const { ad, soyad, tel, il } = siparis;
+  // Fizikselde e-posta isteğe bağlı; iyzico zorunlu tuttuğu için boşsa sipariş numarasıyla bir adres üretilir
+  const eposta = siparis.eposta || `siparis+${siparis.n.toLowerCase()}@maskulenitesitesi.com.tr`;
+  const ilce = siparis.ilce || "";
+  const adres = siparis.adres || "";
 
   const origin = new URL(req.url).origin;
   let p = siparisPaketle(kisaSiparis(siparis));
