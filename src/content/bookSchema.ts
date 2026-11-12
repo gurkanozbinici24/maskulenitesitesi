@@ -3,7 +3,7 @@
  * Ana sayfada ve kitap yazılarında aynı @id ile kullanılır; böylece Google
  * "Vazgeçilmez Olma Sanatı" ve "Çekicilik Sanatı" adlarını Gürkan Özbinici ile eşleştirir.
  */
-import { CEKICILIK_PRODUCTS, VAZGECILMEZ_CONFIG } from "@/config/cekicilikConfig";
+import { CEKICILIK_PRODUCTS, RELEASE_DATE, VAZGECILMEZ_CONFIG } from "@/config/cekicilikConfig";
 import { MESSAGES } from "@/config/readersData";
 
 const AY: Record<string, string> = { Eylül: "09", Ekim: "10", Kasım: "11", Ağustos: "08" };
@@ -15,6 +15,10 @@ export const VAZGECILMEZ_REVIEWS = MESSAGES.filter((m) => m.cat === "yorum" && m
 
 const SITE = "https://www.maskulenitesitesi.com.tr";
 const AUTHOR = { "@id": `${SITE}/#gurkan-ozbinici`, "@type": "Person", name: "Gürkan Özbinici", url: `${SITE}/gurkan-ozbinici` };
+
+/** 5 Kasım 18:00 itibarıyla tüm kitaplar satışta; öncesinde ön sipariş. (Sayfa yeniden üretildikçe güncellenir.) */
+const SATISTA = Date.now() >= new Date(RELEASE_DATE).getTime();
+const DURUM: "InStock" | "PreOrder" = SATISTA ? "InStock" : "PreOrder";
 
 const offer = (price: number, url: string, availability: "InStock" | "PreOrder", name: string) => ({
   "@type": "Offer",
@@ -49,7 +53,7 @@ export const VAZGECILMEZ_BOOK = {
   // puan uydurmak da Google kurallarına aykırı.
   offers: [
     offer(VAZGECILMEZ_CONFIG.ebook.price, `${SITE}/#fiyat-kartlari`, "InStock", "E-Kitap (PDF)"),
-    offer(VAZGECILMEZ_CONFIG.physicalRenovated.price, `${SITE}/#fiyat-kartlari`, "PreOrder", "Fiziksel Kitap, Yenilenmiş Edisyon (isme özel imzalı)"),
+    offer(VAZGECILMEZ_CONFIG.physicalRenovated.price, `${SITE}/urun/vazgecilmez-olma-sanati-fiziksel-kitap`, DURUM, "Fiziksel Kitap, Yenilenmiş Edisyon (isme özel imzalı)"),
   ],
 };
 
@@ -71,8 +75,8 @@ export const CEKICILIK_BOOK = {
     "Çekicilik Sanatı, yazar Gürkan Özbinici'nin kadınlar için yazdığı ilişki ve erkek psikolojisi kitabıdır. Bir erkeğin zihninin nasıl çalıştığını, kendi standartlarını kurmayı, doğru erkeği seçmeyi ve aşk bombardımanı gibi tuzakları erkenden tanımayı anlatır.",
   keywords: "çekicilik sanatı, çekici kadın nasıl olunur, değerli kadın olmak, erkek neden ilgisini kaybeder, erkeği kendine bağlamak, bir erkek için vazgeçilmez olmak, gürkan özbinici, kadınlar için ilişki kitabı, erkek psikolojisi kitabı",
   offers: [
-    offer(CEKICILIK_PRODUCTS.ebook.price, `${SITE}/#cekicilik-sanati`, "PreOrder", "E-Kitap (PDF)"),
-    offer(CEKICILIK_PRODUCTS.physical.price, `${SITE}/#cekicilik-sanati`, "PreOrder", "Fiziksel Kitap (isme özel imzalı)"),
+    offer(CEKICILIK_PRODUCTS.ebook.price, `${SITE}/#cekicilik-sanati`, DURUM, "E-Kitap (PDF)"),
+    offer(CEKICILIK_PRODUCTS.physical.price, `${SITE}/urun/cekicilik-sanati-fiziksel-kitap`, DURUM, "Fiziksel Kitap (isme özel imzalı)"),
   ],
 };
 
