@@ -86,7 +86,7 @@ function SetEtiket() {
   const indirimli = HAVALE_KAMPANYA_FIYAT["koleksiyon-seti"] ?? fiyat;
   return havale && indirimli < fiyat ? (
     <span>
-      Havale ile Seti Al – <CiziliFiyat eski={fiyat} yeni={indirimli} />
+      Havale ile Seti Al – <CiziliFiyat eski={KOLEKSIYON_SETI_CONFIG.oldPrice} yeni={indirimli} />
     </span>
   ) : (
     <span>Seti Hemen Al – {fiyat} TL</span>

@@ -39,6 +39,8 @@ export interface EklemeBilgisi {
   normalFiyat?: number;
   /** Havale ile ödemede hedef ürünün fiyatı (kampanya indirimi dahil) */
   hedefHavaleFiyat?: number;
+  /** Havale indiriminde hedef ürünün üstü çizili fiyatı */
+  hedefReferans?: number;
 }
 
 const KITAP_ADI = ["Vazgeçilmez Olma Sanatı", "Çekicilik Sanatı"] as const;
@@ -158,6 +160,7 @@ export default function OdemeForm({
   ekitapHavale = false,
   havaleBilgi,
   havaleFiyat,
+  referansFiyat,
   hediyeVar = false,
 }: {
   urun: OdemeUrunu;
@@ -168,6 +171,8 @@ export default function OdemeForm({
   havaleBilgi?: { iban: string; aliciAdi: string; banka: string };
   /** Havale ile birim fiyat (kampanya indirimi dahil) */
   havaleFiyat?: number;
+  /** Havale indiriminde üstü çizili fiyat */
+  referansFiyat?: number;
   hediyeVar?: boolean;
 }) {
   const fiziksel = urun.tip === "physical";
@@ -190,6 +195,8 @@ export default function OdemeForm({
   const havaleToplam = havaleBirim * adet;
   const toplam = havale ? havaleToplam : kartToplam;
   const havaleIndirimVar = havaleVar && havaleBirim < kartBirim;
+  const referansBirim = ekli ? (ekleme!.hedefReferans ?? kartBirim) : (referansFiyat ?? kartBirim);
+  const referansToplam = referansBirim * adet;
   const maxTaksit = ekli ? ekleme!.hedefTaksit : (urun.maxTaksit ?? 3);
   const [f, setF] = useState({
     ad: "",
@@ -308,7 +315,7 @@ export default function OdemeForm({
               >
                 {k === "havale" && havaleIndirimVar && (
                   <span className="absolute -top-2.5 right-3 rounded-full bg-emerald-500 px-2.5 py-0.5 text-[11px] font-extrabold uppercase tracking-wider text-black">
-                    %{Math.round((1 - havaleBirim / kartBirim) * 100)} indirim
+                    %{Math.round((1 - havaleBirim / referansBirim) * 100)} indirim
                   </span>
                 )}
                 <input
@@ -429,7 +436,7 @@ export default function OdemeForm({
                 <div className="text-[11px] font-bold uppercase tracking-wider text-zinc-500">Tutar</div>
                 <div className="font-mono text-[15px] font-bold text-gold-200">
                   {havaleIndirimVar && (
-                    <span className="mr-2 text-zinc-500 line-through decoration-crimson-500 decoration-2">{kartToplam} TL</span>
+                    <span className="mr-2 text-zinc-500 line-through decoration-crimson-500 decoration-2">{referansToplam} TL</span>
                   )}
                   {toplam} TL
                 </div>
@@ -612,7 +619,7 @@ export default function OdemeForm({
           </span>
           <span className="font-mono font-bold text-white">
             {havale && havaleIndirimVar && (
-              <span className="mr-1.5 text-zinc-500 line-through decoration-crimson-500">{kartToplam} TL</span>
+              <span className="mr-1.5 text-zinc-500 line-through decoration-crimson-500">{referansToplam} TL</span>
             )}
             {toplam} TL
           </span>

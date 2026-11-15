@@ -10,6 +10,8 @@ import AnindaTeslim from "./ui/AnindaTeslim";
 import GiftLink from "./ui/GiftLink";
 import { KART_ODEME_AKTIF, KOLEKSIYON_SETI_CONFIG as SET } from "@/config/cekicilikConfig";
 import { odemeLinki } from "@/lib/odeme/urunler";
+import { FirsatRozet, useHavaleKampanya } from "./ui/KampanyaGeriSayim";
+import { HAVALE_KAMPANYA_FIYAT } from "@/lib/odeme/kampanya";
 
 const pad = (n: number) => String(n).padStart(2, "0");
 
@@ -18,6 +20,9 @@ const pad = (n: number) => String(n).padStart(2, "0");
  * 5 Kasım'a kadar geri sayım + haber al, sonra otomatik "Seti Sipariş Et".
  */
 export default function BundleSection() {
+  const havaleK = useHavaleKampanya();
+  const havaleSet = HAVALE_KAMPANYA_FIYAT["koleksiyon-seti"] ?? SET.price;
+  const setFiyat = havaleK && havaleSet < SET.price ? havaleSet : SET.price;
   const [hover, setHover] = useState(false);
   const { mounted, isOnSale, timeLeft } = useCekicilikLaunchStatus(SET.releaseDate);
   const special = useCekicilikLaunchStatus(SET.launchSpecialUntil);
@@ -111,10 +116,15 @@ export default function BundleSection() {
               <span className="absolute left-[-4%] top-1/2 h-[2px] w-[108%] -rotate-6 bg-crimson-500" />
             </span>
             <span className="font-mono text-5xl sm:text-6xl font-black leading-none text-white [text-shadow:0_0_30px_rgba(212,175,55,0.45)]">
-              {SET.price}
+              {setFiyat}
               <span className="ml-1 text-2xl text-gold-400">TL</span>
             </span>
           </div>
+          {setFiyat < SET.price && (
+            <p className="mt-2 text-center text-xs font-bold text-zinc-400 lg:text-left">
+              Havale / EFT ile · Kartla {SET.price} TL
+            </p>
+          )}
 
           <ul className="mx-auto mt-6 max-w-md space-y-2.5 text-left text-sm text-zinc-300 lg:mx-0">
             {[
@@ -135,6 +145,7 @@ export default function BundleSection() {
           <PhysicalPerks theme="kitap1" className="mx-auto mt-4 max-w-md lg:mx-0" />
 
           <div className="mx-auto mt-7 max-w-md lg:mx-0" data-sticky-hide>
+            {isOnSale && KART_ODEME_AKTIF && setFiyat < SET.price && <FirsatRozet ince className="mb-2" />}
             {isOnSale && KART_ODEME_AKTIF ? (
               <ThemeButton
                 theme="kitap1"
@@ -145,7 +156,7 @@ export default function BundleSection() {
                 className="mb-2"
               >
                 <CreditCard className="h-5 w-5" />
-                <span>Kartla Hemen Al – {SET.price} TL</span>
+                <span>{setFiyat < SET.price ? `Havale ile Hemen Al – ${setFiyat} TL` : `Kartla Hemen Al – ${SET.price} TL`}</span>
               </ThemeButton>
             ) : null}
             {isOnSale ? (

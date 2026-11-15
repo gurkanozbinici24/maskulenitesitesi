@@ -6,7 +6,7 @@ import OdemeForm from "@/components/odeme/OdemeForm";
 import { KART_ODEME_AKTIF, WHATSAPP_PHONE } from "@/config/cekicilikConfig";
 import { eklemeBul, satistaMi, urunBul } from "@/lib/odeme/urunler";
 import { HAVALE, havaleHazirMi } from "@/lib/odeme/havale";
-import { HEDIYE_EKITAP, ekitapHavaleAcik, havaleFiyati, havaleKampanyaAktif } from "@/lib/odeme/kampanya";
+import { HEDIYE_EKITAP, ekitapHavaleAcik, havaleFiyati, havaleKampanyaAktif, referansFiyati } from "@/lib/odeme/kampanya";
 import { FirsatRozet, KampanyaKutusu, UrunKartiFiyat } from "@/components/ui/KampanyaGeriSayim";
 import { Lock, Package, BookOpen } from "lucide-react";
 
@@ -70,6 +70,7 @@ export default function OdemeSayfasi({ searchParams }: { searchParams: { urun?: 
         hedefFiyat: e.hedefUrun.fiyat,
         hedefTaksit: e.hedefUrun.maxTaksit ?? 3,
         hedefHavaleFiyat: havaleFiyati(e.hedefUrun),
+        hedefReferans: referansFiyati(e.hedefUrun),
         asilSira: e.asilSira,
         ...(urun.tip === "physical" ? { normalFiyat: urun.fiyat } : {}),
       }
@@ -104,7 +105,7 @@ export default function OdemeSayfasi({ searchParams }: { searchParams: { urun?: 
             </div>
           </div>
         </div>
-        <UrunKartiFiyat kartFiyat={urun.fiyat} havaleFiyat={havaleIndirimi ? havaleBirim : urun.fiyat} />
+        <UrunKartiFiyat kartFiyat={havaleIndirimi ? referansFiyati(urun) : urun.fiyat} havaleFiyat={havaleIndirimi ? havaleBirim : urun.fiyat} />
       </div>
 
       {hediyeUrun && (
@@ -121,6 +122,7 @@ export default function OdemeSayfasi({ searchParams }: { searchParams: { urun?: 
           havaleAktif={havaleHazirMi()}
           ekitapHavale={ekitapHavale}
           havaleFiyat={havaleBirim}
+          referansFiyat={referansFiyati(urun)}
           havaleBilgi={{ iban: HAVALE.iban, aliciAdi: HAVALE.aliciAdi, banka: HAVALE.banka }}
           hediyeVar={!!hediyeUrun}
         />
