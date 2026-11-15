@@ -7,8 +7,8 @@ import FlashTeslim from "@/components/ui/FlashTeslim";
 import { KART_ODEME_AKTIF, WHATSAPP_PHONE } from "@/config/cekicilikConfig";
 import { eklemeBul, satistaMi, urunBul } from "@/lib/odeme/urunler";
 import { HAVALE, havaleHazirMi } from "@/lib/odeme/havale";
-import { HEDIYE_EKITAP } from "@/lib/odeme/kampanya";
-import { KampanyaKutusu } from "@/components/ui/KampanyaGeriSayim";
+import { HAVALE_KAMPANYA, HEDIYE_EKITAP, havaleFiyati, havaleKampanyaAktif } from "@/lib/odeme/kampanya";
+import { HavaleKampanyaKutusu, KampanyaKutusu } from "@/components/ui/KampanyaGeriSayim";
 import { Lock, Package, BookOpen, CreditCard } from "lucide-react";
 
 export const metadata: Metadata = {
@@ -70,10 +70,15 @@ export default function OdemeSayfasi({ searchParams }: { searchParams: { urun?: 
         ekFiyat: e.ekFiyat,
         hedefFiyat: e.hedefUrun.fiyat,
         hedefTaksit: e.hedefUrun.maxTaksit ?? 3,
+        hedefHavaleFiyat: havaleFiyati(e.hedefUrun),
         asilSira: e.asilSira,
         ...(urun.tip === "physical" ? { normalFiyat: urun.fiyat } : {}),
       }
     : null;
+
+  const havaleVar = urun.tip === "physical" && havaleHazirMi();
+  const havaleBirim = havaleFiyati(urun);
+  const havaleIndirimi = havaleVar && havaleKampanyaAktif() && havaleBirim < urun.fiyat;
 
   return (
     <Kabuk>
@@ -104,6 +109,7 @@ export default function OdemeSayfasi({ searchParams }: { searchParams: { urun?: 
         </div>
       </div>
 
+      {havaleIndirimi && <HavaleKampanyaKutusu kartFiyat={urun.fiyat} havaleFiyat={havaleBirim} />}
       {hediyeUrun && (
         <KampanyaKutusu
           fizikselFiyat={urun.fiyat}
@@ -118,7 +124,10 @@ export default function OdemeSayfasi({ searchParams }: { searchParams: { urun?: 
           <p className="text-[13px] leading-snug text-zinc-300">
             <strong className="text-white">Kredi kartına {urun.maxTaksit ?? 3} taksite kadar.</strong>{" "}
             Taksit sayısını iyzico ödeme ekranında seçersin; vade farkı uygulanır.
-            {havaleHazirMi() && " Kart kullanmak istemiyorsan Havale / EFT'yi seçebilirsin."}
+            {havaleVar &&
+              (havaleIndirimi
+                ? ` Havale / EFT ile öderken %${HAVALE_KAMPANYA.yuzde} indirim: ${havaleBirim} TL.`
+                : " Kart kullanmak istemiyorsan Havale / EFT'yi seçebilirsin.")}
           </p>
         </div>
       )}
@@ -128,6 +137,7 @@ export default function OdemeSayfasi({ searchParams }: { searchParams: { urun?: 
           urun={urun}
           ekleme={ekleme}
           havaleAktif={havaleHazirMi()}
+          havaleFiyat={havaleBirim}
           havaleBilgi={{ iban: HAVALE.iban, aliciAdi: HAVALE.aliciAdi, banka: HAVALE.banka }}
           hediyeVar={!!hediyeUrun}
         />

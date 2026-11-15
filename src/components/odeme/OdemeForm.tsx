@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { BookPlus, Check, Copy, CreditCard, Gift, Landmark, Loader2, Lock, MessageCircle, PenLine, ShieldCheck, Truck, Mail } from "lucide-react";
+import { BookPlus, Check, Copy, Minus, Plus, CreditCard, Gift, Landmark, Loader2, Lock, MessageCircle, PenLine, ShieldCheck, Truck, Mail } from "lucide-react";
 import { WHATSAPP_PHONE } from "@/config/cekicilikConfig";
 import { useKampanya } from "@/components/ui/KampanyaGeriSayim";
 import LegalModal from "@/components/LegalModal";
@@ -37,6 +37,8 @@ export interface EklemeBilgisi {
   asilSira: 0 | 1;
   /** Fizikselde ikinci kitabın normal fiyatı (üstü çizili gösterilir) */
   normalFiyat?: number;
+  /** Havale ile ödemede hedef ürünün fiyatı (kampanya indirimi dahil) */
+  hedefHavaleFiyat?: number;
 }
 
 const KITAP_ADI = ["Vazgeçilmez Olma Sanatı", "Çekicilik Sanatı"] as const;
@@ -66,6 +68,33 @@ function Kopyala({ deger, etiketi }: { deger: string; etiketi: string }) {
       {ok ? <Check className="h-3.5 w-3.5" /> : <Copy className="h-3.5 w-3.5" />}
       {ok ? "Kopyalandı" : "Kopyala"}
     </button>
+  );
+}
+
+function AdetSecici({ adet, setAdet }: { adet: number; setAdet: (n: number) => void }) {
+  const ayarla = (n: number) => setAdet(Math.min(100, Math.max(1, Math.floor(n) || 1)));
+  const btn =
+    "flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl border border-zinc-700 bg-matte-900 text-gold-300 transition hover:border-gold-500/60 disabled:opacity-40";
+  return (
+    <div className="flex items-center gap-2">
+      <button type="button" aria-label="Azalt" className={btn} disabled={adet <= 1} onClick={() => ayarla(adet - 1)}>
+        <Minus className="h-5 w-5" />
+      </button>
+      <input
+        type="number"
+        inputMode="numeric"
+        min={1}
+        max={100}
+        aria-label="Adet"
+        value={adet}
+        onChange={(e) => ayarla(Number(e.target.value))}
+        className="h-12 w-20 rounded-xl border border-zinc-700 bg-matte-900 text-center font-mono text-lg font-bold text-white outline-none focus:border-gold-500/70"
+      />
+      <button type="button" aria-label="Artır" className={btn} disabled={adet >= 100} onClick={() => ayarla(adet + 1)}>
+        <Plus className="h-5 w-5" />
+      </button>
+      <span className="ml-1 text-xs text-zinc-500">en fazla 100</span>
+    </div>
   );
 }
 
@@ -123,18 +152,23 @@ export default function OdemeForm({
   ekleme,
   havaleAktif = false,
   havaleBilgi,
+  havaleFiyat,
   hediyeVar = false,
 }: {
   urun: OdemeUrunu;
   ekleme?: EklemeBilgisi | null;
   havaleAktif?: boolean;
   havaleBilgi?: { iban: string; aliciAdi: string; banka: string };
+  /** Havale ile birim fiyat (kampanya indirimi dahil) */
+  havaleFiyat?: number;
   hediyeVar?: boolean;
 }) {
   const fiziksel = urun.tip === "physical";
   const kampanya = useKampanya() && !!hediyeVar;
   const havaleVar = fiziksel && havaleAktif && !!havaleBilgi;
-  const [yontem, setYontem] = useState<"kart" | "havale">("kart");
+  // Havale varsa varsayılan ve önerilen yöntem havale (nakit hemen hesaba geçer)
+  const [yontem, setYontem] = useState<"kart" | "havale">(havaleVar ? "havale" : "kart");
+  const [adet, setAdet] = useState(1);
   const havale = havaleVar && yontem === "havale";
   const [farkliImza, setFarkliImza] = useState(false);
   const [havaleSonuc, setHavaleSonuc] = useState<HavaleSonuc | null>(null);
@@ -142,7 +176,12 @@ export default function OdemeForm({
   const [ekle, setEkle] = useState(false);
   const [imzaEk, setImzaEk] = useState("");
   const ekli = !!ekleme && ekle;
-  const toplam = ekli ? ekleme!.hedefFiyat : urun.fiyat;
+  const kartBirim = ekli ? ekleme!.hedefFiyat : urun.fiyat;
+  const havaleBirim = ekli ? (ekleme!.hedefHavaleFiyat ?? ekleme!.hedefFiyat) : (havaleFiyat ?? urun.fiyat);
+  const kartToplam = kartBirim * adet;
+  const havaleToplam = havaleBirim * adet;
+  const toplam = havale ? havaleToplam : kartToplam;
+  const havaleIndirimVar = havaleVar && havaleBirim < kartBirim;
   const maxTaksit = ekli ? ekleme!.hedefTaksit : (urun.maxTaksit ?? 3);
   const [f, setF] = useState({
     ad: "",
@@ -182,7 +221,7 @@ export default function OdemeForm({
       const res = await fetch(havale ? "/api/odeme/havale" : "/api/odeme/baslat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...f, urun: urun.id, ekle: ekli, imza: imzaGonder, hediye, sozlesme, web }),
+        body: JSON.stringify({ ...f, urun: urun.id, adet: fiziksel ? adet : 1, ekle: ekli, imza: imzaGonder, hediye, sozlesme, web }),
       });
       const j = await res.json();
       if (havale) {
@@ -200,6 +239,12 @@ export default function OdemeForm({
     }
   }
 
+  const ekGoster = ekleme
+    ? havale && ekleme.hedefHavaleFiyat != null
+      ? ekleme.hedefHavaleFiyat - (havaleFiyat ?? urun.fiyat)
+      : ekleme.ekFiyat
+    : 0;
+
   const imzaEtiketi = (i: number) =>
     urun.imzaSayisi > 1
       ? `${KITAP_ADI[i === 0 ? 0 : 1]} — imza için isim`
@@ -212,9 +257,12 @@ export default function OdemeForm({
   const ilk = (x: string) => x.trim().split(" ")[0];
   const imzaIsmi = hediye ? ilk(f.alici) : ilk(f.ad);
   const kitapSayisi = urun.imzaSayisi + (ekli ? 1 : 0);
+  const butonMetni = yukleniyor
+    ? havale ? "Sipariş oluşturuluyor..." : "Güvenli ödeme ekranı açılıyor..."
+    : havale ? `Siparişi Oluştur – Havale ile ${toplam} TL` : `Kartla Güvenli Öde – ${toplam} TL`;
 
   return (
-    <form onSubmit={gonder} className="space-y-8">
+    <form id="odeme-formu" onSubmit={gonder} className="space-y-8 pb-24 sm:pb-0">
       <input
         type="text"
         name="web"
@@ -232,15 +280,29 @@ export default function OdemeForm({
           <legend className="mb-1 font-cinzel text-lg font-bold text-white">Nasıl ödemek istersin?</legend>
           <div className="grid gap-3 sm:grid-cols-2">
             {([
-              ["kart", CreditCard, "Kredi / banka kartı", `${maxTaksit} taksite kadar · anında onay`],
-              ["havale", Landmark, "Havale / EFT", "IBAN'a gönder · tek çekim"],
+              [
+                "havale",
+                Landmark,
+                "Havale / EFT",
+                havaleIndirimVar ? `Önerilen · ${havaleToplam} TL · tek çekim` : "Önerilen · IBAN'a gönder · tek çekim",
+              ],
+              ["kart", CreditCard, "Kredi / banka kartı", `${kartToplam} TL · ${maxTaksit} taksite kadar`],
             ] as const).map(([k, Ikon, baslik, alt]) => (
               <label
                 key={k}
-                className={`flex cursor-pointer items-start gap-3 rounded-xl border p-4 transition ${
-                  yontem === k ? "border-gold-400/80 bg-gold-500/10" : "border-zinc-700 hover:border-gold-500/50"
+                className={`relative flex min-h-[64px] cursor-pointer items-start gap-3 rounded-xl border p-4 transition ${
+                  yontem === k
+                    ? k === "havale"
+                      ? "border-emerald-400/80 bg-emerald-500/10"
+                      : "border-gold-400/80 bg-gold-500/10"
+                    : "border-zinc-700 hover:border-gold-500/50"
                 }`}
               >
+                {k === "havale" && havaleIndirimVar && (
+                  <span className="absolute -top-2.5 right-3 rounded-full bg-emerald-500 px-2.5 py-0.5 text-[11px] font-extrabold uppercase tracking-wider text-black">
+                    %{Math.round((1 - havaleBirim / kartBirim) * 100)} indirim
+                  </span>
+                )}
                 <input
                   type="radio"
                   name="yontem"
@@ -257,6 +319,19 @@ export default function OdemeForm({
               </label>
             ))}
           </div>
+        </fieldset>
+      )}
+
+      {fiziksel && (
+        <fieldset className="space-y-2">
+          <legend className="mb-1 font-cinzel text-lg font-bold text-white">Kaç adet?</legend>
+          <AdetSecici adet={adet} setAdet={setAdet} />
+          {adet > 1 && (
+            <p className="text-xs text-zinc-400">
+              {adet} adet × {havale ? havaleBirim : kartBirim} TL = <strong className="text-white">{toplam} TL</strong>. Hepsi
+              aynı pakette, ücretsiz kargo. Kitapların farklı isimlere imzalanmasını istersen isimleri sipariş notuna yaz.
+            </p>
+          )}
         </fieldset>
       )}
 
@@ -282,7 +357,12 @@ export default function OdemeForm({
             <div className="flex items-center justify-between gap-3 py-3">
               <div>
                 <div className="text-[11px] font-bold uppercase tracking-wider text-zinc-500">Tutar</div>
-                <div className="font-mono text-[15px] font-bold text-gold-200">{toplam} TL</div>
+                <div className="font-mono text-[15px] font-bold text-gold-200">
+                  {havaleIndirimVar && (
+                    <span className="mr-2 text-zinc-500 line-through decoration-crimson-500 decoration-2">{kartToplam} TL</span>
+                  )}
+                  {toplam} TL
+                </div>
               </div>
             </div>
           </div>
@@ -498,12 +578,12 @@ export default function OdemeForm({
                       {ekleme.normalFiyat} TL
                     </span>
                   )}
-                  <span className="text-lg font-black text-gold-300">+{ekleme.ekFiyat} TL</span>
+                  <span className="text-lg font-black text-gold-300">+{ekGoster} TL</span>
                 </span>
               </div>
               <p className="mt-1.5 text-[13px] leading-relaxed text-zinc-400">
                 {fiziksel
-                  ? `İkinci kitap ${ekleme.normalFiyat ?? ""} TL yerine ${ekleme.ekFiyat} TL. İkisi de isme özel imzalı, aynı pakette, kapına kadar ücretsiz kargo.${ekleme.hedefTaksit > 3 ? ` Kredi kartına ${ekleme.hedefTaksit} taksite kadar.` : ""}`
+                  ? `İkinci kitap ${ekleme.normalFiyat ?? ""} TL yerine ${ekGoster} TL${havale && havaleIndirimVar ? " (havale fiyatı)" : ""}. İkisi de isme özel imzalı, aynı pakette, kapına kadar ücretsiz kargo.${ekleme.hedefTaksit > 3 ? ` Kredi kartına ${ekleme.hedefTaksit} taksite kadar.` : ""}`
                   : "İki kitap da saniyeler içinde aynı e-postada. Aynı oyunun diğer tarafı."}
               </p>
               {ekle && (
@@ -560,10 +640,35 @@ export default function OdemeForm({
         className="flex min-h-[56px] w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-gold-300 via-gold-400 to-gold-600 px-6 text-base font-extrabold text-black shadow-gold-glow transition hover:brightness-110 active:scale-[0.99] disabled:cursor-wait disabled:opacity-70"
       >
         {yukleniyor ? <Loader2 className="h-5 w-5 animate-spin" /> : havale ? <Landmark className="h-5 w-5" /> : <Lock className="h-5 w-5" />}
-        {yukleniyor
-          ? havale ? "Sipariş oluşturuluyor..." : "Güvenli ödeme ekranı açılıyor..."
-          : havale ? `Siparişi Oluştur – Havale ile ${toplam} TL` : `Kartla Güvenli Öde – ${toplam} TL`}
+        {butonMetni}
       </button>
+
+      {/* Mobilde ekranın altında sabit ödeme çubuğu: toplam + tek dokunuşla sipariş */}
+      <div className="fixed inset-x-0 bottom-0 z-40 border-t border-gold-500/30 bg-matte-950/95 px-4 pb-[calc(env(safe-area-inset-bottom)+10px)] pt-2.5 backdrop-blur-md sm:hidden">
+        <div className="mb-1.5 flex items-center justify-between text-xs">
+          <span className="font-bold text-zinc-300">
+            {havale ? "Havale / EFT" : "Kartla"}
+            {fiziksel && adet > 1 ? ` · ${adet} adet` : ""}
+          </span>
+          <span className="font-mono font-bold text-white">
+            {havale && havaleIndirimVar && (
+              <span className="mr-1.5 text-zinc-500 line-through decoration-crimson-500">{kartToplam} TL</span>
+            )}
+            {toplam} TL
+          </span>
+        </div>
+        <button
+          type="submit"
+          form="odeme-formu"
+          disabled={yukleniyor}
+          className={`flex min-h-[50px] w-full items-center justify-center gap-2 rounded-xl px-4 text-[15px] font-extrabold text-black transition active:scale-[0.99] disabled:opacity-70 ${
+            havale ? "bg-emerald-400" : "bg-gradient-to-r from-gold-300 via-gold-400 to-gold-600"
+          }`}
+        >
+          {yukleniyor ? <Loader2 className="h-5 w-5 animate-spin" /> : havale ? <Landmark className="h-5 w-5" /> : <Lock className="h-5 w-5" />}
+          {yukleniyor ? (havale ? "Oluşturuluyor..." : "Açılıyor...") : havale ? `Siparişi Oluştur – ${toplam} TL` : `Kartla Öde – ${toplam} TL`}
+        </button>
+      </div>
 
       {havale ? (
         <p className="text-center text-xs text-zinc-500">

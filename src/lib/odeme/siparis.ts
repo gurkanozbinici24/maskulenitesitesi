@@ -12,6 +12,8 @@ export interface Siparis {
   /** sipariş no */
   n: string;
   u: UrunId;
+  /** adet (fiziksel ürünlerde 1-100; yoksa 1) */
+  a?: number;
   ad: string;
   soyad: string;
   eposta: string;
@@ -31,8 +33,10 @@ export interface Siparis {
 
 /** Geri dönüş adresine sığacak kısa sipariş özeti */
 export function kisaSiparis(s: Siparis): Siparis {
-  return { n: s.n, u: s.u, ad: s.ad.slice(0, 20), soyad: s.soyad.slice(0, 20), eposta: s.eposta, tel: s.tel };
+  return { n: s.n, u: s.u, ...(s.a && s.a > 1 ? { a: s.a } : {}), ad: s.ad.slice(0, 20), soyad: s.soyad.slice(0, 20), eposta: s.eposta, tel: s.tel };
 }
+
+export const adetOf = (s: Pick<Siparis, "a">) => (s.a && s.a > 1 ? Math.min(100, Math.floor(s.a)) : 1);
 
 export const SIPARIS_CEREZI = "msk_siparis";
 

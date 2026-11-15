@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { iyzicoHazirMi, iyzicoIstek, type CheckoutBaslatCevap } from "@/lib/odeme/iyzico";
-import { SIPARIS_CEREZI, cerezYaz, kisaSiparis, siparisPaketle } from "@/lib/odeme/siparis";
+import { SIPARIS_CEREZI, adetOf, cerezYaz, kisaSiparis, siparisPaketle } from "@/lib/odeme/siparis";
 import { taksitler } from "@/lib/odeme/urunler";
 import { siparisOlustur } from "@/lib/odeme/dogrula";
 
@@ -36,7 +36,8 @@ export async function POST(req: Request) {
     p = siparisPaketle({ ...kisaSiparis(siparis), ad: "", soyad: "" });
     callbackUrl = `${origin}/api/odeme/sonuc?d=${p.d}&s=${p.s}`;
   }
-  const fiyat = urun.fiyat.toFixed(1);
+  const adet = adetOf(siparis);
+  const fiyat = (urun.fiyat * adet).toFixed(1);
   const ip = (req.headers.get("x-forwarded-for") || "").split(",")[0].trim() || "85.34.78.112";
   const sehir = il || "Türkiye";
   const adresMetni = urun.tip === "physical" ? `${adres} ${ilce}/${il}` : "Dijital ürün - e-posta ile teslim";
@@ -75,7 +76,7 @@ export async function POST(req: Request) {
     basketItems: [
       {
         id: urun.id,
-        name: urun.ad,
+        name: adet > 1 ? `${adet} adet - ${urun.ad}`.slice(0, 250) : urun.ad,
         category1: "Kitap",
         itemType: urun.tip === "physical" ? "PHYSICAL" : "VIRTUAL",
         price: fiyat,

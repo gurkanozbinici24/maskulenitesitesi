@@ -38,6 +38,9 @@ export function siparisOlustur(g: Record<string, unknown>): { hata: string } | {
   const alici = temiz(g.alici, 80);
   const hediye = g.hediye === true;
   const not = temiz(g.not, 200);
+  const adetHam = Number(g.adet ?? 1);
+  if (!Number.isInteger(adetHam) || adetHam < 1 || adetHam > 100) return { hata: "Adet 1 ile 100 arasında olmalı." };
+  const adet = fiziksel ? adetHam : 1;
 
   if (!ad || !soyad) return { hata: "Ad ve soyad gerekli." };
   if (fiziksel ? eposta && !EPOSTA_RE.test(eposta) : !EPOSTA_RE.test(eposta))
@@ -57,6 +60,7 @@ export function siparisOlustur(g: Record<string, unknown>): { hata: string } | {
   const siparis: Siparis = {
     n: siparisNoUret(),
     u: urun.id,
+    ...(adet > 1 ? { a: adet } : {}),
     ad,
     soyad,
     eposta,

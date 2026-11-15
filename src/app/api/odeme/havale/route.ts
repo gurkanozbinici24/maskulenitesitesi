@@ -2,8 +2,8 @@ import { NextResponse } from "next/server";
 import { siparisOlustur } from "@/lib/odeme/dogrula";
 import { HAVALE, havaleHazirMi } from "@/lib/odeme/havale";
 import { siparisBildir, type OdemeOzeti } from "@/lib/odeme/bildirim";
-import { HEDIYE_EKITAP, kampanyaAktif } from "@/lib/odeme/kampanya";
-import { kisaSiparis, siparisPaketle } from "@/lib/odeme/siparis";
+import { HEDIYE_EKITAP, havaleFiyati, kampanyaAktif } from "@/lib/odeme/kampanya";
+import { adetOf, kisaSiparis, siparisPaketle } from "@/lib/odeme/siparis";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -25,7 +25,9 @@ export async function POST(req: Request) {
   const { urun, siparis } = r;
   if (urun.tip !== "physical") return hata("Havale ile ödeme yalnızca fiziksel kitaplarda geçerlidir.");
 
-  const ozet: OdemeOzeti = { havale: true };
+  const adet = adetOf(siparis);
+  const tutar = havaleFiyati(urun) * adet;
+  const ozet: OdemeOzeti = { havale: true, havaleTutar: tutar };
   if (kampanyaAktif() && HEDIYE_EKITAP[urun.id]) {
     if (!siparis.eposta) ozet.hediye = "eposta-yok";
     else {
@@ -42,8 +44,8 @@ export async function POST(req: Request) {
   await siparisBildir(siparis, urun, ozet);
   return NextResponse.json({
     n: siparis.n,
-    tutar: urun.fiyat,
-    urun: urun.ad,
+    tutar,
+    urun: adet > 1 ? `${adet} adet × ${urun.ad}` : urun.ad,
     iban: HAVALE.iban,
     aliciAdi: HAVALE.aliciAdi,
     banka: HAVALE.banka,

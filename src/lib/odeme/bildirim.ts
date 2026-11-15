@@ -1,4 +1,4 @@
-import type { Siparis } from "./siparis";
+import { adetOf, type Siparis } from "./siparis";
 import { env } from "./env";
 import type { OdemeUrunu } from "./urunler";
 
@@ -26,6 +26,8 @@ export interface OdemeOzeti {
   kart?: string;
   /** Havale / EFT siparişi: ödeme henüz gelmedi */
   havale?: boolean;
+  /** Havalede ödenecek tutar (kampanya indirimi dahil) */
+  havaleTutar?: number;
   /** 48 saat kampanyası: fiziksel kitaba hediye e-kitap durumu */
   hediye?: "gonderildi" | "hata" | "eposta-yok" | "bekliyor";
   /** Havalede ödeme gelince hediye PDF'i tek tıkla göndermek için link */
@@ -40,9 +42,10 @@ export function siparisMetni(s: Siparis, urun: OdemeUrunu, o: OdemeOzeti): strin
     o.havale ? `🏦 YENİ SİPARİŞ — HAVALE/EFT BEKLENİYOR` : `🛒 YENİ SİPARİŞ (Kartla ödendi)`,
     `Sipariş no: ${s.n}`,
     `Ürün: ${urun.ad}`,
+    ...(adetOf(s) > 1 ? [`📦 ADET: ${adetOf(s)} (toplam ${adetOf(s) * Math.max(1, urun.imzaSayisi)} kitap)`] : []),
     o.havale
-      ? `Ödenecek: ${tl(urun.fiyat)} — müşteri dekontu WhatsApp'tan gönderecek. Dekont gelmeden ve para hesaba geçmeden kargolama.`
-      : `Ödenen: ${tl(o.paidPrice ?? urun.fiyat)}${o.installment && o.installment > 1 ? ` (${o.installment} taksit)` : ""}`,
+      ? `Ödenecek: ${tl(o.havaleTutar ?? urun.fiyat * adetOf(s))}${o.havaleTutar != null && o.havaleTutar < urun.fiyat * adetOf(s) ? ` (havale indirimi, kart fiyatı ${tl(urun.fiyat * adetOf(s))})` : ""} — müşteri dekontu WhatsApp'tan gönderecek. Dekont gelmeden ve para hesaba geçmeden kargolama.`
+      : `Ödenen: ${tl(o.paidPrice ?? urun.fiyat * adetOf(s))}${o.installment && o.installment > 1 ? ` (${o.installment} taksit)` : ""}`,
     "",
     `Müşteri: ${s.ad} ${s.soyad}`,
     `Telefon: ${s.tel}`,
@@ -65,6 +68,7 @@ export function siparisMetni(s: Siparis, urun: OdemeUrunu, o: OdemeOzeti): strin
           ? `✍️ ${i === 0 ? "Vazgeçilmez Olma Sanatı" : "Çekicilik Sanatı"} imzası: ${isim}`
           : `✍️ İmza için isim: ${isim}`,
       ),
+      ...(adetOf(s) > 1 ? [`(İmza isim(ler)i ${adetOf(s)} adetin hepsi için; farklı isim istendiyse nota bak.)`] : []),
     );
   } else {
     satirlar.push(
@@ -130,7 +134,7 @@ async function whatsappGonder(metin: string) {
 
 export async function siparisBildir(s: Siparis, urun: OdemeUrunu, o: OdemeOzeti) {
   const metin = siparisMetni(s, urun, o);
-  const konu = `${o.havale ? "Havale bekleniyor" : "Yeni sipariş"}: ${urun.ad} — ${s.ad} ${s.soyad} (${s.n})`;
+  const konu = `${o.havale ? "Havale bekleniyor" : "Yeni sipariş"}: ${adetOf(s) > 1 ? `${adetOf(s)} adet × ` : ""}${urun.ad} — ${s.ad} ${s.soyad} (${s.n})`;
   const [eposta, whatsapp] = await Promise.allSettled([epostaGonder(konu, metin), whatsappGonder(metin)]);
   if (eposta.status === "rejected") console.error("[siparis] e-posta bildirimi başarısız", eposta.reason);
   if (whatsapp.status === "rejected") console.error("[siparis] whatsapp bildirimi başarısız", whatsapp.reason);

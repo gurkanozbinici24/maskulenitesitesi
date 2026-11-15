@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { iyzicoIstek, type CheckoutSonucCevap } from "@/lib/odeme/iyzico";
-import { SIPARIS_CEREZI, cerezOku, siparisAc, type Siparis } from "@/lib/odeme/siparis";
+import { SIPARIS_CEREZI, adetOf, cerezOku, siparisAc, type Siparis } from "@/lib/odeme/siparis";
 import { cookies } from "next/headers";
 import { siparisBildir } from "@/lib/odeme/bildirim";
 import { urunBul } from "@/lib/odeme/urunler";
@@ -59,7 +59,7 @@ async function isle(req: Request) {
     return git(`/odeme/basarisiz?neden=baglanti&no=${siparis.n}`);
   }
 
-  const tutarDogru = Number(c.paidPrice) >= urun.fiyat;
+  const tutarDogru = Number(c.paidPrice) >= urun.fiyat * adetOf(siparis);
   const basarili =
     c.status === "success" &&
     c.paymentStatus === "SUCCESS" &&
