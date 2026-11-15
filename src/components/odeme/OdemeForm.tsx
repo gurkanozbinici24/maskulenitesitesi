@@ -343,6 +343,68 @@ export default function OdemeForm({
         </fieldset>
       )}
 
+      {/* Diğer kitabı da ekle (tek tık) — yöntem seçiminin hemen altında, gözden kaçmasın */}
+      {ekleme && (
+        <fieldset className="space-y-2">
+          <legend className="mb-1 font-cinzel text-lg font-bold text-white">
+            İkinci kitabı da avantajlı fiyattan eklemek ister misin?
+          </legend>
+        <label
+          className={`group relative block cursor-pointer overflow-hidden rounded-2xl border p-4 transition sm:p-5 ${
+            ekle
+              ? "border-gold-400/80 bg-gradient-to-br from-gold-500/15 via-gold-500/5 to-transparent shadow-gold-glow"
+              : "border-dashed border-gold-500/50 bg-white/[0.02] hover:border-gold-400/80 hover:bg-gold-500/5"
+          }`}
+        >
+          <div className="pointer-events-none absolute inset-x-6 top-0 h-px bg-gradient-to-r from-transparent via-gold-400/70 to-transparent" />
+          <div className="flex items-start gap-3.5">
+            <input
+              type="checkbox"
+              className="sr-only"
+              checked={ekle}
+              onChange={(e) => setEkle(e.target.checked)}
+            />
+            <span
+              aria-hidden
+              className={`mt-0.5 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-md border-2 transition ${
+                ekle ? "border-gold-400 bg-gold-400 text-black" : "border-gold-500/60 bg-black/40 text-transparent"
+              }`}
+            >
+              <Check className="h-4 w-4" strokeWidth={3} />
+            </span>
+            <div className="min-w-0 flex-1">
+              <div className="flex flex-wrap items-center justify-between gap-x-3 gap-y-1">
+                <span className="flex items-center gap-2 text-[15px] font-extrabold text-white">
+                  <BookPlus className="h-4 w-4 flex-shrink-0 text-gold-400" />
+                  {ekleme.kitap} {fiziksel ? "kitabını" : "e-kitabını"} da ekle
+                </span>
+                <span className="flex items-baseline gap-2 whitespace-nowrap font-mono">
+                  {ekleme.normalFiyat && (
+                    <span className="text-sm font-bold text-zinc-500 line-through decoration-crimson-500 decoration-2">
+                      {ekleme.normalFiyat} TL
+                    </span>
+                  )}
+                  <span className="text-lg font-black text-gold-300">+{ekGoster} TL</span>
+                </span>
+              </div>
+              <p className="mt-1.5 text-[13px] leading-relaxed text-zinc-400">
+                {fiziksel
+                  ? `İkinci kitap ${ekleme.normalFiyat ?? ""} TL yerine ${ekGoster} TL${havale && havaleIndirimVar ? " (havale fiyatı)" : ""}. İkisi de isme özel imzalı, aynı pakette, kapına kadar ücretsiz kargo.${ekleme.hedefTaksit > 3 ? ` Kredi kartına ${ekleme.hedefTaksit} taksite kadar.` : ""}`
+                  : havale
+                    ? `İkisi birlikte havale ile ${havaleToplam && ekli ? havaleBirim : (ekleme.hedefHavaleFiyat ?? ekleme.hedefFiyat)} TL. İki PDF aynı e-postada. Aynı oyunun diğer tarafı.`
+                    : "İki kitap da saniyeler içinde aynı e-postada. Aynı oyunun diğer tarafı."}
+              </p>
+              {ekle && (
+                <p className="mt-2 text-xs font-bold uppercase tracking-wider text-gold-300">
+                  Eklendi · Toplam {toplam} TL{maxTaksit > 3 ? ` · ${maxTaksit} taksite kadar` : ""}
+                </p>
+              )}
+            </div>
+          </div>
+        </label>
+        </fieldset>
+      )}
+
       {havale && (
         <div className="space-y-4 rounded-2xl border border-gold-500/40 bg-gradient-to-b from-gold-500/10 to-transparent p-4 sm:p-5">
           <p className="flex items-center gap-2 font-cinzel text-base font-bold text-white">
@@ -493,63 +555,6 @@ export default function OdemeForm({
       <Alan label="Sipariş notu (isteğe bağlı)">
         <input className={giris} value={f.not} onChange={set("not")} maxLength={200} />
       </Alan>
-
-      {/* Diğer kitabı da ekle (tek tık) */}
-      {ekleme && (
-        <label
-          className={`group relative block cursor-pointer overflow-hidden rounded-2xl border p-4 transition sm:p-5 ${
-            ekle
-              ? "border-gold-400/80 bg-gradient-to-br from-gold-500/15 via-gold-500/5 to-transparent shadow-gold-glow"
-              : "border-dashed border-gold-500/50 bg-white/[0.02] hover:border-gold-400/80 hover:bg-gold-500/5"
-          }`}
-        >
-          <div className="pointer-events-none absolute inset-x-6 top-0 h-px bg-gradient-to-r from-transparent via-gold-400/70 to-transparent" />
-          <div className="flex items-start gap-3.5">
-            <input
-              type="checkbox"
-              className="sr-only"
-              checked={ekle}
-              onChange={(e) => setEkle(e.target.checked)}
-            />
-            <span
-              aria-hidden
-              className={`mt-0.5 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-md border-2 transition ${
-                ekle ? "border-gold-400 bg-gold-400 text-black" : "border-gold-500/60 bg-black/40 text-transparent"
-              }`}
-            >
-              <Check className="h-4 w-4" strokeWidth={3} />
-            </span>
-            <div className="min-w-0 flex-1">
-              <div className="flex flex-wrap items-center justify-between gap-x-3 gap-y-1">
-                <span className="flex items-center gap-2 text-[15px] font-extrabold text-white">
-                  <BookPlus className="h-4 w-4 flex-shrink-0 text-gold-400" />
-                  {ekleme.kitap} {fiziksel ? "kitabını" : "e-kitabını"} da ekle
-                </span>
-                <span className="flex items-baseline gap-2 whitespace-nowrap font-mono">
-                  {ekleme.normalFiyat && (
-                    <span className="text-sm font-bold text-zinc-500 line-through decoration-crimson-500 decoration-2">
-                      {ekleme.normalFiyat} TL
-                    </span>
-                  )}
-                  <span className="text-lg font-black text-gold-300">+{ekGoster} TL</span>
-                </span>
-              </div>
-              <p className="mt-1.5 text-[13px] leading-relaxed text-zinc-400">
-                {fiziksel
-                  ? `İkinci kitap ${ekleme.normalFiyat ?? ""} TL yerine ${ekGoster} TL${havale && havaleIndirimVar ? " (havale fiyatı)" : ""}. İkisi de isme özel imzalı, aynı pakette, kapına kadar ücretsiz kargo.${ekleme.hedefTaksit > 3 ? ` Kredi kartına ${ekleme.hedefTaksit} taksite kadar.` : ""}`
-                  : havale
-                    ? `İkisi birlikte havale ile ${havaleToplam && ekli ? havaleBirim : (ekleme.hedefHavaleFiyat ?? ekleme.hedefFiyat)} TL. İki PDF aynı e-postada. Aynı oyunun diğer tarafı.`
-                    : "İki kitap da saniyeler içinde aynı e-postada. Aynı oyunun diğer tarafı."}
-              </p>
-              {ekle && (
-                <p className="mt-2 text-xs font-bold uppercase tracking-wider text-gold-300">
-                  Eklendi · Toplam {toplam} TL{maxTaksit > 3 ? ` · ${maxTaksit} taksite kadar` : ""}
-                </p>
-              )}
-            </div>
-          </div>
-        </label>
-      )}
 
       {/* Sözleşme */}
       <label className="flex cursor-pointer items-start gap-3 text-sm leading-relaxed text-zinc-300">
