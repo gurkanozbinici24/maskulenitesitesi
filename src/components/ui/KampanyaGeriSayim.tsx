@@ -47,10 +47,10 @@ export function useKampanya() {
 }
 
 /** Fiziksel kitap butonlarının üstündeki küçük kampanya rozeti */
-export function KampanyaRozet({ deger, fiyat, className = "" }: { deger: number; fiyat: number; className?: string }) {
+export function KampanyaRozet({ deger, fiyat, className = "", ince = false }: { deger: number; fiyat: number; className?: string; ince?: boolean }) {
   const k = useKampanya();
   const h = useHavaleKampanya();
-  if (h) return <FirsatRozet className={className} />;
+  if (h) return <FirsatRozet className={className} ince={ince} />;
   if (!k) return null;
   return (
     <div
@@ -67,9 +67,20 @@ export function KampanyaRozet({ deger, fiyat, className = "" }: { deger: number;
 }
 
 /** 24 saatlik havale fırsatı rozeti: büyük geri sayım, kampanya hissi */
-export function FirsatRozet({ className = "" }: { className?: string }) {
+export function FirsatRozet({ className = "", ince = false }: { className?: string; ince?: boolean }) {
   const h = useHavaleKampanya();
   if (!h) return null;
+  if (ince)
+    return (
+      <div
+        className={`flex w-full items-center justify-center gap-2 whitespace-nowrap rounded-lg border border-crimson-500/70 bg-crimson-800/40 px-3 py-1 shadow-[0_0_16px_rgba(220,38,38,0.3)] ${className}`}
+      >
+        <span className="text-[11px] font-black uppercase tracking-wide text-white">🔥 24 saatlik fırsat</span>
+        <span className="text-crimson-300">·</span>
+        <span className="text-[10px] font-bold uppercase text-crimson-100">bitmesine</span>
+        <span className="font-mono text-[13px] font-black tabular-nums text-white">{h.kalan}</span>
+      </div>
+    );
   return (
     <div
       className={`relative flex w-full items-center justify-between gap-2 overflow-hidden rounded-xl border border-crimson-500/70 bg-gradient-to-r from-crimson-700/40 via-crimson-900/40 to-crimson-700/40 px-3 py-2 shadow-[0_0_22px_rgba(220,38,38,0.35)] ${className}`}

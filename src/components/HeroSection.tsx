@@ -47,8 +47,10 @@ function FizikselEtiket({ fiyat }: { fiyat: number }) {
         {havale && indirimli < fiyat && <span className="hidden lg:inline">Havale ile ·</span>}
         <Truck className="h-3.5 w-3.5 flex-shrink-0" strokeWidth={2.4} />
         Ücretsiz kargo
-        <span className="opacity-60">·</span>
-        {kampanya ? (
+        <span className={`opacity-60 ${havale && indirimli < fiyat ? "lg:hidden" : ""}`}>·</span>
+        {havale && indirimli < fiyat ? (
+          <span className="lg:hidden">İsme özel imzalı</span>
+        ) : kampanya ? (
           <>
             <Gift className="h-3.5 w-3.5 flex-shrink-0" strokeWidth={2.4} />
             E-kitap hediye
@@ -565,7 +567,7 @@ export default function HeroSection() {
                   </div>
 
                   {/* 4. Satın Alma Butonu (İki Kitapta Aynı Boyut ve Hiza) */}
-                  {kartliSatis && <KampanyaRozet deger={VAZGECILMEZ_CONFIG.physicalRenovated.price + VAZGECILMEZ_CONFIG.ebook.price} fiyat={VAZGECILMEZ_CONFIG.physicalRenovated.price} className="mb-2 max-w-[320px]" />}
+                  {kartliSatis && <KampanyaRozet deger={VAZGECILMEZ_CONFIG.physicalRenovated.price + VAZGECILMEZ_CONFIG.ebook.price} fiyat={VAZGECILMEZ_CONFIG.physicalRenovated.price} className="mb-2 max-w-[320px]" ince />}
                   <ThemeButton
                     theme="kitap1"
                     variant="primary"
@@ -702,7 +704,7 @@ export default function HeroSection() {
                     </ThemeButton>
                   ) : (
                     <>
-                    {kartliSatis && <KampanyaRozet deger={CEKICILIK_PRODUCTS.physical.price + CEKICILIK_PRODUCTS.ebook.price} fiyat={CEKICILIK_PRODUCTS.physical.price} className="mb-2 max-w-[320px]" />}
+                    {kartliSatis && <KampanyaRozet deger={CEKICILIK_PRODUCTS.physical.price + CEKICILIK_PRODUCTS.ebook.price} fiyat={CEKICILIK_PRODUCTS.physical.price} className="mb-2 max-w-[320px]" ince />}
                     <ThemeButton
                       theme="kitap2"
                       variant="primary"
