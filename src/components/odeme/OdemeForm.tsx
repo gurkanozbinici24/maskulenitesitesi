@@ -177,7 +177,8 @@ export default function OdemeForm({
   const [yontem, setYontem] = useState<"kart" | "havale">(havaleVar ? "havale" : "kart");
   const [adet, setAdet] = useState(1);
   const havale = havaleVar && yontem === "havale";
-  const [farkliImza, setFarkliImza] = useState(false);
+  // Sade form: imza her zaman sipariş verenin adına, hediye seçeneği yok
+  const farkliImza = false;
   const [havaleSonuc, setHavaleSonuc] = useState<HavaleSonuc | null>(null);
   const [web, setWeb] = useState("");
   const [ekle, setEkle] = useState(false);
@@ -202,7 +203,7 @@ export default function OdemeForm({
     not: "",
   });
   const [imza, setImza] = useState<string[]>(Array(urun.imzaSayisi).fill(""));
-  const [hediye, setHediye] = useState(false);
+  const hediye = false;
   const [sozlesme, setSozlesme] = useState(false);
   const [modal, setModal] = useState<null | { t: string; type: "iade" | "sozlesme" | "gizlilik" }>(null);
   const [yukleniyor, setYukleniyor] = useState(false);
@@ -336,7 +337,7 @@ export default function OdemeForm({
           {adet > 1 && (
             <p className="text-xs text-zinc-400">
               {adet} adet × {havale ? havaleBirim : kartBirim} TL = <strong className="text-white">{toplam} TL</strong>. Hepsi
-              aynı pakette, ücretsiz kargo. Kitapların farklı isimlere imzalanmasını istersen isimleri sipariş notuna yaz.
+              aynı pakette, ücretsiz kargo.
             </p>
           )}
         </fieldset>
@@ -449,18 +450,6 @@ export default function OdemeForm({
 
       {fiziksel && (
         <>
-          {/* Hediye seçeneği */}
-          <label className="flex cursor-pointer items-center gap-3 rounded-xl border border-crimson-700/40 bg-crimson-950/30 px-4 py-3">
-            <input
-              type="checkbox"
-              className="h-5 w-5 accent-crimson-500"
-              checked={hediye}
-              onChange={(e) => setHediye(e.target.checked)}
-            />
-            <Gift className="h-4 w-4 text-crimson-300" />
-            <span className="text-sm text-zinc-200">Hediye olarak başka birine gönderiyorum</span>
-          </label>
-
           {/* Teslimat */}
           <fieldset className="space-y-4">
             <legend className="mb-1 flex items-center gap-2 font-cinzel text-lg font-bold text-white">
@@ -492,60 +481,12 @@ export default function OdemeForm({
             </Alan>
           </fieldset>
 
-          {/* İmza: varsayılan olarak sipariş verenin (hediyede alıcının) adına */}
-          <fieldset className="space-y-3">
-            <legend className="mb-1 flex items-center gap-2 font-cinzel text-lg font-bold text-white">
-              <PenLine className="h-4 w-4 text-gold-400" /> İsme özel imza
-            </legend>
-            {!farkliImza && (
-              <p className="text-sm leading-relaxed text-zinc-300">
-                {kitapSayisi > 1 ? "Kitaplar" : "Kitap"}{" "}
-                {imzaIsmi ? (
-                  <strong className="text-gold-200">&quot;{imzaIsmi}&quot;</strong>
-                ) : hediye ? (
-                  "alıcının"
-                ) : (
-                  "senin"
-                )}{" "}
-                adına imzalanacak.
-              </p>
-            )}
-            <label className="flex cursor-pointer items-center gap-3 text-sm text-zinc-300">
-              <input
-                type="checkbox"
-                className="h-5 w-5 accent-gold-500"
-                checked={farkliImza}
-                onChange={(e) => setFarkliImza(e.target.checked)}
-              />
-              Farklı bir isme imzalansın
-            </label>
-            {farkliImza && (
-              <>
-                {imza.map((v, i) => (
-                  <Alan key={i} label={imzaEtiketi(i)}>
-                    <input
-                      required
-                      className={giris}
-                      value={v}
-                      onChange={(e) => setImza((p) => p.map((x, j) => (j === i ? e.target.value : x)))}
-                      placeholder="Kitaba yazılacak isim"
-                    />
-                  </Alan>
-                ))}
-                {ekli && (
-                  <Alan label={`${KITAP_ADI[ekleme!.asilSira === 0 ? 1 : 0]} — imza için isim`}>
-                    <input
-                      required
-                      className={giris}
-                      value={imzaEk}
-                      onChange={(e) => setImzaEk(e.target.value)}
-                      placeholder="Kitaba yazılacak isim"
-                    />
-                  </Alan>
-                )}
-              </>
-            )}
-          </fieldset>
+          {/* İmza: her zaman sipariş verenin adına; farklı isim isteyen nota yazar */}
+          <p className="-mt-4 flex items-center gap-2 text-sm text-zinc-400">
+            <PenLine className="h-4 w-4 flex-shrink-0 text-gold-400" />
+            {kitapSayisi > 1 || adet > 1 ? "Kitaplar" : "Kitap"}{" "}
+            {imzaIsmi ? <strong className="text-gold-200">&quot;{imzaIsmi}&quot;</strong> : "senin"} adına imzalanır.
+          </p>
         </>
       )}
 

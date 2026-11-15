@@ -5,7 +5,8 @@ import React, { useCallback, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import dynamic from "next/dynamic";
 import { ArrowRight, Bell, Clock, Flame, Gift, Sparkles, Truck, Zap } from "lucide-react";
-import { KampanyaRozet, useKampanya } from "./ui/KampanyaGeriSayim";
+import { KampanyaRozet, useHavaleKampanya, useKampanya } from "./ui/KampanyaGeriSayim";
+import { HAVALE_KAMPANYA_FIYAT } from "@/lib/odeme/kampanya";
 import { ThemeBadge, ThemeButton } from "./ui/ThemeSystem";
 import { useCekicilikLaunchStatus } from "./ui/BookCountdown";
 import { scrollToSection } from "@/lib/scrollToSection";
@@ -15,14 +16,35 @@ import { odemeLinki } from "@/lib/odeme/urunler";
 // Lazy-load react-three-fiber sahnesi (SSR kapalı, açılış hızını etkilemez)
 /** Fiziksel kitap butonunun hemen altindaki ikinci buton: e-kitabi dogrudan kartla odeme sayfasinda acar */
 /** Fiziksel kitap butonu yazısı: fiyat tek satırda kalır, altında kargo (+ kampanyada hediye) satırı */
+/** Kampanyada fiyat: üstü çizili eski fiyat + yeni fiyat */
+function CiziliFiyat({ eski, yeni }: { eski: number; yeni: number }) {
+  return (
+    <span className="whitespace-nowrap">
+      <span className="mr-1 opacity-60 line-through decoration-2">{eski}</span>
+      {yeni} TL
+    </span>
+  );
+}
+
 function FizikselEtiket({ fiyat }: { fiyat: number }) {
   const kampanya = useKampanya();
+  const havale = useHavaleKampanya();
+  const indirimli = HAVALE_KAMPANYA_FIYAT["cekicilik-fiziksel"] ?? fiyat;
   return (
     <span className="flex min-w-0 flex-col items-center leading-tight">
       <span className="tracking-normal min-[400px]:tracking-wide">
-        Fiziksel Kitabı Al – <span className="whitespace-nowrap">{fiyat} TL</span>
+        {havale && indirimli < fiyat ? (
+          <>
+            <span className="lg:hidden">Havale ile </span>Kitabı Al – <CiziliFiyat eski={fiyat} yeni={indirimli} />
+          </>
+        ) : (
+          <>
+            Fiziksel Kitabı Al – <span className="whitespace-nowrap">{fiyat} TL</span>
+          </>
+        )}
       </span>
       <span className="mt-1 flex items-center gap-1 whitespace-nowrap text-[10px] font-bold normal-case tracking-normal opacity-95 sm:text-[11px]">
+        {havale && indirimli < fiyat && <span className="hidden lg:inline">Havale ile ·</span>}
         <Truck className="h-3.5 w-3.5 flex-shrink-0" strokeWidth={2.4} />
         Ücretsiz kargo
         <span className="opacity-60">·</span>
@@ -40,11 +62,32 @@ function FizikselEtiket({ fiyat }: { fiyat: number }) {
 }
 
 function EbookHeroButton({ theme, href, price, className = "" }: { theme: "kitap1" | "kitap2"; href: string; price: number; className?: string }) {
+  const havale = useHavaleKampanya();
+  const indirimli = HAVALE_KAMPANYA_FIYAT["cekicilik-ekitap"] ?? price;
   return (
     <ThemeButton theme={theme} variant="secondary" size="md" fullWidth href={href} className={`min-h-[44px] h-[44px] ${className}`}>
       <Zap className="w-4 h-4 flex-shrink-0" />
-      <span>E-Kitabı Hemen Al – {price} TL</span>
+      {havale && indirimli < price ? (
+        <span>
+          <span className="lg:hidden">Havale ile </span>E-Kitap<span className="hidden lg:inline"> (havale)</span> – <CiziliFiyat eski={price} yeni={indirimli} />
+        </span>
+      ) : (
+        <span>E-Kitabı Hemen Al – {price} TL</span>
+      )}
     </ThemeButton>
+  );
+}
+
+function SetEtiket() {
+  const havale = useHavaleKampanya();
+  const fiyat = KOLEKSIYON_SETI_CONFIG.price;
+  const indirimli = HAVALE_KAMPANYA_FIYAT["koleksiyon-seti"] ?? fiyat;
+  return havale && indirimli < fiyat ? (
+    <span>
+      Havale ile Seti Al – <CiziliFiyat eski={fiyat} yeni={indirimli} />
+    </span>
+  ) : (
+    <span>Seti Hemen Al – {fiyat} TL</span>
   );
 }
 
@@ -906,7 +949,7 @@ export default function HeroSection() {
               href={odemeLinki("koleksiyon-seti")}
               className="min-h-[56px] py-2.5 !px-4 text-sm font-black"
             >
-              <span>Seti Hemen Al – {KOLEKSIYON_SETI_CONFIG.price} TL</span>
+              <SetEtiket />
               <ArrowRight className="w-4 h-4 ml-1" />
             </ThemeButton>
           ) : (

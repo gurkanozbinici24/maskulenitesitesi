@@ -3,13 +3,12 @@ import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import OdemeForm from "@/components/odeme/OdemeForm";
-import FlashTeslim from "@/components/ui/FlashTeslim";
 import { KART_ODEME_AKTIF, WHATSAPP_PHONE } from "@/config/cekicilikConfig";
 import { eklemeBul, satistaMi, urunBul } from "@/lib/odeme/urunler";
 import { HAVALE, havaleHazirMi } from "@/lib/odeme/havale";
-import { HAVALE_KAMPANYA, HEDIYE_EKITAP, ekitapHavaleAcik, havaleFiyati, havaleKampanyaAktif } from "@/lib/odeme/kampanya";
-import { HavaleKampanyaKutusu, KampanyaKutusu } from "@/components/ui/KampanyaGeriSayim";
-import { Lock, Package, BookOpen, CreditCard } from "lucide-react";
+import { HEDIYE_EKITAP, ekitapHavaleAcik, havaleFiyati, havaleKampanyaAktif } from "@/lib/odeme/kampanya";
+import { FirsatRozet, KampanyaKutusu, UrunKartiFiyat } from "@/components/ui/KampanyaGeriSayim";
+import { Lock, Package, BookOpen } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Güvenli Ödeme",
@@ -90,7 +89,8 @@ export default function OdemeSayfasi({ searchParams }: { searchParams: { urun?: 
         Siparişini <span className="gold-text-gradient">Tamamla</span>
       </h1>
 
-      <div className="mt-6 flex items-center justify-between gap-4 rounded-2xl border border-gold-500/30 bg-gradient-to-b from-white/[0.05] to-transparent p-4 sm:p-5">
+      {havaleIndirimi && <FirsatRozet className="mt-6" />}
+      <div className="mt-3 flex items-center justify-between gap-4 rounded-2xl border border-gold-500/30 bg-gradient-to-b from-white/[0.05] to-transparent p-4 sm:p-5">
         <div className="flex items-center gap-3">
           <div className="rounded-lg border border-gold-500/30 bg-gold-500/10 p-2.5 text-gold-400">
             <Ikon className="h-5 w-5" />
@@ -99,18 +99,14 @@ export default function OdemeSayfasi({ searchParams }: { searchParams: { urun?: 
             <div className="text-sm font-bold text-white sm:text-base">{urun.ad}</div>
             <div className="text-xs text-zinc-400">
               {urun.tip === "physical"
-                ? "İsme özel imzalı · Kapıya kadar ücretsiz kargo"
-                : "PDF · Ödemeden hemen sonra e-postana"}
+                ? "İsme özel imzalı · Ücretsiz kargo · 2 günde elinde"
+                : "PDF · E-postana gönderilir"}
             </div>
           </div>
         </div>
-        <div className="whitespace-nowrap font-mono text-2xl font-black text-white">
-          {urun.fiyat}
-          <span className="ml-1 text-sm text-gold-400">TL</span>
-        </div>
+        <UrunKartiFiyat kartFiyat={urun.fiyat} havaleFiyat={havaleIndirimi ? havaleBirim : urun.fiyat} />
       </div>
 
-      {havaleIndirimi && <HavaleKampanyaKutusu kartFiyat={urun.fiyat} havaleFiyat={havaleBirim} />}
       {hediyeUrun && (
         <KampanyaKutusu
           fizikselFiyat={urun.fiyat}
@@ -118,21 +114,6 @@ export default function OdemeSayfasi({ searchParams }: { searchParams: { urun?: 
           ekitapAdi={hediyeUrun.ad.replace(/\s*[–-]\s*(2\s*)?E-?Kitap.*$/i, "")}
         />
       )}
-      <FlashTeslim tip={urun.tip === "physical" ? "kargo" : "ekitap"} className="mt-3" />
-      {urun.tip === "physical" && (
-        <div className="mt-3 flex items-center gap-3 rounded-xl border border-white/10 bg-white/[0.03] px-4 py-3">
-          <CreditCard className="h-5 w-5 flex-shrink-0 text-gold-400" />
-          <p className="text-[13px] leading-snug text-zinc-300">
-            <strong className="text-white">Kredi kartına {urun.maxTaksit ?? 3} taksite kadar.</strong>{" "}
-            Taksit sayısını iyzico ödeme ekranında seçersin; vade farkı uygulanır.
-            {havaleVar &&
-              (havaleIndirimi
-                ? ` Havale / EFT ile öderken %${HAVALE_KAMPANYA.yuzde} indirim: ${havaleBirim} TL.`
-                : " Kart kullanmak istemiyorsan Havale / EFT'yi seçebilirsin.")}
-          </p>
-        </div>
-      )}
-
       <div className="mt-8">
         <OdemeForm
           urun={urun}

@@ -50,21 +50,7 @@ export function useKampanya() {
 export function KampanyaRozet({ deger, fiyat, className = "" }: { deger: number; fiyat: number; className?: string }) {
   const k = useKampanya();
   const h = useHavaleKampanya();
-  if (h) {
-    const indirimli = Math.round((fiyat * (100 - h.yuzde)) / 100);
-    return (
-      <div
-        className={`flex w-full flex-wrap items-center justify-center gap-x-2 gap-y-0.5 rounded-xl border border-emerald-500/50 bg-gradient-to-r from-emerald-500/15 via-emerald-500/5 to-emerald-500/15 px-3 py-1.5 text-center ${className}`}
-      >
-        <span className="text-[11px] font-extrabold uppercase tracking-wider text-emerald-200">🏦 Havale ile %{h.yuzde}</span>
-        <span className="text-[11px] font-bold text-zinc-300">
-          <span className="text-zinc-500 line-through decoration-crimson-500 decoration-2">{fiyat} TL</span>{" "}
-          <span className="text-white">{indirimli} TL</span>
-        </span>
-        <span className="font-mono text-[11px] font-bold tabular-nums text-crimson-300">⏳ {h.kalan}</span>
-      </div>
-    );
-  }
+  if (h) return <FirsatRozet className={className} />;
   if (!k) return null;
   return (
     <div
@@ -76,6 +62,52 @@ export function KampanyaRozet({ deger, fiyat, className = "" }: { deger: number;
         <span className="text-white">{fiyat} TL</span>
       </span>
       <span className="font-mono text-[11px] font-bold tabular-nums text-crimson-300">⏳ {k.kalan}</span>
+    </div>
+  );
+}
+
+/** 24 saatlik havale fırsatı rozeti: büyük geri sayım, kampanya hissi */
+export function FirsatRozet({ className = "" }: { className?: string }) {
+  const h = useHavaleKampanya();
+  if (!h) return null;
+  return (
+    <div
+      className={`relative flex w-full items-center justify-between gap-2 overflow-hidden rounded-xl border border-crimson-500/70 bg-gradient-to-r from-crimson-700/40 via-crimson-900/40 to-crimson-700/40 px-3 py-2 shadow-[0_0_22px_rgba(220,38,38,0.35)] ${className}`}
+    >
+      <span className="pointer-events-none absolute inset-0 animate-pulse bg-crimson-500/10" />
+      <span className="relative flex flex-col items-start leading-tight">
+        <span className="text-[11px] font-black uppercase tracking-wider text-white">🔥 24 saatlik fırsat</span>
+        <span className="text-[10px] font-bold text-crimson-100">Havale ile %{h.yuzde} indirim</span>
+      </span>
+      <span className="relative flex flex-col items-end leading-tight">
+        <span className="text-[9px] font-bold uppercase tracking-wider text-crimson-200">Bitmesine</span>
+        <span className="font-mono text-base font-black tabular-nums text-white">{h.kalan}</span>
+      </span>
+    </div>
+  );
+}
+
+/** Ödeme sayfasındaki ürün kartının fiyatı: havale indirimi sürerken indirimli fiyat + küçük geri sayım */
+export function UrunKartiFiyat({ kartFiyat, havaleFiyat }: { kartFiyat: number; havaleFiyat: number }) {
+  const h = useHavaleKampanya();
+  if (!h || havaleFiyat >= kartFiyat) {
+    return (
+      <div className="whitespace-nowrap font-mono text-2xl font-black text-white">
+        {kartFiyat}
+        <span className="ml-1 text-sm text-gold-400">TL</span>
+      </div>
+    );
+  }
+  return (
+    <div className="text-right">
+      <div className="whitespace-nowrap font-mono text-sm font-bold text-zinc-500 line-through decoration-crimson-500 decoration-2">
+        {kartFiyat} TL
+      </div>
+      <div className="whitespace-nowrap font-mono text-2xl font-black text-emerald-300">
+        {havaleFiyat}
+        <span className="ml-1 text-sm">TL</span>
+      </div>
+      <div className="whitespace-nowrap text-[11px] font-bold text-zinc-400">havale ile</div>
     </div>
   );
 }
