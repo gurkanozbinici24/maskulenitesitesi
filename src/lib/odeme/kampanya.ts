@@ -22,8 +22,9 @@ export const HEDIYE_EKITAP: Partial<Record<UrunId, UrunId>> = {
 };
 
 /**
- * 24 saatlik "Havale / EFT ile %20 indirim" kampanyası (yalnızca fiziksel kitaplar).
- * Tek fiziksel kitap 1000 TL yerine 800 TL, iki fiziksel kitap 1600 TL.
+ * 24 saatlik "Havale / EFT ile indirim" kampanyası.
+ * Fiziksel: tek kitap 800 TL, iki kitap 1600 TL. E-kitap (PDF): tek 499 TL, iki 949 TL.
+ * E-kitapta havale yalnızca bu kampanya sürerken açık (PDF, ödeme görülünce tek tıkla gönderilir).
  * Kartla ödemede fiyat değişmez. Süre dolunca indirim, bant ve rozetler kendiliğinden kapanır.
  * Fiyat sunucuda buradan hesaplanır; tarayıcıdan gelen tutara güvenilmez.
  */
@@ -38,11 +39,17 @@ export const HAVALE_KAMPANYA_FIYAT: Partial<Record<UrunId, number>> = {
   "cekicilik-fiziksel": 800,
   "koleksiyon-seti": 1600,
   "ikili-fiziksel": 1600,
+  "vazgecilmez-ekitap": 499,
+  "cekicilik-ekitap": 499,
+  "ikili-ekitap": 949,
 };
 
 export const havaleKampanyaBitisMs = () => Date.parse(HAVALE_KAMPANYA.bitis);
 export const havaleKampanyaAktif = (t: number = Date.now()) =>
   t >= Date.parse(HAVALE_KAMPANYA.bas) && t < havaleKampanyaBitisMs();
+
+/** E-kitapta havale seçeneği: yalnızca kampanya sürerken */
+export const ekitapHavaleAcik = (t: number = Date.now()) => havaleKampanyaAktif(t);
 
 /** Havale ile ödenecek tutar: kampanya aktifse indirimli, değilse normal fiyat */
 export function havaleFiyati(urun: { id: UrunId; fiyat: number }, t: number = Date.now()): number {

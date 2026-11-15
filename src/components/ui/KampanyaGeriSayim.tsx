@@ -99,6 +99,7 @@ export function HavaleKampanyaKutusu({ kartFiyat, havaleFiyat }: { kartFiyat: nu
       </p>
       <p className="mt-1.5 text-[13px] leading-relaxed text-zinc-400">
         İndirim yalnızca Havale / EFT ödemelerinde ve süre bitene kadar geçerli. Kartla ödemede fiyat {kartFiyat} TL.
+        Kitaplar 800 TL (ikisi 1600 TL), e-kitaplar 499 TL (ikisi 949 TL).
       </p>
     </div>
   );

@@ -45,6 +45,7 @@ const KITAP_ADI = ["Vazgeçilmez Olma Sanatı", "Çekicilik Sanatı"] as const;
 
 interface HavaleSonuc {
   n: string;
+  tip?: "ebook" | "physical";
   tutar: number;
   urun: string;
   iban: string;
@@ -117,11 +118,14 @@ function HavaleEkrani({ h }: { h: HavaleSonuc }) {
         </p>
         <p className="mt-2 text-sm leading-relaxed text-zinc-300">
           Aşağıdaki hesaba <strong className="text-white">{h.tutar} TL</strong> gönder. Açıklama kısmına sipariş
-          numaranı ya da adını soyadını yaz. Ödemen hesabımıza geçince kitabın isme özel imzalanıp ücretsiz kargoyla yola çıkar.
+          numaranı ya da adını soyadını yaz.{" "}
+          {h.tip === "ebook"
+            ? "Ödemen hesabımıza geçince e-kitabın (PDF) e-postana gönderilir."
+            : "Ödemen hesabımıza geçince kitabın isme özel imzalanıp ücretsiz kargoyla yola çıkar."}
         </p>
         <p className="mt-3 rounded-lg border border-crimson-600/50 bg-crimson-950/40 px-3 py-2 text-[13px] font-semibold text-crimson-100">
           Son adım (zorunlu): Ödemeyi yaptıktan sonra dekontu aşağıdaki butonla WhatsApp&apos;tan gönder. Dekont
-          ulaşmadan siparişin kargoya verilmez.
+          ulaşmadan {h.tip === "ebook" ? "e-kitabın gönderilmez" : "siparişin kargoya verilmez"}.
         </p>
       </div>
       <div className="rounded-2xl border border-gold-500/40 bg-white/[0.03] px-5 py-2">
@@ -151,6 +155,7 @@ export default function OdemeForm({
   urun,
   ekleme,
   havaleAktif = false,
+  ekitapHavale = false,
   havaleBilgi,
   havaleFiyat,
   hediyeVar = false,
@@ -158,6 +163,8 @@ export default function OdemeForm({
   urun: OdemeUrunu;
   ekleme?: EklemeBilgisi | null;
   havaleAktif?: boolean;
+  /** E-kitapta havale açık mı (kampanya sürerken) */
+  ekitapHavale?: boolean;
   havaleBilgi?: { iban: string; aliciAdi: string; banka: string };
   /** Havale ile birim fiyat (kampanya indirimi dahil) */
   havaleFiyat?: number;
@@ -165,7 +172,7 @@ export default function OdemeForm({
 }) {
   const fiziksel = urun.tip === "physical";
   const kampanya = useKampanya() && !!hediyeVar;
-  const havaleVar = fiziksel && havaleAktif && !!havaleBilgi;
+  const havaleVar = (fiziksel || ekitapHavale) && havaleAktif && !!havaleBilgi;
   // Havale varsa varsayılan ve önerilen yöntem havale (nakit hemen hesaba geçer)
   const [yontem, setYontem] = useState<"kart" | "havale">(havaleVar ? "havale" : "kart");
   const [adet, setAdet] = useState(1);
@@ -274,7 +281,7 @@ export default function OdemeForm({
         className="absolute left-[-9999px] h-0 w-0 opacity-0"
       />
 
-      {/* Ödeme yöntemi (havale yalnızca fizikselde) */}
+      {/* Ödeme yöntemi (havale fizikselde; e-kitapta kampanya sürerken) */}
       {havaleVar && (
         <fieldset className="space-y-3">
           <legend className="mb-1 font-cinzel text-lg font-bold text-white">Nasıl ödemek istersin?</legend>
@@ -286,7 +293,7 @@ export default function OdemeForm({
                 "Havale / EFT",
                 havaleIndirimVar ? `Önerilen · ${havaleToplam} TL · tek çekim` : "Önerilen · IBAN'a gönder · tek çekim",
               ],
-              ["kart", CreditCard, "Kredi / banka kartı", `${kartToplam} TL · ${maxTaksit} taksite kadar`],
+              ["kart", CreditCard, "Kredi / banka kartı", fiziksel ? `${kartToplam} TL · ${maxTaksit} taksite kadar` : `${kartToplam} TL · PDF anında e-postanda`],
             ] as const).map(([k, Ikon, baslik, alt]) => (
               <label
                 key={k}
@@ -368,7 +375,10 @@ export default function OdemeForm({
           </div>
           <p className="text-[13px] leading-relaxed text-zinc-300">
             Açıklama kısmına <strong className="text-white">adını soyadını</strong> yaz. Aşağıdaki bilgileri doldurup
-            siparişini oluştur; ödemen hesabımıza geçince kitabın isme özel imzalanıp ücretsiz kargoyla yola çıkar.
+            siparişini oluştur;{" "}
+            {fiziksel
+              ? "ödemen hesabımıza geçince kitabın isme özel imzalanıp ücretsiz kargoyla yola çıkar."
+              : "ödemen hesabımıza geçince e-kitabın (PDF) e-postana gönderilir. Anında teslim istersen kartla öde."}
           </p>
           <p className="rounded-lg border border-crimson-600/50 bg-crimson-950/40 px-3 py-2 text-[13px] leading-relaxed text-crimson-100">
             <strong>Önemli:</strong> Ödemeyi yaptıktan sonra dekontu WhatsApp&apos;tan göndermen zorunludur. Dekont
@@ -430,7 +440,9 @@ export default function OdemeForm({
         {!fiziksel && (
           <p className="flex items-start gap-2 text-xs text-zinc-400">
             <Mail className="mt-0.5 h-3.5 w-3.5 flex-shrink-0 text-gold-400" />
-            Ödeme onaylandığı anda e-kitabın (PDF) bu e-posta adresine otomatik gönderilir.
+            {havale
+              ? "Havale ödemen hesabımıza geçince e-kitabın (PDF) bu e-posta adresine gönderilir."
+              : "Ödeme onaylandığı anda e-kitabın (PDF) bu e-posta adresine otomatik gönderilir."}
           </p>
         )}
       </fieldset>
@@ -584,7 +596,9 @@ export default function OdemeForm({
               <p className="mt-1.5 text-[13px] leading-relaxed text-zinc-400">
                 {fiziksel
                   ? `İkinci kitap ${ekleme.normalFiyat ?? ""} TL yerine ${ekGoster} TL${havale && havaleIndirimVar ? " (havale fiyatı)" : ""}. İkisi de isme özel imzalı, aynı pakette, kapına kadar ücretsiz kargo.${ekleme.hedefTaksit > 3 ? ` Kredi kartına ${ekleme.hedefTaksit} taksite kadar.` : ""}`
-                  : "İki kitap da saniyeler içinde aynı e-postada. Aynı oyunun diğer tarafı."}
+                  : havale
+                    ? `İkisi birlikte havale ile ${havaleToplam && ekli ? havaleBirim : (ekleme.hedefHavaleFiyat ?? ekleme.hedefFiyat)} TL. İki PDF aynı e-postada. Aynı oyunun diğer tarafı.`
+                    : "İki kitap da saniyeler içinde aynı e-postada. Aynı oyunun diğer tarafı."}
               </p>
               {ekle && (
                 <p className="mt-2 text-xs font-bold uppercase tracking-wider text-gold-300">
@@ -672,7 +686,8 @@ export default function OdemeForm({
 
       {havale ? (
         <p className="text-center text-xs text-zinc-500">
-          Siparişi oluşturunca IBAN bilgileri ekranda görünür. Ödemen hesabımıza geçince kitabın kargoya verilir.
+          Siparişi oluşturunca IBAN bilgileri ekranda görünür. Ödemen hesabımıza geçince{" "}
+          {fiziksel ? "kitabın kargoya verilir." : "e-kitabın e-postana gönderilir."}
         </p>
       ) : (
       <>

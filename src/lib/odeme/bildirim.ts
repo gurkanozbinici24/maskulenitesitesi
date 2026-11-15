@@ -26,6 +26,8 @@ export interface OdemeOzeti {
   kart?: string;
   /** Havale / EFT siparişi: ödeme henüz gelmedi */
   havale?: boolean;
+  /** Havale e-kitap siparişi: ödeme gelince PDF'i tek tıkla göndermek için link */
+  ekitapLink?: string;
   /** Havalede ödenecek tutar (kampanya indirimi dahil) */
   havaleTutar?: number;
   /** 48 saat kampanyası: fiziksel kitaba hediye e-kitap durumu */
@@ -69,6 +71,13 @@ export function siparisMetni(s: Siparis, urun: OdemeUrunu, o: OdemeOzeti): strin
           : `✍️ İmza için isim: ${isim}`,
       ),
       ...(adetOf(s) > 1 ? [`(İmza isim(ler)i ${adetOf(s)} adetin hepsi için; farklı isim istendiyse nota bak.)`] : []),
+    );
+  } else if (o.havale) {
+    satirlar.push(
+      "",
+      o.ekitapLink
+        ? `📖 E-kitap: para hesaba geçince PDF'i tek tıkla gönder:\n${o.ekitapLink}`
+        : "⚠️ E-kitap gönderme linki oluşturulamadı — ödeme gelince PDF'i bu e-postaya elle gönder.",
     );
   } else {
     satirlar.push(

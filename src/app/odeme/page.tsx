@@ -7,7 +7,7 @@ import FlashTeslim from "@/components/ui/FlashTeslim";
 import { KART_ODEME_AKTIF, WHATSAPP_PHONE } from "@/config/cekicilikConfig";
 import { eklemeBul, satistaMi, urunBul } from "@/lib/odeme/urunler";
 import { HAVALE, havaleHazirMi } from "@/lib/odeme/havale";
-import { HAVALE_KAMPANYA, HEDIYE_EKITAP, havaleFiyati, havaleKampanyaAktif } from "@/lib/odeme/kampanya";
+import { HAVALE_KAMPANYA, HEDIYE_EKITAP, ekitapHavaleAcik, havaleFiyati, havaleKampanyaAktif } from "@/lib/odeme/kampanya";
 import { HavaleKampanyaKutusu, KampanyaKutusu } from "@/components/ui/KampanyaGeriSayim";
 import { Lock, Package, BookOpen, CreditCard } from "lucide-react";
 
@@ -76,7 +76,8 @@ export default function OdemeSayfasi({ searchParams }: { searchParams: { urun?: 
       }
     : null;
 
-  const havaleVar = urun.tip === "physical" && havaleHazirMi();
+  const ekitapHavale = urun.tip === "ebook" && ekitapHavaleAcik();
+  const havaleVar = (urun.tip === "physical" || ekitapHavale) && havaleHazirMi();
   const havaleBirim = havaleFiyati(urun);
   const havaleIndirimi = havaleVar && havaleKampanyaAktif() && havaleBirim < urun.fiyat;
 
@@ -137,6 +138,7 @@ export default function OdemeSayfasi({ searchParams }: { searchParams: { urun?: 
           urun={urun}
           ekleme={ekleme}
           havaleAktif={havaleHazirMi()}
+          ekitapHavale={ekitapHavale}
           havaleFiyat={havaleBirim}
           havaleBilgi={{ iban: HAVALE.iban, aliciAdi: HAVALE.aliciAdi, banka: HAVALE.banka }}
           hediyeVar={!!hediyeUrun}

@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { siparisOlustur } from "@/lib/odeme/dogrula";
 import { HAVALE, havaleHazirMi } from "@/lib/odeme/havale";
 import { siparisBildir, type OdemeOzeti } from "@/lib/odeme/bildirim";
-import { HEDIYE_EKITAP, havaleFiyati, kampanyaAktif } from "@/lib/odeme/kampanya";
+import { HEDIYE_EKITAP, ekitapHavaleAcik, havaleFiyati, kampanyaAktif } from "@/lib/odeme/kampanya";
 import { adetOf, kisaSiparis, siparisPaketle } from "@/lib/odeme/siparis";
 
 export const runtime = "nodejs";
@@ -23,7 +23,8 @@ export async function POST(req: Request) {
   const r = siparisOlustur(g);
   if ("hata" in r) return hata(r.hata);
   const { urun, siparis } = r;
-  if (urun.tip !== "physical") return hata("Havale ile ödeme yalnızca fiziksel kitaplarda geçerlidir.");
+  if (urun.tip !== "physical" && !ekitapHavaleAcik())
+    return hata("E-kitapta havale ile ödeme şu an kapalı. Kartla ödeyebilirsin, PDF anında e-postana gelir.");
 
   const adet = adetOf(siparis);
   const tutar = havaleFiyati(urun) * adet;
@@ -41,6 +42,15 @@ export async function POST(req: Request) {
       }
     }
   }
+  if (urun.tip === "ebook") {
+    // Havalede PDF otomatik gitmez: Gürkan ödemeyi görünce bildirimdeki linkle tek tıkla gönderir
+    try {
+      const p = siparisPaketle(kisaSiparis(siparis));
+      ozet.ekitapLink = `${new URL(req.url).origin}/api/odeme/ekitap-gonder?d=${p.d}&s=${p.s}`;
+    } catch (e) {
+      console.error("[havale] e-kitap gönderme linki oluşturulamadı", e);
+    }
+  }
   await siparisBildir(siparis, urun, ozet);
   return NextResponse.json({
     n: siparis.n,
@@ -49,5 +59,6 @@ export async function POST(req: Request) {
     iban: HAVALE.iban,
     aliciAdi: HAVALE.aliciAdi,
     banka: HAVALE.banka,
+    tip: urun.tip,
   });
 }
