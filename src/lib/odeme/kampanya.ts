@@ -30,7 +30,7 @@ export const HEDIYE_EKITAP: Partial<Record<UrunId, UrunId>> = {
  */
 export const HAVALE_KAMPANYA = {
   bas: "2026-11-20T03:00:00+03:00",
-  bitis: "2026-11-20T15:40:00+03:00",
+  bitis: "2026-11-20T16:40:00+03:00",
   yuzde: 50,
 };
 
