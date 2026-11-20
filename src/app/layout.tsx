@@ -1,36 +1,28 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, Cinzel, Playfair_Display, Great_Vibes } from "next/font/google";
+import "@fontsource/inter/400.css";
+import "@fontsource/inter/500.css";
+import "@fontsource/inter/600.css";
+import "@fontsource/inter/700.css";
+import "@fontsource/inter/800.css";
+import "@fontsource/cinzel/600.css";
+import "@fontsource/cinzel/700.css";
+import "@fontsource/cinzel/800.css";
+import "@fontsource/cinzel/900.css";
+import "@fontsource/playfair-display/600.css";
+import "@fontsource/playfair-display/700.css";
+import "@fontsource/playfair-display/800.css";
+import "@fontsource/playfair-display/600-italic.css";
+import "@fontsource/playfair-display/700-italic.css";
+import "@fontsource/playfair-display/800-italic.css";
+import "@fontsource/great-vibes/400.css";
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/next";
 import ClickTracker from "@/components/ClickTracker";
 
-const inter = Inter({
-  subsets: ["latin", "latin-ext"],
-  variable: "--font-inter",
-  display: "swap",
-});
-
-const cinzel = Cinzel({
-  subsets: ["latin", "latin-ext"],
-  weight: ["600", "700", "800", "900"],
-  variable: "--font-cinzel",
-  display: "swap",
-});
-
-const playfair = Playfair_Display({
-  subsets: ["latin", "latin-ext"],
-  weight: ["600", "700", "800"],
-  style: ["normal", "italic"],
-  variable: "--font-playfair",
-  display: "swap",
-});
-
-const signature = Great_Vibes({
-  subsets: ["latin", "latin-ext"],
-  weight: "400",
-  variable: "--font-signature",
-  display: "swap",
-});
+const inter = { variable: "", className: "" };
+const cinzel = { variable: "" };
+const playfair = { variable: "" };
+const signature = { variable: "" };
 
 export const viewport: Viewport = {
   width: "device-width",
