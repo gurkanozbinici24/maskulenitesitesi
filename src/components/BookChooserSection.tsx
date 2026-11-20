@@ -5,6 +5,8 @@ import { ArrowRight, Check } from "lucide-react";
 import { ThemeBadge, ThemeButton } from "./ui/ThemeSystem";
 import { scrollToSection } from "@/lib/scrollToSection";
 import { useCekicilikLaunchStatus } from "./ui/BookCountdown";
+import { useHavaleKampanya } from "./ui/KampanyaGeriSayim";
+import { HAVALE_KAMPANYA_FIYAT } from "@/lib/odeme/kampanya";
 import { KOLEKSIYON_SETI_CONFIG } from "@/config/cekicilikConfig";
 import { VAZGECILMEZ_CONFIG, CEKICILIK_SANATI_CONFIG } from "@/config/cekicilikConfig";
 
@@ -44,6 +46,10 @@ const BOOKS = [
 ];
 
 export default function BookChooserSection() {
+  const havaleK = useHavaleKampanya();
+  const havaleSet = HAVALE_KAMPANYA_FIYAT["koleksiyon-seti"];
+  const ikiliYeni = havaleK && havaleSet != null ? havaleSet : 1700;
+  const ikiliEski = 2000;
   const special = useCekicilikLaunchStatus(KOLEKSIYON_SETI_CONFIG.launchSpecialUntil);
   const scrollTo = (e: React.MouseEvent<HTMLElement>, id: string) => {
     if (scrollToSection(id)) e.preventDefault();
@@ -150,8 +156,8 @@ export default function BookChooserSection() {
         >
           <span className="text-sm text-zinc-300">{!special.isOnSale && (<span className="mr-2 rounded bg-gold-500/90 px-1.5 py-0.5 text-[10px] font-black uppercase tracking-wider text-black">Lansmana Özel</span>)}Kararsız mısın? İkisini birden al:</span>
           <span className="flex items-baseline gap-2">
-            <span className="text-sm text-zinc-500 line-through decoration-crimson-500">2000 TL</span>
-            <span className="font-mono text-lg font-black text-gold-300">1700 TL</span>
+            <span className="text-sm text-zinc-500 line-through decoration-crimson-500">{ikiliEski} TL</span>
+            <span className="font-mono text-lg font-black text-gold-300">{ikiliYeni} TL</span>
             <span className="text-gold-400 transition-transform group-hover:translate-x-1">→</span>
           </span>
         </a>
