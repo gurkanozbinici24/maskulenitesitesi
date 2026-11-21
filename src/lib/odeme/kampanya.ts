@@ -36,13 +36,21 @@ export const HAVALE_KAMPANYA = {
   yuzde: 20,
 };
 
-/** Havale indirim oranı: tek fiziksel kitap %25, diğer tüm ürünler (ikili paket, PDF) %20 */
+/** Havale indirim oranı: tek fiziksel kitap %25, diğer tüm ürünler (PDF) %20 */
 const havaleYuzde = (id: UrunId) =>
   id === "vazgecilmez-fiziksel-yenilenmis" || id === "cekicilik-fiziksel"
     ? HAVALE_KAMPANYA.kitapYuzde
     : HAVALE_KAMPANYA.yuzde;
 
-const havaleIndirimli = (id: UrunId) => Math.round((ODEME_URUNLERI[id].fiyat * (100 - havaleYuzde(id))) / 100);
+/** İki fiziksel kitap (koleksiyon seti ve ikili paket) havale ile sabit 1200 TL, kargo ücretsiz */
+export const HAVALE_IKILI_FIYAT = 1200;
+const SABIT_HAVALE: Partial<Record<UrunId, number>> = {
+  "koleksiyon-seti": HAVALE_IKILI_FIYAT,
+  "ikili-fiziksel": HAVALE_IKILI_FIYAT,
+};
+
+const havaleIndirimli = (id: UrunId) =>
+  SABIT_HAVALE[id] ?? Math.round((ODEME_URUNLERI[id].fiyat * (100 - havaleYuzde(id))) / 100);
 
 /** Havale ile ödenecek birim fiyatlar (kart fiyatının indirimli hali) */
 export const HAVALE_KAMPANYA_FIYAT: Partial<Record<UrunId, number>> = Object.fromEntries(
@@ -53,8 +61,12 @@ export const havaleKampanyaBitisMs = () => Date.parse(HAVALE_KAMPANYA.bitis);
 export const havaleKampanyaAktif = (t: number = Date.now()) =>
   t >= Date.parse(HAVALE_KAMPANYA.bas) && t < havaleKampanyaBitisMs();
 
-/** Havale indiriminde üstü çizili gösterilecek fiyat: ürünün kart fiyatı (indirim buna göre hesaplanır) */
-export const referansFiyati = (urun: { id: UrunId; fiyat: number }) => urun.fiyat;
+/** Havale indiriminde üstü çizili gösterilecek fiyat: iki kitapta 2000 TL, diğerlerinde kart fiyatı */
+export const HAVALE_REFERANS_FIYAT: Partial<Record<UrunId, number>> = {
+  "koleksiyon-seti": 2000,
+  "ikili-fiziksel": 2000,
+};
+export const referansFiyati = (urun: { id: UrunId; fiyat: number }) => HAVALE_REFERANS_FIYAT[urun.id] ?? urun.fiyat;
 
 /** E-kitapta havale seçeneği: yalnızca kampanya sürerken */
 export const ekitapHavaleAcik = (t: number = Date.now()) => havaleKampanyaAktif(t);

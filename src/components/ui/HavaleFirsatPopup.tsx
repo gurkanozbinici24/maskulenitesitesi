@@ -2,46 +2,62 @@
 
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
+import { HAVALE_IKILI_FIYAT, HAVALE_REFERANS_FIYAT } from "@/lib/odeme/kampanya";
 import { useHavaleKampanya } from "./KampanyaGeriSayim";
 
-const ANAHTAR = "havale-firsat-popup-kapatildi";
+type Adim = "tek" | "ikili";
+
+const anahtar = (adim: Adim) => `havale-firsat-${adim}-kapatildi`;
+
+const kapatildi = (adim: Adim) => {
+  try {
+    return sessionStorage.getItem(anahtar(adim)) === "1";
+  } catch {
+    return false;
+  }
+};
+
+const isaretle = (adim: Adim) => {
+  try {
+    sessionStorage.setItem(anahtar(adim), "1");
+  } catch {
+    /* oturum depolaması yoksa yalnızca bu sayfada kapanır */
+  }
+};
 
 /**
- * 24 saatlik havale kampanyası sürerken, ziyaretçi siteye ilk girdiğinde çıkan ekran.
- * Her tarayıcı oturumunda bir kez gösterilir; kapatılınca tekrar açılmaz.
- * Ödeme sayfasında gösterilmez (orada kampanya zaten kutu olarak görünüyor).
+ * 24 saatlik havale kampanyası sürerken çıkan ekranlar, bir tarayıcı oturumunda birer kez:
+ * 1) tek fiziksel kitap %25, 2) iki kitap 1200 TL, kargo ücretsiz.
+ * Ödeme sayfasında ve yönetim panelinde gösterilmez.
  */
 export default function HavaleFirsatPopup() {
   const kampanya = useHavaleKampanya();
   const yol = usePathname();
-  const [acik, setAcik] = useState(false);
+  const [adim, setAdim] = useState<Adim | null>(null);
 
   useEffect(() => {
     if (!kampanya || yol?.startsWith("/odeme") || yol?.startsWith("/yonetim")) {
-      setAcik(false);
+      setAdim(null);
       return;
     }
-    let kapatildi = false;
-    try {
-      kapatildi = sessionStorage.getItem(ANAHTAR) === "1";
-    } catch {
-      kapatildi = false;
-    }
-    setAcik(!kapatildi);
-    // Kampanya ilk kez aktif olduğunda açılır; sayaç her saniye güncellendiği için yalnızca açık/kapalı durumuna bakılır
+    if (!kapatildi("tek")) setAdim("tek");
+    else if (!kapatildi("ikili")) setAdim("ikili");
+    else setAdim(null);
+    // Sayaç her saniye güncellendiği için yalnızca açık/kapalı durumuna bakılır
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [!!kampanya, yol]);
 
   const kapat = () => {
-    try {
-      sessionStorage.setItem(ANAHTAR, "1");
-    } catch {
-      /* oturum depolaması yoksa sadece bu sayfada kapanır */
-    }
-    setAcik(false);
+    if (adim) isaretle(adim);
+    // Tek kitap ekranı kapanınca iki kitap ekranı, o da kapanınca site görünür
+    setAdim(adim === "tek" && !kapatildi("ikili") ? "ikili" : null);
   };
 
-  if (!acik || !kampanya) return null;
+  if (!adim || !kampanya) return null;
+
+  const kapak = (src: string, alt: string) => (
+    <img src={src} alt={alt} className="h-36 w-auto rounded-md border border-white/15 object-cover shadow-xl sm:h-44" />
+  );
 
   return (
     <div
@@ -66,13 +82,31 @@ export default function HavaleFirsatPopup() {
 
         <p className="text-[11px] font-black uppercase tracking-[0.25em] text-crimson-300">🔥 24 saatlik fırsat</p>
 
-        <h2 id="havale-firsat-baslik" className="mt-3 font-serif text-3xl font-black leading-tight text-white sm:text-4xl">
-          Havale ile kitaplarda <span className="text-gold-300">%{kampanya.kitapYuzde} indirim</span>
-        </h2>
-
-        <p className="mt-3 text-[15px] leading-relaxed text-zinc-300">
-          Tek fiziksel kitapta %{kampanya.kitapYuzde}, ikili paket ve PDF'lerde %{kampanya.yuzde} indirim. Ödemeyi havale / EFT ile yap, indirim seni bekliyor.
-        </p>
+        {adim === "tek" ? (
+          <>
+            <h2 id="havale-firsat-baslik" className="mt-3 font-serif text-3xl font-black leading-tight text-white sm:text-4xl">
+              Havale ile kitapta <span className="text-gold-300">%{kampanya.kitapYuzde} indirim</span>
+            </h2>
+            <p className="mt-3 text-[15px] leading-relaxed text-zinc-300">
+              Tek fiziksel kitapta %{kampanya.kitapYuzde}, ikili paket ve PDF'lerde %{kampanya.yuzde} indirim. Ödemeyi havale / EFT ile yap.
+            </p>
+          </>
+        ) : (
+          <>
+            <h2 id="havale-firsat-baslik" className="mt-3 font-serif text-3xl font-black leading-tight text-white sm:text-4xl">
+              Havale ile iki kitap <span className="text-gold-300">1200 TL</span>
+            </h2>
+            <div className="mt-5 flex items-center justify-center gap-4">
+              {kapak("/vazgecilmez-yeni-kapak.jpg", "Vazgeçilmez Olma Sanatı kapağı")}
+              {kapak("/cekicilik-sanati-kapak.jpg", "Çekicilik Sanatı kapağı")}
+            </div>
+            <p className="mt-5 text-zinc-500 line-through decoration-crimson-500 decoration-2">{HAVALE_REFERANS_FIYAT["koleksiyon-seti"]} TL</p>
+            <p className="font-mono text-4xl font-black text-white">{HAVALE_IKILI_FIYAT} TL</p>
+            <p className="mt-2 text-[15px] font-bold text-emerald-300">
+              %{Math.round(100 - (HAVALE_IKILI_FIYAT / (HAVALE_REFERANS_FIYAT["koleksiyon-seti"] ?? 2000)) * 100)} indirim · Kargo ücretsiz
+            </p>
+          </>
+        )}
 
         <div className="mt-5 rounded-xl border border-gold-500/40 bg-black/50 px-4 py-3">
           <p className="text-[11px] font-bold uppercase tracking-wider text-zinc-400">Bitmesine</p>
@@ -84,7 +118,7 @@ export default function HavaleFirsatPopup() {
           onClick={kapat}
           className="mt-6 w-full rounded-xl bg-gradient-to-r from-crimson-600 to-crimson-700 px-5 py-3.5 text-[15px] font-extrabold uppercase tracking-wide text-white shadow-[0_8px_24px_rgba(220,38,38,0.35)] transition-transform hover:scale-[1.01]"
         >
-          Fırsatı gör
+          {adim === "tek" ? "Devam et" : "Fırsatı gör"}
         </button>
 
         <p className="mt-3 text-[12px] text-zinc-500">İndirim yalnızca havale / EFT ödemelerinde geçerlidir.</p>
