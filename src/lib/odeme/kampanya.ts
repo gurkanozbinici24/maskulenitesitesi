@@ -1,4 +1,4 @@
-import type { UrunId } from "./urunler";
+import { ODEME_URUNLERI, type UrunId } from "./urunler";
 
 /**
  * 48 saatlik "fiziksel kitaba e-kitap hediye" kampanyası.
@@ -22,38 +22,30 @@ export const HEDIYE_EKITAP: Partial<Record<UrunId, UrunId>> = {
 };
 
 /**
- * 24 saatlik "Havale / EFT ile indirim" kampanyası.
- * Fiziksel: tek kitap 500 TL, iki kitap 1000 TL (%50). E-kitap (PDF): tek 300 TL, iki 600 TL (%50).
+ * 24 saatlik "Havale / EFT ile indirim" kampanyası: tüm ürünlerde kart fiyatının %20 altı.
  * E-kitapta havale yalnızca bu kampanya sürerken açık (PDF, ödeme görülünce tek tıkla gönderilir).
  * Kartla ödemede fiyat değişmez. Süre dolunca indirim, bant ve rozetler kendiliğinden kapanır.
  * Fiyat sunucuda buradan hesaplanır; tarayıcıdan gelen tutara güvenilmez.
  */
 export const HAVALE_KAMPANYA = {
-  bas: "2026-11-20T03:00:00+03:00",
-  bitis: "2026-11-20T17:05:00+03:00",
-  yuzde: 50,
+  bas: "2026-11-21T05:35:00+03:00",
+  bitis: "2026-11-22T05:35:00+03:00",
+  yuzde: 20,
 };
 
-export const HAVALE_KAMPANYA_FIYAT: Partial<Record<UrunId, number>> = {
-  "vazgecilmez-fiziksel-yenilenmis": 500,
-  "cekicilik-fiziksel": 500,
-  "koleksiyon-seti": 1000,
-  "ikili-fiziksel": 1000,
-  "vazgecilmez-ekitap": 300,
-  "cekicilik-ekitap": 300,
-  "ikili-ekitap": 600,
-};
+const havaleIndirimli = (id: UrunId) => Math.round(ODEME_URUNLERI[id].fiyat * (100 - HAVALE_KAMPANYA.yuzde) / 100);
+
+/** Havale ile ödenecek birim fiyatlar (kart fiyatının %20 altı) */
+export const HAVALE_KAMPANYA_FIYAT: Partial<Record<UrunId, number>> = Object.fromEntries(
+  (Object.keys(ODEME_URUNLERI) as UrunId[]).map((id) => [id, havaleIndirimli(id)]),
+) as Partial<Record<UrunId, number>>;
 
 export const havaleKampanyaBitisMs = () => Date.parse(HAVALE_KAMPANYA.bitis);
 export const havaleKampanyaAktif = (t: number = Date.now()) =>
   t >= Date.parse(HAVALE_KAMPANYA.bas) && t < havaleKampanyaBitisMs();
 
-/** Havale indiriminde üstü çizili gösterilecek fiyat (boşsa ürünün kart fiyatı) */
-export const HAVALE_REFERANS_FIYAT: Partial<Record<UrunId, number>> = {
-  "koleksiyon-seti": 2000,
-  "ikili-fiziksel": 2000,
-};
-export const referansFiyati = (urun: { id: UrunId; fiyat: number }) => HAVALE_REFERANS_FIYAT[urun.id] ?? urun.fiyat;
+/** Havale indiriminde üstü çizili gösterilecek fiyat: ürünün kart fiyatı (indirim buna göre hesaplanır) */
+export const referansFiyati = (urun: { id: UrunId; fiyat: number }) => urun.fiyat;
 
 /** E-kitapta havale seçeneği: yalnızca kampanya sürerken */
 export const ekitapHavaleAcik = (t: number = Date.now()) => havaleKampanyaAktif(t);

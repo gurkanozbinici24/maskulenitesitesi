@@ -18,6 +18,7 @@ import "@fontsource/great-vibes/400.css";
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/next";
 import ClickTracker from "@/components/ClickTracker";
+import HavaleFirsatPopup from "@/components/ui/HavaleFirsatPopup";
 
 const inter = { variable: "", className: "" };
 const cinzel = { variable: "" };
@@ -121,6 +122,7 @@ export default function RootLayout({
       >
         {children}
         <ClickTracker />
+        <HavaleFirsatPopup />
         <Analytics />
       </body>
     </html>
