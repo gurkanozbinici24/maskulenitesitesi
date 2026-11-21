@@ -29,7 +29,7 @@ const kalanYaz = (ms: number) => {
 export function useHavaleKampanya() {
   const simdi = useSaat();
   if (simdi === null || !havaleKampanyaAktif(simdi)) return null;
-  return { kalan: kalanYaz(havaleKampanyaBitisMs() - simdi), yuzde: HAVALE_KAMPANYA.yuzde };
+  return { kalan: kalanYaz(havaleKampanyaBitisMs() - simdi), yuzde: HAVALE_KAMPANYA.yuzde, kitapYuzde: HAVALE_KAMPANYA.kitapYuzde };
 }
 
 /** Kampanya aktifse kalan süreyi "SS:DD:ss" olarak döner; değilse null (sunucu render'ında da null) */
@@ -88,7 +88,7 @@ export function FirsatRozet({ className = "", ince = false }: { className?: stri
       <span className="pointer-events-none absolute inset-0 animate-pulse bg-crimson-500/10" />
       <span className="relative flex flex-col items-start leading-tight">
         <span className="text-[11px] font-black uppercase tracking-wider text-white">🔥 24 saatlik fırsat</span>
-        <span className="text-[10px] font-bold text-crimson-100">Havale ile %{h.yuzde} indirim</span>
+        <span className="text-[10px] font-bold text-crimson-100">Havale ile %{h.kitapYuzde} indirim</span>
       </span>
       <span className="relative flex flex-col items-end leading-tight">
         <span className="text-[9px] font-bold uppercase tracking-wider text-crimson-200">Bitmesine</span>
@@ -142,7 +142,7 @@ export function HavaleKampanyaKutusu({ kartFiyat, havaleFiyat }: { kartFiyat: nu
       </p>
       <p className="mt-1.5 text-[13px] leading-relaxed text-zinc-400">
         İndirim yalnızca Havale / EFT ödemelerinde ve süre bitene kadar geçerli. Kartla ödemede fiyat {kartFiyat} TL.
-        Havale ile tüm ürünlerde %{HAVALE_KAMPANYA.yuzde} indirim uygulanır.
+        Havale ile tek fiziksel kitapta %{HAVALE_KAMPANYA.kitapYuzde}, ikili paket ve PDF'lerde %{HAVALE_KAMPANYA.yuzde} indirim uygulanır.
       </p>
     </div>
   );

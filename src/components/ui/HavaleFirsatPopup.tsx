@@ -67,11 +67,11 @@ export default function HavaleFirsatPopup() {
         <p className="text-[11px] font-black uppercase tracking-[0.25em] text-crimson-300">🔥 24 saatlik fırsat</p>
 
         <h2 id="havale-firsat-baslik" className="mt-3 font-serif text-3xl font-black leading-tight text-white sm:text-4xl">
-          Havale ile <span className="text-gold-300">%{kampanya.yuzde} indirim</span>
+          Havale ile kitaplarda <span className="text-gold-300">%{kampanya.kitapYuzde} indirim</span>
         </h2>
 
         <p className="mt-3 text-[15px] leading-relaxed text-zinc-300">
-          Tüm kitap ve e-kitap alımlarında, ödemeyi havale / EFT ile yaparsan indirim seni bekliyor.
+          Tek fiziksel kitapta %{kampanya.kitapYuzde}, ikili paket ve PDF'lerde %{kampanya.yuzde} indirim. Ödemeyi havale / EFT ile yap, indirim seni bekliyor.
         </p>
 
         <div className="mt-5 rounded-xl border border-gold-500/40 bg-black/50 px-4 py-3">

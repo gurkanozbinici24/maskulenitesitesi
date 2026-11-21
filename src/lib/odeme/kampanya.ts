@@ -22,7 +22,7 @@ export const HEDIYE_EKITAP: Partial<Record<UrunId, UrunId>> = {
 };
 
 /**
- * 24 saatlik "Havale / EFT ile indirim" kampanyası: tüm ürünlerde kart fiyatının %20 altı.
+ * 24 saatlik "Havale / EFT ile indirim" kampanyası: tek fiziksel kitapta %25, diğer ürünlerde %20.
  * E-kitapta havale yalnızca bu kampanya sürerken açık (PDF, ödeme görülünce tek tıkla gönderilir).
  * Kartla ödemede fiyat değişmez. Süre dolunca indirim, bant ve rozetler kendiliğinden kapanır.
  * Fiyat sunucuda buradan hesaplanır; tarayıcıdan gelen tutara güvenilmez.
@@ -30,12 +30,21 @@ export const HEDIYE_EKITAP: Partial<Record<UrunId, UrunId>> = {
 export const HAVALE_KAMPANYA = {
   bas: "2026-11-21T05:35:00+03:00",
   bitis: "2026-11-22T05:35:00+03:00",
+  /** Tek fiziksel kitap */
+  kitapYuzde: 25,
+  /** İkili paketler ve e-kitaplar (PDF) */
   yuzde: 20,
 };
 
-const havaleIndirimli = (id: UrunId) => Math.round(ODEME_URUNLERI[id].fiyat * (100 - HAVALE_KAMPANYA.yuzde) / 100);
+/** Havale indirim oranı: tek fiziksel kitap %25, diğer tüm ürünler (ikili paket, PDF) %20 */
+const havaleYuzde = (id: UrunId) =>
+  id === "vazgecilmez-fiziksel-yenilenmis" || id === "cekicilik-fiziksel"
+    ? HAVALE_KAMPANYA.kitapYuzde
+    : HAVALE_KAMPANYA.yuzde;
 
-/** Havale ile ödenecek birim fiyatlar (kart fiyatının %20 altı) */
+const havaleIndirimli = (id: UrunId) => Math.round((ODEME_URUNLERI[id].fiyat * (100 - havaleYuzde(id))) / 100);
+
+/** Havale ile ödenecek birim fiyatlar (kart fiyatının indirimli hali) */
 export const HAVALE_KAMPANYA_FIYAT: Partial<Record<UrunId, number>> = Object.fromEntries(
   (Object.keys(ODEME_URUNLERI) as UrunId[]).map((id) => [id, havaleIndirimli(id)]),
 ) as Partial<Record<UrunId, number>>;
