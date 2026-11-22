@@ -75,7 +75,7 @@ export function FirsatRozet({ className = "", ince = false }: { className?: stri
       <div
         className={`flex w-full items-center justify-center gap-2 whitespace-nowrap rounded-lg border border-crimson-500/70 bg-crimson-800/40 px-3 py-1 shadow-[0_0_16px_rgba(220,38,38,0.3)] ${className}`}
       >
-        <span className="text-[11px] font-black uppercase tracking-wide text-white">🔥 24 saatlik fırsat</span>
+        <span className="text-[11px] font-black uppercase tracking-wide text-white">🔥 3 saatlik fırsat</span>
         <span className="text-crimson-300">·</span>
         <span className="text-[10px] font-bold uppercase text-crimson-100">bitmesine</span>
         <span className="font-mono text-[13px] font-black tabular-nums text-white">{h.kalan}</span>
@@ -87,7 +87,7 @@ export function FirsatRozet({ className = "", ince = false }: { className?: stri
     >
       <span className="pointer-events-none absolute inset-0 animate-pulse bg-crimson-500/10" />
       <span className="relative flex flex-col items-start leading-tight">
-        <span className="text-[11px] font-black uppercase tracking-wider text-white">🔥 24 saatlik fırsat</span>
+        <span className="text-[11px] font-black uppercase tracking-wider text-white">🔥 3 saatlik fırsat</span>
         <span className="text-[10px] font-bold text-crimson-100">Havale ile %{h.kitapYuzde} indirim</span>
       </span>
       <span className="relative flex flex-col items-end leading-tight">
@@ -130,7 +130,7 @@ export function HavaleKampanyaKutusu({ kartFiyat, havaleFiyat }: { kartFiyat: nu
   return (
     <div className="mt-3 rounded-2xl border border-emerald-400/60 bg-gradient-to-br from-emerald-500/15 via-emerald-500/5 to-transparent p-4 sm:p-5">
       <div className="flex flex-wrap items-center justify-between gap-2">
-        <span className="text-xs font-extrabold uppercase tracking-[0.18em] text-emerald-300">🏦 24 saatlik havale indirimi</span>
+        <span className="text-xs font-extrabold uppercase tracking-[0.18em] text-emerald-300">🏦 3 saatlik havale indirimi</span>
         <span className="rounded-full border border-crimson-500/50 bg-crimson-950/50 px-2.5 py-1 font-mono text-xs font-bold tabular-nums text-crimson-200">
           ⏳ {h.kalan}
         </span>

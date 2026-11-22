@@ -22,18 +22,18 @@ export const HEDIYE_EKITAP: Partial<Record<UrunId, UrunId>> = {
 };
 
 /**
- * 24 saatlik "Havale / EFT ile indirim" kampanyası: tek fiziksel kitapta %25, diğer ürünlerde %20.
+ * Havale / EFT ile indirim kampanyası: tüm ürünlerde %25 (ikili paket ayrıca 1300 TL).
  * E-kitapta havale yalnızca bu kampanya sürerken açık (PDF, ödeme görülünce tek tıkla gönderilir).
  * Kartla ödemede fiyat değişmez. Süre dolunca indirim, bant ve rozetler kendiliğinden kapanır.
  * Fiyat sunucuda buradan hesaplanır; tarayıcıdan gelen tutara güvenilmez.
  */
 export const HAVALE_KAMPANYA = {
-  bas: "2026-11-21T05:35:00+03:00",
-  bitis: "2026-11-22T05:35:00+03:00",
+  bas: "2026-11-22T18:22:00+03:00",
+  bitis: "2026-11-22T21:22:00+03:00",
   /** Tek fiziksel kitap */
   kitapYuzde: 25,
   /** İkili paketler ve e-kitaplar (PDF) */
-  yuzde: 20,
+  yuzde: 25,
 };
 
 /** Havale indirim oranı: tek fiziksel kitap %25, diğer tüm ürünler (PDF) %20 */
@@ -42,8 +42,8 @@ const havaleYuzde = (id: UrunId) =>
     ? HAVALE_KAMPANYA.kitapYuzde
     : HAVALE_KAMPANYA.yuzde;
 
-/** İki fiziksel kitap (koleksiyon seti ve ikili paket) havale ile sabit 1200 TL, kargo ücretsiz */
-export const HAVALE_IKILI_FIYAT = 1200;
+/** İki fiziksel kitap (koleksiyon seti ve ikili paket) havale ile sabit 1300 TL (2000 TL'den %35), kargo ücretsiz */
+export const HAVALE_IKILI_FIYAT = 1300;
 const SABIT_HAVALE: Partial<Record<UrunId, number>> = {
   "koleksiyon-seti": HAVALE_IKILI_FIYAT,
   "ikili-fiziksel": HAVALE_IKILI_FIYAT,

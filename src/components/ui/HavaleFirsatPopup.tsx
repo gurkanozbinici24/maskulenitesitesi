@@ -6,6 +6,8 @@ import { HAVALE_IKILI_FIYAT, HAVALE_REFERANS_FIYAT } from "@/lib/odeme/kampanya"
 import { useHavaleKampanya } from "./KampanyaGeriSayim";
 
 type Adim = "tek" | "ikili";
+/** İki kitap ekranındaki "Hemen al": iki kitap sepete girmiş, havale ile ödeme ekranında açılır */
+const IKILI_ODEME_URL = "/odeme?urun=ikili-fiziksel";
 
 const anahtar = (adim: Adim) => `havale-firsat-${adim}-kapatildi`;
 
@@ -26,8 +28,8 @@ const isaretle = (adim: Adim) => {
 };
 
 /**
- * 24 saatlik havale kampanyası sürerken çıkan ekranlar, bir tarayıcı oturumunda birer kez:
- * 1) tek fiziksel kitap %25, 2) iki kitap 1200 TL, kargo ücretsiz.
+ * 3 saatlik havale kampanyası sürerken çıkan ekranlar, bir tarayıcı oturumunda birer kez:
+ * 1) havale ile tüm sitede %25, 2) iki kitap %35 indirimle 1300 TL, kargo ücretsiz; "Hemen al" ikili paketi havale ödeme ekranında açar.
  * Ödeme sayfasında ve yönetim panelinde gösterilmez.
  */
 export default function HavaleFirsatPopup() {
@@ -51,6 +53,11 @@ export default function HavaleFirsatPopup() {
     if (adim) isaretle(adim);
     // Tek kitap ekranı kapanınca iki kitap ekranı, o da kapanınca site görünür
     setAdim(adim === "tek" && !kapatildi("ikili") ? "ikili" : null);
+  };
+
+  const hemenAl = () => {
+    isaretle("ikili");
+    window.location.href = IKILI_ODEME_URL;
   };
 
   if (!adim || !kampanya) return null;
@@ -80,21 +87,21 @@ export default function HavaleFirsatPopup() {
           ✕
         </button>
 
-        <p className="text-[11px] font-black uppercase tracking-[0.25em] text-crimson-300">🔥 24 saatlik fırsat</p>
+        <p className="text-[11px] font-black uppercase tracking-[0.25em] text-crimson-300">🔥 3 saatlik fırsat</p>
 
         {adim === "tek" ? (
           <>
             <h2 id="havale-firsat-baslik" className="mt-3 font-serif text-3xl font-black leading-tight text-white sm:text-4xl">
-              Havale ile kitapta <span className="text-gold-300">%{kampanya.kitapYuzde} indirim</span>
+              Havale ile tüm sitede <span className="text-gold-300">%{kampanya.yuzde} indirim</span>
             </h2>
             <p className="mt-3 text-[15px] leading-relaxed text-zinc-300">
-              Tek fiziksel kitapta %{kampanya.kitapYuzde}, ikili paket ve PDF'lerde %{kampanya.yuzde} indirim. Ödemeyi havale / EFT ile yap.
+              Kitaplarda, ikili pakette ve PDF'lerde geçerli. Ödemeyi havale / EFT ile yap.
             </p>
           </>
         ) : (
           <>
             <h2 id="havale-firsat-baslik" className="mt-3 font-serif text-3xl font-black leading-tight text-white sm:text-4xl">
-              Havale ile iki kitap <span className="text-gold-300">1200 TL</span>
+              İki kitap <span className="text-gold-300">%35 indirimle</span>
             </h2>
             <div className="mt-5 flex items-center justify-center gap-4">
               {kapak("/vazgecilmez-yeni-kapak.jpg", "Vazgeçilmez Olma Sanatı kapağı")}
@@ -103,7 +110,7 @@ export default function HavaleFirsatPopup() {
             <p className="mt-5 text-zinc-500 line-through decoration-crimson-500 decoration-2">{HAVALE_REFERANS_FIYAT["koleksiyon-seti"]} TL</p>
             <p className="font-mono text-4xl font-black text-white">{HAVALE_IKILI_FIYAT} TL</p>
             <p className="mt-2 text-[15px] font-bold text-emerald-300">
-              %{Math.round(100 - (HAVALE_IKILI_FIYAT / (HAVALE_REFERANS_FIYAT["koleksiyon-seti"] ?? 2000)) * 100)} indirim · Kargo ücretsiz
+              Havale ile · Kargo ücretsiz · İsme özel imzalı
             </p>
           </>
         )}
@@ -113,13 +120,23 @@ export default function HavaleFirsatPopup() {
           <p className="font-mono text-3xl font-black tabular-nums text-white">{kampanya.kalan}</p>
         </div>
 
-        <button
-          type="button"
-          onClick={kapat}
-          className="mt-6 w-full rounded-xl bg-gradient-to-r from-crimson-600 to-crimson-700 px-5 py-3.5 text-[15px] font-extrabold uppercase tracking-wide text-white shadow-[0_8px_24px_rgba(220,38,38,0.35)] transition-transform hover:scale-[1.01]"
-        >
-          {adim === "tek" ? "Devam et" : "Fırsatı gör"}
-        </button>
+        {adim === "tek" ? (
+          <button
+            type="button"
+            onClick={kapat}
+            className="mt-6 w-full rounded-xl bg-gradient-to-r from-crimson-600 to-crimson-700 px-5 py-3.5 text-[15px] font-extrabold uppercase tracking-wide text-white shadow-[0_8px_24px_rgba(220,38,38,0.35)] transition-transform hover:scale-[1.01]"
+          >
+            Devam et
+          </button>
+        ) : (
+          <button
+            type="button"
+            onClick={hemenAl}
+            className="mt-6 w-full rounded-xl bg-gradient-to-r from-crimson-600 to-crimson-700 px-5 py-3.5 text-[15px] font-extrabold uppercase tracking-wide text-white shadow-[0_8px_24px_rgba(220,38,38,0.35)] transition-transform hover:scale-[1.01]"
+          >
+            Hemen al
+          </button>
+        )}
 
         <p className="mt-3 text-[12px] text-zinc-500">İndirim yalnızca havale / EFT ödemelerinde geçerlidir.</p>
       </div>
