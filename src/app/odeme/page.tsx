@@ -6,7 +6,7 @@ import OdemeForm from "@/components/odeme/OdemeForm";
 import { KART_ODEME_AKTIF, WHATSAPP_PHONE } from "@/config/cekicilikConfig";
 import { eklemeBul, satistaMi, urunBul } from "@/lib/odeme/urunler";
 import { HAVALE, havaleHazirMi } from "@/lib/odeme/havale";
-import { HEDIYE_EKITAP, ekitapHavaleAcik, havaleFiyati, havaleKampanyaAktif, referansFiyati } from "@/lib/odeme/kampanya";
+import { HEDIYE_EKITAP, ekitapHavaleAcik, havaleFiyati, havaleIndirimYuzde, havaleKampanyaAktif, referansFiyati } from "@/lib/odeme/kampanya";
 import { FirsatRozet, KampanyaKutusu, UrunKartiFiyat } from "@/components/ui/KampanyaGeriSayim";
 import { Lock, Package, BookOpen } from "lucide-react";
 
@@ -90,7 +90,7 @@ export default function OdemeSayfasi({ searchParams }: { searchParams: { urun?: 
         Siparişini <span className="gold-text-gradient">Tamamla</span>
       </h1>
 
-      {havaleIndirimi && <FirsatRozet className="mt-6" />}
+      {havaleIndirimi && <FirsatRozet className="mt-6" yuzde={havaleIndirimYuzde(urun.id)} />}
       <div className="mt-3 flex items-center justify-between gap-4 rounded-2xl border border-gold-500/30 bg-gradient-to-b from-white/[0.05] to-transparent p-4 sm:p-5">
         <div className="flex items-center gap-3">
           <div className="rounded-lg border border-gold-500/30 bg-gold-500/10 p-2.5 text-gold-400">

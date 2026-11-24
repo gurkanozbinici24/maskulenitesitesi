@@ -11,7 +11,7 @@ import GiftLink from "./ui/GiftLink";
 import { KART_ODEME_AKTIF, KOLEKSIYON_SETI_CONFIG as SET } from "@/config/cekicilikConfig";
 import { odemeLinki } from "@/lib/odeme/urunler";
 import { FirsatRozet, useHavaleKampanya } from "./ui/KampanyaGeriSayim";
-import { HAVALE_KAMPANYA_FIYAT } from "@/lib/odeme/kampanya";
+import { HAVALE_KAMPANYA_FIYAT, havaleIndirimYuzde } from "@/lib/odeme/kampanya";
 
 const pad = (n: number) => String(n).padStart(2, "0");
 
@@ -145,7 +145,7 @@ export default function BundleSection() {
           <PhysicalPerks theme="kitap1" className="mx-auto mt-4 max-w-md lg:mx-0" />
 
           <div className="mx-auto mt-7 max-w-md lg:mx-0" data-sticky-hide>
-            {isOnSale && KART_ODEME_AKTIF && setFiyat < SET.price && <FirsatRozet ince className="mb-2" />}
+            {isOnSale && KART_ODEME_AKTIF && setFiyat < SET.price && <FirsatRozet ince className="mb-2" yuzde={havaleIndirimYuzde("koleksiyon-seti")} />}
             {isOnSale && KART_ODEME_AKTIF ? (
               <ThemeButton
                 theme="kitap1"

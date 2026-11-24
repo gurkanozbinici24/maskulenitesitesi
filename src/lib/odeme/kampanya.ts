@@ -1,4 +1,4 @@
-import { ODEME_URUNLERI, type UrunId } from "./urunler";
+import type { UrunId } from "./urunler";
 
 /**
  * 48 saatlik "fiziksel kitaba e-kitap hediye" kampanyası.
@@ -22,40 +22,38 @@ export const HEDIYE_EKITAP: Partial<Record<UrunId, UrunId>> = {
 };
 
 /**
- * Havale / EFT ile indirim kampanyası: tüm ürünlerde %25 (ikili paket ayrıca 1300 TL).
- * E-kitapta havale yalnızca bu kampanya sürerken açık (PDF, ödeme görülünce tek tıkla gönderilir).
- * Kartla ödemede fiyat değişmez. Süre dolunca indirim, bant ve rozetler kendiliğinden kapanır.
+ * 24 saatlik havale / EFT indirimi. Yalnızca havale ile ödemede geçerlidir; kartla ödemede fiyat değişmez.
+ * Tek fiziksel kitap 1000 -> 650 TL (%35), iki fiziksel kitap 2000 -> 1200 TL (%40),
+ * e-kitap 600 -> 400 TL (%33), iki e-kitap 1200 -> 750 TL (%38). Kargo ücretsiz.
+ * Süre dolunca indirim, bant ve rozetler kendiliğinden kapanır.
  * Fiyat sunucuda buradan hesaplanır; tarayıcıdan gelen tutara güvenilmez.
  */
 export const HAVALE_KAMPANYA = {
-  bas: "2026-11-22T18:22:00+03:00",
-  bitis: "2026-11-22T21:22:00+03:00",
+  bas: "2026-11-24T20:30:00+03:00",
+  bitis: "2026-11-25T20:30:00+03:00",
   /** Tek fiziksel kitap */
-  kitapYuzde: 25,
-  /** İkili paketler ve e-kitaplar (PDF) */
-  yuzde: 25,
+  kitapYuzde: 35,
+  /** İki fiziksel kitap (koleksiyon seti ve ikili paket) */
+  ikiliYuzde: 40,
+  /** Tek e-kitap */
+  ekitapYuzde: 33,
+  /** İki e-kitap */
+  ikiliEkitapYuzde: 38,
 };
 
-/** Havale indirim oranı: tek fiziksel kitap %25, diğer tüm ürünler (PDF) %20 */
-const havaleYuzde = (id: UrunId) =>
-  id === "vazgecilmez-fiziksel-yenilenmis" || id === "cekicilik-fiziksel"
-    ? HAVALE_KAMPANYA.kitapYuzde
-    : HAVALE_KAMPANYA.yuzde;
-
-/** İki fiziksel kitap (koleksiyon seti ve ikili paket) havale ile sabit 1300 TL (2000 TL'den %35), kargo ücretsiz */
-export const HAVALE_IKILI_FIYAT = 1300;
-const SABIT_HAVALE: Partial<Record<UrunId, number>> = {
-  "koleksiyon-seti": HAVALE_IKILI_FIYAT,
-  "ikili-fiziksel": HAVALE_IKILI_FIYAT,
+/** Havale ile ödenecek birim fiyatlar */
+export const HAVALE_KAMPANYA_FIYAT: Partial<Record<UrunId, number>> = {
+  "vazgecilmez-fiziksel-yenilenmis": 650,
+  "cekicilik-fiziksel": 650,
+  "koleksiyon-seti": 1200,
+  "ikili-fiziksel": 1200,
+  "vazgecilmez-ekitap": 400,
+  "cekicilik-ekitap": 400,
+  "ikili-ekitap": 750,
 };
 
-const havaleIndirimli = (id: UrunId) =>
-  SABIT_HAVALE[id] ?? Math.round((ODEME_URUNLERI[id].fiyat * (100 - havaleYuzde(id))) / 100);
-
-/** Havale ile ödenecek birim fiyatlar (kart fiyatının indirimli hali) */
-export const HAVALE_KAMPANYA_FIYAT: Partial<Record<UrunId, number>> = Object.fromEntries(
-  (Object.keys(ODEME_URUNLERI) as UrunId[]).map((id) => [id, havaleIndirimli(id)]),
-) as Partial<Record<UrunId, number>>;
+/** İki fiziksel kitap havale ile fiyatı (popup ve ödeme ekranı bunu kullanır) */
+export const HAVALE_IKILI_FIYAT = 1200;
 
 export const havaleKampanyaBitisMs = () => Date.parse(HAVALE_KAMPANYA.bitis);
 export const havaleKampanyaAktif = (t: number = Date.now()) =>
@@ -65,6 +63,14 @@ export const havaleKampanyaAktif = (t: number = Date.now()) =>
 export const HAVALE_REFERANS_FIYAT: Partial<Record<UrunId, number>> = {
   "koleksiyon-seti": 2000,
   "ikili-fiziksel": 2000,
+};
+
+/** Havale indirim oranı (%), üstü çizili referans fiyata göre */
+export const havaleIndirimYuzde = (id: UrunId): number => {
+  if (id === "koleksiyon-seti" || id === "ikili-fiziksel") return HAVALE_KAMPANYA.ikiliYuzde;
+  if (id === "ikili-ekitap") return HAVALE_KAMPANYA.ikiliEkitapYuzde;
+  if (id === "vazgecilmez-ekitap" || id === "cekicilik-ekitap") return HAVALE_KAMPANYA.ekitapYuzde;
+  return HAVALE_KAMPANYA.kitapYuzde;
 };
 export const referansFiyati = (urun: { id: UrunId; fiyat: number }) => HAVALE_REFERANS_FIYAT[urun.id] ?? urun.fiyat;
 
