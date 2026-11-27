@@ -49,7 +49,7 @@ export const HAVALE_KAMPANYA_FIYAT: Partial<Record<UrunId, number>> = {
   "ikili-fiziksel": 1400,
   "vazgecilmez-ekitap": 500,
   "cekicilik-ekitap": 500,
-  "ikili-ekitap": 750,
+  "ikili-ekitap": 850,
 };
 
 /** İki fiziksel kitap havale ile fiyatı (popup ve ödeme ekranı bunu kullanır) */
