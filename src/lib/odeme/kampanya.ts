@@ -30,7 +30,7 @@ export const HEDIYE_EKITAP: Partial<Record<UrunId, UrunId>> = {
  */
 export const HAVALE_KAMPANYA = {
   bas: "2026-11-27T17:30:00+03:00",
-  bitis: "2026-11-27T21:30:00+03:00",
+  bitis: "2026-11-28T01:30:00+03:00",
   /** Tek fiziksel kitap */
   kitapYuzde: 30,
   /** İki fiziksel kitap (koleksiyon seti ve ikili paket) */
