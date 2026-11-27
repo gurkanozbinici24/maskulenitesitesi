@@ -25,7 +25,7 @@ const kalanYaz = (ms: number) => {
   return `${p(Math.floor(k / 3600))}:${p(Math.floor((k % 3600) / 60))}:${p(k % 60)}`;
 };
 
-/** 24 saatlik havale indirimi aktifse kalan süreyi döner; değilse null */
+/** 4 saatlik havale indirimi aktifse kalan süreyi döner; değilse null */
 export function useHavaleKampanya() {
   const simdi = useSaat();
   if (simdi === null || !havaleKampanyaAktif(simdi)) return null;
@@ -66,7 +66,7 @@ export function KampanyaRozet({ deger, fiyat, className = "", ince = false }: { 
   );
 }
 
-/** 24 saatlik havale fırsatı rozeti: büyük geri sayım, kampanya hissi */
+/** 4 saatlik havale fırsatı rozeti: büyük geri sayım, kampanya hissi */
 export function FirsatRozet({ className = "", ince = false, yuzde }: { className?: string; ince?: boolean; yuzde?: number }) {
   const h = useHavaleKampanya();
   if (!h) return null;
@@ -75,7 +75,7 @@ export function FirsatRozet({ className = "", ince = false, yuzde }: { className
       <div
         className={`flex w-full items-center justify-center gap-2 whitespace-nowrap rounded-lg border border-crimson-500/70 bg-crimson-800/40 px-3 py-1 shadow-[0_0_16px_rgba(220,38,38,0.3)] ${className}`}
       >
-        <span className="text-[11px] font-black uppercase tracking-wide text-white">🔥 24 saatlik fırsat</span>
+        <span className="text-[11px] font-black uppercase tracking-wide text-white">🔥 4 saatlik fırsat</span>
         <span className="text-crimson-300">·</span>
         <span className="text-[10px] font-bold uppercase text-crimson-100">bitmesine</span>
         <span className="font-mono text-[13px] font-black tabular-nums text-white">{h.kalan}</span>
@@ -87,7 +87,7 @@ export function FirsatRozet({ className = "", ince = false, yuzde }: { className
     >
       <span className="pointer-events-none absolute inset-0 animate-pulse bg-crimson-500/10" />
       <span className="relative flex flex-col items-start leading-tight">
-        <span className="text-[11px] font-black uppercase tracking-wider text-white">🔥 24 saatlik fırsat</span>
+        <span className="text-[11px] font-black uppercase tracking-wider text-white">🔥 4 saatlik fırsat</span>
         <span className="text-[10px] font-bold text-crimson-100">Havale ile %{yuzde ?? h.kitapYuzde} indirim</span>
       </span>
       <span className="relative flex flex-col items-end leading-tight">
@@ -123,14 +123,14 @@ export function UrunKartiFiyat({ kartFiyat, havaleFiyat }: { kartFiyat: number; 
   );
 }
 
-/** Ödeme sayfasındaki 24 saatlik havale indirimi kutusu */
+/** Ödeme sayfasındaki 4 saatlik havale indirimi kutusu */
 export function HavaleKampanyaKutusu({ kartFiyat, havaleFiyat }: { kartFiyat: number; havaleFiyat: number }) {
   const h = useHavaleKampanya();
   if (!h || havaleFiyat >= kartFiyat) return null;
   return (
     <div className="mt-3 rounded-2xl border border-emerald-400/60 bg-gradient-to-br from-emerald-500/15 via-emerald-500/5 to-transparent p-4 sm:p-5">
       <div className="flex flex-wrap items-center justify-between gap-2">
-        <span className="text-xs font-extrabold uppercase tracking-[0.18em] text-emerald-300">🏦 24 saatlik havale indirimi</span>
+        <span className="text-xs font-extrabold uppercase tracking-[0.18em] text-emerald-300">🏦 4 saatlik havale indirimi</span>
         <span className="rounded-full border border-crimson-500/50 bg-crimson-950/50 px-2.5 py-1 font-mono text-xs font-bold tabular-nums text-crimson-200">
           ⏳ {h.kalan}
         </span>

@@ -43,7 +43,7 @@ export default function Navbar() {
         </span>
         <span className="text-gold-300 font-extrabold text-[10px] sm:text-xs tracking-[0.08em] sm:tracking-[0.14em] uppercase whitespace-nowrap truncate">
           {havaleKampanya && KART_ODEME_AKTIF
-            ? `🔥 24 SAAT FIRSAT · İKİ KİTAP 1200 TL · KARGO ÜCRETSİZ · ${havaleKampanya.kalan}`
+            ? `🔥 4 SAAT FIRSAT · İKİ KİTAP 1400 TL · KARGO ÜCRETSİZ · ${havaleKampanya.kalan}`
             : kampanya && KART_ODEME_AKTIF
             ? `🎁 FİZİKSEL KİTABA E-KİTAP HEDİYE · ${kampanya.kalan}`
             : KART_ODEME_AKTIF && mesaj === 1

@@ -27,8 +27,8 @@ const isaretle = () => {
 };
 
 /**
- * 24 saatlik havale kampanyası sürerken, bir tarayıcı oturumunda bir kez çıkan ekran:
- * iki fiziksel kitap 2000 TL yerine havale ile 1200 TL, kargo ücretsiz. "Hemen al" doğrudan havale ödeme ekranını açar.
+ * 4 saatlik havale kampanyası sürerken, bir tarayıcı oturumunda bir kez çıkan ekran:
+ * iki fiziksel kitap 2000 TL yerine havale ile 1400 TL, kargo ücretsiz. "Hemen al" doğrudan havale ödeme ekranını açar.
  * Ödeme sayfasında ve yönetim panelinde gösterilmez.
  */
 export default function HavaleFirsatPopup() {
@@ -81,7 +81,7 @@ export default function HavaleFirsatPopup() {
           ✕
         </button>
 
-        <p className="text-[11px] font-black uppercase tracking-[0.25em] text-crimson-300">🔥 24 saatlik dev fırsat</p>
+        <p className="text-[11px] font-black uppercase tracking-[0.25em] text-crimson-300">🔥 4 saatlik dev fırsat</p>
 
         <h2 id="havale-firsat-baslik" className="mt-3 font-serif text-3xl font-black leading-tight text-white sm:text-4xl">
           İki kitap <span className="text-gold-300">%{yuzde} indirim</span>
