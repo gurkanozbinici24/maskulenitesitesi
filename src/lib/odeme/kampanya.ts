@@ -47,8 +47,8 @@ export const HAVALE_KAMPANYA_FIYAT: Partial<Record<UrunId, number>> = {
   "cekicilik-fiziksel": 700,
   "koleksiyon-seti": 1400,
   "ikili-fiziksel": 1400,
-  "vazgecilmez-ekitap": 400,
-  "cekicilik-ekitap": 400,
+  "vazgecilmez-ekitap": 500,
+  "cekicilik-ekitap": 500,
   "ikili-ekitap": 750,
 };
 
